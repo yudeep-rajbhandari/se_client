@@ -1,18 +1,14 @@
+/** @format */
 
-import './App.css';
+import React from 'react';
+import LandingPage from './components/LandingPage';
+// import Header from './components/User/Header';
 
-function App() {
+export default function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        
-        <p>
-          check <code>src/App.js</code> and save to reload.
-        </p>
-        
-      </header>
+    <div>
+      {/* <Header /> */}
+      <LandingPage />
     </div>
   );
 }
-
-export default App;
