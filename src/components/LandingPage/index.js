@@ -1,8 +1,7 @@
 /** @format */
 
 import React, { useState } from 'react';
-import '../styles.css';
-import Button from './shared/Button';
+import './styles.css';
 export default function LandingPage() {
   return (
     <>
@@ -14,9 +13,7 @@ export default function LandingPage() {
           title='About Baylor'
           description='Baylor University'
         />
-        <Button type='submit' version='secondary'>
-          Register
-        </Button>
+
         <Card
           className='section bg-grey'
           img='./Capture3.PNG'
