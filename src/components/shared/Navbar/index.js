@@ -10,11 +10,18 @@ import {
   NavBtn,
   NavBtnLink,
 } from './NavbarElements';
+
+import './styles.css';
 export default function Navbar() {
   return (
     <>
       <Nav>
-        <NavLogo to='/'>Logo</NavLogo>
+        <NavLogo to='/'>
+          <img
+            className='photo_bu_logo'
+            src={process.env.PUBLIC_URL + '/image/bu_logo.png'}
+          />
+        </NavLogo>
         <Bars />
 
         <NavMenu>
