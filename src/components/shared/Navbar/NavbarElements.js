@@ -13,11 +13,14 @@ export const Nav = styled.nav`
   padding: 0.2rem calc((100vw - 1000px) / 2);
   z-index: 12;
 `;
+
 export const NavLogo = styled(Link)`
   cursor: pointer;
   color: #fff;
   font-size: 2rem;
   text-decoration: none;
+  float: left !important;
+  margin-top: -15px !important;
 `;
 
 export const NavLink = styled(Link)`
