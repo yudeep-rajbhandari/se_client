@@ -31,15 +31,9 @@ export default function Navbar() {
           <NavLink to='/register' activeStyle={{ color: 'black' }}>
             Login/Register
           </NavLink>
-          {/* <NavLink to='/contact' activeStyle={{ color: 'black' }}>
-            Contact
+          <NavLink to='/schedule' activeStyle={{ color: 'black' }}>
+            Schedule
           </NavLink>
-          <NavLink to='/signin' activeStyle={{ color: 'black' }}>
-            Sign In
-          </NavLink>
-          <NavBtn>
-            <NavBtnLink to='/sign-up'>Sign Up</NavBtnLink>
-          </NavBtn> */}
         </NavMenu>
       </Nav>
     </>
