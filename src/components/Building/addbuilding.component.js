@@ -13,7 +13,7 @@ export default class AddBuilding extends Component {
   }
 
   componentDidMount() {
-    UserService.getAdminBoard().then(
+    UserService.addBuidling().then(
       response => {
         this.setState({
           content: response.data

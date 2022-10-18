@@ -200,8 +200,8 @@ class App extends Component {
             <Route path="/user" element={<BoardUser />} />
             <Route path="/admin" element={<BoardAdmin />} />
 
-            <Route path="/addBuilding" elemnet={<AddBuilding />} />
-            <Route path="/addRoom" elemnet={<AddRoom />} />
+            <Route path="/addBuilding" element={<AddBuilding />} />
+            <Route path="/addRoom" element={<AddRoom />} />
             <Route path="/addResource" elemnet={<AddResource />} />
 
             <Route path="/reserveroom" elemnet={<ReserveRoom />} />
@@ -209,7 +209,7 @@ class App extends Component {
           </Routes>
         </div>
 
-        {/* <AuthVerify logOut={this.logOut}/> */}
+        {/* <AuthVerify logOut={this.logOut}/> */}s
       </div>
     );
   }
