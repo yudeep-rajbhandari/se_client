@@ -8,11 +8,16 @@ import AuthService from "./services/auth.service";
 import Login from "./components/Login/login.component";
 import Register from "./components/Register/register.component";
 import Home from "./components/Home/home.component";
+import AddBuilding from "./components/Building/addbuilding.component";
 import Profile from "./components/Profile/profile.component";
 import BoardUser from "./components/UserBoard/board-user.component";
 import BoardAdmin from "./components/AdminBoard/board-admin.component";
 
 import EventBus from "./common/EventBus";
+import AddRoom from "./components/Room/addroom.component";
+import AddResource from "./components/Resource/addresource.component";
+import ReserveRoom from "./components/Reserve/ReserveRoom/reserveroom.component";
+import ReserveResource from "./components/Reserve/ReserveResource/reserveresource.component";
 
 class App extends Component {
   constructor(props) {
@@ -20,9 +25,15 @@ class App extends Component {
     this.logOut = this.logOut.bind(this);
 
     this.state = {
-      showModeratorBoard: false,
       showAdminBoard: false,
       currentUser: undefined,
+
+      showAddBuilding: false,
+      showAddRoom: false,
+      showAddResource: false,
+
+      showReserveRoom: false,
+      showReserveResource: false,
     };
   }
 
@@ -33,9 +44,17 @@ class App extends Component {
       this.setState({
         currentUser: user,
         showAdminBoard: user.roles.includes("ROLE_ADMIN"),
+        showUserBoard: user.roles.includes("ROLE_USER"),
+
+        showAddBuilding: user.roles.includes("ROLE_ADMIN"),
+        showAddRoom: user.roles.includes("ROLE_ADMIN"),
+        showAddResource: user.roles.includes("ROLE_ADMIN"),
+
+        showReserveRoom: user.roles.includes("ROLE_USER"),
+        showReserveResource: user.roles.includes("ROLE_USER"),
       });
     }
-    
+
     EventBus.on("logout", () => {
       this.logOut();
     });
@@ -48,14 +67,23 @@ class App extends Component {
   logOut() {
     AuthService.logout();
     this.setState({
-      showModeratorBoard: false,
+      showUserBoard: false,
       showAdminBoard: false,
       currentUser: undefined,
     });
   }
 
   render() {
-    const { currentUser, showModeratorBoard, showAdminBoard } = this.state;
+    const {
+      currentUser,
+      showUserBoard,
+      showAdminBoard,
+      showAddBuilding,
+      showAddRoom,
+      showAddResource,
+      showReserveRoom,
+      showReserveResource,
+    } = this.state;
 
     return (
       <div>
@@ -74,15 +102,13 @@ class App extends Component {
                 Schedule
               </Link>
             </li>
-
-            {showModeratorBoard && (
+            {showUserBoard && (
               <li className="nav-item">
-                <Link to={"/mod"} className="nav-link">
-                  Moderator Board
+                <Link to={"/user"} className="nav-link">
+                  User
                 </Link>
               </li>
             )}
-
             {showAdminBoard && (
               <li className="nav-item">
                 <Link to={"/admin"} className="nav-link">
@@ -91,13 +117,47 @@ class App extends Component {
               </li>
             )}
 
-            {currentUser && (
+            {showAddBuilding && (
               <li className="nav-item">
-                <Link to={"/user"} className="nav-link">
-                  User
+                <Link to={"/addbuilding"} className="nav-link">
+                  Add Building
                 </Link>
               </li>
             )}
+
+            {showAddRoom && (
+              <li className="nav-item">
+                <Link to={"/addroom"} className="nav-link">
+                  Add Room
+                </Link>
+              </li>
+            )}
+
+            {showAddResource && (
+              <li className="nav-item">
+                <Link to={"/addresource"} className="nav-link">
+                  Add Resource
+                </Link>
+              </li>
+            )}
+
+            {showReserveRoom && (
+              <li className="nav-item">
+                <Link to={"/reserveroom"} className="nav-link">
+                  Reserve Room
+                </Link>
+              </li>
+            )}
+
+            {showReserveResource && (
+              <li className="nav-item">
+                <Link to={"/reserveresource"} className="nav-link">
+                  Reserve Resource
+                </Link>
+              </li>
+            )}
+
+           
           </div>
 
           {currentUser ? (
@@ -139,6 +199,13 @@ class App extends Component {
             <Route path="/profile" element={<Profile />} />
             <Route path="/user" element={<BoardUser />} />
             <Route path="/admin" element={<BoardAdmin />} />
+
+            <Route path="/addBuilding" elemnet={<AddBuilding />} />
+            <Route path="/addRoom" elemnet={<AddRoom />} />
+            <Route path="/addResource" elemnet={<AddResource />} />
+
+            <Route path="/reserveroom" elemnet={<ReserveRoom />} />
+            <Route path="/reserveresource" elemnet={<ReserveResource />} />
           </Routes>
         </div>
 
