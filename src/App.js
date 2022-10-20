@@ -18,12 +18,8 @@ import AddRoom from "./components/Room/AddRoom";
 import AddResource from "./components/Resource/addresource.component";
 import ReserveRoom from "./components/Reserve/ReserveRoom/reserveroom.component";
 import ReserveResource from "./components/Reserve/ReserveResource/reserveresource.component";
-<<<<<<< HEAD
-import ListBuilding from "./components/Building/ListBuilding/ListBuilding";
-=======
 import FindBookableRoom from "./components/Room/room.component";
 
->>>>>>> d8431c3 (room listing service)
 
 class App extends Component {
   constructor(props) {

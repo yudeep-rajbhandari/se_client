@@ -3,16 +3,9 @@
   "version": "1.0.0",
   "private": true,
   "dependencies": {
-<<<<<<< HEAD
-    "@emotion/react": "^11.10.5",
-    "@emotion/styled": "^11.10.5",
-    "@mui/material": "^5.10.13",
-    "@mui/styled-engine-sc": "^5.10.6",
-=======
     "@emotion/react": "^11.10.4",
     "@emotion/styled": "^11.10.4",
     "@mui/material": "^5.10.10",
->>>>>>> d8431c3 (room listing service)
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.0.1",
     "@testing-library/user-event": "^14.1.1",
