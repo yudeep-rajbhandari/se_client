@@ -156,8 +156,6 @@ class App extends Component {
                 </Link>
               </li>
             )}
-
-           
           </div>
 
           {currentUser ? (
@@ -189,7 +187,6 @@ class App extends Component {
             </div>
           )}
         </nav>
-
         <div className="container mt-3">
           <Routes>
             <Route path="/" element={<Home />} />
@@ -208,7 +205,6 @@ class App extends Component {
             <Route path="/reserveresource" element={<ReserveResource />} />
           </Routes>
         </div>
-
         {/* <AuthVerify logOut={this.logOut}/> */}s
       </div>
     );
