@@ -44,7 +44,7 @@ class App extends Component {
       this.setState({
         currentUser: user,
         showAdminBoard: user.roles.includes("ROLE_ADMIN"),
-        showUserBoard: user.roles.includes("ROLE_USER"),
+        // showUserBoard: user.roles.includes("ROLE_USER"),
 
         showAddBuilding: user.roles.includes("ROLE_ADMIN"),
         showAddRoom: user.roles.includes("ROLE_ADMIN"),
@@ -202,10 +202,10 @@ class App extends Component {
 
             <Route path="/addBuilding" element={<AddBuilding />} />
             <Route path="/addRoom" element={<AddRoom />} />
-            <Route path="/addResource" elemnet={<AddResource />} />
+            <Route path="/addResource" element={<AddResource />} />
 
-            <Route path="/reserveroom" elemnet={<ReserveRoom />} />
-            <Route path="/reserveresource" elemnet={<ReserveResource />} />
+            <Route path="/reserveroom" element={<ReserveRoom />} />
+            <Route path="/reserveresource" element={<ReserveResource />} />
           </Routes>
         </div>
 

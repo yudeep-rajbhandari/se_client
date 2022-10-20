@@ -8,7 +8,9 @@
     "@testing-library/user-event": "^14.1.1",
     "axios": "^0.27.2",
     "bootstrap": "^4.6.2",
+    "moment": "^2.29.4",
     "react": "^18.2.0",
+    "react-availability-calendar": "^0.2.13",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.4.0",
     "react-scripts": "5.0.1",
@@ -38,5 +40,12 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "css-loader": "^6.7.1",
+    "mini-css-extract-plugin": "^2.6.1",
+    "node-sass": "^7.0.3",
+    "sass-loader": "^13.1.0",
+    "style-loader": "^3.3.1"
   }
 }
