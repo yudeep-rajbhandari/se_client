@@ -18,6 +18,8 @@ import AddRoom from "./components/Room/addroom.component";
 import AddResource from "./components/Resource/addresource.component";
 import ReserveRoom from "./components/Reserve/ReserveRoom/reserveroom.component";
 import ReserveResource from "./components/Reserve/ReserveResource/reserveresource.component";
+import FindBookableRoom from "./components/Room/room.component";
+
 
 class App extends Component {
   constructor(props) {
@@ -206,6 +208,7 @@ class App extends Component {
 
             <Route path="/reserveroom" element={<ReserveRoom />} />
             <Route path="/reserveresource" element={<ReserveResource />} />
+            <Route path="/findroom" element={<FindBookableRoom />} />
           </Routes>
         </div>
 
