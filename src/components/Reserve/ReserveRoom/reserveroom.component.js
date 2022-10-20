@@ -36,7 +36,7 @@ export default function ReserveRoom(props) {
             toDate: new Date(bookingnow[bookingnow.length-1].startDate)
         }]
         console.log("post",newbook)
-        userService.makeReservation(2,newbook)
+        userService.makeReservation(3,newbook)
     };
     const onAvailabilitySelected = (a: AvailabilityEvent) => {
 
@@ -70,7 +70,7 @@ export default function ReserveRoom(props) {
         [19 * msInHour, 24 * msInHour],
     ];
     useEffect(() => {
-        UserService.getRoom(2).then(res => {
+        UserService.getRoom(3).then(res => {
             console.log(res.data)
             setBookings(res.data.roomReservation.map(i=>({
                 startDate: new Date(i.fromDate),
@@ -78,6 +78,7 @@ export default function ReserveRoom(props) {
             })))
 
         })
+        console.log("booking",bookings)
     },[]);
     return (
         <div style={{ width: 350 }}>
@@ -89,7 +90,7 @@ export default function ReserveRoom(props) {
                 initialDate={now}
                 onAvailabilitySelected={onAvailabilitySelected}
                 onCalRangeChange={onChangedCalRange}
-                blockOutPeriods={blockOutPeriods}
+                // blockOutPeriods={blockOutPeriods}
             />
             <div>
                 <button onClick={handleRemove}>Submit</button>
