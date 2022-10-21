@@ -7,20 +7,12 @@ class AddRoom extends Component {
     name: "",
     roomType: "lab",
     isBookable: true,
+    buildings: [],
   };
 
   componentDidMount() {
     const currentUser = AuthService.getCurrentUser();
 
-    const buildingList = adminService.getAllBuilding().then((res) => {
-      const buildings = res.data.map((obj) => ({
-        name: obj.name,
-        floors: obj.floors,
-      }));
-      this.setState({ buildings });
-    });
-
-    console.log(buildingList);
     if (!currentUser) this.setState({ redirect: "/home" });
     this.setState({ currentUser: currentUser, userReady: true });
   }
@@ -89,8 +81,19 @@ class AddRoom extends Component {
           </label>
           <button type="submit"> Create </button>
         </form>
+
+        <table>
+          <thead>
+            <tr>
+              <th> Name </th>
+              <th> RoomType </th>
+              <th> IsBookable </th>
+            </tr>
+          </thead>
+        </table>
       </div>
     );
   }
 }
+
 export default AddRoom;

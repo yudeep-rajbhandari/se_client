@@ -21,7 +21,7 @@ class AdminService {
         headers: authHeader(),
       })
       .then((response) => {
-        if (response.data.building) {
+        if (response.data) {
           JSON.stringify(response.data);
         }
         return response.data;
