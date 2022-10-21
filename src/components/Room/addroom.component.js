@@ -12,6 +12,15 @@ class AddRoom extends Component {
   componentDidMount() {
     const currentUser = AuthService.getCurrentUser();
 
+    const buildingList = adminService.getAllBuilding().then((res) => {
+      const buildings = res.data.map((obj) => ({
+        name: obj.name,
+        floors: obj.floors,
+      }));
+      this.setState({ buildings });
+    });
+
+    console.log(buildingList);
     if (!currentUser) this.setState({ redirect: "/home" });
     this.setState({ currentUser: currentUser, userReady: true });
   }
