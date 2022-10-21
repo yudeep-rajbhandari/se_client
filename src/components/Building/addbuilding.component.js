@@ -9,9 +9,16 @@ class AddBuilding extends Component {
     state: "Texas",
     city: "Waco",
     formError: false,
+    buildings: [],
   };
   componentDidMount() {
     const currentUser = AuthService.getCurrentUser();
+
+    const buildingList = adminService.getAllBuilding().then((response) => {
+      this.setState({
+        buildings: response,
+      });
+    });
 
     if (!currentUser) this.setState({ redirect: "/home" });
     this.setState({ currentUser: currentUser, userReady: true });
@@ -34,25 +41,53 @@ class AddBuilding extends Component {
       console.log(res.data);
     });
   };
-  handleChange = (event) => {
+  handleNameChange = (event) => {
     this.setState({ [event.target.name]: event.target.value });
   };
+
+  handleFloorsChange = (event) => {
+    this.setState({ [event.target.name]: event.target.value });
+  };
+  handleStreetChange = (event) => {
+    this.setState({ [event.target.name]: event.target.value });
+  };
+
+  handleCityChange = (event) => {
+    this.setState({ [event.target.name]: event.target.value });
+  };
+
+  handleStateChange = (event) => {
+    this.setState({ [event.target.name]: event.target.value });
+  };
+
+  handleZipChange = (event) => {
+    this.setState({ [event.target.name]: event.target.value });
+  };
+
   render() {
     return (
       <div className="addBuilding">
         <form onSubmit={this.handleSubmit}>
           <label>
             Name:
-            <input type="text" name="name" onChange={this.handleChange} />
+            <input type="text" name="name" onChange={this.handleNameChange} />
           </label>
           <label>
             Floors:
-            <input type="number" name="floors" onChange={this.handleChange} />
+            <input
+              type="number"
+              name="floors"
+              onChange={this.handleFloorsChange}
+            />
           </label>
 
           <label>
             Street:
-            <input type="text" name="street" onChange={this.handleChange} />
+            <input
+              type="text"
+              name="street"
+              onChange={this.handleStreetChange}
+            />
           </label>
           <label>
             City:
@@ -60,7 +95,7 @@ class AddBuilding extends Component {
               defaultValue={this.state.city}
               type="text"
               name="city"
-              onChange={this.handleChange}
+              onChange={this.handleCityChange}
             />
           </label>
           <label>
@@ -69,7 +104,7 @@ class AddBuilding extends Component {
               defaultValue={this.state.state}
               type="text"
               name="state"
-              onChange={this.handleChange}
+              onChange={this.handleStateChange}
             />
           </label>
           <label>
@@ -78,7 +113,7 @@ class AddBuilding extends Component {
               defaultValue={this.state.zip}
               type="text"
               name="zip"
-              onChange={this.handleChange}
+              onChange={this.handleZipChange}
             />
           </label>
           <br />

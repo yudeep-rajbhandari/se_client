@@ -7,6 +7,7 @@ class AddRoom extends Component {
     name: "",
     roomType: "lab",
     isBookable: true,
+    buildings: [],
   };
 
   componentDidMount() {
@@ -80,8 +81,19 @@ class AddRoom extends Component {
           </label>
           <button type="submit"> Create </button>
         </form>
+
+        <table>
+          <thead>
+            <tr>
+              <th> Name </th>
+              <th> RoomType </th>
+              <th> IsBookable </th>
+            </tr>
+          </thead>
+        </table>
       </div>
     );
   }
 }
+
 export default AddRoom;
