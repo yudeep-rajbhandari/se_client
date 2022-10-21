@@ -1,10 +1,14 @@
 import React, { Component } from "react";
-import axios from "axios";
 import AuthService from "../../services/auth.service";
-import authHeader from "../../services/auth-header";
+import adminService from "../../services/admin.service";
+
 class AddBuilding extends Component {
   state = {
     name: "",
+    zip: "76706",
+    state: "Texas",
+    city: "Waco",
+    formError: false,
   };
   componentDidMount() {
     const currentUser = AuthService.getCurrentUser();
@@ -25,15 +29,10 @@ class AddBuilding extends Component {
         zip: this.state.zip,
       },
     };
-    console.log("Building is", building);
-    axios
-      .post("http://localhost:8080/api/building/addBuilding", building, {
-        headers: authHeader(),
-      })
-      .then((res) => {
-        console.log(res);
-        console.log(res.data);
-      });
+    adminService.addBuidling(building).then((res) => {
+      console.log(res);
+      console.log(res.data);
+    });
   };
   handleChange = (event) => {
     this.setState({ [event.target.name]: event.target.value });
@@ -57,17 +56,34 @@ class AddBuilding extends Component {
           </label>
           <label>
             City:
-            <input type="text" name="city" onChange={this.handleChange} />
+            <input
+              defaultValue={this.state.city}
+              type="text"
+              name="city"
+              onChange={this.handleChange}
+            />
           </label>
           <label>
             State:
-            <input type="text" name="state" onChange={this.handleChange} />
+            <input
+              defaultValue={this.state.state}
+              type="text"
+              name="state"
+              onChange={this.handleChange}
+            />
           </label>
           <label>
             Zip:
-            <input type="text" name="zip" onChange={this.handleChange} />
+            <input
+              defaultValue={this.state.zip}
+              type="text"
+              name="zip"
+              onChange={this.handleChange}
+            />
           </label>
-          <button type="submit"> Create </button>
+          <br />
+
+          <button type="submit"> Create Building</button>
         </form>
       </div>
     );
