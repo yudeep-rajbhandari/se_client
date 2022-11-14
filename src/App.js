@@ -18,6 +18,7 @@ import AddRoom from "./components/Room/addroom.component";
 import AddResource from "./components/Resource/addresource.component";
 import ReserveRoom from "./components/Reserve/ReserveRoom/reserveroom.component";
 import ReserveResource from "./components/Reserve/ReserveResource/reserveresource.component";
+import ListBuilding from "./components/Building/ListBuilding/ListBuilding";
 
 class App extends Component {
   constructor(props) {
@@ -125,6 +126,14 @@ class App extends Component {
               </li>
             )}
 
+            {showAddBuilding && (
+              <li className="nav-item">
+                <Link to={"/listBuilding"} className="nav-link">
+                  List Building
+                </Link>
+              </li>
+            )}
+
             {showAddRoom && (
               <li className="nav-item">
                 <Link to={"/addroom"} className="nav-link">
@@ -198,6 +207,7 @@ class App extends Component {
             <Route path="/admin" element={<BoardAdmin />} />
 
             <Route path="/addBuilding" element={<AddBuilding />} />
+            <Route path="/listBuilding" element={<ListBuilding />} />
             <Route path="/addRoom" element={<AddRoom />} />
             <Route path="/addResource" element={<AddResource />} />
 

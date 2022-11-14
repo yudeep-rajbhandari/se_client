@@ -15,17 +15,16 @@ class AdminService {
     });
   }
 
+  updateBuilding(building) {
+    return axios.put(BUILDING_URL + "updateBuilding", building, {
+      headers: authHeader(),
+    });
+  }
+
   getAllBuilding() {
-    return axios
-      .get(BUILDING_URL + "getAllBuilding", {
-        headers: authHeader(),
-      })
-      .then((response) => {
-        if (response.data) {
-          JSON.stringify(response.data);
-        }
-        return response.data;
-      });
+    return axios.get(BUILDING_URL + "getAllBuilding", {
+      headers: authHeader(),
+    });
   }
 
   addRoom(room) {
