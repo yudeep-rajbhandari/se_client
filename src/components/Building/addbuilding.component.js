@@ -1,127 +1,84 @@
-import React, { Component } from "react";
+import React, { useRef, useState } from "react";
 import AuthService from "../../services/auth.service";
 import adminService from "../../services/admin.service";
 
-class AddBuilding extends Component {
-  state = {
-    name: "",
-    zip: "76706",
-    state: "Texas",
-    city: "Waco",
-    formError: false,
-    buildings: [],
-  };
-  componentDidMount() {
-    const currentUser = AuthService.getCurrentUser();
+export default function AddBuilding() {
+  const nameRef = useRef();
+  const floorsRef = useRef();
+  const streetRef = useRef();
+  const cityRef = useRef();
+  const stateRef = useRef();
+  const zipRef = useRef();
 
-    const buildingList = adminService.getAllBuilding().then((response) => {
-      this.setState({
-        buildings: response,
-      });
-    });
+  const [message, setMessage] = useState();
+  const [status, setStatus] = useState(false);
+  const [showBuilding, setShowBuilding] = useState(false);
 
-    if (!currentUser) this.setState({ redirect: "/home" });
-    this.setState({ currentUser: currentUser, userReady: true });
-  }
-
-  handleSubmit = (event) => {
+  function onSubmit(event) {
     event.preventDefault();
-    const building = {
-      name: this.state.name,
-      floors: this.state.floors,
-      address: {
-        street: this.state.street,
-        city: this.state.city,
-        state: this.state.state,
-        zip: this.state.zip,
-      },
+    const address = {
+      street: streetRef.current.value,
+      city: cityRef.current.value,
+      state: stateRef.current.value,
+      zip: zipRef.current.value,
     };
-    adminService.addBuidling(building).then((res) => {
-      console.log(res);
-      console.log(res.data);
-    });
-  };
-  handleNameChange = (event) => {
-    this.setState({ [event.target.name]: event.target.value });
-  };
-
-  handleFloorsChange = (event) => {
-    this.setState({ [event.target.name]: event.target.value });
-  };
-  handleStreetChange = (event) => {
-    this.setState({ [event.target.name]: event.target.value });
-  };
-
-  handleCityChange = (event) => {
-    this.setState({ [event.target.name]: event.target.value });
-  };
-
-  handleStateChange = (event) => {
-    this.setState({ [event.target.name]: event.target.value });
-  };
-
-  handleZipChange = (event) => {
-    this.setState({ [event.target.name]: event.target.value });
-  };
-
-  render() {
-    return (
-      <div className="addBuilding">
-        <form onSubmit={this.handleSubmit}>
-          <label>
-            Name:
-            <input type="text" name="name" onChange={this.handleNameChange} />
-          </label>
-          <label>
-            Floors:
-            <input
-              type="number"
-              name="floors"
-              onChange={this.handleFloorsChange}
-            />
-          </label>
-
-          <label>
-            Street:
-            <input
-              type="text"
-              name="street"
-              onChange={this.handleStreetChange}
-            />
-          </label>
-          <label>
-            City:
-            <input
-              defaultValue={this.state.city}
-              type="text"
-              name="city"
-              onChange={this.handleCityChange}
-            />
-          </label>
-          <label>
-            State:
-            <input
-              defaultValue={this.state.state}
-              type="text"
-              name="state"
-              onChange={this.handleStateChange}
-            />
-          </label>
-          <label>
-            Zip:
-            <input
-              defaultValue={this.state.zip}
-              type="text"
-              name="zip"
-              onChange={this.handleZipChange}
-            />
-          </label>
-          <br />
-
-          <button type="submit"> Create Building</button>
-        </form>
-      </div>
-    );
+    const building = {
+      name: nameRef.current.value,
+      floors: floorsRef.current.value,
+      address,
+    };
+    addBuidling(building);
   }
+
+  async function addBuidling(building) {
+    await adminService.addBuidling(building).then((res) => {
+      console.log(res);
+      setMessage("Building added successfully");
+      setStatus(true);
+    });
+  }
+
+  function listAllBuilding() {
+    console.log("All buildings");
+    setShowBuilding(true);
+  }
+
+  async function getAllBuilding() {
+    const { data } = await adminService.getAllBuilding();
+    console.log(data);
+  }
+
+  return (
+    <div>
+      <h3> Add Building</h3>
+      <form onSubmit={onSubmit}>
+        {/* Building name */}
+        <label htmlFor="name"> Name</label>
+        <input ref={nameRef} type="name" id="name" />
+        <br />
+        {/* Floors */}
+        <label htmlFor="floors"> Number of Floors</label>
+        <input ref={floorsRef} type="number" id="floors" />
+        <br />
+        <label htmlFor="address"> Please write the Address below:</label>
+        <br />
+        <label htmlFor="street"> Street</label>
+        <input ref={streetRef} type="street" id="street" />
+        <label htmlFor="city"> City</label>
+        <input ref={cityRef} type="city" id="city" defaultValue={"Waco"} />
+        <br />
+        <label htmlFor="state"> State</label>
+        <input ref={stateRef} type="state" id="state" defaultValue={"Texas"} />
+        <label htmlFor="zip"> Zip</label>
+        <input ref={zipRef} type="zip" id="zip" defaultValue={"76706"} />
+        <br />
+
+        <button type="submit">Add Building</button>
+      </form>
+
+      {status && message}
+
+      <button onClick={() => listAllBuilding()}> List All Buildings</button>
+    </div>
+  );
 }
-export default AddBuilding;
