@@ -175,6 +175,15 @@ class App extends Component {
                 </Link>
               </li>
             )}
+            {showReserveResource && (
+                <li className="nav-item">
+                  <Link to={"/getMyReservation"} className="nav-link">
+                    My Reservations
+                  </Link>
+                </li>
+            )}
+
+
           </div>
 
           {currentUser ? (
@@ -206,6 +215,7 @@ class App extends Component {
             </div>
           )}
         </nav>
+
         <div className="container mt-3">
           <Routes>
             <Route path="/" element={<Home />} />
@@ -229,8 +239,10 @@ class App extends Component {
               path="/getMyReservation"
               element={<MyReserveRoomComponent />}
             />
+
           </Routes>
         </div>
+
         {/* <AuthVerify logOut={this.logOut}/> */}s
       </div>
     );
