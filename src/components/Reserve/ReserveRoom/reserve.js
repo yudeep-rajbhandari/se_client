@@ -67,8 +67,8 @@ export default function ReserveRoom(props) {
 
         console.log("reservationData",newbook)
 
-        userService.makeReservation(props.room.roomNumber, newbook).then(res=>{
-            props.notify1("Reservation applied for room"+ res.data.roomId)
+        userService.makeReservation(props.room.id, newbook).then(res=>{
+            props.notify1("Reservation applied for room"+ res.data.id)
         }).catch(err=>{
             props.notify1("Something went wrong");
         })
@@ -128,6 +128,9 @@ export default function ReserveRoom(props) {
                 <DatePicker
                     onChange={(date) => refreshIt1(date)}
                     selected = {selectedToTime}
+                    minDate={new Date()}
+                    placeholderText="Select a day"
+
                     showTimeSelect
                     // excludeDateIntervals={filterPassedTime()}
                     filterTime={filterPassedTime}

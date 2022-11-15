@@ -8,7 +8,7 @@ import AuthService from "./services/auth.service";
 import Login from "./components/Login/login.component";
 import Register from "./components/Register/register.component";
 import Home from "./components/Home/home.component";
-import AddBuilding from "./components/Building/addbuilding.component";
+import AddBuilding from "./components/Building/AddBuilding/AddBuilding";
 import Profile from "./components/Profile/profile.component";
 import BoardUser from "./components/UserBoard/board-user.component";
 import BoardAdmin from "./components/AdminBoard/board-admin.component";
@@ -19,6 +19,8 @@ import AddResource from "./components/Resource/addresource.component";
 import ReserveRoom from "./components/Reserve/ReserveRoom/reserveroom.component";
 import ReserveResource from "./components/Reserve/ReserveResource/reserveresource.component";
 import FindBookableRoom from "./components/Room/room.component";
+import App1 from "./components/Reserve/ReserveRoom/reserve";
+import MyReserveRoomComponent from "./components/Reserve/ReserveRoom/myReserveRoom.component";
 
 
 class App extends Component {
@@ -145,7 +147,7 @@ class App extends Component {
 
             {showReserveRoom && (
               <li className="nav-item">
-                <Link to={"/reserveroom"} className="nav-link">
+                <Link to={"/findroom"} className="nav-link">
                   Reserve Room
                 </Link>
               </li>
@@ -157,6 +159,13 @@ class App extends Component {
                   Reserve Resource
                 </Link>
               </li>
+            )}
+            {showReserveResource && (
+                <li className="nav-item">
+                  <Link to={"/getMyReservation"} className="nav-link">
+                    My Reservations
+                  </Link>
+                </li>
             )}
 
            
@@ -209,6 +218,8 @@ class App extends Component {
             <Route path="/reserveroom" element={<ReserveRoom />} />
             <Route path="/reserveresource" element={<ReserveResource />} />
             <Route path="/findroom" element={<FindBookableRoom />} />
+            <Route path="/findroom1" element={<App1 />} />
+            <Route path="/getMyReservation" element={<MyReserveRoomComponent />} />
           </Routes>
         </div>
 

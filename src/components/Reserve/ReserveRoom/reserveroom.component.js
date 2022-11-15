@@ -20,7 +20,7 @@ import 'react-toastify/dist/ReactToastify.css';
 // it is compulsory method.
 
 
-export default function ReserveRoom(props) {
+export default function ReserveRoom1(props) {
     console.log("ussss",props.roomNumber)
     const [bookings, setBookings] = useState([]);
     const providerTimeZone = 'America/Chicago';
