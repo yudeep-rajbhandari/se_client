@@ -31,8 +31,12 @@ class UserService {
   getAllBookableRoom(){
     return axios.get(ROOM_URL+"all/bookable" ,{ headers: authHeader() })
   }
+
+  getMyReservation(id){
+    return axios.get(RESERVATION_URL+"byUserId/?id="+id ,{ headers: authHeader() })
+  }
   makeReservation(id,reservation){
-    return axios.post(RESERVATION_URL+"room/" +id,reservation[0],{ headers: authHeader() })
+    return axios.post(RESERVATION_URL+"room/" +id,reservation,{ headers: authHeader() })
   }
 }
 

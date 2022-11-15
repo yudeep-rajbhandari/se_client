@@ -19,33 +19,24 @@ import "react-toastify/dist/ReactToastify.css";
 // toast-configuration method,
 // it is compulsory method.
 
-export default function ReserveRoom(props) {
-  console.log("ussss", props.roomNumber);
-  const [bookings, setBookings] = useState([]);
-  const providerTimeZone = "America/Chicago";
-  const msInHour = 60 * 60 * 1000;
-  const now = new Date();
-  const [selectedAvails, setSelectedAvails] = useState([]);
-  const [bookingnow, setBookingnow] = useState([]);
-  const [lastSelectedDay, setLastSelectedDay] = useState(new Date());
-  const [loading, setLoading] = useState(false);
-  const overrides = {
-    AvailSlot: {
-      className: (p) =>
-        selectedAvails[p.date.getTime()]
-          ? "btn btn-secondary"
-          : "btn btn-primary",
-    },
-  };
-  const notify = (aa) => {
-    console.log("inside");
-    // Calling toast method by passing string
-    toast(aa);
-  };
-  const onDaySelected = (day: Date | null) => {
-    // to restore the next time calVersion upates
-    if (day) {
-      setLastSelectedDay(day);
+
+export default function ReserveRoom1(props) {
+    console.log("ussss",props.roomNumber)
+    const [bookings, setBookings] = useState([]);
+    const providerTimeZone = 'America/Chicago';
+    const msInHour = 60 * 60 * 1000;
+    const now = new Date();
+    const [selectedAvails, setSelectedAvails] = useState([]);
+    const [bookingnow, setBookingnow] = useState([]);
+    const [lastSelectedDay, setLastSelectedDay] = useState(new Date());
+    const[loading,setLoading] = useState(false)
+    const overrides = {
+        AvailSlot: {
+            className: (p) =>
+                selectedAvails[p.date.getTime()]
+                    ? 'btn btn-secondary'
+                    : 'btn btn-primary',
+        },
     }
   };
   const handleRemove = () => {

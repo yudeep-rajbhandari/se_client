@@ -19,7 +19,9 @@ import AddResource from "./components/Resource/addresource.component";
 import ReserveRoom from "./components/Reserve/ReserveRoom/reserveroom.component";
 import ReserveResource from "./components/Reserve/ReserveResource/reserveresource.component";
 import FindBookableRoom from "./components/Room/room.component";
-
+import App1 from "./components/Reserve/ReserveRoom/reserve";
+import MyReserveRoomComponent from "./components/Reserve/ReserveRoom/myReserveRoom.component";
+import ListBuilding from "./components/Reserve/ReserveRoom/listBuilding";
 
 class App extends Component {
   constructor(props) {
@@ -153,7 +155,7 @@ class App extends Component {
 
             {showReserveRoom && (
               <li className="nav-item">
-                <Link to={"/reserveroom"} className="nav-link">
+                <Link to={"/findroom"} className="nav-link">
                   Reserve Room
                 </Link>
               </li>
@@ -163,6 +165,13 @@ class App extends Component {
               <li className="nav-item">
                 <Link to={"/reserveresource"} className="nav-link">
                   Reserve Resource
+                </Link>
+              </li>
+            )}
+            {showReserveResource && (
+              <li className="nav-item">
+                <Link to={"/getMyReservation"} className="nav-link">
+                  My Reservations
                 </Link>
               </li>
             )}
@@ -215,6 +224,11 @@ class App extends Component {
             <Route path="/reserveroom" element={<ReserveRoom />} />
             <Route path="/reserveresource" element={<ReserveResource />} />
             <Route path="/findroom" element={<FindBookableRoom />} />
+            <Route path="/findroom1" element={<App1 />} />
+            <Route
+              path="/getMyReservation"
+              element={<MyReserveRoomComponent />}
+            />
           </Routes>
         </div>
         {/* <AuthVerify logOut={this.logOut}/> */}s
