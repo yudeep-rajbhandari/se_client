@@ -1,13 +1,26 @@
-import React, { useState } from "react";
-import AdminService from "../../../services/admin.service";
+import React, { useState, useEffect } from "react";
+import BuildingService from "../../../services/BuildingService";
 
 export default function BuildingForm(props) {
-  const [name, setName] = useState(props.selectedBuilding.name);
-  const [floors, setFloors] = useState(props.selectedBuilding.floors);
-  const [street, setStreet] = useState(props.selectedBuilding.address.street);
-  const [city, setCity] = useState(props.selectedBuilding.address.city);
-  const [state, setState] = useState(props.selectedBuilding.address.state);
-  const [zip, setZip] = useState(props.selectedBuilding.address.zip);
+  const [name, setName] = useState();
+  const [floors, setFloors] = useState();
+  const [street, setStreet] = useState();
+  const [city, setCity] = useState();
+  const [state, setState] = useState();
+  const [zip, setZip] = useState();
+
+  function setFormDefaultValues() {
+    setName(props.selectedBuilding.name);
+    setFloors(props.selectedBuilding.floors);
+    setStreet(props.selectedBuilding.address.street);
+    setCity(props.selectedBuilding.address.city);
+    setState(props.selectedBuilding.address.state);
+    setZip(props.selectedBuilding.address.zip);
+  }
+
+  useEffect(() => {
+    setFormDefaultValues();
+  }, [props.selectedBuilding]);
 
   function onSave(event) {
     event.preventDefault();
@@ -27,9 +40,8 @@ export default function BuildingForm(props) {
   }
 
   async function updateBuilding(building) {
-    await AdminService.updateBuilding(building).then((res) => {
-      props.makeEditFalse(false);
-    });
+    await BuildingService.updateBuilding(building);
+    props.makeEditFalse();
   }
   function handleNameChange(event) {
     setName(event.target.value);

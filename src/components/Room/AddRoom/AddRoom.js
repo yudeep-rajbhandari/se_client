@@ -1,8 +1,8 @@
 import { useRef, useState, useEffect } from "react";
-import adminService from "../../services/admin.service";
+import adminService from "../../../services/admin.service";
 import AddRoomForm from "./AddRoomForm";
-import RoomService from "../../services/RoomService";
-import BuildingService from "../../services/BuildingService";
+import RoomService from "../../../services/RoomService";
+import BuildingService from "../../../services/BuildingService";
 export default function AddRoom() {
   const nameRef = useRef();
 

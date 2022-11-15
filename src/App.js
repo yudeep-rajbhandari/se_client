@@ -14,14 +14,15 @@ import BoardUser from "./components/UserBoard/board-user.component";
 import BoardAdmin from "./components/AdminBoard/board-admin.component";
 
 import EventBus from "./common/EventBus";
-import AddRoom from "./components/Room/AddRoom";
+import AddRoom from "./components/Room/AddRoom/AddRoom";
 import AddResource from "./components/Resource/addresource.component";
 import ReserveRoom from "./components/Reserve/ReserveRoom/reserveroom.component";
 import ReserveResource from "./components/Reserve/ReserveResource/reserveresource.component";
 import FindBookableRoom from "./components/Room/room.component";
 import App1 from "./components/Reserve/ReserveRoom/reserve";
 import MyReserveRoomComponent from "./components/Reserve/ReserveRoom/myReserveRoom.component";
-import ListBuilding from "./components/Reserve/ReserveRoom/listBuilding";
+import ListBuilding from "./components/Building/ListBuilding/ListBuilding";
+import ListRoom from "./components/Room/ListRoom/ListRoom";
 
 class App extends Component {
   constructor(props) {
@@ -33,7 +34,9 @@ class App extends Component {
       currentUser: undefined,
 
       showAddBuilding: false,
+      showListBuilding: false,
       showAddRoom: false,
+      showListRoom: false,
       showAddResource: false,
 
       showReserveRoom: false,
@@ -48,10 +51,11 @@ class App extends Component {
       this.setState({
         currentUser: user,
         showAdminBoard: user.roles.includes("ROLE_ADMIN"),
-        // showUserBoard: user.roles.includes("ROLE_USER"),
 
         showAddBuilding: user.roles.includes("ROLE_ADMIN"),
+        showListBuilding: user.roles.includes("ROLE_ADMIN"),
         showAddRoom: user.roles.includes("ROLE_ADMIN"),
+        showListRoom: user.roles.includes("ROLE_ADMIN"),
         showAddResource: user.roles.includes("ROLE_ADMIN"),
 
         showReserveRoom: user.roles.includes("ROLE_USER"),
@@ -83,7 +87,9 @@ class App extends Component {
       showUserBoard,
       showAdminBoard,
       showAddBuilding,
+      showListBuilding,
       showAddRoom,
+      showListRoom,
       showAddResource,
       showReserveRoom,
       showReserveResource,
@@ -129,7 +135,7 @@ class App extends Component {
               </li>
             )}
 
-            {showAddBuilding && (
+            {showListBuilding && (
               <li className="nav-item">
                 <Link to={"/listBuilding"} className="nav-link">
                   List Building
@@ -141,6 +147,14 @@ class App extends Component {
               <li className="nav-item">
                 <Link to={"/addRoom"} className="nav-link">
                   Add Room
+                </Link>
+              </li>
+            )}
+
+            {showListRoom && (
+              <li className="nav-item">
+                <Link to={"/listRoom"} className="nav-link">
+                  List Room
                 </Link>
               </li>
             )}
@@ -176,14 +190,12 @@ class App extends Component {
               </li>
             )}
             {showReserveResource && (
-                <li className="nav-item">
-                  <Link to={"/getMyReservation"} className="nav-link">
-                    My Reservations
-                  </Link>
-                </li>
+              <li className="nav-item">
+                <Link to={"/getMyReservation"} className="nav-link">
+                  My Reservations
+                </Link>
+              </li>
             )}
-
-
           </div>
 
           {currentUser ? (
@@ -215,7 +227,6 @@ class App extends Component {
             </div>
           )}
         </nav>
-
         <div className="container mt-3">
           <Routes>
             <Route path="/" element={<Home />} />
@@ -229,6 +240,7 @@ class App extends Component {
             <Route path="/addBuilding" element={<AddBuilding />} />
             <Route path="/listBuilding" element={<ListBuilding />} />
             <Route path="/addRoom" element={<AddRoom />} />
+            <Route path="/listRoom" element={<ListRoom />} />
             <Route path="/addResource" element={<AddResource />} />
 
             <Route path="/reserveroom" element={<ReserveRoom />} />
@@ -239,10 +251,8 @@ class App extends Component {
               path="/getMyReservation"
               element={<MyReserveRoomComponent />}
             />
-
           </Routes>
         </div>
-
         {/* <AuthVerify logOut={this.logOut}/> */}s
       </div>
     );
