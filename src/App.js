@@ -14,7 +14,7 @@ import BoardUser from "./components/UserBoard/board-user.component";
 import BoardAdmin from "./components/AdminBoard/board-admin.component";
 
 import EventBus from "./common/EventBus";
-import AddRoom from "./components/Room/addroom.component";
+import AddRoom from "./components/Room/AddRoom";
 import AddResource from "./components/Resource/addresource.component";
 import ReserveRoom from "./components/Reserve/ReserveRoom/reserveroom.component";
 import ReserveResource from "./components/Reserve/ReserveResource/reserveresource.component";
@@ -136,7 +136,7 @@ class App extends Component {
 
             {showAddRoom && (
               <li className="nav-item">
-                <Link to={"/addroom"} className="nav-link">
+                <Link to={"/addRoom"} className="nav-link">
                   Add Room
                 </Link>
               </li>

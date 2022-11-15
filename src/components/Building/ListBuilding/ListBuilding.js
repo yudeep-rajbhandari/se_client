@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import AdminService from "../../../services/admin.service";
 
-import EditBuildingForm from "../EditBuildingForm";
+import EditBuildingForm from "../EditBuilding/EditBuildingForm";
 import BuildingTable from "./BuildingTable";
 
 export default function ListBuilding() {

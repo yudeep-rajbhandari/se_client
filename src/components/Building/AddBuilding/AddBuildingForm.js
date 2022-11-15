@@ -1,7 +1,7 @@
 export default function AddBuildingForm(props) {
   return (
     <div>
-      <h3>Building Form</h3>
+      <h3>Add Building</h3>
       <form onSubmit={props.onSubmit}>
         <label htmlFor="name"> Name</label>
         <input ref={props.nameRef} type="name" id="name" />
