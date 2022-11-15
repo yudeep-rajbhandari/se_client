@@ -18,7 +18,10 @@ import AddRoom from "./components/Room/addroom.component";
 import AddResource from "./components/Resource/addresource.component";
 import ReserveRoom from "./components/Reserve/ReserveRoom/reserveroom.component";
 import ReserveResource from "./components/Reserve/ReserveResource/reserveresource.component";
-import ListBuilding from "./components/Building/ListBuilding/ListBuilding";
+import FindBookableRoom from "./components/Room/room.component";
+import App1 from "./components/Reserve/ReserveRoom/reserve";
+import MyReserveRoomComponent from "./components/Reserve/ReserveRoom/myReserveRoom.component";
+
 
 class App extends Component {
   constructor(props) {
@@ -126,14 +129,6 @@ class App extends Component {
               </li>
             )}
 
-            {showAddBuilding && (
-              <li className="nav-item">
-                <Link to={"/listBuilding"} className="nav-link">
-                  List Building
-                </Link>
-              </li>
-            )}
-
             {showAddRoom && (
               <li className="nav-item">
                 <Link to={"/addroom"} className="nav-link">
@@ -152,7 +147,7 @@ class App extends Component {
 
             {showReserveRoom && (
               <li className="nav-item">
-                <Link to={"/reserveroom"} className="nav-link">
+                <Link to={"/findroom"} className="nav-link">
                   Reserve Room
                 </Link>
               </li>
@@ -165,6 +160,15 @@ class App extends Component {
                 </Link>
               </li>
             )}
+            {showReserveResource && (
+                <li className="nav-item">
+                  <Link to={"/getMyReservation"} className="nav-link">
+                    My Reservations
+                  </Link>
+                </li>
+            )}
+
+           
           </div>
 
           {currentUser ? (
@@ -196,6 +200,7 @@ class App extends Component {
             </div>
           )}
         </nav>
+
         <div className="container mt-3">
           <Routes>
             <Route path="/" element={<Home />} />
@@ -207,14 +212,17 @@ class App extends Component {
             <Route path="/admin" element={<BoardAdmin />} />
 
             <Route path="/addBuilding" element={<AddBuilding />} />
-            <Route path="/listBuilding" element={<ListBuilding />} />
             <Route path="/addRoom" element={<AddRoom />} />
             <Route path="/addResource" element={<AddResource />} />
 
             <Route path="/reserveroom" element={<ReserveRoom />} />
             <Route path="/reserveresource" element={<ReserveResource />} />
+            <Route path="/findroom" element={<FindBookableRoom />} />
+            <Route path="/findroom1" element={<App1 />} />
+            <Route path="/getMyReservation" element={<MyReserveRoomComponent />} />
           </Routes>
         </div>
+
         {/* <AuthVerify logOut={this.logOut}/> */}s
       </div>
     );
