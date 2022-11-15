@@ -14,14 +14,14 @@ import BoardUser from "./components/UserBoard/board-user.component";
 import BoardAdmin from "./components/AdminBoard/board-admin.component";
 
 import EventBus from "./common/EventBus";
-import AddRoom from "./components/Room/addroom.component";
+import AddRoom from "./components/Room/AddRoom";
 import AddResource from "./components/Resource/addresource.component";
 import ReserveRoom from "./components/Reserve/ReserveRoom/reserveroom.component";
 import ReserveResource from "./components/Reserve/ReserveResource/reserveresource.component";
 import FindBookableRoom from "./components/Room/room.component";
 import App1 from "./components/Reserve/ReserveRoom/reserve";
 import MyReserveRoomComponent from "./components/Reserve/ReserveRoom/myReserveRoom.component";
-
+import ListBuilding from "./components/Reserve/ReserveRoom/listBuilding";
 
 class App extends Component {
   constructor(props) {
@@ -129,9 +129,17 @@ class App extends Component {
               </li>
             )}
 
+            {showAddBuilding && (
+              <li className="nav-item">
+                <Link to={"/listBuilding"} className="nav-link">
+                  List Building
+                </Link>
+              </li>
+            )}
+
             {showAddRoom && (
               <li className="nav-item">
-                <Link to={"/addroom"} className="nav-link">
+                <Link to={"/addRoom"} className="nav-link">
                   Add Room
                 </Link>
               </li>
@@ -161,6 +169,13 @@ class App extends Component {
               </li>
             )}
             {showReserveResource && (
+              <li className="nav-item">
+                <Link to={"/getMyReservation"} className="nav-link">
+                  My Reservations
+                </Link>
+              </li>
+            )}
+            {showReserveResource && (
                 <li className="nav-item">
                   <Link to={"/getMyReservation"} className="nav-link">
                     My Reservations
@@ -168,7 +183,7 @@ class App extends Component {
                 </li>
             )}
 
-           
+
           </div>
 
           {currentUser ? (
@@ -212,6 +227,7 @@ class App extends Component {
             <Route path="/admin" element={<BoardAdmin />} />
 
             <Route path="/addBuilding" element={<AddBuilding />} />
+            <Route path="/listBuilding" element={<ListBuilding />} />
             <Route path="/addRoom" element={<AddRoom />} />
             <Route path="/addResource" element={<AddResource />} />
 
@@ -219,7 +235,11 @@ class App extends Component {
             <Route path="/reserveresource" element={<ReserveResource />} />
             <Route path="/findroom" element={<FindBookableRoom />} />
             <Route path="/findroom1" element={<App1 />} />
-            <Route path="/getMyReservation" element={<MyReserveRoomComponent />} />
+            <Route
+              path="/getMyReservation"
+              element={<MyReserveRoomComponent />}
+            />
+
           </Routes>
         </div>
 

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import AdminService from "../../services/admin.service";
+import AdminService from "../../../services/admin.service";
 
 export default function BuildingForm(props) {
   const [name, setName] = useState(props.selectedBuilding.name);
@@ -8,9 +8,6 @@ export default function BuildingForm(props) {
   const [city, setCity] = useState(props.selectedBuilding.address.city);
   const [state, setState] = useState(props.selectedBuilding.address.state);
   const [zip, setZip] = useState(props.selectedBuilding.address.zip);
-
-  const [message, setMessage] = useState();
-  const [status, setStatus] = useState(false);
 
   function onSave(event) {
     event.preventDefault();
@@ -55,7 +52,7 @@ export default function BuildingForm(props) {
   return (
     <div>
       <div>
-        <h3> Building Form: {props.selectedBuilding.name}</h3>
+        <h3> Edit Building: {props.selectedBuilding.name}</h3>
 
         <form>
           <label htmlFor="name"> Name</label>
@@ -112,7 +109,6 @@ export default function BuildingForm(props) {
             Save
           </button>
         </form>
-        <div> {status && message}</div>
       </div>
     </div>
   );
