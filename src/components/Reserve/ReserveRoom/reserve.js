@@ -70,7 +70,8 @@ export default function ReserveRoom(props) {
         userService.makeReservation(props.room.id, newbook).then(res=>{
             props.notify1("Reservation applied for room"+ res.data.id)
         }).catch(err=>{
-            props.notify1("Something went wrong");
+            console.log(err)
+            props.notify1(err.response.data.message);
         })
 
         props.showChild1(false);
