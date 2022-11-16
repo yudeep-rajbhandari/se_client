@@ -47,9 +47,9 @@ export default function ViewSchedule(props) {
     console.log(date1)
     userService.getSchedule(date1).then(res=>{
       setSchedule(res.data)
-      if(res.data.length >0){
+
         setscheduleLoading(true)
-      }
+
       setLoading(true)
       console.log(res.data)
     }).catch(err=>{

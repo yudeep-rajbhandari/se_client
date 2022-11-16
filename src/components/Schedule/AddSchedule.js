@@ -179,6 +179,7 @@ export default function AddSchedule(props) {
 
                         <label htmlFor="name"> Name</label>
                         <input ref={nameRef} type="name" id="name" required />
+                    <br/>
                         <label htmlFor="rooms">
                             Associated Rooms
                             <select onChange={handleSelectedRoomIdChange}>
@@ -187,7 +188,7 @@ export default function AddSchedule(props) {
                                 {options1}
                             </select>
                         </label>
-
+                        <br/>
                         From date:
                         <DatePicker
                             onChange={(date) => refreshIt(date)}

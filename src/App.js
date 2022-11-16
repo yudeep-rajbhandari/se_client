@@ -25,6 +25,7 @@ import ListBuilding from "./components/Building/ListBuilding/ListBuilding";
 import ListRoom from "./components/Room/ListRoom/ListRoom";
 import AddSchedule from "./components/Schedule/AddSchedule";
 import ViewSchedule from "./components/Schedule/ViewSchedule";
+import MapComponent from "./components/maps/map.component";
 
 
 class App extends Component {
@@ -262,6 +263,7 @@ class App extends Component {
             <Route path="/getMyReservation" element={<MyReserveRoomComponent />} />
             <Route path="/addSchedule" element={<AddSchedule />} />
             <Route path="/schedule" element={<ViewSchedule />} />
+            <Route path="/map" element={<MapComponent />} />
           </Routes>
         </div>
 
