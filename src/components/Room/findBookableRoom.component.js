@@ -14,6 +14,7 @@ import {ToastContainer, toast} from 'react-toastify';
 import giphy from '../../resource/images/transparent.gif'
 // Import toastify css file
 import 'react-toastify/dist/ReactToastify.css';
+import {Rings} from "react-loader-spinner";
 
 export default function FindBookableRoom(props) {
 
@@ -34,7 +35,11 @@ export default function FindBookableRoom(props) {
         console.log("notify called")
         toast(childData)
     }
-
+    const style = {
+        "marginRight": "auto",
+    "marginLeft": "auto",
+        "width": "800px"
+    };
     const showChild1 = (childData) =>{
         console.log("childData called")
         setShowChild(childData)
@@ -97,7 +102,19 @@ export default function FindBookableRoom(props) {
     }
     else {
         return(
-            <img src={giphy} alt="loading..." />
+            <div style={style}>
+                <Rings
+                    height="200"
+                    width="200"
+                    color="#4fa94d"
+                    radius="6"
+                    wrapperStyle={{}}
+                    wrapperClass=""
+                    visible={true}
+                    ariaLabel="rings-loading"
+                />
+            </div>
+
                 )
             }
 
