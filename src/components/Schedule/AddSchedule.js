@@ -11,7 +11,9 @@ import DatePicker from "react-datepicker";
 import moment from "moment/moment";
 import BuildingService from "../../services/BuildingService";
 import userService from "../../services/user.service";
-import giphy from '../../resource/images/transparent.gif'
+import giphy from '../../resource/images/transparent.gif';
+import { Rings } from 'react-loader-spinner'
+
 
 export default function AddSchedule(props) {
     const [selectedFromTime, setSelectedFromTime] = useState(new Date())
@@ -159,6 +161,19 @@ export default function AddSchedule(props) {
                         {options}
                     </select>
                 </label>
+
+                {!myLoader?
+                    <Rings
+                        height="80"
+                        width="80"
+                        color="#4fa94d"
+                        radius="6"
+                        wrapperStyle={{}}
+                        wrapperClass=""
+                        visible={true}
+                        ariaLabel="rings-loading"
+                    />
+                    :null}
 
                 {options1.length > 0 ? <div>
 
