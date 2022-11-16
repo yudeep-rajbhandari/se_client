@@ -4,7 +4,7 @@ import authHeader from "./auth-header";
 const API_URL = "http://localhost:8080/api/test/";
 const BUILDING_URL = "http://localhost:8080/api/building/";
 const ROOM_URL = "http://localhost:8080/api/room/";
-
+const SCHEDULE_URL = "http://localhost:8080/api/schedule/";
 class AdminService {
   getPublicContent() {
     return axios.get(API_URL + "all");
@@ -23,6 +23,11 @@ class AdminService {
 
   getAdminBoard() {
     return axios.get(API_URL + "admin", { headers: authHeader() });
+  }
+  async addBulkSchedule(formData) {
+    return axios.post(SCHEDULE_URL + "addSchedule", formData, {
+      headers: authHeader(),
+    });
   }
 }
 
