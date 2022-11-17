@@ -36,13 +36,14 @@ export default function AddBuilding() {
     await AdminService.addBuidling(building).then((res) => {
       setMessage("Building " + res.data.name + " successfully added");
       setStatus(true);
+
     });
   }
 
   if (loaded) {
     return (
       <div>
-        <div>
+        
           <AddBuildingForm
             nameRef={nameRef}
             floorsRef={floorsRef}
@@ -56,24 +57,8 @@ export default function AddBuilding() {
           <br />
           {status && message}
           <br />
-        </div>
+        
       </div>
     );
-  } else {
-    return (
-      <div>
-        <Rings
-          align="center"
-          height="80"
-          width="80"
-          color="#4fa94d"
-          radius="6"
-          wrapperStyle={{}}
-          wrapperClass=""
-          visible={true}
-          ariaLabel="rings-loading"
-        />
-      </div>
-    );
-  }
+  } 
 }
