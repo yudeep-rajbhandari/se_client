@@ -1,3 +1,5 @@
+import Button from "@mui/material/Button";
+import SaveRoundedIcon from "@mui/icons-material/SaveRounded";
 export default function AddRoomForm(props) {
   const options = props.buildings.map((building) => (
     <option key={building.id} value={building.id}>
@@ -39,7 +41,14 @@ export default function AddRoomForm(props) {
         </label>
 
         <br />
-        <button type="submit"> Add Room</button>
+        <Button
+          startIcon={<SaveRoundedIcon />}
+          variant="contained"
+          type="submit"
+        >
+          {" "}
+          Save Room
+        </Button>
       </form>
     </div>
   );

@@ -1,11 +1,10 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+
 import RoomReservationsService from "../../services/RoomReservationsService";
 import ListRoomReservation from "./ListRoomReservation/ListRoomReservation";
 import Button from "@mui/material/Button";
 import ButtonGroup from "@mui/material/ButtonGroup";
 export default function AdminBoard() {
-  const color = "#154734";
   const [clickRoomReservation, setClickRoomReservation] = useState(false);
 
   const [roomReservationList, setRoomReservationList] = useState([]);

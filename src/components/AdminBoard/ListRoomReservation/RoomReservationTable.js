@@ -5,6 +5,9 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
+import Button from "@mui/material/Button";
+import ButtonGroup from "@mui/material/ButtonGroup";
+
 export default function RoomReservationTable(props) {
   return (
     <TableContainer component={Paper}>
@@ -29,18 +32,20 @@ export default function RoomReservationTable(props) {
               <TableCell>{row.toDate}</TableCell>
               <TableCell>{row.status}</TableCell>
               <TableCell>
-                <button onClick={() => props.acceptRoomReservation(row.id)}>
-                  {" "}
-                  APPROVE
-                </button>
-                <button onClick={() => props.declineRoomReservation(row.id)}>
-                  {" "}
-                  DECLINE
-                </button>
-                <button onClick={() => props.archiveRoomReservation(row.id)}>
-                  {" "}
-                  ARCHIVE
-                </button>
+                <ButtonGroup variant="text" aria-label="text button group">
+                  <Button onClick={() => props.acceptRoomReservation(row.id)}>
+                    {" "}
+                    APPROVE
+                  </Button>
+                  <Button onClick={() => props.declineRoomReservation(row.id)}>
+                    {" "}
+                    DECLINE
+                  </Button>
+                  <Button onClick={() => props.archiveRoomReservation(row.id)}>
+                    {" "}
+                    ARCHIVE
+                  </Button>
+                </ButtonGroup>
               </TableCell>
             </TableRow>
           ))}
