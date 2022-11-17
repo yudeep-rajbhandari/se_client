@@ -1,8 +1,9 @@
 import { useRef, useState, useEffect } from "react";
-import adminService from "../../../services/admin.service";
+
 import AddRoomForm from "./AddRoomForm";
 import RoomService from "../../../services/RoomService";
 import BuildingService from "../../../services/BuildingService";
+import { Rings } from "react-loader-spinner";
 export default function AddRoom() {
   const nameRef = useRef();
 
@@ -87,6 +88,22 @@ export default function AddRoom() {
           onSubmit={onSubmit}
         />
         <div>{status && message}</div>
+      </div>
+    );
+  } else {
+    return (
+      <div>
+        <Rings
+          align="center"
+          height="80"
+          width="80"
+          color="#4fa94d"
+          radius="6"
+          wrapperStyle={{}}
+          wrapperClass=""
+          visible={true}
+          ariaLabel="rings-loading"
+        />
       </div>
     );
   }
