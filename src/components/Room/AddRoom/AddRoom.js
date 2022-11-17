@@ -24,7 +24,7 @@ export default function AddRoom() {
   }, []);
 
   async function getAllBuilding() {
-    const { data } = await adminService.getAllBuilding();
+    const { data } = await BuildingService.getAllBuilding();
     setBuildings(data);
     setLoaded(true);
   }
