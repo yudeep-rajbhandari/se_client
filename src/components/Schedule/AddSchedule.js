@@ -7,6 +7,7 @@ import DatePicker from "react-datepicker";
 import moment from "moment/moment";
 import BuildingService from "../../services/BuildingService";
 import {Rings} from 'react-loader-spinner'
+import {toast, ToastContainer} from "react-toastify";
 
 
 export default function AddSchedule(props) {
@@ -84,7 +85,7 @@ export default function AddSchedule(props) {
             setCustomLoaded(true)
         } else {
             setCustomLoaded(false)
-            setCustom({})
+
 
         }
     }
@@ -94,7 +95,10 @@ export default function AddSchedule(props) {
             .filter(option => option.selected)
             .map(x => x.value);
         console.log("updatedOptions", updatedOptions);
-        setCustom(updatedOptions)
+        if(updatedOptions!==''){
+            setCustom(updatedOptions)
+        }
+
     };
 
     const refreshFromDate = (date) => {
@@ -117,23 +121,35 @@ export default function AddSchedule(props) {
     }
 
     const handleSubmit = () => {
-
-        const schedule = {
-            "roomId": selectedRoom,
-            "selectedFrequency": selectedFrequency,
-            "custom": custom,
-            "selectedFromTime": selectedFromTime,
-            "selectedFromDate":selectedFromDate,
-            "selectedToTime": selectedToTime ,
-            "selectedToDate": selectedToDate ,
-            "name": nameRef.current.value
+        if(selectedFromDate > selectedToDate){
+            toast("To date cannot be less than from date");
         }
-        console.log(schedule)
-        adminService.addBulkSchedule(schedule).then(res=>{
-            console.log(res.data)
-        }).catch(err=>{
-            console.error(err)
-        })
+        const index = custom.indexOf('');
+        if (index > -1) { // only splice array when item is found
+            custom.splice(index, 1); // 2nd parameter means remove one item only
+        }
+        else{
+            const schedule = {
+                "roomId": selectedRoom,
+                "selectedFrequency": selectedFrequency,
+                "custom": custom.length>0?custom:null,
+                "selectedFromTime": selectedFromTime,
+                "selectedFromDate":selectedFromDate,
+                "selectedToTime": selectedToTime ,
+                "selectedToDate": selectedToDate ,
+                "name": nameRef.current.value
+            }
+            console.log(schedule)
+            adminService.addBulkSchedule(schedule).then(res=>{
+                toast("Successfully added the schedule");
+                console.log(res.data)
+            }).catch(err=>{
+                toast("Something went wrong");
+
+                console.error(err)
+            })
+        }
+
     }
     const filterPassedTime = (time) => {
 
@@ -162,6 +178,7 @@ export default function AddSchedule(props) {
     if (loaded) {
 
         return (<div>
+                <ToastContainer />
                 <label htmlFor="buildings">
                     Associated Building
                     <select onChange={handleSelectedBuildingIdChange} placeholder="select Building">
@@ -201,7 +218,8 @@ export default function AddSchedule(props) {
                         <DatePicker
                             onChange={(date) => refreshFromDate(date)}
                             selected={selectedFromDate}
-                            showTimeSelect
+                            minDate={new Date()}
+
                             // excludeDateIntervals={filterPassedTime()}
                             filterTime={filterPassedTime}
                             dateFormat="MMMM d, yyyy"
