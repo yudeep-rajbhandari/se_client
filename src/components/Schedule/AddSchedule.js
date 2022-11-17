@@ -246,6 +246,7 @@ export default function AddSchedule(props) {
                         <label htmlFor="rooms">
                             Frequency
                             <select onChange={handleRepeat}>
+                                <option value="" disabled selected hidden>Choose a Frequency</option>
                                 <option value="Once">Once</option>
                                 <option value="Repeat">Repeat daily</option>
                                 <option value="Custom">Custom</option>
@@ -254,6 +255,8 @@ export default function AddSchedule(props) {
                         {customLoaded ? <label htmlFor="rooms">
                             Frequency
                             <select data-placeholder="Begin typing a name to filter..." onChange={handleChangeNormalSelect} multiple>
+                                <option value="" disabled selected hidden>Choose a Building</option>
+
                                 <option value="M">Monday</option>
                                 <option value="T">Tuesday</option>
                                 <option value="W">Wednesday</option>
