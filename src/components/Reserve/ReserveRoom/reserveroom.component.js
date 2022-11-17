@@ -4,23 +4,32 @@ import {
     AvailabilityCalendar,
     AvailabilityEvent,
     MsSinceMidnightRange,
-    Booking,
     Range,
-    CalendarThemeProp,
 } from 'react-availability-calendar';
 import moment from 'moment';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './custom.scss';
 import userService from "../../../services/user.service";
+import {ToastContainer,toast} from 'react-toastify';
 
-export default function ReserveRoom(props) {
+// Import toastify css file
+import 'react-toastify/dist/ReactToastify.css';
+
+// toast-configuration method,
+// it is compulsory method.
+
+
+export default function ReserveRoom1(props) {
+    console.log("ussss",props.roomNumber)
     const [bookings, setBookings] = useState([]);
     const providerTimeZone = 'America/Chicago';
     const msInHour = 60 * 60 * 1000;
     const now = new Date();
     const [selectedAvails, setSelectedAvails] = useState([]);
     const [bookingnow, setBookingnow] = useState([]);
+    const [lastSelectedDay, setLastSelectedDay] = useState(new Date());
+    const[loading,setLoading] = useState(false)
     const overrides = {
         AvailSlot: {
             className: (p) =>
@@ -29,14 +38,28 @@ export default function ReserveRoom(props) {
                     : 'btn btn-primary',
         },
     }
+    const notify = (aa)=>{
+console.log("inside")
+        // Calling toast method by passing string
+        toast(aa)
+    }
+    const onDaySelected = (day: Date | null) => {
+
+        // to restore the next time calVersion upates
+        if (day) {
+            setLastSelectedDay(day);
+        }
+    };
     const handleRemove = () => {
+        setLoading(true)
         console.log("post",bookingnow)
         const newbook=[{
             fromDate: new Date(bookingnow[0].startDate),
             toDate: new Date(bookingnow[bookingnow.length-1].startDate)
         }]
         console.log("post",newbook)
-        userService.makeReservation(2,newbook)
+        userService.makeReservation(props.roomNumber,newbook)
+        notify("Success")
     };
     const onAvailabilitySelected = (a: AvailabilityEvent) => {
 
@@ -70,7 +93,7 @@ export default function ReserveRoom(props) {
         [19 * msInHour, 24 * msInHour],
     ];
     useEffect(() => {
-        UserService.getRoom(2).then(res => {
+        UserService.getRoom(props.roomNumber).then(res => {
             console.log(res.data)
             setBookings(res.data.roomReservation.map(i=>({
                 startDate: new Date(i.fromDate),
@@ -78,21 +101,25 @@ export default function ReserveRoom(props) {
             })))
 
         })
+        console.log("booking",bookings)
     },[]);
     return (
         <div style={{ width: 350 }}>
+            <h1>booking for {props.roomNumber}</h1>
             <AvailabilityCalendar
                 overrides={overrides}
                 bookings={bookings}
                 providerTimeZone={providerTimeZone}
                 moment={moment}
-                initialDate={now}
+                initialDate={lastSelectedDay}
+            onDaySelected={onDaySelected}
                 onAvailabilitySelected={onAvailabilitySelected}
                 onCalRangeChange={onChangedCalRange}
                 blockOutPeriods={blockOutPeriods}
             />
             <div>
                 <button onClick={handleRemove}>Submit</button>
+                <ToastContainer />
             </div>
         </div>
 

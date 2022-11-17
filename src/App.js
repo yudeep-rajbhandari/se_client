@@ -8,16 +8,25 @@ import AuthService from "./services/auth.service";
 import Login from "./components/Login/login.component";
 import Register from "./components/Register/register.component";
 import Home from "./components/Home/home.component";
-import AddBuilding from "./components/Building/addbuilding.component";
+import AddBuilding from "./components/Building/AddBuilding/AddBuilding";
 import Profile from "./components/Profile/profile.component";
 import BoardUser from "./components/UserBoard/board-user.component";
 import BoardAdmin from "./components/AdminBoard/board-admin.component";
 
 import EventBus from "./common/EventBus";
-import AddRoom from "./components/Room/addroom.component";
+import AddRoom from "./components/Room/AddRoom/AddRoom";
 import AddResource from "./components/Resource/addresource.component";
 import ReserveRoom from "./components/Reserve/ReserveRoom/reserveroom.component";
 import ReserveResource from "./components/Reserve/ReserveResource/reserveresource.component";
+import FindBookableRoom from "./components/Room/findBookableRoom.component";
+import App1 from "./components/Reserve/ReserveRoom/reserve";
+import MyReserveRoomComponent from "./components/Reserve/ReserveRoom/myReserveRoom.component";
+import ListBuilding from "./components/Building/ListBuilding/ListBuilding";
+import ListRoom from "./components/Room/ListRoom/ListRoom";
+import AddSchedule from "./components/Schedule/AddSchedule";
+import ViewSchedule from "./components/Schedule/ViewSchedule";
+import MapComponent from "./components/maps/map.component";
+
 
 class App extends Component {
   constructor(props) {
@@ -29,7 +38,9 @@ class App extends Component {
       currentUser: undefined,
 
       showAddBuilding: false,
+      showListBuilding: false,
       showAddRoom: false,
+      showListRoom: false,
       showAddResource: false,
 
       showReserveRoom: false,
@@ -44,10 +55,11 @@ class App extends Component {
       this.setState({
         currentUser: user,
         showAdminBoard: user.roles.includes("ROLE_ADMIN"),
-        // showUserBoard: user.roles.includes("ROLE_USER"),
 
         showAddBuilding: user.roles.includes("ROLE_ADMIN"),
+        showListBuilding: user.roles.includes("ROLE_ADMIN"),
         showAddRoom: user.roles.includes("ROLE_ADMIN"),
+        showListRoom: user.roles.includes("ROLE_ADMIN"),
         showAddResource: user.roles.includes("ROLE_ADMIN"),
 
         showReserveRoom: user.roles.includes("ROLE_USER"),
@@ -79,7 +91,9 @@ class App extends Component {
       showUserBoard,
       showAdminBoard,
       showAddBuilding,
+      showListBuilding,
       showAddRoom,
+      showListRoom,
       showAddResource,
       showReserveRoom,
       showReserveResource,
@@ -98,7 +112,7 @@ class App extends Component {
               </Link>
             </li>
             <li className="nav-item">
-              <Link to={"/home"} className="nav-link">
+              <Link to={"/schedule"} className="nav-link">
                 Schedule
               </Link>
             </li>
@@ -125,10 +139,26 @@ class App extends Component {
               </li>
             )}
 
+            {showListBuilding && (
+              <li className="nav-item">
+                <Link to={"/listBuilding"} className="nav-link">
+                  List Building
+                </Link>
+              </li>
+            )}
+
             {showAddRoom && (
               <li className="nav-item">
-                <Link to={"/addroom"} className="nav-link">
+                <Link to={"/addRoom"} className="nav-link">
                   Add Room
+                </Link>
+              </li>
+            )}
+
+            {showListRoom && (
+              <li className="nav-item">
+                <Link to={"/listRoom"} className="nav-link">
+                  List Room
                 </Link>
               </li>
             )}
@@ -143,7 +173,7 @@ class App extends Component {
 
             {showReserveRoom && (
               <li className="nav-item">
-                <Link to={"/reserveroom"} className="nav-link">
+                <Link to={"/findroom"} className="nav-link">
                   Reserve Room
                 </Link>
               </li>
@@ -156,7 +186,27 @@ class App extends Component {
                 </Link>
               </li>
             )}
-
+            {showReserveResource && (
+              <li className="nav-item">
+                <Link to={"/getMyReservation"} className="nav-link">
+                  My Reservations
+                </Link>
+              </li>
+            )}
+            {showReserveResource && (
+              <li className="nav-item">
+                <Link to={"/getMyReservation"} className="nav-link">
+                  My Reservations
+                </Link>
+              </li>
+            )}
+            {showReserveResource && (
+                <li className="nav-item">
+                  <Link to={"/addSchedule"} className="nav-link">
+                    Add Schedule
+                  </Link>
+                </li>
+            )}
            
           </div>
 
@@ -201,15 +251,23 @@ class App extends Component {
             <Route path="/admin" element={<BoardAdmin />} />
 
             <Route path="/addBuilding" element={<AddBuilding />} />
+            <Route path="/listBuilding" element={<ListBuilding />} />
             <Route path="/addRoom" element={<AddRoom />} />
+            <Route path="/listRoom" element={<ListRoom />} />
             <Route path="/addResource" element={<AddResource />} />
 
             <Route path="/reserveroom" element={<ReserveRoom />} />
             <Route path="/reserveresource" element={<ReserveResource />} />
+            <Route path="/findroom" element={<FindBookableRoom />} />
+            <Route path="/findroom1" element={<App1 />} />
+            <Route path="/getMyReservation" element={<MyReserveRoomComponent />} />
+            <Route path="/addSchedule" element={<AddSchedule />} />
+            <Route path="/schedule" element={<ViewSchedule />} />
+            <Route path="/map" element={<MapComponent />} />
           </Routes>
         </div>
 
-        {/* <AuthVerify logOut={this.logOut}/> */}s
+        {/* <AuthVerify logOut={this.logOut}/> */}
       </div>
     );
   }
