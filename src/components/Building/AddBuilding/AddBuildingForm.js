@@ -3,6 +3,8 @@ import TextField from '@mui/material/TextField';
 import {Box, Stack} from '@mui/system';
 import AddBuilding from "./AddBuilding";
 import Button from "@mui/material/Button";
+import SaveRoundedIcon from "@mui/icons-material/SaveRounded";
+
 
 export default function AddBuildingForm(props) {
   return (
@@ -55,7 +57,7 @@ export default function AddBuildingForm(props) {
             id="city"
             type="city"
             label="City"
-            ref={props.cityRef}
+            inputRef={props.cityRef}
           />
 
 
@@ -79,7 +81,13 @@ export default function AddBuildingForm(props) {
 
           <br/>
 
-          <Button type="submit">Add Building</Button>
+          <Button
+            startIcon={<SaveRoundedIcon />}
+            variant="contained"
+            type="submit"
+          >
+            Save Building
+          </Button>
         </div>
       </Box>
     </div>
