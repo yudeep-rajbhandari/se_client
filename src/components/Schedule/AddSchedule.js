@@ -1,23 +1,19 @@
 import React, {useEffect, useRef, useState} from "react";
-import MenuItem from '@mui/material/MenuItem';
-import Select, {SelectChangeEvent} from '@mui/material/Select';
 
-import UserService from "../../services/user.service";
-import {toast} from "react-toastify";
+import userService from "../../services/user.service";
 import adminService from "../../services/admin.service";
-import InputLabel from '@mui/material/InputLabel';
 
 import DatePicker from "react-datepicker";
 import moment from "moment/moment";
 import BuildingService from "../../services/BuildingService";
-import userService from "../../services/user.service";
-import giphy from '../../resource/images/transparent.gif';
-import { Rings } from 'react-loader-spinner'
+import {Rings} from 'react-loader-spinner'
 
 
 export default function AddSchedule(props) {
     const [selectedFromTime, setSelectedFromTime] = useState(new Date())
+    const [selectedFromDate, setSelectedFromDate] = useState(new Date())
     const [selectedToTime, setSelectedToTime] = useState(new Date())
+    const [selectedToDate, setSelectedToDate] = useState(new Date())
     const [loaded, setLoaded] = useState(false);
     const [roomloaded, setRoomloaded] = useState(false);
     const [myLoader, setMyLoader] = useState(true);
@@ -101,9 +97,19 @@ export default function AddSchedule(props) {
         setCustom(updatedOptions)
     };
 
-    const refreshIt1 = (date) => {
-        setSelectedToTime(date)
+    const refreshFromDate = (date) => {
+        setSelectedFromDate(date)
 
+    }
+    const refreshFromTime = (date) => {
+        setSelectedFromTime(date)
+
+    }
+    const refreshToDate=(date) =>{
+        setSelectedToDate(date)
+    }
+    const refreshToTime=(date) =>{
+        setSelectedToTime(date)
     }
     const handleChange = (room) => {
         console.log(room.target)
@@ -117,7 +123,9 @@ export default function AddSchedule(props) {
             "selectedFrequency": selectedFrequency,
             "custom": custom,
             "selectedFromTime": selectedFromTime,
+            "selectedFromDate":selectedFromDate,
             "selectedToTime": selectedToTime ,
+            "selectedToDate": selectedToDate ,
             "name": nameRef.current.value
         }
         console.log(schedule)
@@ -191,26 +199,48 @@ export default function AddSchedule(props) {
                         <br/>
                         From date:
                         <DatePicker
-                            onChange={(date) => refreshIt(date)}
-                            selected={selectedFromTime}
+                            onChange={(date) => refreshFromDate(date)}
+                            selected={selectedFromDate}
                             showTimeSelect
                             // excludeDateIntervals={filterPassedTime()}
                             filterTime={filterPassedTime}
-                            dateFormat="MMMM d, yyyy h:mm aa"
+                            dateFormat="MMMM d, yyyy"
                         />
 
+                    From time:
+                        <DatePicker
+                            onChange={(date) => refreshFromTime(date)}
+                            selected={selectedFromTime}
+                            minDate={new Date()}
+                            showTimeSelect
+                            showTimeSelectOnly
+                            // excludeDateIntervals={filterPassedTime()}
+                            filterTime={filterPassedTime}
+                            timeCaption="Time"
+                            dateFormat="h:mm aa"
+                        />
 
                         To Date:
                         <DatePicker
-                            onChange={(date) => refreshIt1(date)}
-                            selected={selectedToTime}
+                            onChange={(date) => refreshToDate(date)}
+                            selected={selectedToDate}
                             minDate={new Date()}
-                          v
-
-                            showTimeSelect
                             // excludeDateIntervals={filterPassedTime()}
                             filterTime={filterPassedTime}
-                            dateFormat="MMMM d, yyyy h:mm aa"
+                            dateFormat="MMMM d, yyyy"
+                        />
+                    To Time:
+
+                        <DatePicker
+                            onChange={(date) => refreshToTime(date)}
+                            selected={selectedToTime}
+                            minDate={new Date()}
+                            showTimeSelect
+                            showTimeSelectOnly
+                            // excludeDateIntervals={filterPassedTime()}
+                            filterTime={filterPassedTime}
+                            timeCaption="Time"
+                            dateFormat="h:mm aa"
                         />
 
                         <label htmlFor="rooms">
