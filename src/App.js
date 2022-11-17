@@ -11,7 +11,7 @@ import Home from "./components/Home/home.component";
 import AddBuilding from "./components/Building/AddBuilding/AddBuilding";
 import Profile from "./components/Profile/profile.component";
 import BoardUser from "./components/UserBoard/board-user.component";
-import BoardAdmin from "./components/AdminBoard/board-admin.component";
+import AdminBoard from "./components/AdminBoard/AdminBoard";
 
 import EventBus from "./common/EventBus";
 import AddRoom from "./components/Room/AddRoom/AddRoom";
@@ -26,7 +26,6 @@ import ListRoom from "./components/Room/ListRoom/ListRoom";
 import AddSchedule from "./components/Schedule/AddSchedule";
 import ViewSchedule from "./components/Schedule/ViewSchedule";
 import MapComponent from "./components/maps/map.component";
-
 
 class App extends Component {
   constructor(props) {
@@ -125,7 +124,7 @@ class App extends Component {
             )}
             {showAdminBoard && (
               <li className="nav-item">
-                <Link to={"/admin"} className="nav-link">
+                <Link to={"/adminBoard"} className="nav-link">
                   Admin Board
                 </Link>
               </li>
@@ -201,13 +200,12 @@ class App extends Component {
               </li>
             )}
             {showReserveResource && (
-                <li className="nav-item">
-                  <Link to={"/addSchedule"} className="nav-link">
-                    Add Schedule
-                  </Link>
-                </li>
+              <li className="nav-item">
+                <Link to={"/addSchedule"} className="nav-link">
+                  Add Schedule
+                </Link>
+              </li>
             )}
-           
           </div>
 
           {currentUser ? (
@@ -248,7 +246,7 @@ class App extends Component {
             <Route path="/register" element={<Register />} />
             <Route path="/profile" element={<Profile />} />
             <Route path="/user" element={<BoardUser />} />
-            <Route path="/admin" element={<BoardAdmin />} />
+            <Route path="/adminBoard" element={<AdminBoard />} />
 
             <Route path="/addBuilding" element={<AddBuilding />} />
             <Route path="/listBuilding" element={<ListBuilding />} />
@@ -260,7 +258,10 @@ class App extends Component {
             <Route path="/reserveresource" element={<ReserveResource />} />
             <Route path="/findroom" element={<FindBookableRoom />} />
             <Route path="/findroom1" element={<App1 />} />
-            <Route path="/getMyReservation" element={<MyReserveRoomComponent />} />
+            <Route
+              path="/getMyReservation"
+              element={<MyReserveRoomComponent />}
+            />
             <Route path="/addSchedule" element={<AddSchedule />} />
             <Route path="/schedule" element={<ViewSchedule />} />
             <Route path="/map" element={<MapComponent />} />

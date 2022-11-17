@@ -46,7 +46,6 @@ export default function BuildingTable(props) {
                   </TableCell>
                 </TableRow>
               ))}
-              s
             </TableBody>
           </Table>
         </TableContainer>

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import RoomService from "../../../services/RoomService";
 import EditRoomForm from "../EditRoom/EditRoomForm";
 import RoomTable from "./RoomTable";
-
+import { Rings } from "react-loader-spinner";
 export default function ListRoom() {
   const [rooms, setRooms] = useState([]);
   const [loaded, setLoaded] = useState(false);
@@ -58,6 +58,22 @@ export default function ListRoom() {
           />
         )}
         {status && message}
+      </div>
+    );
+  } else {
+    return (
+      <div>
+        <Rings
+          align="center"
+          height="80"
+          width="80"
+          color="#4fa94d"
+          radius="6"
+          wrapperStyle={{}}
+          wrapperClass=""
+          visible={true}
+          ariaLabel="rings-loading"
+        />
       </div>
     );
   }

@@ -16,6 +16,7 @@ export default function AddRoomForm(props) {
         <label htmlFor="roomType">
           Room Type
           <select onChange={props.handleRoomTypeChange}>
+            <option value="0"> Select Room Type</option>
             <option value="classroom">Class Room</option>
             <option value="washroom">Wash Room</option>
             <option value="lab">Lab</option>

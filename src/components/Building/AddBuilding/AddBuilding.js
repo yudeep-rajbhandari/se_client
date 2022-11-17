@@ -2,6 +2,7 @@ import React, { useRef, useState } from "react";
 
 import AdminService from "../../../services/admin.service";
 import AddBuildingForm from "./AddBuildingForm";
+import { Rings } from "react-loader-spinner";
 
 export default function AddBuilding() {
   const nameRef = useRef();
@@ -13,6 +14,7 @@ export default function AddBuilding() {
 
   const [message, setMessage] = useState();
   const [status, setStatus] = useState(false);
+  const [loaded, setloaded] = useState(true);
 
   function onSubmit(event) {
     event.preventDefault();
@@ -37,23 +39,41 @@ export default function AddBuilding() {
     });
   }
 
-  return (
-    <div>
+  if (loaded) {
+    return (
       <div>
-        <AddBuildingForm
-          nameRef={nameRef}
-          floorsRef={floorsRef}
-          streetRef={streetRef}
-          cityRef={cityRef}
-          stateRef={stateRef}
-          zipRef={zipRef}
-          onSubmit={onSubmit}
-        />
+        <div>
+          <AddBuildingForm
+            nameRef={nameRef}
+            floorsRef={floorsRef}
+            streetRef={streetRef}
+            cityRef={cityRef}
+            stateRef={stateRef}
+            zipRef={zipRef}
+            onSubmit={onSubmit}
+          />
 
-        <br />
-        {status && message}
-        <br />
+          <br />
+          {status && message}
+          <br />
+        </div>
       </div>
-    </div>
-  );
+    );
+  } else {
+    return (
+      <div>
+        <Rings
+          align="center"
+          height="80"
+          width="80"
+          color="#4fa94d"
+          radius="6"
+          wrapperStyle={{}}
+          wrapperClass=""
+          visible={true}
+          ariaLabel="rings-loading"
+        />
+      </div>
+    );
+  }
 }
