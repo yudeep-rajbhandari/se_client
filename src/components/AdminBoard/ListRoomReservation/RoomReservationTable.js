@@ -31,7 +31,7 @@ export default function RoomReservationTable(props) {
               <TableCell>
                 <button onClick={() => props.acceptRoomReservation(row.id)}>
                   {" "}
-                  ACCEPT
+                  APPROVE
                 </button>
                 <button onClick={() => props.declineRoomReservation(row.id)}>
                   {" "}
