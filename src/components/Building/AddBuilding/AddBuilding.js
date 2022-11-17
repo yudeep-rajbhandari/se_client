@@ -4,9 +4,6 @@ import AdminService from "../../../services/admin.service";
 import AddBuildingForm from "./AddBuildingForm";
 import { Rings } from "react-loader-spinner";
 
-import Box from '@mui/material/Box';
-import TextField from '@mui/material/TextField';
-
 export default function AddBuilding() {
   const nameRef = useRef();
   const floorsRef = useRef();
@@ -39,7 +36,6 @@ export default function AddBuilding() {
     await AdminService.addBuidling(building).then((res) => {
       setMessage("Building " + res.data.name + " successfully added");
       setStatus(true);
-
     });
   }
 
