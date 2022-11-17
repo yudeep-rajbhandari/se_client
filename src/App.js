@@ -192,13 +192,7 @@ class App extends Component {
                 </Link>
               </li>
             )}
-            {showReserveResource && (
-              <li className="nav-item">
-                <Link to={"/getMyReservation"} className="nav-link">
-                  My Reservations
-                </Link>
-              </li>
-            )}
+           
             {showReserveResource && (
               <li className="nav-item">
                 <Link to={"/addSchedule"} className="nav-link">
