@@ -11,7 +11,17 @@ class RoomReservationService {
   }
 
   acceptRoomReservation(id) {
-    return axios.put(RESERVATION_URL + "/acceptRoomReservation/" + id, {
+    return axios.put(RESERVATION_URL + "/acceptRoomReservation/" + id, null, {
+      headers: authHeader(),
+    });
+  }
+  declineRoomReservation(id) {
+    return axios.put(RESERVATION_URL + "/declineRoomReservation/" + id, null, {
+      headers: authHeader(),
+    });
+  }
+  archiveRoomReservation(id) {
+    return axios.put(RESERVATION_URL + "/archiveRoomReservation/" + id, null, {
       headers: authHeader(),
     });
   }

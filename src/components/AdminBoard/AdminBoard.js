@@ -1,21 +1,24 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import RoomReservationsService from "../../services/RoomReservationsService";
-import ListRoomReservation from "./ListRoomReservation";
+import ListRoomReservation from "./ListRoomReservation/ListRoomReservation";
 
 export default function AdminBoard() {
   const [clickRoomReservation, setClickRoomReservation] = useState(false);
-  const [roomReservation, setRoomReservation] = useState([]);
+  const [roomReservationList, setRoomReservationList] = useState([]);
 
   async function listRoomReservation() {
     const { data } = await RoomReservationsService.getAllRoomReservation();
     setClickRoomReservation(true);
-    setRoomReservation(data);
+    setRoomReservationList(data);
   }
 
   function hideRoomReservation() {
     setClickRoomReservation(false);
   }
 
+  useEffect(() => {
+    listRoomReservation();
+  }, []);
   return (
     <div>
       <h3>Admin Board</h3>
@@ -35,7 +38,7 @@ export default function AdminBoard() {
           </div>
         )}
         {clickRoomReservation && (
-          <ListRoomReservation roomReservation={roomReservation} />
+          <ListRoomReservation roomReservationList={roomReservationList} />
         )}
       </div>
     </div>
