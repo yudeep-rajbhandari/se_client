@@ -9,7 +9,7 @@ import {
 import moment from 'moment';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
-import './custom.scss';
+// import './custom.scss';
 import userService from "../../../services/user.service";
 import {ToastContainer,toast} from 'react-toastify';
 

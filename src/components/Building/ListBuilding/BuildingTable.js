@@ -6,6 +6,8 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
+import Button from "@mui/material/Button";
+import ModeEditIcon from "@mui/icons-material/ModeEdit";
 
 export default function BuildingTable(props) {
   return (
@@ -42,11 +44,16 @@ export default function BuildingTable(props) {
                       +row.address.zip}
                   </TableCell>
                   <TableCell>
-                    <button onClick={() => props.onEditClick(row)}>Edit</button>
+                    <Button
+                      startIcon={<ModeEditIcon />}
+                      variant="outlined"
+                      onClick={() => props.onEditClick(row)}
+                    >
+                      Edit
+                    </Button>
                   </TableCell>
                 </TableRow>
               ))}
-              s
             </TableBody>
           </Table>
         </TableContainer>

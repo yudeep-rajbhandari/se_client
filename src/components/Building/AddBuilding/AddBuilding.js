@@ -2,6 +2,10 @@ import React, { useRef, useState } from "react";
 
 import AdminService from "../../../services/admin.service";
 import AddBuildingForm from "./AddBuildingForm";
+import { Rings } from "react-loader-spinner";
+
+import Box from '@mui/material/Box';
+import TextField from '@mui/material/TextField';
 
 export default function AddBuilding() {
   const nameRef = useRef();
@@ -13,6 +17,7 @@ export default function AddBuilding() {
 
   const [message, setMessage] = useState();
   const [status, setStatus] = useState(false);
+  const [loaded, setloaded] = useState(true);
 
   function onSubmit(event) {
     event.preventDefault();
@@ -34,26 +39,29 @@ export default function AddBuilding() {
     await AdminService.addBuidling(building).then((res) => {
       setMessage("Building " + res.data.name + " successfully added");
       setStatus(true);
+
     });
   }
 
-  return (
-    <div>
+  if (loaded) {
+    return (
       <div>
-        <AddBuildingForm
-          nameRef={nameRef}
-          floorsRef={floorsRef}
-          streetRef={streetRef}
-          cityRef={cityRef}
-          stateRef={stateRef}
-          zipRef={zipRef}
-          onSubmit={onSubmit}
-        />
+        
+          <AddBuildingForm
+            nameRef={nameRef}
+            floorsRef={floorsRef}
+            streetRef={streetRef}
+            cityRef={cityRef}
+            stateRef={stateRef}
+            zipRef={zipRef}
+            onSubmit={onSubmit}
+          />
 
-        <br />
-        {status && message}
-        <br />
+          <br />
+          {status && message}
+          <br />
+        
       </div>
-    </div>
-  );
+    );
+  } 
 }

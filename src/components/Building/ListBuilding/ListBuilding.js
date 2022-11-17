@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import BuildingService from "../../../services/BuildingService";
 import EditBuildingForm from "../EditBuilding/EditBuildingForm";
 import BuildingTable from "./BuildingTable";
+import { Rings } from "react-loader-spinner";
 
 export default function ListBuilding() {
   const [buildings, setBuildings] = useState([]);
@@ -60,6 +61,22 @@ export default function ListBuilding() {
           />
         )}
         {status && message}
+      </div>
+    );
+  } else {
+    return (
+      <div>
+        <Rings
+          align="center"
+          height="80"
+          width="80"
+          color="#4fa94d"
+          radius="6"
+          wrapperStyle={{}}
+          wrapperClass=""
+          visible={true}
+          ariaLabel="rings-loading"
+        />
       </div>
     );
   }

@@ -1,3 +1,5 @@
+import Button from "@mui/material/Button";
+import SaveRoundedIcon from "@mui/icons-material/SaveRounded";
 export default function AddRoomForm(props) {
   const options = props.buildings.map((building) => (
     <option key={building.id} value={building.id}>
@@ -16,6 +18,7 @@ export default function AddRoomForm(props) {
         <label htmlFor="roomType">
           Room Type
           <select onChange={props.handleRoomTypeChange}>
+            <option value="0"> Select Room Type</option>
             <option value="classroom">Class Room</option>
             <option value="washroom">Wash Room</option>
             <option value="lab">Lab</option>
@@ -38,7 +41,14 @@ export default function AddRoomForm(props) {
         </label>
 
         <br />
-        <button type="submit"> Add Room</button>
+        <Button
+          startIcon={<SaveRoundedIcon />}
+          variant="contained"
+          type="submit"
+        >
+          {" "}
+          Save Room
+        </Button>
       </form>
     </div>
   );

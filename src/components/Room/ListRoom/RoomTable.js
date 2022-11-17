@@ -5,7 +5,10 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
+import Button from "@mui/material/Button";
+import ModeEditIcon from "@mui/icons-material/ModeEdit";
 export default function RoomTable(props) {
+  console.log("rooms", props.rooms);
   return (
     <div>
       <h3>List of Rooms</h3>
@@ -36,10 +39,15 @@ export default function RoomTable(props) {
 
                   <TableCell>
                     {" "}
-                    <button onClick={() => props.onEditClick(row)}>
+                    <Button
+                      startIcon={<ModeEditIcon />}
+                      variant="outlined"
+                      aria-label="text button group"
+                      onClick={() => props.onEditClick(row)}
+                    >
                       {" "}
                       Edit
-                    </button>
+                    </Button>
                   </TableCell>
                 </TableRow>
               ))}
