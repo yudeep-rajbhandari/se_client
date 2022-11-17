@@ -1,17 +1,9 @@
-import React, {useEffect, useRef, useState} from "react";
-import MenuItem from '@mui/material/MenuItem';
-import Select, {SelectChangeEvent} from '@mui/material/Select';
+import React, {useEffect, useState} from "react";
 
-import UserService from "../../services/user.service";
-import {toast} from "react-toastify";
-import adminService from "../../services/admin.service";
-import InputLabel from '@mui/material/InputLabel';
+import userService from "../../services/user.service";
 
 import DatePicker from "react-datepicker";
 import moment from "moment/moment";
-
-import BuildingService from "../../services/BuildingService";
-import userService from "../../services/user.service";
 import TableContainer from "@mui/material/TableContainer";
 import Paper from "@mui/material/Paper";
 import Table from "@mui/material/Table";
@@ -19,7 +11,6 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import TableCell from "@mui/material/TableCell";
 import TableBody from "@mui/material/TableBody";
-import giphy from '../../resource/images/transparent.gif'
 import {Rings} from "react-loader-spinner";
 
 export default function ViewSchedule(props) {
