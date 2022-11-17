@@ -32,10 +32,7 @@ export default function AddBuildingForm(props) {
             label="Number of Floors"
             type="number"
             inputRef={props.floorsRef}
-            // variant="filled"
-            // InputLabelProps={{
-            //   shrink: true,
-            // }}
+
           />
 
 
