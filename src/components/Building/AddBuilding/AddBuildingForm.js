@@ -1,33 +1,36 @@
 // import { TextField } from "@mui/material";
-import TextField from '@mui/material/TextField';
-import { Box, Stack } from '@mui/system';
+import TextField from "@mui/material/TextField";
+import { Box, Stack } from "@mui/system";
 import AddBuilding from "./AddBuilding";
 import Button from "@mui/material/Button";
 import SaveRoundedIcon from "@mui/icons-material/SaveRounded";
 
-
 export default function AddBuildingForm(props) {
   return (
-    <div style={{
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-    }}>
-      <div className='addBuilding'>
+    <div
+      style={{
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+      }}
+    >
+      <div className="addBuilding">
         <h3>Add Building</h3>
-        <Box onSubmit={props.onSubmit} component="form"
+        <Box
+          onSubmit={props.onSubmit}
+          component="form"
           sx={{
-            '& .MuiTextField-root': { m: 1, width: '25ch' },
+            "& .MuiTextField-root": { m: 1, width: "25ch" },
           }}
           noValidate
           autoComplete="off"
         >
           <div>
-
             <TextField
               id="name"
               label="Building Name"
-              inputRef={props.nameRef} type="name"
+              inputRef={props.nameRef}
+              type="name"
             />
             <TextField
               id="floors"
@@ -35,7 +38,10 @@ export default function AddBuildingForm(props) {
               type="number"
               inputRef={props.floorsRef}
             />
-            <label htmlFor="address"> <h3>Add address:</h3></label>
+            <label htmlFor="address">
+              {" "}
+              <h3>Add address:</h3>
+            </label>
             <TextField
               label="Street"
               inputRef={props.streetRef}
@@ -63,18 +69,16 @@ export default function AddBuildingForm(props) {
               id="zip"
               defaultValue={"76706"}
             />
-
           </div>
+          <Button
+            startIcon={<SaveRoundedIcon />}
+            variant="contained"
+            type="submit"
+          >
+            Save Building
+          </Button>
         </Box>
-        <Button
-          startIcon={<SaveRoundedIcon />}
-          variant="contained"
-          type="submit"
-        >
-          Save Building
-        </Button>
       </div>
     </div>
-
   );
 }
