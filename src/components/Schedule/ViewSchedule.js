@@ -16,12 +16,14 @@ import {Rings} from "react-loader-spinner";
 export default function ViewSchedule(props) {
   const [myLoader, setMyLoader] = useState(true);
 
-  const [selectDate,setSelectDate] = useState([])
+  const [selectDate,setSelectDate] = useState(new Date())
   const [schedule,setSchedule] = useState([])
   const [loading,setLoading] = useState(false)
   const [scheduleLoading,setscheduleLoading] = useState(true)
     useEffect(()=>{
+      setSelectDate(new Date())
       setMyLoader(false)
+
       const date= {
         selectedFromTime: new Date()
       }
@@ -42,27 +44,22 @@ export default function ViewSchedule(props) {
     setSelectDate(date)
     setscheduleLoading(false)
 
-    const date1= {
+    const date1 = {
       selectedFromTime: date
     }
     console.log(date1)
-    userService.getSchedule(date1).then(res=>{
+    userService.getSchedule(date1).then(res => {
       setSchedule(res.data)
       setscheduleLoading(true)
       setLoading(true)
       console.log(res.data)
       setMyLoader(true)
-    }).catch(err=>{
+    }).catch(err => {
       console.log(err)
     })
 
+
   }
-  //
-  // if(!scheduleLoading){
-  //   return (<img src={giphy} alt="loading..." />)
-  // }
-
-
 
   return(
 <div>
