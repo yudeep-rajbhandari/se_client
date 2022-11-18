@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Routes, Route, Link } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
+import goBears from "./images/baylorBears2.png";
 
 import AuthService from "./services/auth.service";
 
@@ -102,7 +103,7 @@ class App extends Component {
       <div>
         <nav className="navbar navbar-expand navbar-dark bg-dark">
           <Link to={"/"} className="navbar-brand">
-            GoBears
+            <img src={goBears} alt="logo" width="30px" height="30px" />
           </Link>
           <div className="navbar-nav mr-auto">
             <li className="nav-item">
@@ -192,7 +193,7 @@ class App extends Component {
                 </Link>
               </li>
             )}
-           
+
             {showReserveResource && (
               <li className="nav-item">
                 <Link to={"/addSchedule"} className="nav-link">

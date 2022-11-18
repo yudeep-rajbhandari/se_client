@@ -16,12 +16,14 @@ import {Rings} from "react-loader-spinner";
 export default function ViewSchedule(props) {
   const [myLoader, setMyLoader] = useState(true);
 
-  const [selectDate,setSelectDate] = useState([])
+  const [selectDate,setSelectDate] = useState(new Date())
   const [schedule,setSchedule] = useState([])
   const [loading,setLoading] = useState(false)
   const [scheduleLoading,setscheduleLoading] = useState(true)
     useEffect(()=>{
+      setSelectDate(new Date())
       setMyLoader(false)
+
       const date= {
         selectedFromTime: new Date()
       }
@@ -39,39 +41,34 @@ export default function ViewSchedule(props) {
   const refreshIt1 = (date) => {
     setLoading(false)
     setMyLoader(false)
+    setSelectDate(date)
     setscheduleLoading(false)
-    const date1= {
+
+    const date1 = {
       selectedFromTime: date
     }
     console.log(date1)
-    userService.getSchedule(date1).then(res=>{
+    userService.getSchedule(date1).then(res => {
       setSchedule(res.data)
       setscheduleLoading(true)
       setLoading(true)
       console.log(res.data)
       setMyLoader(true)
-    }).catch(err=>{
+    }).catch(err => {
       console.log(err)
     })
 
+
   }
-  //
-  // if(!scheduleLoading){
-  //   return (<img src={giphy} alt="loading..." />)
-  // }
-
-
 
   return(
 <div>
 <h1>Schedule</h1>
   <DatePicker
       onChange={(date) => refreshIt1(date)}
-
+      selected={selectDate}
       minDate={new Date()}
-      placeholderText="Select a day"
-
-      // excludeDateIntervals={filterPassedTime()}
+      dateFormat="MMMM d, yyyy"
   />
   {!myLoader ?
       <Rings
@@ -106,8 +103,8 @@ export default function ViewSchedule(props) {
                           {row.room.name}
                         </TableCell>
                         <TableCell align="left">{row.name}</TableCell>
-                        <TableCell align="left">{moment(row.fromDate).format("MMMM D, YYYY hh:mm A")}</TableCell>
-                        <TableCell align="left">{moment(row.toDate).format("MMMM D, YYYY hh:mm A")}</TableCell>
+                        <TableCell align="left">{moment(row.fromDate).format("hh:mm A")}</TableCell>
+                        <TableCell align="left">{moment(row.toDate).format("hh:mm A")}</TableCell>
                       </TableRow>
                   ))}
                 </TableBody>
