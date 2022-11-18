@@ -39,7 +39,9 @@ export default function ViewSchedule(props) {
   const refreshIt1 = (date) => {
     setLoading(false)
     setMyLoader(false)
+    setSelectDate(date)
     setscheduleLoading(false)
+
     const date1= {
       selectedFromTime: date
     }
@@ -67,11 +69,9 @@ export default function ViewSchedule(props) {
 <h1>Schedule</h1>
   <DatePicker
       onChange={(date) => refreshIt1(date)}
-
+      selected={selectDate}
       minDate={new Date()}
-      placeholderText="Select a day"
-
-      // excludeDateIntervals={filterPassedTime()}
+      dateFormat="MMMM d, yyyy"
   />
   {!myLoader ?
       <Rings
@@ -106,8 +106,8 @@ export default function ViewSchedule(props) {
                           {row.room.name}
                         </TableCell>
                         <TableCell align="left">{row.name}</TableCell>
-                        <TableCell align="left">{moment(row.fromDate).format("MMMM D, YYYY hh:mm A")}</TableCell>
-                        <TableCell align="left">{moment(row.toDate).format("MMMM D, YYYY hh:mm A")}</TableCell>
+                        <TableCell align="left">{moment(row.fromDate).format("hh:mm A")}</TableCell>
+                        <TableCell align="left">{moment(row.toDate).format("hh:mm A")}</TableCell>
                       </TableRow>
                   ))}
                 </TableBody>
