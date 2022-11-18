@@ -55,6 +55,7 @@ export default function AddBuildingForm(props) {
             type="city"
             label="City"
             inputRef={props.cityRef}
+            defaultValue={"Waco"}
           />
 
 
@@ -65,6 +66,7 @@ export default function AddBuildingForm(props) {
             inputRef={props.stateRef}
             type="state"
             id="state"
+            defaultValue={"Texas"}
           />
 
           <br/>
@@ -74,6 +76,7 @@ export default function AddBuildingForm(props) {
             inputRef={props.zipRef}
             type="zip"
             id="zip"
+            defaultValue={"76706"}
           />
 
           <br/>
