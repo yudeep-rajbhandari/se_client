@@ -27,6 +27,9 @@ import ListRoom from "./components/Room/ListRoom/ListRoom";
 import AddSchedule from "./components/Schedule/AddSchedule";
 import ViewSchedule from "./components/Schedule/ViewSchedule";
 import MapComponent from "./components/maps/map.component";
+import MapContainer from "./components/maps/newmap.component";
+import MyMap from "./components/maps/testmap.component";
+import LeafletComponent from "./components/maps/leaflet.component";
 
 class App extends Component {
   constructor(props) {
@@ -259,7 +262,9 @@ class App extends Component {
             />
             <Route path="/addSchedule" element={<AddSchedule />} />
             <Route path="/schedule" element={<ViewSchedule />} />
-            <Route path="/map" element={<MapComponent />} />
+            <Route path="/map" element={<MapContainer />} />
+            <Route path="/leaflet" element={<LeafletComponent />} />
+
           </Routes>
         </div>
 
