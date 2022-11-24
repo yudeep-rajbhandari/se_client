@@ -46,10 +46,14 @@ export default function AddBuilding() {
   }
 
   async function addBuidling(building) {
-    await AdminService.addBuidling(building).then((res) => {
-      setMessage("Building " + res.data.name + " successfully added");
-      setStatus(true);
-    });
+    await AdminService.addBuidling(building)
+      .then((res) => {
+        setMessage("Building " + res.data.name + " successfully added");
+      })
+      .catch((error) => {
+        setMessage("some error occurred. Please try again");
+      })
+      .finally(setStatus(true));
   }
 
   if (loaded) {
