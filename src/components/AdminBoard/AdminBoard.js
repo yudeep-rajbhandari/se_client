@@ -51,7 +51,6 @@ export default function AdminBoard() {
             List Building
           </Button>
         </ButtonGroup>
-
         <ButtonGroup variant="text" aria-label="text button group">
           <Button onClick={(event) => (window.location.href = "/addRoom")}>
             Add Room
