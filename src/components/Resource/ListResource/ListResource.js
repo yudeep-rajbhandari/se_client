@@ -10,7 +10,8 @@ const [buildings, setBuildings] = useState([]);
     const [resources, setResources] = useState([]);
   const [loaded, setLoaded] = useState(false);
   const [edit, setEdit] = useState(false);
-
+  const [buildingSelected, setBuildingSelected] = useState(false);
+  const [selectecBuildingId, setSelectedBuildingId] = useState();
 const [selectedResource, setSelectedResource] = useState();
 
 
@@ -37,10 +38,19 @@ async function getAllBuilding() {
     getAllBuilding();
     setEdit(true)
     setSelectedResource(resource)
-    console.log(resource, "Edit button clicked")
   }
 
 
+  function handleSelectedBuildingIdChange(event) {
+    setSelectedBuildingId(event.target.value);
+    setBuildingSelected(true);
+    
+  }
+
+  function onSubmit(event){
+    event.preventDefault();
+    console.log("Edit Resource")
+  }
 
 
   if (loaded) {
@@ -48,7 +58,11 @@ async function getAllBuilding() {
       <div>
         <ResourceTable resources={resources} editResource={editResource}/>
         <div>
-            {edit && <EditResource  selectedResource ={selectedResource} buildings={buildings}/> }
+            {edit && <EditResource  selectedResource ={selectedResource} buildings={buildings}
+            
+            handleSelectedBuildingIdChange = {handleSelectedBuildingIdChange}
+            selectecBuildingId={selectecBuildingId}
+            onSubmit={onSubmit}/> }
         </div>
       </div>
       

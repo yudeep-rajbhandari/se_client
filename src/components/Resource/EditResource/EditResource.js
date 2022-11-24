@@ -10,12 +10,16 @@ export default function EditResource(props) {
 
   useEffect(() => {
     setFormDefaultValues();
-  }, [props.selectedResource.resourceName]);
+  }, [props.selectedResource]);
 
   function setFormDefaultValues() {
     setName(props.selectedResource.resourceName);
   }
 
+  function onSave(event){
+    event.preventDefault();
+    console.log("Edit Resource")
+  }
   
   return (
     <div>
@@ -31,6 +35,7 @@ export default function EditResource(props) {
             {buildingOptions}
           </select>
         </label>
+        <button type="submit" onClick={onSave}> Edit Resource</button>
       </form>
     </div>
   );
