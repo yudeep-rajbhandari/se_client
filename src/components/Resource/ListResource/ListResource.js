@@ -55,9 +55,6 @@ const [loaded,setLoaded] = useState(false);
                       <TableCell>{row.room.name}</TableCell>
                       <TableCell>{row.workingCondition}</TableCell>
                       <TableCell>{row.resourceType}</TableCell>
-                     
-    
-                      
                     </TableRow>
                   ))}
                 </TableBody>
