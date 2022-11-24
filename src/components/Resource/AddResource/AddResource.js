@@ -1,10 +1,10 @@
 import { useState, useEffect, useRef } from "react";
 
-import BuildingService from "../../services/BuildingService";
+import BuildingService from "../../../services/BuildingService";
 
-import ResourceService from "../../services/ResourceService";
+import ResourceService from "../../../services/ResourceService";
 
-import RoomService from "../../services/RoomService";
+import RoomService from "../../../services/RoomService";
 
 import AddResourceForm from "./AddResourceForm";
 
