@@ -13,8 +13,19 @@ const [buildings, setBuildings] = useState([]);
   const [buildingSelected, setBuildingSelected] = useState(false);
   const [selectecBuildingId, setSelectedBuildingId] = useState();
 const [selectedResource, setSelectedResource] = useState();
+const [count, setCount] = useState(0);
 
+const [message, setMessage] = useState();
+  const [status, setStatus] = useState(false);
 
+function makeEditFalse() {
+    setEdit(false);
+    setStatus(true);
+    setMessage("Room  updated successfully");
+    setCount((currentCount) => {
+      return currentCount + 1;
+    });
+  }
 
 async function getAllBuilding() {
     const { data } = await BuildingService.getAllBuilding();
@@ -32,6 +43,9 @@ async function getAllBuilding() {
   useEffect(() => {
     getAllResource();
   }, []);
+  useEffect(() => {
+    getAllResource();
+  }, [count]);
 
   
   function editResource(resource){
@@ -59,7 +73,7 @@ async function getAllBuilding() {
         <ResourceTable resources={resources} editResource={editResource}/>
         <div>
             {edit && <EditResource  selectedResource ={selectedResource} buildings={buildings}
-            
+            makeEditFalse={makeEditFalse}
             handleSelectedBuildingIdChange = {handleSelectedBuildingIdChange}
             selectecBuildingId={selectecBuildingId}
             onSubmit={onSubmit}/> }
