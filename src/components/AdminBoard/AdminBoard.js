@@ -61,6 +61,15 @@ export default function AdminBoard() {
           </Button>
         </ButtonGroup>
 
+        <ButtonGroup variant="text" aria-label="text button group">
+          <Button onClick={(event) => (window.location.href = "/addResource")}>
+            Add Resource
+          </Button>
+          <Button onClick={(event) => (window.location.href = "/listResource")}>
+            List Resource
+          </Button>
+        </ButtonGroup>
+
         <ButtonGroup>
           {clickRoomReservation && (
             <Button type="submit" onClick={() => hideRoomReservationTable()}>
