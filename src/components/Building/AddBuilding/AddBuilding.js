@@ -2,7 +2,6 @@ import React, { useRef, useState } from "react";
 
 import AdminService from "../../../services/admin.service";
 import AddBuildingForm from "./AddBuildingForm";
-import { Rings } from "react-loader-spinner";
 
 export default function AddBuilding() {
   const nameRef = useRef();
@@ -13,6 +12,9 @@ export default function AddBuilding() {
   const zipRef = useRef();
   const latitudeRef = useRef();
   const longitudeRef = useRef();
+  const gateNameRef = useRef();
+  const gateLatRef = useRef();
+  const gateLongRef = useRef();
 
   const [message, setMessage] = useState();
   const [status, setStatus] = useState(false);
@@ -26,12 +28,19 @@ export default function AddBuilding() {
       state: stateRef.current.value,
       zip: zipRef.current.value,
     };
+    const gate = {
+      name: gateNameRef.current.value,
+      latitude: gateLatRef.current.value,
+      longitude: gateLongRef.current.value,
+    };
     const building = {
       name: nameRef.current.value,
       floors: floorsRef.current.value,
-      address,
       latitude: latitudeRef.current.value,
       longitude: longitudeRef.current.value,
+
+      address,
+      gate,
     };
     addBuidling(building);
   }
@@ -55,6 +64,9 @@ export default function AddBuilding() {
           zipRef={zipRef}
           latitudeRef={latitudeRef}
           longitudeRef={longitudeRef}
+          gateNameRef={gateNameRef}
+          gateLatRef={gateLatRef}
+          gateLongRef={gateLongRef}
           onSubmit={onSubmit}
         />
 

@@ -87,6 +87,31 @@ export default function AddBuildingForm(props) {
               id="longitude"
             />
           </div>
+          <div>
+            <label htmlFor="gates">
+              {" "}
+              <h3>Fill in the gates info</h3>
+            </label>
+
+            <TextField
+              label="gate"
+              inputRef={props.gateNameRef}
+              type="name"
+              id="gateName"
+            />
+            <TextField
+              label="gateLatRef"
+              inputRef={props.gateLatRef}
+              type="gateLatRef"
+              id="gateLatRef"
+            />
+            <TextField
+              label="gateLongRef"
+              inputRef={props.gateLongRef}
+              type="gateLongRef"
+              id="gateLongRef"
+            />
+          </div>
           <Button
             startIcon={<SaveRoundedIcon />}
             variant="contained"

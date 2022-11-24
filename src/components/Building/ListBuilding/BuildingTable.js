@@ -22,6 +22,7 @@ export default function BuildingTable(props) {
                 <TableCell>Name</TableCell>
                 <TableCell>Floors</TableCell>
                 <TableCell>Address</TableCell>
+                <TableCell>Gate</TableCell>
                 <TableCell>Edit Action</TableCell>
                 <TableCell>Direction</TableCell>
               </TableRow>
@@ -45,6 +46,9 @@ export default function BuildingTable(props) {
                       +row.address.zip}
                   </TableCell>
                   <TableCell>
+                    {row.gate ? row.gate.name : "No Gate Info"}
+                  </TableCell>
+                  <TableCell>
                     <Button
                       startIcon={<ModeEditIcon />}
                       variant="outlined"
@@ -54,7 +58,6 @@ export default function BuildingTable(props) {
                     </Button>
                   </TableCell>
                   <TableCell>
-                    {" "}
                     {row.latitude},{row.longitude}
                   </TableCell>
                 </TableRow>
