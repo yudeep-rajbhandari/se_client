@@ -40,7 +40,7 @@ export default function ResourceTable(props){
                       <TableCell><Button
                       startIcon={<ModeEditIcon />}
                       variant="outlined"
-                      aria-label="text button group" onClick={()=>props.editResource(row.id)}> Edit</Button> </TableCell>
+                      aria-label="text button group" onClick={()=>props.editResource(row)}> Edit</Button> </TableCell>
                     </TableRow>
                   ))}
                 </TableBody>
