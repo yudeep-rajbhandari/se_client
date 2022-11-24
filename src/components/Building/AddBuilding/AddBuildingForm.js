@@ -1,7 +1,6 @@
 // import { TextField } from "@mui/material";
 import TextField from "@mui/material/TextField";
-import { Box, Stack } from "@mui/system";
-import AddBuilding from "./AddBuilding";
+import { Box } from "@mui/system";
 import Button from "@mui/material/Button";
 import SaveRoundedIcon from "@mui/icons-material/SaveRounded";
 
@@ -68,6 +67,24 @@ export default function AddBuildingForm(props) {
               type="zip"
               id="zip"
               defaultValue={"76706"}
+            />
+          </div>
+          <div>
+            <label htmlFor="address">
+              {" "}
+              <h3>Fill in the latitude and longitude info</h3>
+            </label>
+            <TextField
+              label="Latitude"
+              inputRef={props.latitudeRef}
+              type="latitude"
+              id="latitude"
+            />
+            <TextField
+              label="Longitude"
+              inputRef={props.longitudeRef}
+              type="longitude"
+              id="longitude"
             />
           </div>
           <Button

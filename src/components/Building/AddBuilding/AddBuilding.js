@@ -4,9 +4,6 @@ import AdminService from "../../../services/admin.service";
 import AddBuildingForm from "./AddBuildingForm";
 import { Rings } from "react-loader-spinner";
 
-
-
-
 export default function AddBuilding() {
   const nameRef = useRef();
   const floorsRef = useRef();
@@ -14,6 +11,8 @@ export default function AddBuilding() {
   const cityRef = useRef();
   const stateRef = useRef();
   const zipRef = useRef();
+  const latitudeRef = useRef();
+  const longitudeRef = useRef();
 
   const [message, setMessage] = useState();
   const [status, setStatus] = useState(false);
@@ -31,6 +30,8 @@ export default function AddBuilding() {
       name: nameRef.current.value,
       floors: floorsRef.current.value,
       address,
+      latitude: latitudeRef.current.value,
+      longitude: longitudeRef.current.value,
     };
     addBuidling(building);
   }
@@ -45,22 +46,22 @@ export default function AddBuilding() {
   if (loaded) {
     return (
       <div>
-        
-          <AddBuildingForm
-            nameRef={nameRef}
-            floorsRef={floorsRef}
-            streetRef={streetRef}
-            cityRef={cityRef}
-            stateRef={stateRef}
-            zipRef={zipRef}
-            onSubmit={onSubmit}
-          />
+        <AddBuildingForm
+          nameRef={nameRef}
+          floorsRef={floorsRef}
+          streetRef={streetRef}
+          cityRef={cityRef}
+          stateRef={stateRef}
+          zipRef={zipRef}
+          latitudeRef={latitudeRef}
+          longitudeRef={longitudeRef}
+          onSubmit={onSubmit}
+        />
 
-          <br />
-          {status && message}
-          <br />
-        
+        <br />
+        {status && message}
+        <br />
       </div>
     );
-  } 
+  }
 }

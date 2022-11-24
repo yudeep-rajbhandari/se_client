@@ -23,6 +23,7 @@ export default function BuildingTable(props) {
                 <TableCell>Floors</TableCell>
                 <TableCell>Address</TableCell>
                 <TableCell>Edit Action</TableCell>
+                <TableCell>Direction</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
@@ -51,6 +52,10 @@ export default function BuildingTable(props) {
                     >
                       Edit
                     </Button>
+                  </TableCell>
+                  <TableCell>
+                    {" "}
+                    {row.latitude},{row.longitude}
                   </TableCell>
                 </TableRow>
               ))}
