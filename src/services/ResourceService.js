@@ -9,6 +9,13 @@ class RoomService {
       headers: authHeader(),
     });
   }
+
+
+  getAllResource(){
+    return axios.get(RESOURCE_URL + "/getAllResource", {
+        headers: authHeader(),
+      })
+  }
 }
 
 export default new RoomService();
