@@ -16,6 +16,10 @@ class RoomService {
         headers: authHeader(),
       })
   }
+
+  editResource(resource){
+    return axios.put(RESOURCE_URL + "/editResource", resource , {headers: authHeader()})
+  }
 }
 
 export default new RoomService();
