@@ -17,6 +17,12 @@ class RoomService {
   updateRoom(room) {
     return axios.put(ROOM_URL + "/updateRoom", room, { headers: authHeader() });
   }
+
+  findAllByBuildingId(buildingId) {
+    return axios.get(ROOM_URL + "/findAllByBuildingId/" + buildingId, {
+      headers: authHeader(),
+    });
+  }
 }
 
 export default new RoomService();

@@ -16,7 +16,7 @@ import AdminBoard from "./components/AdminBoard/AdminBoard";
 
 import EventBus from "./common/EventBus";
 import AddRoom from "./components/Room/AddRoom/AddRoom";
-import AddResource from "./components/Resource/addresource.component";
+import AddResource from "./components/Resource/AddResource/AddResource";
 import ReserveRoom from "./components/Reserve/ReserveRoom/reserveroom.component";
 import ReserveResource from "./components/Reserve/ReserveResource/reserveresource.component";
 import FindBookableRoom from "./components/Room/findBookableRoom.component";
@@ -34,6 +34,7 @@ import EggComponent from "./components/maps/indoor.component";
 import IndoorComponent from "./components/maps/leafindoor.component";
 import IndoorMachine from "./components/maps/leafindoor.component";
 import LeafletComponent1 from "./components/maps/indoornew.component";
+import ListResource from "./components/Resource/ListResource/ListResource";
 
 class App extends Component {
   constructor(props) {
@@ -172,8 +173,16 @@ class App extends Component {
 
             {showAddResource && (
               <li className="nav-item">
-                <Link to={"/addresource"} className="nav-link">
+                <Link to={"/addResource"} className="nav-link">
                   Add Resource
+                </Link>
+              </li>
+            )}
+
+{showAddResource && (
+              <li className="nav-item">
+                <Link to={"/listResource"} className="nav-link">
+                  List Resource
                 </Link>
               </li>
             )}
@@ -255,6 +264,7 @@ class App extends Component {
             <Route path="/addRoom" element={<AddRoom />} />
             <Route path="/listRoom" element={<ListRoom />} />
             <Route path="/addResource" element={<AddResource />} />
+            <Route path="/listResource" element={<ListResource />} />
 
             <Route path="/reserveroom" element={<ReserveRoom />} />
             <Route path="/reserveresource" element={<ReserveResource />} />
