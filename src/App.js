@@ -30,6 +30,10 @@ import MapComponent from "./components/maps/map.component";
 import MapContainer from "./components/maps/newmap.component";
 import MyMap from "./components/maps/testmap.component";
 import LeafletComponent from "./components/maps/leaflet.component";
+import EggComponent from "./components/maps/indoor.component";
+import IndoorComponent from "./components/maps/leafindoor.component";
+import IndoorMachine from "./components/maps/leafindoor.component";
+import LeafletComponent1 from "./components/maps/indoornew.component";
 
 class App extends Component {
   constructor(props) {
@@ -264,6 +268,8 @@ class App extends Component {
             <Route path="/schedule" element={<ViewSchedule />} />
             <Route path="/map" element={<MapContainer />} />
             <Route path="/leaflet" element={<LeafletComponent />} />
+            <Route path="/indoor" element={<EggComponent />} />
+            <Route path="/indoor1" element={<LeafletComponent1 />} />
 
           </Routes>
         </div>

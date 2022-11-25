@@ -4,15 +4,16 @@ import './leaflet.css';
 
 
 import RoutineMachine from "./routingmachine.component";
-export default function LeafletComponent(){
+import IndoorMachine from "./leafindoor.component";
+export default function LeafletComponent1(){
     const position1 = [51.505, -0.09]
     const[isPosition,setisPosition] = useState(false)
     const[mypos,setMypos] = useState(false)
 
     const [position,setPosition] = useState({
-        lat:31.5451836,
-        lng:-97.1174557,
-        zoom: 7,
+        lat: 31.54553361,
+        lng:-97.1152046,
+        zoom: 44,
 
         isMapInit:false
     })
@@ -29,28 +30,6 @@ export default function LeafletComponent(){
         }
         setCurrentPosition(currentPosition);
 
-        // if(getRandomInt(2) ==0){
-        //
-        //     console.log("inside 1")
-        //     const currentPosition = {
-        //         lat:  31.5097246,
-        //         lng: -97.1442785
-        //     }
-        //     setCurrentPosition(currentPosition);
-        //
-        // }
-        // else {
-        //
-        //     console.log("inside 2")
-        //     const currentPosition = {
-        //         lat:  31.5091393,
-        //         lng: -97.1457555
-        //     }
-        //
-        //     setCurrentPosition(currentPosition);
-        //
-        // }
-
     }
     function getRandomInt(max) {
         return Math.floor(Math.random() * max);
@@ -63,10 +42,6 @@ export default function LeafletComponent(){
     useEffect(() => {
         setisPosition(true)
         getCurrentLocation()
-        const interval = setInterval(() => {
-            getCurrentLocation()
-            console.log("<><>",currentPosition.lat)
-        }, 10000);
 
     },[])
 
@@ -75,12 +50,16 @@ export default function LeafletComponent(){
 
 
     return (
-        <MapContainer center={[position.lat,position.lng]} zoom={12}scrollWheelZoom={false}>
+        <MapContainer center={[position.lat,position.lng]} zoom={position.zoom}scrollWheelZoom={false}>
             <TileLayer
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                 attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
             />
-            {isPosition && <RoutineMachine key={currentPosition.lat} current={currentPosition}/>}
+            <Marker position={[31.54516572, -97.1155106
+                ]}/>
+            <Marker position={[31.54516572, -97.1152046
+            ]}/>
+            {isPosition && <IndoorMachine key={currentPosition.lat} current={currentPosition}/>}
         </MapContainer>
     );
 }
