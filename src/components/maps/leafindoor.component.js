@@ -3,6 +3,7 @@ import { createControlComponent } from "@react-leaflet/core";
 import "leaflet-routing-machine";
 import "leaflet"
 import {useMap} from "react-leaflet";
+import path1 from "./path";
 
 
 export default function CreateIndoor(props) {
@@ -555,37 +556,49 @@ export default function CreateIndoor(props) {
     var pointB = new L.LatLng(
         31.54505308,-97.11589327);
 
-  var pointList=  [
-        new L.LatLng(
-
-            31.54640317,
-            -97.11818437,
-        ),
-        new L.LatLng(
-
-            31.54644864,
-            -97.11812558,
-        ),
-        new L.LatLng(
-
-            31.54656397,
-            -97.11826275,
-        ),
-        new L.LatLng(
-
-            31.54651425,
-            -97.11831187
-        )
-      ];
+  // var pointList=  [
+  //       new L.LatLng(
+  //
+  //           31.54640317,
+  //           -97.11818437,
+  //       ),
+  //       new L.LatLng(
+  //
+  //           31.54644864,
+  //           -97.11812558,
+  //       ),
+  //       new L.LatLng(
+  //
+  //           31.54656397,
+  //           -97.11826275,
+  //       ),
+  //       new L.LatLng(
+  //
+  //           31.54651425,
+  //           -97.11831187
+  //       )
+  //     ];
+    var pointList = null;
+if(props.id =='1'){
+    pointList = path1;
+}
     // var pointList = [pointA, pointB];
 
     var firstpolyline = new L.Polyline(pointList, {
         color: 'red',
-        weight: 3,
-        smoothFactor: 1
-    }).addTo(map);
+        weight: 6,
+        dashArray: '10, 10', dashOffset: '0'
+    }).bindTooltip("Head left and then right").addTo(map);
 
+    firstpolyline.on('click', function () {
+       console.log("I am clickable")
+    });
 
+    var newMarker = new L.marker(path1[0]).addTo(map);
+    var popup = newMarker.bindTooltip('<b>Hello world!</b><br />I am a popup.');
+    var newMarker1 = new L.marker(path1[path1.length-1]).addTo(map);
+
+    map.fitBounds(firstpolyline.getBounds());
 
     L.geoJson(street,
     {
@@ -597,8 +610,8 @@ export default function CreateIndoor(props) {
             var bounds = layer.getBounds();
             // Get center of bounds
             var center = bounds.getCenter();
-            //var center = layer.getBounds().getCenter();
-            // if(feature.properties.name==="C316")
+            var center = layer.getBounds().getCenter();
+            // if(feature.properties.name!=="")
             // {
             //
             //     layer.bindTooltip(feature.properties.name, {permanent: true, direction: "center", className: "my-labels"});

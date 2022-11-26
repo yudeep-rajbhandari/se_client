@@ -3,13 +3,20 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {useState} from "react";
 import LeafletComponent from "./leaflet.component";
 import LeafletComponent1 from "./indoornew.component";
+import L from "leaflet";
 
 export default function MapParentComponent(){
     const [building,setBuilding] = useState(false)
     const [elevator,setElevator] = useState(false)
     const [room,setRoom] = useState(false)
+    const [gate,setGate] = useState('A')
+    function getDistance(){
+        var fromLatLng = L.latLng([31.5451836,-97.1174557]);
+        var toLatLng = L.latLng([31.5091393, -97.1457555]);
 
-
+        var dis = fromLatLng.distanceTo([31.5091393, -97.1457555]);
+        console.log(dis)
+    }
     function clicker(aa){
         console.log(aa)
 if(aa==='building'){
@@ -23,6 +30,7 @@ else if(aa==='room'){
     setElevator(false)
 }
 else{
+    getDistance()
     setBuilding(false)
     setRoom(false)
     setElevator(true)
@@ -41,7 +49,7 @@ else{
                             <div className="step-icon-wrap">
                                 <div className="step-icon"><img src="https://img.icons8.com/ios-filled/50/null/city.png" /></div>
                             </div>
-                            <a className="step-title" onClick={ () => clicker("building")}>Get to the building</a>
+                            <a className="step-title" onClick={ () => clicker("building")}>Get to the building <br/>towards gate {gate}</a>
                         </div>
                         <div className="step completed">
                             <div className="step-icon-wrap">

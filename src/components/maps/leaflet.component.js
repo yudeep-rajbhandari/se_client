@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from "react";
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import './leaflet.css';
+import L from "leaflet";
 
 
 import RoutineMachine from "./routingmachine.component";
@@ -17,6 +18,8 @@ export default function LeafletComponent(){
         isMapInit:false
     })
     const [ currentPosition, setCurrentPosition ] = useState({});
+
+
 
     function success(pos) {
         console.log("<<<<<<<<<<<",mypos)

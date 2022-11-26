@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
+import { MapContainer, TileLayer, Marker, Popup,Tooltip } from 'react-leaflet';
 import './leaflet.css';
 import L from "leaflet";
 import { divIcon } from 'leaflet';
@@ -9,6 +9,7 @@ import { renderToStaticMarkup } from 'react-dom/server';
 
 export default function LeafletComponent1(){
     const position1 = [51.505, -0.09]
+    const[marker1,setMarker1] = useState("myhouse")
     const[isPosition,setisPosition] = useState(false)
     const[mypos,setMypos] = useState(false)
 
@@ -47,10 +48,10 @@ export default function LeafletComponent1(){
 
     },[])
 
-    const iconMarkup = renderToStaticMarkup(<i className="fa-solid fa-user"></i>);
+    const iconMarkup = renderToStaticMarkup(<i className="fa-solid fa-play"></i>);
 
     const customMarkerIcon = divIcon({
-        html: iconMarkup,
+        html: iconMarkup
     });
 
 
@@ -63,12 +64,7 @@ export default function LeafletComponent1(){
                 attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
 
             />
-            <Marker position={[31.54640317,
-                -97.11818437]} />
-            <Marker position={[31.54651425,
-                -97.11831187
-            ]}/>
-            {isPosition && <IndoorMachine key={currentPosition.lat} current={currentPosition}/>}
+            {isPosition && <IndoorMachine id ='1' key={currentPosition.lat} current={currentPosition}/>}
         </MapContainer>
     );
 }
