@@ -16,7 +16,7 @@ export default function CreateIndoor(props) {
 
     osm.addTo(map);
     var options = {
-        maxZoom: 20,
+        maxZoom: 50,
         tolerance: 3,
         debug: 0,
         style: {
@@ -34,113 +34,16 @@ export default function CreateIndoor(props) {
                     "type": "LineString",
                     "coordinates": [
                         [
-                            -97.1155106,
-                            31.54516572
+                            -97.11837397,
+                            31.54668719
                         ],
                         [
-                            -97.11557178,
-                            31.54520693
+                            -97.11777708,
+                            31.54619273
                         ]
                     ]
                 },
-
-                "id": "959b7493-b6ae-4be6-bcb4-f6576c423ea2",
-                "properties": {
-                    "name": "",
-                    "strokeColor": "#FF0000"
-                }
-            },
-            {
-                "type": "Feature",
-                "geometry": {
-                    "type": "LineString",
-                    "coordinates": [
-                        [
-                            -97.11559166,
-                            31.54510474
-                        ],
-                        [
-                            -97.11564382,
-                            31.54515482
-                        ],
-                        [
-                            -97.11541763,
-                            31.54531844
-                        ],
-                        [
-                            -97.11535188,
-                            31.54528258
-                        ]
-                    ]
-                },
-                "id": "56af7a78-b1a9-42bc-95c8-0d4c455625dc",
-                "properties": {
-                    "name": "aaaa",
-                    "strokeColor": "#FF0000"
-                }
-            },
-            {
-                "type": "Feature",
-                "geometry": {
-                    "type": "LineString",
-                    "coordinates": [
-                        [
-                            -97.11566463,
-                            31.54529749
-                        ],
-                        [
-                            -97.1157386,
-                            31.5453454
-                        ]
-                    ]
-                },
-                "id": "59006da9-60b0-4299-8718-d25fcb0a6429",
-                "properties": {
-                    "name": "bbb",
-                    "strokeColor": "#FF0000"
-                }
-            },
-            {
-                "type": "Feature",
-                "geometry": {
-                    "type": "LineString",
-                    "coordinates": [
-                        [
-                            -97.11486269,
-                            31.54496205
-                        ],
-                        [
-                            -97.11491529,
-                            31.54500688
-                        ],
-                        [
-                            -97.11485217,
-                            31.54508085
-                        ]
-                    ]
-                },
-                "id": "3d00711c-d18f-4e57-ac08-a8fc254f209c",
-                "properties": {
-                    "name": "",
-                    "strokeColor": "#FF0000"
-                }
-            },
-            {
-                "type": "Feature",
-                "geometry": {
-                    "type": "LineString",
-                    "coordinates": [
-                        [
-                            -97.11512347,
-                            31.54529771
-                        ],
-                        [
-                            -97.11502705,
-                            31.5453661
-                        ]
-                    ]
-                },
-                "id": "12a9f07e-a057-4dc0-acf5-51e54977fcaa",
+                "id": "3d77fa04-7389-449a-8b55-539cbaa7e1c8",
                 "properties": {
                     "name": ""
                 }
@@ -151,16 +54,16 @@ export default function CreateIndoor(props) {
                     "type": "LineString",
                     "coordinates": [
                         [
-                            -97.11537432,
-                            31.54508702
+                            -97.11803734,
+                            31.54640832
                         ],
                         [
-                            -97.1152248,
-                            31.54518526
+                            -97.117982,
+                            31.54646355
                         ]
                     ]
                 },
-                "id": "180011d3-19ec-4875-82fc-347f477ffe95",
+                "id": "3d3a067c-d463-4ee2-bc62-a1638e9b5196",
                 "properties": {
                     "name": ""
                 }
@@ -171,16 +74,127 @@ export default function CreateIndoor(props) {
                     "type": "LineString",
                     "coordinates": [
                         [
-                            -97.11544944,
-                            31.54515533
+                            -97.11811544,
+                            31.54647302
                         ],
                         [
-                            -97.11531495,
-                            31.5452543
+                            -97.11805407,
+                            31.54652536
                         ]
                     ]
                 },
-                "id": "093673c3-3d0d-4f6b-a7d0-0fc8313183af",
+                "id": "9805fc78-e044-4702-9b7d-438dab2ba2d7",
+                "properties": {
+                    "name": ""
+                }
+            },
+            // {
+            //     "type": "Feature",
+            //     "geometry": {
+            //         "type": "LineString",
+            //         "coordinates": [
+            //             [
+            //                 -97.11817068,
+            //                 31.54595713
+            //             ],
+            //             [
+            //                 -97.11821085,
+            //                 31.54591785
+            //             ],
+            //             [
+            //                 -97.11833134,
+            //                 31.54601421
+            //             ],
+            //             [
+            //                 -97.11799953,
+            //                 31.54630489
+            //             ],
+            //             [
+            //                 -97.11825719,
+            //                 31.54653237
+            //             ],
+            //             [
+            //                 -97.11829662,
+            //                 31.54650183
+            //             ]
+            //         ]
+            //     },
+            //     "id": "6d04f259-ea9c-4ac4-a6a4-e77cd374f4aa",
+            //     "properties": {
+            //         "name": "pathL1",
+            //         "pathL1": ""
+            //     }
+            // },
+            {
+                "type": "Feature",
+                "geometry": {
+                    "type": "LineString",
+                    "coordinates": [
+                        [
+                            -97.11819046,
+                            31.54597314
+                        ],
+                        [
+                            -97.11815338,
+                            31.54594312
+                        ],
+                        [
+                            -97.11809406,
+                            31.54599526
+                        ],
+                        [
+                            -97.11813114,
+                            31.54603001
+                        ],
+                        [
+                            -97.1181886,
+                            31.54597472
+                        ]
+                    ]
+                },
+                "id": "1bacbc21-c6c4-411c-905c-4bf509f8591a",
+                "properties": {
+                    "L1-1": "",
+                    "name": "L1-1"
+                }
+            },
+            {
+                "type": "Feature",
+                "geometry": {
+                    "type": "LineString",
+                    "coordinates": [
+                        [
+                            -97.1183109,
+                            31.54651346
+                        ],
+                        [
+                            -97.11831187,
+                            31.54651425
+                        ]
+                    ]
+                },
+                "id": "a8f3d542-b2d8-4e48-978f-ab4ac6bf604c",
+                "properties": {
+                    "C316": "",
+                    "name": "C316"
+                }
+            },
+            {
+                "type": "Feature",
+                "geometry": {
+                    "type": "LineString",
+                    "coordinates": [
+                        [
+                            -97.11853137,
+                            31.54659396
+                        ],
+                        [
+                            -97.11786918,
+                            31.54605639
+                        ]
+                    ]
+                },
+                "id": "0ccf6694-d7a4-4643-972d-2f6f9ace5e33",
                 "properties": {
                     "name": ""
                 }
@@ -191,16 +205,60 @@ export default function CreateIndoor(props) {
                     "type": "LineString",
                     "coordinates": [
                         [
-                            -97.11571055,
-                            31.54501531
+                            -97.11885778,
+                            31.54612164
                         ],
                         [
-                            -97.11581625,
-                            31.5451099
+                            -97.11870207,
+                            31.54625118
+                        ],
+                        [
+                            -97.11881886,
+                            31.54635544
+                        ],
+                        [
+                            -97.11839807,
+                            31.54670456
+                        ],
+                        [
+                            -97.11837397,
+                            31.54668719
+                        ],
+                        [
+                            -97.11830539,
+                            31.5467409
+                        ],
+                        [
+                            -97.11772147,
+                            31.54624012
+                        ],
+                        [
+                            -97.11777708,
+                            31.54619273
+                        ],
+                        [
+                            -97.11774001,
+                            31.54616745
+                        ],
+                        [
+                            -97.11815709,
+                            31.54580885
+                        ],
+                        [
+                            -97.1182887,
+                            31.54590995
+                        ],
+                        [
+                            -97.11842958,
+                            31.54577725
+                        ],
+                        [
+                            -97.11885964,
+                            31.54612006
                         ]
                     ]
                 },
-                "id": "16fbcc69-2056-494c-a2ec-419ad5c5431e",
+                "id": "093c1b43-2f77-4aea-abde-be51fcf25260",
                 "properties": {
                     "name": ""
                 }
@@ -211,16 +269,45 @@ export default function CreateIndoor(props) {
                     "type": "LineString",
                     "coordinates": [
                         [
-                            -97.11553636,
-                            31.54539835
+                            -97.1182864,
+                            31.5463951
                         ],
                         [
-                            -97.11561298,
-                            31.5454514
+                            -97.11823309,
+                            31.54644391
+                        ],
+                        [
+                            -97.11813485,
+                            31.54636176
+                        ],
+                        [
+                            -97.11818948,
+                            31.54631642
                         ]
                     ]
                 },
-                "id": "86ee326f-0822-4610-9b00-44ae19436b81",
+                "id": "733bb632-a787-432d-afa3-dc22f88cdd5c",
+                "properties": {
+                    "name": "elev2",
+                    "elev2": ""
+                }
+            },
+            {
+                "type": "Feature",
+                "geometry": {
+                    "type": "LineString",
+                    "coordinates": [
+                        [
+                            -97.11833942,
+                            31.54653666
+                        ],
+                        [
+                            -97.11839359,
+                            31.54648212
+                        ]
+                    ]
+                },
+                "id": "4a770770-b293-421c-a410-1b0279b7b972",
                 "properties": {
                     "name": ""
                 }
@@ -231,16 +318,16 @@ export default function CreateIndoor(props) {
                     "type": "LineString",
                     "coordinates": [
                         [
-                            -97.11560465,
-                            31.54534465
+                            -97.11839642,
+                            31.54658304
                         ],
                         [
-                            -97.11568174,
-                            31.54539338
+                            -97.1184582,
+                            31.54653457
                         ]
                     ]
                 },
-                "id": "78299f43-7b93-4c60-8db3-013e22dd873b",
+                "id": "442792e5-a81b-4cfc-b59f-7d90104463c5",
                 "properties": {
                     "name": ""
                 }
@@ -251,16 +338,16 @@ export default function CreateIndoor(props) {
                     "type": "LineString",
                     "coordinates": [
                         [
-                            -97.11571697,
-                            31.54525634
+                            -97.11787773,
+                            31.5462761
                         ],
                         [
-                            -97.11578488,
-                            31.54530634
+                            -97.1178231,
+                            31.54632727
                         ]
                     ]
                 },
-                "id": "0b1e03e6-494f-440b-99ed-5ee218244a94",
+                "id": "d2dc4f75-e4ac-4790-a3b3-6173ed117f50",
                 "properties": {
                     "name": ""
                 }
@@ -271,32 +358,66 @@ export default function CreateIndoor(props) {
                     "type": "LineString",
                     "coordinates": [
                         [
-                            -97.11503587,
-                            31.54528703
+                            -97.11829042,
+                            31.54661797
                         ],
                         [
-                            -97.11499682,
-                            31.54525344
-                        ],
-                        [
-                            -97.11510991,
-                            31.54517051
-                        ],
-                        [
-                            -97.11542552,
-                            31.54541706
-                        ],
-                        [
-                            -97.1157385,
-                            31.54520637
-                        ],
-                        [
-                            -97.1157221,
-                            31.54517936
+                            -97.11822406,
+                            31.54667115
                         ]
                     ]
                 },
-                "id": "42cef824-6ec2-4255-80e1-17d1eacb7386",
+                "id": "eaa3a44f-6906-433c-a260-c09af384d73d",
+                "properties": {
+                    "name": ""
+                }
+            },
+            // {
+            //     "type": "Feature",
+            //     "geometry": {
+            //         "type": "LineString",
+            //         "coordinates": [
+            //             [
+            //                 -97.11818437,
+            //                 31.54640317
+            //             ],
+            //             [
+            //                 -97.11812558,
+            //                 31.54644864
+            //             ],
+            //             [
+            //                 -97.11826275,
+            //                 31.54656397
+            //             ],
+            //             [
+            //                 -97.11831187,
+            //                 31.54651425
+            //             ]
+            //
+            //         ]
+            //     },
+            //     "id": "e24f8bf4-2467-4ed8-ab0f-e03eda86660e",
+            //     "properties": {
+            //         "name": "pathL2",
+            //         "pathL2": ""
+            //     }
+            // },
+            {
+                "type": "Feature",
+                "geometry": {
+                    "type": "LineString",
+                    "coordinates": [
+                        [
+                            -97.1186675,
+                            31.54648102
+                        ],
+                        [
+                            -97.11800206,
+                            31.54594214
+                        ]
+                    ]
+                },
+                "id": "1dfd2813-0247-440a-8657-ac8e3a6cd078",
                 "properties": {
                     "name": ""
                 }
@@ -307,126 +428,20 @@ export default function CreateIndoor(props) {
                     "type": "LineString",
                     "coordinates": [
                         [
-                            -97.11598836,
-                            31.54513464
+                            -97.11827202,
+                            31.54648182
                         ],
                         [
-                            -97.11545445,
-                            31.54558517
+                            -97.11836397,
+                            31.54655664
                         ],
                         [
-                            -97.11531243,
-                            31.54545517
-                        ],
-                        [
-                            -97.1152046,
-                            31.54553361
-                        ],
-                        [
-                            -97.1153361,
-                            31.54565689
-                        ],
-                        [
-                            -97.11515989,
-                            31.54578914
-                        ],
-                        [
-                            -97.11467858,
-                            31.54536103
-                        ],
-                        [
-                            -97.11487058,
-                            31.54520189
-                        ],
-                        [
-                            -97.11493107,
-                            31.54525344
-                        ],
-                        [
-                            -97.11499156000001,
-                            31.54520637
-                        ],
-                        [
-                            -97.11485217,
-                            31.54508085
-                        ],
-                        [
-                            -97.1148285,
-                            31.5451055
-                        ],
-                        [
-                            -97.11473907,
-                            31.5450293
-                        ],
-                        [
-                            -97.11483113,
-                            31.54494412
-                        ],
-                        [
-                            -97.11486269,
-                            31.54496205
-                        ],
-                        [
-                            -97.11520197,
-                            31.54467291
-                        ],
-                        [
-                            -97.11517041,
-                            31.54463705
-                        ],
-                        [
-                            -97.1153098,
-                            31.54454291
-                        ],
-                        [
-                            -97.11549391,
-                            31.54469756
-                        ],
-                        [
-                            -97.11546234,
-                            31.54472446
-                        ],
-                        [
-                            -97.11580688,
-                            31.54503154
-                        ],
-                        [
-                            -97.11583844,
-                            31.5450024
-                        ],
-                        [
-                            -97.11599362,
-                            31.54514585
+                            -97.11847119,
+                            31.54664389
                         ]
                     ]
                 },
-                "id": "9c59b493-39e5-4dee-97fa-3cef000f2a19",
-                "properties": {
-                    "C318": "",
-                    "name": "C318",
-                    "Hankamer": ""
-                }
-            },
-            {
-                "type": "Feature",
-                "geometry": {
-                    "type": "LineString",
-                    "coordinates": [
-                        [
-                            -97.11494422,
-                            31.54489257
-                        ],
-                        [
-                            -97.11522038,
-                            31.54511895
-                        ],
-                        [
-                            -97.11559627,
-                            31.54484382
-                        ]
-                    ]
-                },
-                "id": "a096238e-3823-48e4-9e90-1496070de7c6",
+                "id": "4de3871a-9630-4470-85bb-e358b9862af9",
                 "properties": {
                     "name": ""
                 }
@@ -437,16 +452,16 @@ export default function CreateIndoor(props) {
                     "type": "LineString",
                     "coordinates": [
                         [
-                            -97.11541729,
-                            31.54512609
+                            -97.11819057,
+                            31.54653525
                         ],
                         [
-                            -97.11527393,
-                            31.54522289
+                            -97.11812523,
+                            31.54658639
                         ]
                     ]
                 },
-                "id": "b0ab6b0f-d095-4807-b5c1-4a12a0ea2d1c",
+                "id": "d40e32f0-ebbe-4782-902b-329238555be7",
                 "properties": {
                     "name": ""
                 }
@@ -457,20 +472,37 @@ export default function CreateIndoor(props) {
                     "type": "LineString",
                     "coordinates": [
                         [
-                            -97.11575292,
-                            31.54498344
+                            -97.1182887,
+                            31.54590995
                         ],
                         [
-                            -97.11548338,
-                            31.5451862
-                        ],
-                        [
-                            -97.11532512,
-                            31.54504229
+                            -97.11870207,
+                            31.54625118
                         ]
                     ]
                 },
-                "id": "76664857-c40a-434c-95fa-7a70e85fb63c",
+                "id": "f60befd8-78e3-492b-aa2d-102f0a79e563",
+                "properties": {
+                    "ICPC": "",
+                    "name": "ICPC"
+                }
+            },
+            {
+                "type": "Feature",
+                "geometry": {
+                    "type": "LineString",
+                    "coordinates": [
+                        [
+                            -97.11827202,
+                            31.54648182
+                        ],
+                        [
+                            -97.11832912,
+                            31.54642978
+                        ]
+                    ]
+                },
+                "id": "f027ab73-ac45-48e4-88a8-08db1f1bb10a",
                 "properties": {
                     "name": ""
                 }
@@ -481,16 +513,16 @@ export default function CreateIndoor(props) {
                     "type": "LineString",
                     "coordinates": [
                         [
-                            -97.11539793,
-                            31.54524882
+                            -97.11796033,
+                            31.54634453
                         ],
                         [
-                            -97.11544719,
-                            31.54529706
+                            -97.11790719,
+                            31.54639939
                         ]
                     ]
                 },
-                "id": "65c5bb04-964a-4549-aebc-bcbf2640d47d",
+                "id": "ff2972bd-6fc1-4597-9d3e-864b6fe846d4",
                 "properties": {
                     "name": ""
                 }
@@ -501,242 +533,19 @@ export default function CreateIndoor(props) {
                     "type": "LineString",
                     "coordinates": [
                         [
-                            -97.11593105,
-                            31.54508801
+                            -97.11837821,
+                            31.54656823
                         ],
                         [
-                            -97.11547549,
-                            31.5454462
-                        ],
-                        [
-                            -97.11554958,
-                            31.5455049
+                            -97.11838103,
+                            31.54657053
                         ]
                     ]
                 },
-                "id": "79a5afce-a6a1-4031-9e59-a327af4439b2",
+                "id": "fbdca312-4ab5-4dcb-b1f4-61cd4819a9ca",
                 "properties": {
-                    "name": ""
-                }
-            },
-            {
-                "type": "Feature",
-                "geometry": {
-                    "type": "LineString",
-                    "coordinates": [
-                        [
-                            -97.11577018,
-                            31.5452145
-                        ],
-                        [
-                            -97.11584034,
-                            31.54525955
-                        ]
-                    ]
-                },
-                "id": "73d821c2-fd06-4891-86ec-c76675a19ae9",
-                "properties": {
-                    "name": ""
-                }
-            },
-            {
-                "type": "Feature",
-                "geometry": {
-                    "type": "LineString",
-                    "coordinates": [
-                        [
-                            -97.11548338,
-                            31.5451862
-                        ],
-                        [
-                            -97.11553221,
-                            31.54523555
-                        ]
-                    ]
-                },
-                "id": "48bc4a68-58b3-4a3d-b935-fefe3996c527",
-                "properties": {
-                    "name": ""
-                }
-            },
-            {
-                "type": "Feature",
-                "geometry": {
-                    "type": "LineString",
-                    "coordinates": [
-                        [
-                            -97.115436,
-                            31.54522092
-                        ],
-                        [
-                            -97.11548264,
-                            31.54527142
-                        ]
-                    ]
-                },
-                "id": "481cf384-74a9-4640-8b58-13603d80d760",
-                "properties": {
-                    "name": ""
-                }
-            },
-            {
-                "type": "Feature",
-                "geometry": {
-                    "type": "LineString",
-                    "coordinates": [
-                        [
-                            -97.11588928,
-                            31.54512086
-                        ],
-                        [
-                            -97.11594473,
-                            31.54517146
-                        ]
-                    ]
-                },
-                "id": "438ce3b0-2bdf-429a-99be-04d0b1ffe7aa",
-                "properties": {
-                    "name": ""
-                }
-            },
-            {
-                "type": "Feature",
-                "geometry": {
-                    "type": "LineString",
-                    "coordinates": [
-                        [
-                            -97.115174,
-                            31.54533981
-                        ],
-                        [
-                            -97.11507972,
-                            31.54541579
-                        ]
-                    ]
-                },
-                "id": "f1d16d84-c498-4ba5-93c0-b0f89bd3c166",
-                "properties": {
-                    "name": ""
-                }
-            },
-            {
-                "type": "Feature",
-                "geometry": {
-                    "type": "LineString",
-                    "coordinates": [
-                        [
-                            -97.11589327,
-                            31.54505308
-                        ],
-                        [
-                            -97.11568853,
-                            31.54520413
-                        ],
-                        [
-                            -97.11564382,
-                            31.54515482
-                        ]
-                    ]
-                },
-                "id": "d471bf48-79b0-4776-95d3-5b6d4340c8bf",
-                "properties": {
-                    "name": ""
-                }
-            },
-            {
-                "type": "Feature",
-                "geometry": {
-                    "type": "LineString",
-                    "coordinates": [
-                        [
-                            -97.11565359,
-                            31.54505816
-                        ],
-                        [
-                            -97.11576146,
-                            31.54515032
-                        ]
-                    ]
-                },
-                "id": "e939d912-47c0-41d6-9dd1-b601420ec9ef",
-                "properties": {
-                    "name": ""
-                }
-            },
-            {
-                "type": "Feature",
-                "geometry": {
-                    "type": "LineString",
-                    "coordinates": [
-                        [
-                            -97.11583027,
-                            31.54516725
-                        ],
-                        [
-                            -97.11589053,
-                            31.5452172
-                        ]
-                    ]
-                },
-                "id": "f9c401a1-0770-4b66-b06b-a7b1fc0ada9b",
-                "properties": {
-                    "name": ""
-                }
-            },
-            {
-                "type": "Feature",
-                "geometry": {
-                    "type": "LineString",
-                    "coordinates": [
-                        [
-                            -97.11548338,
-                            31.5451862
-                        ],
-                        [
-                            -97.11535188,
-                            31.54528258
-                        ],
-                        [
-                            -97.11517041,
-                            31.54514361
-                        ],
-                        [
-                            -97.11522038,
-                            31.54511895
-                        ]
-                    ]
-                },
-                "id": "25a07551-d95b-4579-a103-47ad40dce914",
-                "properties": {
-                    "name": ""
-                }
-            },
-            {
-                "type": "Feature",
-                "geometry": {
-                    "type": "LineString",
-                    "coordinates": [
-                        [
-                            -97.11531243,
-                            31.54545517
-                        ],
-                        [
-                            -97.11507572,
-                            31.54525792
-                        ],
-                        [
-                            -97.11498367,
-                            31.54532516
-                        ],
-                        [
-                            -97.1152046,
-                            31.54553361
-                        ]
-                    ]
-                },
-                "id": "c59f41d4-f041-4206-bb02-f4b828bfa56b",
-                "properties": {
-                    "name": ""
+                    "C315": "",
+                    "name": "C315"
                 }
             }
         ]
@@ -745,7 +554,30 @@ export default function CreateIndoor(props) {
     var pointA = new L.LatLng(31.54553361,-97.1152046,);
     var pointB = new L.LatLng(
         31.54505308,-97.11589327);
-    var pointList = [pointA, pointB];
+
+  var pointList=  [
+        new L.LatLng(
+
+            31.54640317,
+            -97.11818437,
+        ),
+        new L.LatLng(
+
+            31.54644864,
+            -97.11812558,
+        ),
+        new L.LatLng(
+
+            31.54656397,
+            -97.11826275,
+        ),
+        new L.LatLng(
+
+            31.54651425,
+            -97.11831187
+        )
+      ];
+    // var pointList = [pointA, pointB];
 
     var firstpolyline = new L.Polyline(pointList, {
         color: 'red',
@@ -753,7 +585,36 @@ export default function CreateIndoor(props) {
         smoothFactor: 1
     }).addTo(map);
 
-    L.geoJson(street, options).addTo(map);
+
+
+    L.geoJson(street,
+    {
+
+        onEachFeature: function (feature, layer) {
+
+            // if (feature.geometry.type === "Polygon") {
+
+            var bounds = layer.getBounds();
+            // Get center of bounds
+            var center = bounds.getCenter();
+            //var center = layer.getBounds().getCenter();
+            // if(feature.properties.name==="C316")
+            // {
+            //
+            //     layer.bindTooltip(feature.properties.name, {permanent: true, direction: "center", className: "my-labels"});
+            //     layer.on("click", function (e) {
+            //         layer.bindPopup(feature.properties.name);
+            //     });
+            // }
+
+
+            /* var marker =L.circleMarker(center, {color: '', radius:10,Title:20}).bindTooltip(feature.properties.name, {permanent: true, direction: "center", className: "my-labels"});
+                    map.addLayer(marker);*/
+            // var polygonAndItsCenter = L.layerGroup([layer, marker]);
+            // }
+        },
+    }
+    ).addTo(map);
 return null;
 
 };

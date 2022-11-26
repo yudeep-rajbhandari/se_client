@@ -35,6 +35,7 @@ import IndoorComponent from "./components/maps/leafindoor.component";
 import IndoorMachine from "./components/maps/leafindoor.component";
 import LeafletComponent1 from "./components/maps/indoornew.component";
 import ListResource from "./components/Resource/ListResource/ListResource";
+import MapParentComponent from "./components/maps/mapParent.component";
 
 class App extends Component {
   constructor(props) {
@@ -280,6 +281,8 @@ class App extends Component {
             <Route path="/leaflet" element={<LeafletComponent />} />
             <Route path="/indoor" element={<EggComponent />} />
             <Route path="/indoor1" element={<LeafletComponent1 />} />
+            <Route path="/route" element={< MapParentComponent/>} />
+
 
           </Routes>
         </div>

@@ -75,7 +75,7 @@ export default function LeafletComponent(){
 
 
     return (
-        <MapContainer center={[position.lat,position.lng]} zoom={12}scrollWheelZoom={false}>
+        <MapContainer center={[position.lat,position.lng]} zoom={2}scrollWheelZoom={true}>
             <TileLayer
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                 attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
