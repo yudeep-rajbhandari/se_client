@@ -23,6 +23,10 @@ class RoomService {
       headers: authHeader(),
     });
   }
+
+  getAllBookableRoom() {
+    return axios.get(ROOM_URL + "/allBookableRoom", { headers: authHeader() });
+  }
 }
 
 export default new RoomService();

@@ -5,6 +5,8 @@ const API_URL = "http://localhost:8080/api/test/";
 const BUILDING_URL = "http://localhost:8080/api/building/";
 const ROOM_URL = "http://localhost:8080/api/room/";
 const SCHEDULE_URL = "http://localhost:8080/api/schedule/";
+const USER_URL = "http://localhost:8080/api/user";
+
 class AdminService {
   getPublicContent() {
     return axios.get(API_URL + "all");
@@ -26,6 +28,12 @@ class AdminService {
   }
   async addBulkSchedule(formData) {
     return axios.post(SCHEDULE_URL + "addSchedule", formData, {
+      headers: authHeader(),
+    });
+  }
+
+  getAllUser() {
+    return axios.get(USER_URL + "/getAllUser", {
       headers: authHeader(),
     });
   }
