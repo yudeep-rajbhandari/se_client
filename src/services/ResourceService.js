@@ -10,11 +10,16 @@ class RoomService {
     });
   }
 
-
-  getAllResource(){
+  getAllResource() {
     return axios.get(RESOURCE_URL + "/getAllResource", {
-        headers: authHeader(),
-      })
+      headers: authHeader(),
+    });
+  }
+
+  getResourceCount() {
+    return axios.get(RESOURCE_URL + "/getResourceCount", {
+      headers: authHeader(),
+    });
   }
 }
 
