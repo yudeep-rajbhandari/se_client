@@ -1,0 +1,30 @@
+{
+"building": {
+  "name": "Hankamer",
+  "gates": [{
+    "name": "gateA",
+    "lat": "31.5464167",
+    "lng": "-97.1188651",
+    "pic": "/gate1.png",
+    "elevatorName": "Elevator A",
+    "elevatorpic": "/elevator1.png"
+  },
+    {
+      "name": "gateB",
+      "lat": "31.5462732",
+      "lng": "-97.1184861",
+      "pic": "/gate2.png",
+      "elevatorName": "Elevator A",
+      "elevatorpic": "/elevator1.png"
+    },
+    {
+      "name": "gateC",
+      "lat": "31.5460523",
+      "lng": "-97.1184338",
+      "pic": "../gate2.png",
+      "elevatorName": "Elevator A",
+      "elevatorpic": "/elevator1.png"
+    }
+    ]
+}
+}

@@ -32,27 +32,6 @@ export default function LeafletComponent(){
         }
         setCurrentPosition(currentPosition);
 
-        // if(getRandomInt(2) ==0){
-        //
-        //     console.log("inside 1")
-        //     const currentPosition = {
-        //         lat:  31.5097246,
-        //         lng: -97.1442785
-        //     }
-        //     setCurrentPosition(currentPosition);
-        //
-        // }
-        // else {
-        //
-        //     console.log("inside 2")
-        //     const currentPosition = {
-        //         lat:  31.5091393,
-        //         lng: -97.1457555
-        //     }
-        //
-        //     setCurrentPosition(currentPosition);
-        //
-        // }
 
     }
     function getRandomInt(max) {
@@ -68,7 +47,6 @@ export default function LeafletComponent(){
         getCurrentLocation()
         const interval = setInterval(() => {
             getCurrentLocation()
-            console.log("<><>",currentPosition.lat)
         }, 10000);
 
     },[])

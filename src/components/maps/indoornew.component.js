@@ -48,11 +48,7 @@ export default function LeafletComponent1(){
 
     },[])
 
-    const iconMarkup = renderToStaticMarkup(<i className="fa-solid fa-play"></i>);
 
-    const customMarkerIcon = divIcon({
-        html: iconMarkup
-    });
 
 
 

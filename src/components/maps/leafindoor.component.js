@@ -3,7 +3,7 @@ import { createControlComponent } from "@react-leaflet/core";
 import "leaflet-routing-machine";
 import "leaflet"
 import {useMap} from "react-leaflet";
-import path1 from "./path";
+import path2 from "./path";
 
 
 export default function CreateIndoor(props) {
@@ -580,10 +580,12 @@ export default function CreateIndoor(props) {
   //     ];
     var pointList = null;
 if(props.id =='1'){
-    pointList = path1;
+    pointList = path2;
 }
     // var pointList = [pointA, pointB];
-
+    const openInNewTab = url => {
+        window.open(url, '_blank', 'noopener,noreferrer');
+    };
     var firstpolyline = new L.Polyline(pointList, {
         color: 'red',
         weight: 6,
@@ -591,12 +593,17 @@ if(props.id =='1'){
     }).bindTooltip("Head left and then right").addTo(map);
 
     firstpolyline.on('click', function () {
-       console.log("I am clickable")
+        var start = path2[0].toString().split('(').pop().split(')')[0];
+        var end = path2[path2.length-1].toString().split('(').pop().split(')')[0];    ;
+        openInNewTab('https://www.google.com/maps/dir/?api=1&origin='+start +'&destination='+end+'&travelmode=walking')
     });
 
-    var newMarker = new L.marker(path1[0]).addTo(map);
+    var newMarker = new L.marker(path2[0],).addTo(map);
+    var icon = newMarker.options.icon;
+    icon.options.iconSize = [15, 25];
+    newMarker.setIcon(icon);
     var popup = newMarker.bindTooltip('<b>Hello world!</b><br />I am a popup.');
-    var newMarker1 = new L.marker(path1[path1.length-1]).addTo(map);
+    var newMarker1 = new L.marker(path2[path2.length-1]).addTo(map);
 
     map.fitBounds(firstpolyline.getBounds());
 
