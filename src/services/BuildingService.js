@@ -1,7 +1,8 @@
 import axios from "axios";
 import authHeader from "./auth-header";
+import env from "react-dotenv";
 
-const BUILDING_URL = "http://localhost:8080/api/building";
+const BUILDING_URL = env.abc+"building";
 
 class BuildingService {
   findBuildingById(buildingId) {

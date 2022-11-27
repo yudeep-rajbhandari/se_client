@@ -1,7 +1,8 @@
 import axios from "axios";
 import authHeader from "./auth-header";
+import env from "react-dotenv";
 
-const RESOURCE_URL = "http://localhost:8080/api/resource";
+const RESOURCE_URL = env.abc+"resource";
 
 class RoomService {
   addResource2(resource) {
