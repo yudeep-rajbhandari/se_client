@@ -21,7 +21,7 @@
       "name": "gateC",
       "lat": "31.5460523",
       "lng": "-97.1184338",
-      "pic": "../gate2.png",
+      "pic": "/gate2.png",
       "elevatorName": "Elevator A",
       "elevatorpic": "/elevator1.png"
     }

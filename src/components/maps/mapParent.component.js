@@ -18,7 +18,12 @@ export default function MapParentComponent(props){
     const [open, setOpen] = useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
-
+    const [open1, setOpen1] = useState(false);
+    const handleOpen1 = () => setOpen1(true);
+    const handleClose1 = () => setOpen1(false);
+    const [open2, setOpen2] = useState(false);
+    const handleOpen2 = () => setOpen2(true);
+    const handleClose2 = () => setOpen2(false);
     function success(pos) {
         console.log("<<<<<<<<<<<",pos)
         const latitude  = pos.coords.latitude;
@@ -92,7 +97,6 @@ export default function MapParentComponent(props){
         transform: 'translate(-50%, -50%)',
         width: 400,
         bgcolor: 'background.paper',
-        border: '2px solid #000',
         boxShadow: 24,
         p: 4,
     };
@@ -114,8 +118,6 @@ export default function MapParentComponent(props){
                             <Modal
                                 open={open}
                                 onClose={handleClose}
-                                aria-labelledby="modal-modal-title"
-                                aria-describedby="modal-modal-description"
                             >
                                 <Box sx={style}>
                                     <img src={gate.pic}  width="500" height="600"/>
@@ -127,13 +129,12 @@ export default function MapParentComponent(props){
                                 <div className="step-icon"><img src="https://img.icons8.com/ios-filled/50/null/elevator-doors.png" /></div>
                             </div>
                             <a className="step-title" onClick={ () => clicker("elevator")}>Take the  {gate.elevatorName}</a>
-                            <br/> Look for<Button onClick={handleOpen}>this sign</Button>
+                            <br/> Look for<Button onClick={handleOpen1}>this sign</Button>
 
                             <Modal
-                                open={open}
-                                onClose={handleClose}
-                                aria-labelledby="modal-modal-title"
-                                aria-describedby="modal-modal-description"
+                                open={open1}
+                                onClose={handleClose1}
+
                             >
                                 <Box sx={style}>
                                     <img src={gate.elevatorpic}  width="500" height="600"/>
@@ -145,16 +146,14 @@ export default function MapParentComponent(props){
                                 <div className="step-icon"><img src="https://img.icons8.com/glyph-neue/64/null/room.png" /></div>
                             </div>
                             <a className="step-title" onClick={ () => clicker("room")}>Go to room</a>
-                            <br/> Look for<Button onClick={handleOpen}>this sign</Button>
+                            <br/> Look for<Button onClick={handleOpen2}>this sign</Button>
 
                             <Modal
-                                open={open}
-                                onClose={handleClose}
-                                aria-labelledby="modal-modal-title"
-                                aria-describedby="modal-modal-description"
+                                open={open2}
+                                onClose={handleClose2}
                             >
                                 <Box sx={style}>
-                                    <img src={gate.elevatorpic}  width="500" height="600"/>
+                                    <img src={gate.pic}  width="500" height="600"/>
                                 </Box>
                             </Modal>
                         </div>
