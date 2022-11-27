@@ -1,3 +1,4 @@
+import { AssignmentReturned } from "@mui/icons-material";
 import axios from "axios";
 import authHeader from "./auth-header";
 
@@ -30,6 +31,13 @@ class RoomService {
 
   getRoomCount() {
     return axios.get(ROOM_URL + "/getRoomCount", { headers: authHeader() });
+  }
+
+  getRoomByBuilding(building) {
+    console.log(building.id);
+    return axios.get(ROOM_URL + "/getRoomByBuildingId/" + building.id, {
+      headers: authHeader(),
+    });
   }
 }
 

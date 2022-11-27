@@ -29,6 +29,7 @@ import ViewSchedule from "./components/Schedule/ViewSchedule";
 import MapComponent from "./components/maps/map.component";
 import ListResource from "./components/Resource/ListResource/ListResource";
 import Allotment from "./components/Allotment/Allotment";
+import FindRoomByBuilding from "./components/Building/FindRoomByBuilding/FindRoomByBuilding";
 
 class App extends Component {
   constructor(props) {
@@ -271,6 +272,10 @@ class App extends Component {
             <Route path="/addResource" element={<AddResource />} />
             <Route path="/listResource" element={<ListResource />} />
             <Route path="/allotment" element={<Allotment />} />
+            <Route
+              path="/findRoomByBuilding"
+              element={<FindRoomByBuilding />}
+            />
 
             <Route path="/reserveroom" element={<ReserveRoom />} />
             <Route path="/reserveresource" element={<ReserveResource />} />

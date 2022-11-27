@@ -8,15 +8,13 @@ import Button from "@mui/material/Button";
 export default function Summary(props) {
   return (
     <div>
-      <h4>Please find the summary of the system </h4>
-
       <TableContainer>
         <Table>
           <TableHead>
             <TableRow>
-              <TableCell>Total # buildings</TableCell>
-              <TableCell> Total # rooms</TableCell>
-              <TableCell> Total # resources</TableCell>
+              <TableCell># Building</TableCell>
+              <TableCell># Room</TableCell>
+              <TableCell># Resource</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>

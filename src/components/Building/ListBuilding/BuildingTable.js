@@ -18,13 +18,14 @@ export default function BuildingTable(props) {
           <Table stickyHeader sx={{ minWidth: 650 }} aria-label="simple table">
             <TableHead>
               <TableRow>
-                <TableCell>ID</TableCell>
+                {/* <TableCell>ID</TableCell> */}
                 <TableCell>Name</TableCell>
                 <TableCell>Floors</TableCell>
                 <TableCell>Address</TableCell>
                 <TableCell>Gate</TableCell>
                 <TableCell>Edit Action</TableCell>
                 <TableCell>Direction</TableCell>
+                <TableCell>Rooms</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
@@ -33,7 +34,7 @@ export default function BuildingTable(props) {
                   key={row.id}
                   sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
                 >
-                  <TableCell>{row.id}</TableCell>
+                  {/* <TableCell>{row.id}</TableCell> */}
                   <TableCell>{row.name}</TableCell>
                   <TableCell>{row.floors}</TableCell>
                   <TableCell>
@@ -59,6 +60,14 @@ export default function BuildingTable(props) {
                   </TableCell>
                   <TableCell>
                     {row.latitude},{row.longitude}
+                  </TableCell>
+                  <TableCell>
+                    <Button
+                      variant="outlined"
+                      onClick={() => props.viewRooms(row)}
+                    >
+                      View Rooms
+                    </Button>
                   </TableCell>
                 </TableRow>
               ))}
