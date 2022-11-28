@@ -48,7 +48,7 @@ export default function AddAllotmentTable(props) {
               </select>
             </TableCell>
 
-            {props.userSelected === true && (
+            {props.userSelected && (
               <TableCell>
                 <select onChange={props.handleSelectedBuildingIdChange}>
                   <option key="0" value="0">

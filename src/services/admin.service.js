@@ -1,11 +1,11 @@
 import axios from "axios";
 import authHeader from "./auth-header";
 import env from "react-dotenv";
-const API_URL = env.abc+"test/";
-const BUILDING_URL = env.abc+"building/";
-const ROOM_URL = env.abc+"room/";
-const SCHEDULE_URL = env.abc+"schedule/";
-const USER_URL = env.abc+"user/";
+const API_URL = env.abc + "test/";
+const BUILDING_URL = env.abc + "building/";
+const ROOM_URL = env.abc + "room/";
+const SCHEDULE_URL = env.abc + "schedule/";
+const USER_URL = env.abc + "user/";
 
 class AdminService {
   getPublicContent() {
@@ -33,7 +33,7 @@ class AdminService {
   }
 
   getAllUser() {
-    return axios.get(USER_URL + "/getAllUser", {
+    return axios.get(USER_URL + "getAllUser", {
       headers: authHeader(),
     });
   }

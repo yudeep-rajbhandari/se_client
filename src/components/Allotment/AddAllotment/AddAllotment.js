@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 import React from "react";
 
@@ -47,9 +47,19 @@ export default function AddAllotment(props) {
 
   function handleSelectedUserIdChange(event) {
     setSelectedUserId((currentValue) => {
-      return event.target.value;
+      return event.target.value === 0 ? 0 : event.target.value;
     });
-    setUserSelected(true);
+
+    console.log(event.target.value);
+    if (event.target.value !== 0) {
+      setUserSelected((currentValue) => {
+        return true;
+      });
+    } else {
+      setUserSelected((currentValue) => {
+        return false;
+      });
+    }
   }
 
   function handleSelectedBuildingIdChange(event) {
@@ -69,6 +79,7 @@ export default function AddAllotment(props) {
     });
   }
 
+  console.log(userSelected);
   return (
     <div>
       {status && (
