@@ -46,19 +46,13 @@ export default function AddAllotment(props) {
   }
 
   function handleSelectedUserIdChange(event) {
-    setSelectedUserId((currentValue) => {
-      return event.target.value === 0 ? 0 : event.target.value;
-    });
+    setSelectedUserId(event.target.value);
 
     console.log(event.target.value);
     if (event.target.value !== 0) {
-      setUserSelected((currentValue) => {
-        return true;
-      });
-    } else {
-      setUserSelected((currentValue) => {
-        return false;
-      });
+      setUserSelected(true);
+    } else if (event.target.value === 0) {
+      setUserSelected(false);
     }
   }
 
@@ -79,7 +73,6 @@ export default function AddAllotment(props) {
     });
   }
 
-  console.log(userSelected);
   return (
     <div>
       {status && (
