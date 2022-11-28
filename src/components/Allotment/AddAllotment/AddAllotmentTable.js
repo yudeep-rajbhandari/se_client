@@ -51,7 +51,7 @@ export default function AddAllotmentTable(props) {
             {props.userSelected && (
               <TableCell>
                 <select onChange={props.handleSelectedBuildingIdChange}>
-                  <option key="0" value="0">
+                  <option key={0} value={0}>
                     ---Select Building---
                   </option>
                   {buildingOptions}
@@ -61,7 +61,7 @@ export default function AddAllotmentTable(props) {
             {props.buildingSelected && (
               <TableCell>
                 <select onChange={props.handleSelectedRoomIdChange}>
-                  <option key="0" value="0">
+                  <option key={0} value={0}>
                     ---Select Room---
                   </option>
                   {roomOptions}
