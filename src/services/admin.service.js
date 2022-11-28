@@ -5,6 +5,8 @@ const API_URL = env.abc+"test/";
 const BUILDING_URL = env.abc+"building/";
 const ROOM_URL = env.abc+"room/";
 const SCHEDULE_URL = env.abc+"schedule/";
+const USER_URL = env.abc+"user/";
+
 class AdminService {
   getPublicContent() {
     return axios.get(API_URL + "all");
