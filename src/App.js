@@ -38,6 +38,7 @@ import ListResource from "./components/Resource/ListResource/ListResource";
 import Allotment from "./components/Allotment/Allotment";
 import FindRoomByBuilding from "./components/Building/FindRoomByBuilding/FindRoomByBuilding";
 import MapParentComponent from "./components/maps/mapParent.component";
+import AddDirection from "./components/Building/Direction/AddDirection/AddDirection";
 
 class App extends Component {
   constructor(props) {
@@ -50,6 +51,8 @@ class App extends Component {
 
       showAddBuilding: false,
       showListBuilding: false,
+      showAddDirection: false,
+
       showAddRoom: false,
       showListRoom: false,
       showAddResource: false,
@@ -70,6 +73,7 @@ class App extends Component {
 
         showAddBuilding: user.roles.includes("ROLE_ADMIN"),
         showListBuilding: user.roles.includes("ROLE_ADMIN"),
+        showAddDirection: user.roles.includes("ROLE_ADMIN"),
         showAddRoom: user.roles.includes("ROLE_ADMIN"),
         showListRoom: user.roles.includes("ROLE_ADMIN"),
         showAddResource: user.roles.includes("ROLE_ADMIN"),
@@ -105,6 +109,7 @@ class App extends Component {
       showAdminBoard,
       showAddBuilding,
       showListBuilding,
+      showAddDirection,
       showAddRoom,
       showListRoom,
       showAddResource,
@@ -157,6 +162,14 @@ class App extends Component {
               <li className="nav-item">
                 <Link to={"/listBuilding"} className="nav-link">
                   List Building
+                </Link>
+              </li>
+            )}
+
+            {showAddDirection && (
+              <li className="nav-item">
+                <Link to={"/addDirection"} className="nav-link">
+                  Add Direction
                 </Link>
               </li>
             )}
@@ -275,6 +288,7 @@ class App extends Component {
 
             <Route path="/addBuilding" element={<AddBuilding />} />
             <Route path="/listBuilding" element={<ListBuilding />} />
+            <Route path="/addDirection" element={<AddDirection />} />
             <Route path="/addRoom" element={<AddRoom />} />
             <Route path="/listRoom" element={<ListRoom />} />
             <Route path="/addResource" element={<AddResource />} />
@@ -299,9 +313,7 @@ class App extends Component {
             <Route path="/leaflet" element={<LeafletComponent />} />
             <Route path="/indoor" element={<EggComponent />} />
             <Route path="/indoor1" element={<LeafletComponent1 />} />
-            <Route path="/route" element={< MapParentComponent/>} />
-
-
+            <Route path="/route" element={<MapParentComponent />} />
           </Routes>
         </div>
 

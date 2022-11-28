@@ -12,9 +12,11 @@ export default function Allotment() {
   const [buildings, setBuildings] = useState([]);
   const [allotments, setAllotments] = useState([]);
   const [loaded, setLoaded] = useState(false);
+
   async function getAllUser() {
     const { data } = await AdminService.getAllUser();
     setUsers(data);
+    setLoaded(true);
   }
 
   async function getAllBuilding() {
@@ -26,10 +28,11 @@ export default function Allotment() {
     const { data } = await AllotmentService.getAllAllotment();
     setAllotments(data);
   }
+
   useEffect(() => {
+    getAllUser();
     getAllBuilding();
     getAllAllotment();
-    getAllUser();
     setLoaded(true);
   }, []);
 
