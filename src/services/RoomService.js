@@ -1,3 +1,4 @@
+import { AssignmentReturned } from "@mui/icons-material";
 import axios from "axios";
 import authHeader from "./auth-header";
 
@@ -20,6 +21,27 @@ class RoomService {
 
   findAllByBuildingId(buildingId) {
     return axios.get(ROOM_URL + "/findAllByBuildingId/" + buildingId, {
+      headers: authHeader(),
+    });
+  }
+
+  getAllBookableRoom() {
+    return axios.get(ROOM_URL + "/allBookableRoom", { headers: authHeader() });
+  }
+
+  getRoomCount() {
+    return axios.get(ROOM_URL + "/getRoomCount", { headers: authHeader() });
+  }
+
+  getRoomByBuilding(building) {
+    console.log(building.id);
+    return axios.get(ROOM_URL + "/getRoomByBuildingId/" + building.id, {
+      headers: authHeader(),
+    });
+  }
+
+  getBookableRoomByBuilding(buildingId) {
+    return axios.get(ROOM_URL + "/getBookableRoomByBuilding/" + buildingId, {
       headers: authHeader(),
     });
   }

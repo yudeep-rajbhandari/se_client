@@ -21,6 +21,12 @@ class BuildingService {
       headers: authHeader(),
     });
   }
+
+  getBuildingCount() {
+    return axios.get(BUILDING_URL + "/getBuildingCount", {
+      headers: authHeader(),
+    });
+  }
 }
 
 export default new BuildingService();

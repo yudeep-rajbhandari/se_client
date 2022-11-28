@@ -4,9 +4,33 @@ import RoomReservationsService from "../../services/RoomReservationsService";
 import ListRoomReservation from "./ListRoomReservation/ListRoomReservation";
 import Button from "@mui/material/Button";
 import ButtonGroup from "@mui/material/ButtonGroup";
-export default function AdminBoard() {
-  const [clickRoomReservation, setClickRoomReservation] = useState(false);
+import Summary from "./Summary";
+import BuildingService from "../../services/BuildingService";
+import RoomService from "../../services/RoomService";
+import ResourceService from "../../services/ResourceService";
 
+export default function AdminBoard() {
+  const [summary, setSummary] = useState(false);
+  const [buildingCount, setBuildingCount] = useState();
+  const [roomCount, setRoomCount] = useState();
+  const [resourceCount, setResourceCount] = useState();
+
+  async function getBuildingCount() {
+    const { data } = await BuildingService.getBuildingCount();
+    setBuildingCount(data);
+  }
+
+  async function getRoomCount() {
+    const { data } = await RoomService.getRoomCount();
+    setRoomCount(data);
+  }
+
+  async function getResourceCount() {
+    const { data } = await ResourceService.getResourceCount();
+    setResourceCount(data);
+  }
+
+  const [clickRoomReservation, setClickRoomReservation] = useState(false);
   const [roomReservationList, setRoomReservationList] = useState([]);
   const [count, setCount] = useState(0);
 
@@ -26,6 +50,9 @@ export default function AdminBoard() {
 
   useEffect(() => {
     getAllRoomReservation();
+    getBuildingCount();
+    getRoomCount();
+    getResourceCount();
   }, []);
 
   useEffect(() => {
@@ -38,10 +65,38 @@ export default function AdminBoard() {
     });
   }
 
+  function showSummary() {
+    setSummary(true);
+  }
+  function hideSummary() {
+    setSummary(false);
+  }
+
   return (
     <div>
       <h3>Admin Board</h3>
-      <div></div>
+      <div>
+        {summary && (
+          <Button type="submit" onClick={() => hideSummary()}>
+            Hide Overall Summary
+          </Button>
+        )}
+        {!summary && (
+          <Button type="submit" onClick={() => showSummary()}>
+            Overall Summary
+          </Button>
+        )}
+        {summary && (
+          <div>
+            <Summary
+              buildingCount={buildingCount}
+              roomCount={roomCount}
+              resourceCount={resourceCount}
+            />
+          </div>
+        )}
+      </div>
+
       <div>
         <ButtonGroup variant="text" aria-label="text button group">
           <Button onClick={(event) => (window.location.href = "/addBuilding")}>
@@ -60,6 +115,20 @@ export default function AdminBoard() {
             List Room
           </Button>
         </ButtonGroup>
+        <ButtonGroup variant="text" aria-label="text button group">
+          <Button onClick={(event) => (window.location.href = "/addResource")}>
+            Add Resource
+          </Button>
+          <Button onClick={(event) => (window.location.href = "/listResource")}>
+            List Resource
+          </Button>
+        </ButtonGroup>
+
+        <ButtonGroup variant="text" aria-label="text button group">
+          <Button onClick={(event) => (window.location.href = "/allotment")}>
+            Allotment
+          </Button>
+        </ButtonGroup>
 
         <ButtonGroup>
           {clickRoomReservation && (
@@ -73,6 +142,7 @@ export default function AdminBoard() {
             </Button>
           )}
         </ButtonGroup>
+
         {clickRoomReservation && (
           <ListRoomReservation
             roomReservationList={roomReservationList}

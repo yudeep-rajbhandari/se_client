@@ -43,7 +43,6 @@ export default function AddResource() {
 
   async function getAllRoom(buildingId) {
     const { data } = await RoomService.findAllByBuildingId(buildingId);
-
     setRooms((currentvalue) => {
       return data;
     });
