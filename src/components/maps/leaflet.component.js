@@ -5,7 +5,7 @@ import L from "leaflet";
 
 
 import RoutineMachine from "./routingmachine.component";
-export default function LeafletComponent(){
+export default function LeafletComponent(props){
     const position1 = [51.505, -0.09]
     const[isPosition,setisPosition] = useState(false)
     const[mypos,setMypos] = useState(false)
@@ -61,7 +61,7 @@ export default function LeafletComponent(){
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                 attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
             />
-            {isPosition && <RoutineMachine key={currentPosition.lat} current={currentPosition}/>}
+            {isPosition && <RoutineMachine dest = {props} key={currentPosition.lat} current={currentPosition}/>}
         </MapContainer>
     );
 }

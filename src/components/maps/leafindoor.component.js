@@ -3,7 +3,7 @@ import { createControlComponent } from "@react-leaflet/core";
 import "leaflet-routing-machine";
 import "leaflet"
 import {useMap} from "react-leaflet";
-import path2 from "./path";
+import path1 from "./path";
 
 
 export default function CreateIndoor(props) {
@@ -580,7 +580,7 @@ export default function CreateIndoor(props) {
   //     ];
     var pointList = null;
 if(props.id =='1'){
-    pointList = path2;
+    pointList = path1;
 }
     // var pointList = [pointA, pointB];
     const openInNewTab = url => {
@@ -593,17 +593,17 @@ if(props.id =='1'){
     }).bindTooltip("Head left and then right").addTo(map);
 
     firstpolyline.on('click', function () {
-        var start = path2[0].toString().split('(').pop().split(')')[0];
-        var end = path2[path2.length-1].toString().split('(').pop().split(')')[0];    ;
+        var start = path1[0].toString().split('(').pop().split(')')[0];
+        var end = path1[path1.length-1].toString().split('(').pop().split(')')[0];    ;
         openInNewTab('https://www.google.com/maps/dir/?api=1&origin='+start +'&destination='+end+'&travelmode=walking')
     });
 
-    var newMarker = new L.marker(path2[0],).addTo(map);
+    var newMarker = new L.marker(path1[0],).addTo(map);
     var icon = newMarker.options.icon;
     icon.options.iconSize = [15, 25];
     newMarker.setIcon(icon);
     var popup = newMarker.bindTooltip('<b>Hello world!</b><br />I am a popup.');
-    var newMarker1 = new L.marker(path2[path2.length-1]).addTo(map);
+    var newMarker1 = new L.marker(path1[path1.length-1]).addTo(map);
 
     map.fitBounds(firstpolyline.getBounds());
 
@@ -618,14 +618,14 @@ if(props.id =='1'){
             // Get center of bounds
             var center = bounds.getCenter();
             var center = layer.getBounds().getCenter();
-            // if(feature.properties.name!=="")
-            // {
-            //
-            //     layer.bindTooltip(feature.properties.name, {permanent: true, direction: "center", className: "my-labels"});
-            //     layer.on("click", function (e) {
-            //         layer.bindPopup(feature.properties.name);
-            //     });
-            // }
+            if(feature.properties.name!=="")
+            {
+
+                layer.bindTooltip(feature.properties.name, {permanent: true, direction: "center", className: "my-labels"});
+                layer.on("click", function (e) {
+                    layer.bindPopup(feature.properties.name);
+                });
+            }
 
 
             /* var marker =L.circleMarker(center, {color: '', radius:10,Title:20}).bindTooltip(feature.properties.name, {permanent: true, direction: "center", className: "my-labels"});

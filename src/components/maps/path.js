@@ -54,4 +54,4 @@ var path2=  [
       )
     ];
 
-export default path2;
+export default path1;

@@ -5,11 +5,11 @@ import "leaflet"
 
 
 const CreateRoutineMachineLayer = (props) => {
-
+console.log("abcd",props)
     const instance = L.Routing.control({
         waypoints: [
             L.latLng(props.current.lat,props.current.lng),
-            L.latLng(31.4969367,-97.1929281),
+            L.latLng(props.dest.gate.lat,props.dest.gate.lng),
 
         ],
         lineOptions: {

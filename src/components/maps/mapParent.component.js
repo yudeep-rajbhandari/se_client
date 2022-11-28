@@ -163,7 +163,7 @@ export default function MapParentComponent(props){
             </div>
         </div>
 
-            {building ? <div><LeafletComponent/> </div>:null}
+            {building ? <div><LeafletComponent gate={gate}/> </div>:null}
             {room ? <div><LeafletComponent1/> </div>:null}
 
         </div>
