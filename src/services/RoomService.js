@@ -39,6 +39,12 @@ class RoomService {
       headers: authHeader(),
     });
   }
+
+  getBookableRoomByBuilding(buildingId) {
+    return axios.get(ROOM_URL + "/getBookableRoomByBuilding/" + buildingId, {
+      headers: authHeader(),
+    });
+  }
 }
 
 export default new RoomService();

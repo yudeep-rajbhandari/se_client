@@ -2,14 +2,14 @@ import { useEffect, useState } from "react";
 import AdminService from "../../services/admin.service";
 import React from "react";
 
-import RoomService from "../../services/RoomService";
 import AllotmentService from "../../services/AllotmentService";
 import AddAllotment from "./AddAllotment/AddAllotment";
 import ViewAllotment from "./ViewAllotment/ViewAllotment";
+import BuildingService from "../../services/BuildingService";
 
 export default function Allotment() {
   const [users, setUsers] = useState([]);
-  const [rooms, setRooms] = useState([]);
+  const [buildings, setBuildings] = useState([]);
   const [allotments, setAllotments] = useState([]);
 
   async function getAllUser() {
@@ -17,9 +17,9 @@ export default function Allotment() {
     setUsers(data);
   }
 
-  async function getAllBookableRoom() {
-    const { data } = await RoomService.getAllBookableRoom();
-    setRooms(data);
+  async function getAllBuilding() {
+    const { data } = await BuildingService.getAllBuilding();
+    setBuildings(data);
   }
 
   async function getAllAllotment() {
@@ -27,7 +27,7 @@ export default function Allotment() {
     setAllotments(data);
   }
   useEffect(() => {
-    getAllBookableRoom();
+    getAllBuilding();
     getAllAllotment();
     getAllUser();
   }, []);
@@ -40,7 +40,7 @@ export default function Allotment() {
     <div>
       <AddAllotment
         users={users}
-        rooms={rooms}
+        buildings={buildings}
         refreshAllotment={refreshAllotment}
       />
       <ViewAllotment allotments={allotments} />

@@ -5,22 +5,17 @@ import React from "react";
 import AllotmentService from "../../../services/AllotmentService";
 import { toast, ToastContainer } from "react-toastify";
 import AddAllotmentTable from "./AddAllotmentTable";
+import RoomService from "../../../services/RoomService";
+
 export default function AddAllotment(props) {
+  const [userSelected, setUserSelected] = useState(false);
+  const [buildingSelected, setBuildingSelected] = useState(false);
+  const [selectedBuildingId, setSelectedBuildingId] = useState();
   const [selectedRoomId, setSelectedRoomId] = useState();
   const [selectedUserId, setSelectedUserId] = useState();
+
   const [status, setStatus] = useState(false);
-
-  const roomOptions = props.rooms.map((room) => (
-    <option key={room.id} value={room.id}>
-      {room.name}
-    </option>
-  ));
-
-  const userOptions = props.users.map((user) => (
-    <option key={user.id} value={user.id}>
-      {user.email}
-    </option>
-  ));
+  const [rooms, setRooms] = useState([]);
 
   async function addAllotment() {
     const allotment = {
@@ -50,15 +45,27 @@ export default function AddAllotment(props) {
       });
   }
 
-  function handleSelectedRoomIdChange(event) {
-    setSelectedRoomId((currentValue) => {
-      return event.target.value;
-    });
-  }
-
   function handleSelectedUserIdChange(event) {
     setSelectedUserId((currentValue) => {
       return event.target.value;
+    });
+    setUserSelected(true);
+  }
+
+  function handleSelectedBuildingIdChange(event) {
+    setSelectedBuildingId(event.target.value);
+    getBookableRoomByBuilding(event.target.value);
+    setBuildingSelected(true);
+  }
+
+  function handleSelectedRoomIdChange(event) {
+    setSelectedRoomId(event.target.value);
+  }
+
+  async function getBookableRoomByBuilding(buildingId) {
+    const { data } = await RoomService.getBookableRoomByBuilding(buildingId);
+    setRooms((currentvalue) => {
+      return data;
     });
   }
 
@@ -73,13 +80,18 @@ export default function AddAllotment(props) {
       <h3>Add Allotment</h3>
       <div>
         <AddAllotmentTable
-          handleSelectedRoomIdChange={handleSelectedRoomIdChange}
+          handleSelectedBuildingIdChange={handleSelectedBuildingIdChange}
           handleSelectedUserIdChange={handleSelectedUserIdChange}
-          roomOptions={roomOptions}
-          userOptions={userOptions}
+          handleSelectedRoomIdChange={handleSelectedRoomIdChange}
+          users={props.users}
+          buildings={props.buildings}
+          rooms={rooms}
           addAllotment={addAllotment}
           selectedRoomId={selectedRoomId}
           selectedUserId={selectedUserId}
+          selectedBuildingId={selectedBuildingId}
+          userSelected={userSelected}
+          buildingSelected={buildingSelected}
         />
       </div>
     </div>
