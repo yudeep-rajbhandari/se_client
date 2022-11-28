@@ -37,6 +37,7 @@ import LeafletComponent1 from "./components/maps/indoornew.component";
 import ListResource from "./components/Resource/ListResource/ListResource";
 import Allotment from "./components/Allotment/Allotment";
 import FindRoomByBuilding from "./components/Building/FindRoomByBuilding/FindRoomByBuilding";
+import MapParentComponent from "./components/maps/mapParent.component";
 
 class App extends Component {
   constructor(props) {
