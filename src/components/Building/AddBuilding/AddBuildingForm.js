@@ -30,13 +30,17 @@ export default function AddBuildingForm(props) {
               label="Building Name"
               inputRef={props.nameRef}
               type="name"
+              required
             />
             <TextField
               id="floors"
               label="Number of Floors"
               type="number"
               inputRef={props.floorsRef}
+              required
             />
+          </div>
+          <div>
             <label htmlFor="address">
               {" "}
               <h3>Add address:</h3>
@@ -46,6 +50,7 @@ export default function AddBuildingForm(props) {
               inputRef={props.streetRef}
               type="street"
               id="street"
+              required
             />
             <TextField
               id="city"
@@ -53,6 +58,7 @@ export default function AddBuildingForm(props) {
               label="City"
               inputRef={props.cityRef}
               defaultValue={"Waco"}
+              required
             />
             <TextField
               label="State"
@@ -60,6 +66,7 @@ export default function AddBuildingForm(props) {
               type="state"
               id="state"
               defaultValue={"Texas"}
+              required
             />
             <TextField
               label="Zip"
@@ -67,6 +74,7 @@ export default function AddBuildingForm(props) {
               type="zip"
               id="zip"
               defaultValue={"76706"}
+              required
             />
           </div>
           <div>
@@ -85,6 +93,31 @@ export default function AddBuildingForm(props) {
               inputRef={props.longitudeRef}
               type="longitude"
               id="longitude"
+            />
+          </div>
+          <div>
+            <label htmlFor="gates">
+              {" "}
+              <h3>Fill in the gates info</h3>
+            </label>
+
+            <TextField
+              label="gate"
+              inputRef={props.gateNameRef}
+              type="name"
+              id="gateName"
+            />
+            <TextField
+              label="gateLatRef"
+              inputRef={props.gateLatRef}
+              type="gateLatRef"
+              id="gateLatRef"
+            />
+            <TextField
+              label="gateLongRef"
+              inputRef={props.gateLongRef}
+              type="gateLongRef"
+              id="gateLongRef"
             />
           </div>
           <Button

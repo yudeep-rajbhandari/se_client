@@ -1,4 +1,3 @@
-import React from "react";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell, { tableCellClasses } from "@mui/material/TableCell";
@@ -7,7 +6,6 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import Button from "@mui/material/Button";
-import ModeEditIcon from "@mui/icons-material/ModeEdit";
 import { styled } from "@mui/material/styles";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
@@ -29,22 +27,26 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
     border: 0,
   },
 }));
-export default function RoomTable(props) {
+export default function FindRoomByBuilding(props) {
   return (
     <div>
-      <h3>List of Rooms</h3>
+      <h3> Rooms in Building: {props.selectedBuilding.name}</h3>
+      {props.displayRooms && (
+        <div>
+          <Button variant="outlined" onClick={() => props.hideRooms()}>
+            {" "}
+            Hide Rooms
+          </Button>
+        </div>
+      )}
       <div>
         <TableContainer component={Paper}>
           <Table stickyHeader sx={{ minWidth: 650 }} aria-label="simple table">
             <TableHead>
               <TableRow>
-                <StyledTableCell>ID</StyledTableCell>
                 <StyledTableCell>Name</StyledTableCell>
                 <StyledTableCell>Type</StyledTableCell>
                 <StyledTableCell>Bookable?</StyledTableCell>
-                <StyledTableCell>Associated Building</StyledTableCell>
-                <StyledTableCell> Action </StyledTableCell>
-                <StyledTableCell> Resource </StyledTableCell>
               </TableRow>
             </TableHead>
             <TableBody>
@@ -53,34 +55,9 @@ export default function RoomTable(props) {
                   key={row.id}
                   sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
                 >
-                  <StyledTableCell>{row.id}</StyledTableCell>
                   <StyledTableCell>{row.name}</StyledTableCell>
                   <StyledTableCell>{row.roomType}</StyledTableCell>
                   <StyledTableCell>{String(row.bookable)}</StyledTableCell>
-                  <StyledTableCell>{row.building.name}</StyledTableCell>
-
-                  <StyledTableCell>
-                    {" "}
-                    <Button
-                      startIcon={<ModeEditIcon />}
-                      variant="outlined"
-                      aria-label="text button group"
-                      onClick={() => props.onEditClick(row)}
-                    >
-                      {" "}
-                      Edit
-                    </Button>
-                  </StyledTableCell>
-
-                  <StyledTableCell>
-                    <Button
-                      variant="outlined"
-                      aria-label="text button group"
-                      onClick={() => props.viewResources(row)}
-                    >
-                      View Resource
-                    </Button>
-                  </StyledTableCell>
                 </StyledTableRow>
               ))}
             </TableBody>

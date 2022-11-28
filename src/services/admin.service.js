@@ -29,6 +29,12 @@ class AdminService {
       headers: authHeader(),
     });
   }
+
+  getAllUser() {
+    return axios.get(USER_URL + "/getAllUser", {
+      headers: authHeader(),
+    });
+  }
 }
 
 export default new AdminService();

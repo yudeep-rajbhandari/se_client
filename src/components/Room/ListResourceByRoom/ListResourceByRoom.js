@@ -29,58 +29,38 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
     border: 0,
   },
 }));
-export default function RoomTable(props) {
+export default function ListResourceByRoom(props) {
+  console.log(props);
   return (
     <div>
-      <h3>List of Rooms</h3>
+      <h3> Resources in Room: {props.selectedRoom.name}</h3>{" "}
+      {props.displayResources && (
+        <div>
+          <Button variant="outlined" onClick={() => props.hideResources()}>
+            {" "}
+            Hide Resources
+          </Button>
+        </div>
+      )}
       <div>
         <TableContainer component={Paper}>
           <Table stickyHeader sx={{ minWidth: 650 }} aria-label="simple table">
             <TableHead>
               <TableRow>
-                <StyledTableCell>ID</StyledTableCell>
                 <StyledTableCell>Name</StyledTableCell>
-                <StyledTableCell>Type</StyledTableCell>
-                <StyledTableCell>Bookable?</StyledTableCell>
-                <StyledTableCell>Associated Building</StyledTableCell>
-                <StyledTableCell> Action </StyledTableCell>
-                <StyledTableCell> Resource </StyledTableCell>
+                <StyledTableCell>Working Condition</StyledTableCell>
+                <StyledTableCell>Resource Type</StyledTableCell>
               </TableRow>
             </TableHead>
             <TableBody>
-              {props.rooms.map((row) => (
+              {props.resources.map((row) => (
                 <StyledTableRow
                   key={row.id}
                   sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
                 >
-                  <StyledTableCell>{row.id}</StyledTableCell>
-                  <StyledTableCell>{row.name}</StyledTableCell>
-                  <StyledTableCell>{row.roomType}</StyledTableCell>
-                  <StyledTableCell>{String(row.bookable)}</StyledTableCell>
-                  <StyledTableCell>{row.building.name}</StyledTableCell>
-
-                  <StyledTableCell>
-                    {" "}
-                    <Button
-                      startIcon={<ModeEditIcon />}
-                      variant="outlined"
-                      aria-label="text button group"
-                      onClick={() => props.onEditClick(row)}
-                    >
-                      {" "}
-                      Edit
-                    </Button>
-                  </StyledTableCell>
-
-                  <StyledTableCell>
-                    <Button
-                      variant="outlined"
-                      aria-label="text button group"
-                      onClick={() => props.viewResources(row)}
-                    >
-                      View Resource
-                    </Button>
-                  </StyledTableCell>
+                  <StyledTableCell>{row.resourceName}</StyledTableCell>
+                  <StyledTableCell>{row.workingCondition}</StyledTableCell>
+                  <StyledTableCell>{row.resourceType}</StyledTableCell>
                 </StyledTableRow>
               ))}
             </TableBody>
