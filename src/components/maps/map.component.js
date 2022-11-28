@@ -21,13 +21,10 @@ export default function MapComponent(props) {
 
 
     useEffect(()=>{
-
-            JsAPI()
             if (navigator.geolocation){
                 navigator.geolocation.getCurrentPosition((position:Geolocation)=>{
                     setCenter({lat:position.coords.latitude,lng:position.coords.longitude})
                 });
-
                 setLoad(true);
                 console.log("get")
             }
@@ -35,13 +32,11 @@ export default function MapComponent(props) {
                 console.log("erroar")
             }
     },[])
-const JsAPI=()=>{
+
     const { isLoaded } = useJsApiLoader({
         id: 'google-map-script',
         googleMapsApiKey: "AIzaSyAuKGV3UkbzNWjoVbzjeAz0UhO9YPULZfE"
     })
-}
-
 
     const onLoad = React.useCallback(function callback(map) {
         // This is just an example of getting and using the map instance!!! don't just blindly copy!
@@ -57,7 +52,7 @@ const JsAPI=()=>{
     if(load ) {
 
 
-        return load ? (
+        return isLoaded ? (
             <GoogleMap
                 mapContainerStyle={containerStyle}
                 center={center}

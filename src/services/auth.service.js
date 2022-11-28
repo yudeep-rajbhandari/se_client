@@ -1,6 +1,7 @@
 import axios from "axios";
+import env from "react-dotenv";
 
-const API_URL = "http://localhost:8080/api/auth/";
+const API_URL = env.abc+"auth/";
 
 class AuthService {
   login(username, password) {

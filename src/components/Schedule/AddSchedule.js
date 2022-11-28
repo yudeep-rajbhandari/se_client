@@ -35,6 +35,7 @@ export default function AddSchedule(props) {
 
     useEffect(() => {
         getAllBuilding();
+
         setLoaded(true);
     }, []);
 
