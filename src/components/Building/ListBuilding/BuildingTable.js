@@ -1,43 +1,63 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
-import TableCell from "@mui/material/TableCell";
+import TableCell, { tableCellClasses } from "@mui/material/TableCell";
 import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import Button from "@mui/material/Button";
 import ModeEditIcon from "@mui/icons-material/ModeEdit";
+import { styled } from "@mui/material/styles";
 
+const StyledTableCell = styled(TableCell)(({ theme }) => ({
+  [`&.${tableCellClasses.head}`]: {
+    backgroundColor: theme.palette.common.black,
+    color: theme.palette.common.white,
+  },
+  [`&.${tableCellClasses.body}`]: {
+    fontSize: 14,
+  },
+}));
+
+const StyledTableRow = styled(TableRow)(({ theme }) => ({
+  "&:nth-of-type(odd)": {
+    backgroundColor: theme.palette.action.hover,
+  },
+  // hide last border
+  "&:last-child td, &:last-child th": {
+    border: 0,
+  },
+}));
 export default function BuildingTable(props) {
   return (
     <div>
       <h3>List of Buildings</h3>
       <div>
         <TableContainer component={Paper}>
-          <Table stickyHeader sx={{ minWidth: 650 }} aria-label="simple table">
+          <Table stickyHeader aria-label="sticky table">
             <TableHead>
               <TableRow>
                 {/* <TableCell>ID</TableCell> */}
-                <TableCell>Name</TableCell>
-                <TableCell>Floors</TableCell>
-                <TableCell>Address</TableCell>
-                <TableCell>Gate</TableCell>
-                <TableCell>Edit Action</TableCell>
-                <TableCell>Direction</TableCell>
-                <TableCell>Rooms</TableCell>
+                <StyledTableCell>Name</StyledTableCell>
+                <StyledTableCell>Floors</StyledTableCell>
+                <StyledTableCell>Address</StyledTableCell>
+                <StyledTableCell>Gate</StyledTableCell>
+                <StyledTableCell>Edit Action</StyledTableCell>
+                <StyledTableCell>Direction</StyledTableCell>
+                <StyledTableCell>Rooms</StyledTableCell>
               </TableRow>
             </TableHead>
             <TableBody>
               {props.buildings.map((row) => (
-                <TableRow
+                <StyledTableRow
                   key={row.id}
                   sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
                 >
                   {/* <TableCell>{row.id}</TableCell> */}
-                  <TableCell>{row.name}</TableCell>
-                  <TableCell>{row.floors}</TableCell>
-                  <TableCell>
+                  <StyledTableCell>{row.name}</StyledTableCell>
+                  <StyledTableCell>{row.floors}</StyledTableCell>
+                  <StyledTableCell>
                     {row.address.street +
                       ", " +
                       row.address.city +
@@ -45,11 +65,11 @@ export default function BuildingTable(props) {
                       row.address.state +
                       ", " +
                       +row.address.zip}
-                  </TableCell>
-                  <TableCell>
+                  </StyledTableCell>
+                  <StyledTableCell>
                     {row.gate ? row.gate.name : "No Gate Info"}
-                  </TableCell>
-                  <TableCell>
+                  </StyledTableCell>
+                  <StyledTableCell>
                     <Button
                       startIcon={<ModeEditIcon />}
                       variant="outlined"
@@ -57,19 +77,19 @@ export default function BuildingTable(props) {
                     >
                       Edit
                     </Button>
-                  </TableCell>
-                  <TableCell>
+                  </StyledTableCell>
+                  <StyledTableCell>
                     {row.latitude},{row.longitude}
-                  </TableCell>
-                  <TableCell>
+                  </StyledTableCell>
+                  <StyledTableCell>
                     <Button
                       variant="outlined"
                       onClick={() => props.viewRooms(row)}
                     >
                       View Rooms
                     </Button>
-                  </TableCell>
-                </TableRow>
+                  </StyledTableCell>
+                </StyledTableRow>
               ))}
             </TableBody>
           </Table>

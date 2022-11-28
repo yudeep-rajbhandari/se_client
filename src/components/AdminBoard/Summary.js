@@ -4,7 +4,8 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import TableCell from "@mui/material/TableCell";
 import Button from "@mui/material/Button";
-
+import Tooltip from "@mui/material/Tooltip";
+import Zoom from "@mui/material/Zoom";
 export default function Summary(props) {
   return (
     <div>
@@ -20,29 +21,51 @@ export default function Summary(props) {
           <TableBody>
             <TableRow>
               <TableCell>
-                {" "}
-                <Button
-                  onClick={(event) => (window.location.href = "/listBuilding")}
+                <Tooltip
+                  disableFocusListener
+                  disableTouchListener
+                  TransitionComponent={Zoom}
+                  title="click to view list of buildings"
                 >
-                  {props.buildingCount}
-                </Button>
+                  <Button
+                    onClick={(event) =>
+                      (window.location.href = "/listBuilding")
+                    }
+                  >
+                    {props.buildingCount}
+                  </Button>
+                </Tooltip>
               </TableCell>
               <TableCell>
-                {" "}
-                <Button
-                  onClick={(event) => (window.location.href = "/listRoom")}
+                <Tooltip
+                  disableFocusListener
+                  disableTouchListener
+                  TransitionComponent={Zoom}
+                  title="click to view list of rooms"
                 >
-                  {props.roomCount}
-                </Button>
+                  <Button
+                    onClick={(event) => (window.location.href = "/listRoom")}
+                  >
+                    {props.roomCount}
+                  </Button>
+                </Tooltip>
               </TableCell>
 
               <TableCell>
-                {" "}
-                <Button
-                  onClick={(event) => (window.location.href = "/listResource")}
+                <Tooltip
+                  disableFocusListener
+                  disableTouchListener
+                  TransitionComponent={Zoom}
+                  title="click to view list of resources"
                 >
-                  {props.resourceCount}
-                </Button>
+                  <Button
+                    onClick={(event) =>
+                      (window.location.href = "/listResource")
+                    }
+                  >
+                    {props.resourceCount}
+                  </Button>
+                </Tooltip>
               </TableCell>
             </TableRow>
           </TableBody>
