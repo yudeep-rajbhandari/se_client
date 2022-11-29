@@ -8,9 +8,15 @@ import Summary from "./Summary";
 import BuildingService from "../../services/BuildingService";
 import RoomService from "../../services/RoomService";
 import ResourceService from "../../services/ResourceService";
+import BuildingSummary from "./BuildingSummary";
+import RoomSummary from "./RoomSummary";
+import ResourceSummary from "./ResourceSummary";
 
 export default function AdminBoard() {
   const [summary, setSummary] = useState(false);
+  const [buildingSummary, setBuildingSummary] = useState(false);
+  const [roomSummary, setRoomSummary] = useState(false);
+  const [resourceSummary, setResourceSummary] = useState(false);
   const [buildingCount, setBuildingCount] = useState();
   const [roomCount, setRoomCount] = useState();
   const [resourceCount, setResourceCount] = useState();
@@ -66,26 +72,98 @@ export default function AdminBoard() {
   }
 
   function showSummary() {
+    setBuildingSummary(false);
+    setRoomSummary(false);
+    setResourceSummary(false);
     setSummary(true);
   }
   function hideSummary() {
     setSummary(false);
   }
 
+  function showBuildingSummary() {
+    setSummary(false);
+    setRoomSummary(false);
+    setResourceSummary(false);
+    setBuildingSummary(true);
+  }
+
+  function hideBuildingSummary() {
+    setBuildingSummary(false);
+  }
+
+  function showRoomSummary() {
+    setSummary(false);
+    setBuildingSummary(false);
+    setResourceSummary(false);
+    setRoomSummary(true);
+  }
+
+  function hideRoomSummary() {
+    setRoomSummary(false);
+  }
+
+  function showResourceSummary() {
+    setSummary(false);
+    setBuildingSummary(false);
+    setRoomSummary(false);
+    setResourceSummary(true);
+  }
+
+  function hideResourceSummary() {
+    setResourceSummary(false);
+  }
+
   return (
     <div>
-      <h3>Admin Board</h3>
+      <h3>Admin Dashboard</h3>
       <div>
-        {summary && (
-          <Button type="submit" onClick={() => hideSummary()}>
-            Hide Overall Summary
-          </Button>
-        )}
-        {!summary && (
-          <Button type="submit" onClick={() => showSummary()}>
-            Overall Summary
-          </Button>
-        )}
+        <ButtonGroup variant="text" aria-label="text button group">
+          {summary && (
+            <Button color="error" type="submit" onClick={() => hideSummary()}>
+              Hide Overall Summary
+            </Button>
+          )}
+          {!summary && (
+            <Button type="submit" onClick={() => showSummary()}>
+              Overall Summary
+            </Button>
+          )}
+          {!buildingSummary && (
+            <Button onClick={() => showBuildingSummary()}>
+              {" "}
+              Building Summary
+            </Button>
+          )}
+          {buildingSummary && (
+            <Button color="error" onClick={() => hideBuildingSummary()}>
+              {" "}
+              Hide Building Summary
+            </Button>
+          )}
+          {!roomSummary && (
+            <Button onClick={() => showRoomSummary()}> Room Summary</Button>
+          )}
+          {roomSummary && (
+            <Button color="error" onClick={() => hideRoomSummary()}>
+              {" "}
+              Hide Room Summary
+            </Button>
+          )}
+          {!resourceSummary && (
+            <Button onClick={() => showResourceSummary()}>
+              {" "}
+              Resource Summary
+            </Button>
+          )}
+          {resourceSummary && (
+            <Button color="error" onClick={() => hideResourceSummary()}>
+              {" "}
+              Hide Resource Summary
+            </Button>
+          )}
+        </ButtonGroup>
+
         {summary && (
           <div>
             <Summary
@@ -93,6 +171,23 @@ export default function AdminBoard() {
               roomCount={roomCount}
               resourceCount={resourceCount}
             />
+          </div>
+        )}
+
+        {buildingSummary && (
+          <div>
+            <BuildingSummary buildingCount={buildingCount} />
+          </div>
+        )}
+
+        {roomSummary && (
+          <div>
+            <RoomSummary roomCount={roomCount} />
+          </div>
+        )}
+        {resourceSummary && (
+          <div>
+            <ResourceSummary resourceCount={resourceCount} />
           </div>
         )}
       </div>
@@ -132,7 +227,11 @@ export default function AdminBoard() {
 
         <ButtonGroup>
           {clickRoomReservation && (
-            <Button type="submit" onClick={() => hideRoomReservationTable()}>
+            <Button
+              color="error"
+              type="submit"
+              onClick={() => hideRoomReservationTable()}
+            >
               Hide Room Reservations
             </Button>
           )}

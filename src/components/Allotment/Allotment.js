@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import AdminService from "../../services/admin.service";
 import React from "react";
-
+import { Rings } from "react-loader-spinner";
 import AllotmentService from "../../services/AllotmentService";
 import AddAllotment from "./AddAllotment/AddAllotment";
 import ViewAllotment from "./ViewAllotment/ViewAllotment";
@@ -11,10 +11,12 @@ export default function Allotment() {
   const [users, setUsers] = useState([]);
   const [buildings, setBuildings] = useState([]);
   const [allotments, setAllotments] = useState([]);
+  const [loaded, setLoaded] = useState(false);
 
   async function getAllUser() {
     const { data } = await AdminService.getAllUser();
     setUsers(data);
+    setLoaded(true);
   }
 
   async function getAllBuilding() {
@@ -26,24 +28,42 @@ export default function Allotment() {
     const { data } = await AllotmentService.getAllAllotment();
     setAllotments(data);
   }
+
   useEffect(() => {
+    getAllUser();
     getAllBuilding();
     getAllAllotment();
-    getAllUser();
+    setLoaded(true);
   }, []);
 
   function refreshAllotment() {
     getAllAllotment();
   }
 
-  return (
+  if (loaded) {
+    return (
+      <div>
+        <AddAllotment
+          users={users}
+          buildings={buildings}
+          refreshAllotment={refreshAllotment}
+        />
+        <ViewAllotment allotments={allotments} />
+      </div>
+    );
+  } else {
     <div>
-      <AddAllotment
-        users={users}
-        buildings={buildings}
-        refreshAllotment={refreshAllotment}
+      <Rings
+        align="center"
+        height="80"
+        width="80"
+        color="#4fa94d"
+        radius="6"
+        wrapperStyle={{}}
+        wrapperClass=""
+        visible={true}
+        ariaLabel="rings-loading"
       />
-      <ViewAllotment allotments={allotments} />
-    </div>
-  );
+    </div>;
+  }
 }

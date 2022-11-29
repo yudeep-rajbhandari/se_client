@@ -9,7 +9,7 @@ import Paper from "@mui/material/Paper";
 import Button from "@mui/material/Button";
 import ModeEditIcon from "@mui/icons-material/ModeEdit";
 import { styled } from "@mui/material/styles";
-
+import CsvDownloadButton from "react-json-to-csv";
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
     backgroundColor: theme.palette.common.black,
@@ -33,6 +33,11 @@ export default function BuildingTable(props) {
   return (
     <div>
       <h3>List of Buildings</h3>
+      <CsvDownloadButton
+        data={props.buildings}
+        filename={"buildings.csv"}
+        delimiter={","}
+      />
       <div>
         <TableContainer component={Paper}>
           <Table stickyHeader aria-label="sticky table">
