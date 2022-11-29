@@ -3,8 +3,9 @@ import { createControlComponent } from "@react-leaflet/core";
 import "leaflet-routing-machine";
 import "leaflet"
 import {useMap} from "react-leaflet";
-import path1 from "./path";
-
+import path3 from "./path";
+import  building from "./paths/building"
+import  allPaths from "./paths/paths"
 
 export default function CreateIndoor(props) {
     const map = useMap()
@@ -580,34 +581,49 @@ export default function CreateIndoor(props) {
   //     ];
     var pointList = null;
 if(props.id =='1'){
-    pointList = path1;
+    pointList = path3;
 }
+
+const currentPath = allPaths.filter(p=>p.properties.name==='ElevatorE_319');
+console.log("hello world",currentPath)
+    const aa = [];
+if(currentPath.length <1){
+    return (
+        window.alert("Sorry no path available in system right now.")
+    )
+}
+    currentPath[0].geometry.coordinates.forEach(j=>{
+        aa.push(new L.LatLng(j[1],j[0]))
+    })
+
+    pointList = aa
+
     // var pointList = [pointA, pointB];
     const openInNewTab = url => {
         window.open(url, '_blank', 'noopener,noreferrer');
     };
     var firstpolyline = new L.Polyline(pointList, {
         color: 'red',
-        weight: 6,
+        weight: 4,
         dashArray: '10, 10', dashOffset: '0'
     }).bindTooltip("Head left and then right").addTo(map);
 
     firstpolyline.on('click', function () {
-        var start = path1[0].toString().split('(').pop().split(')')[0];
-        var end = path1[path1.length-1].toString().split('(').pop().split(')')[0];    ;
+        var start = pointList[0].toString().split('(').pop().split(')')[0];
+        var end = pointList[pointList.length-1].toString().split('(').pop().split(')')[0];    ;
         openInNewTab('https://www.google.com/maps/dir/?api=1&origin='+start +'&destination='+end+'&travelmode=walking')
     });
 
-    var newMarker = new L.marker(path1[0],).addTo(map);
+    var newMarker = new L.marker(pointList[0],).addTo(map);
     var icon = newMarker.options.icon;
     icon.options.iconSize = [15, 25];
     newMarker.setIcon(icon);
     var popup = newMarker.bindTooltip('<b>Hello world!</b><br />I am a popup.');
-    var newMarker1 = new L.marker(path1[path1.length-1]).addTo(map);
+    var newMarker1 = new L.marker(pointList[pointList.length-1]).addTo(map);
 
     map.fitBounds(firstpolyline.getBounds());
 
-    L.geoJson(street,
+    L.geoJson(building,
     {
 
         onEachFeature: function (feature, layer) {
@@ -618,14 +634,14 @@ if(props.id =='1'){
             // Get center of bounds
             var center = bounds.getCenter();
             var center = layer.getBounds().getCenter();
-            if(feature.properties.name!=="")
-            {
-
-                layer.bindTooltip(feature.properties.name, {permanent: true, direction: "center", className: "my-labels"});
-                layer.on("click", function (e) {
-                    layer.bindPopup(feature.properties.name);
-                });
-            }
+            // if(feature.properties.name!=="")
+            // {
+            //
+            //     layer.bindTooltip(feature.properties.name, {permanent: true, direction: "center", className: "my-labels"});
+            //     layer.on("click", function (e) {
+            //         layer.bindPopup(feature.properties.name);
+            //     });
+            // }
 
 
             /* var marker =L.circleMarker(center, {color: '', radius:10,Title:20}).bindTooltip(feature.properties.name, {permanent: true, direction: "center", className: "my-labels"});
