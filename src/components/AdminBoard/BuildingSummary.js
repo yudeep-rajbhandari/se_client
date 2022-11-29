@@ -30,7 +30,7 @@ export default function Summary(props) {
                       (window.location.href = "/listBuilding")
                     }
                   >
-                    {props.buildingCount}
+                    {props.buildings.length}
                   </Button>
                 </Tooltip>
               </TableCell>

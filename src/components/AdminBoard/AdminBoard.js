@@ -17,24 +17,33 @@ export default function AdminBoard() {
   const [buildingSummary, setBuildingSummary] = useState(false);
   const [roomSummary, setRoomSummary] = useState(false);
   const [resourceSummary, setResourceSummary] = useState(false);
-  const [buildingCount, setBuildingCount] = useState();
-  const [roomCount, setRoomCount] = useState();
-  const [resourceCount, setResourceCount] = useState();
 
-  async function getBuildingCount() {
-    const { data } = await BuildingService.getBuildingCount();
-    setBuildingCount(data);
+
+
+  const [resources, setResources] = useState([]);
+  const [rooms, setRooms] = useState([]);
+  const [buildings, setBuildings] = useState([]);
+
+  async function getAllBuilding() {
+    const { data } = await BuildingService.getAllBuilding();
+    setBuildings(data);
   }
 
-  async function getRoomCount() {
-    const { data } = await RoomService.getRoomCount();
-    setRoomCount(data);
+  async function getAllRoom() {
+    const { data } = await RoomService.getAllRoom();
+    setRooms(data);
   }
 
-  async function getResourceCount() {
-    const { data } = await ResourceService.getResourceCount();
-    setResourceCount(data);
+  async function getAllResource() {
+    const { data } = await ResourceService.getAllResource();
+    setResources(data);
   }
+
+  useEffect(() => {
+    getAllBuilding();
+    getAllRoom();
+    getAllResource();
+  }, [])
 
   const [clickRoomReservation, setClickRoomReservation] = useState(false);
   const [roomReservationList, setRoomReservationList] = useState([]);
@@ -55,10 +64,7 @@ export default function AdminBoard() {
   }
 
   useEffect(() => {
-    getAllRoomReservation();
-    getBuildingCount();
-    getRoomCount();
-    getResourceCount();
+    getAllRoomReservation()
   }, []);
 
   useEffect(() => {
@@ -116,7 +122,7 @@ export default function AdminBoard() {
 
   return (
     <div>
-      <h3>Admin Dashboard</h3>
+      <h3>Dashboard</h3>
       <div>
         <ButtonGroup variant="text" aria-label="text button group">
           {summary && (
@@ -167,27 +173,25 @@ export default function AdminBoard() {
         {summary && (
           <div>
             <Summary
-              buildingCount={buildingCount}
-              roomCount={roomCount}
-              resourceCount={resourceCount}
+              buildings={buildings} rooms={rooms} resources={resources}
             />
           </div>
         )}
 
         {buildingSummary && (
           <div>
-            <BuildingSummary buildingCount={buildingCount} />
+            <BuildingSummary buildings={buildings} />
           </div>
         )}
 
         {roomSummary && (
           <div>
-            <RoomSummary roomCount={roomCount} />
+            <RoomSummary rooms={rooms} />
           </div>
         )}
         {resourceSummary && (
           <div>
-            <ResourceSummary resourceCount={resourceCount} />
+            <ResourceSummary resources={resources} />
           </div>
         )}
       </div>
@@ -218,12 +222,14 @@ export default function AdminBoard() {
             List Resource
           </Button>
         </ButtonGroup>
+        <div>
+          <ButtonGroup variant="text" aria-label="text button group">
+            <Button onClick={(event) => (window.location.href = "/allotment")}>
+              Allotment
+            </Button>
+          </ButtonGroup>
+        </div>
 
-        <ButtonGroup variant="text" aria-label="text button group">
-          <Button onClick={(event) => (window.location.href = "/allotment")}>
-            Allotment
-          </Button>
-        </ButtonGroup>
         <div>
           <ButtonGroup>
             {clickRoomReservation && (
