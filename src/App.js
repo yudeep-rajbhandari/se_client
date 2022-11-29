@@ -150,21 +150,21 @@ class App extends Component {
               </li>
             )}
 
-            {showAddBuilding && (
+            {/* {showAddBuilding && (
               <li className="nav-item">
                 <Link to={"/addbuilding"} className="nav-link">
                   Add Building
                 </Link>
               </li>
-            )}
+            )} */}
 
-            {showListBuilding && (
+            {/* {showListBuilding && (
               <li className="nav-item">
                 <Link to={"/listBuilding"} className="nav-link">
                   List Building
                 </Link>
               </li>
-            )}
+            )} */}
 
             {showAddDirection && (
               <li className="nav-item">
@@ -174,37 +174,37 @@ class App extends Component {
               </li>
             )}
 
-            {showAddRoom && (
+            {/* {showAddRoom && (
               <li className="nav-item">
                 <Link to={"/addRoom"} className="nav-link">
                   Add Room
                 </Link>
               </li>
-            )}
+            )} */}
 
-            {showListRoom && (
+            {/* {showListRoom && (
               <li className="nav-item">
                 <Link to={"/listRoom"} className="nav-link">
                   List Room
                 </Link>
               </li>
-            )}
+            )} */}
 
-            {showAddResource && (
+            {/* {showAddResource && (
               <li className="nav-item">
                 <Link to={"/addResource"} className="nav-link">
                   Add Resource
                 </Link>
               </li>
-            )}
+            )} */}
 
-            {showAddResource && (
+            {/* {showAddResource && (
               <li className="nav-item">
                 <Link to={"/listResource"} className="nav-link">
                   List Resource
                 </Link>
               </li>
-            )}
+            )} */}
 
             {showAllotment && (
               <li className="nav-item">
