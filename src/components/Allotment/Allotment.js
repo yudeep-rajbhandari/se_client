@@ -48,7 +48,7 @@ export default function Allotment() {
           buildings={buildings}
           refreshAllotment={refreshAllotment}
         />
-        <ViewAllotment allotments={allotments} />
+        <ViewAllotment allotments={allotments}  refreshAllotment={refreshAllotment}/>
       </div>
     );
   } else {

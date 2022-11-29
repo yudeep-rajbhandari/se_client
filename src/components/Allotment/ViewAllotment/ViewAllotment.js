@@ -6,6 +6,9 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import { styled } from "@mui/material/styles";
+import React, {useState} from "react";
+import AllotmentService from "../../../services/AllotmentService";
+import {toast, ToastContainer} from "react-toastify";
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
     backgroundColor: theme.palette.common.black,
@@ -27,8 +30,32 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 }));
 
 export default function ViewAllotment(props) {
+  const [status,setStatus] = useState(false)
+
+  async function deleteAllotment(id) {
+    await AllotmentService.deleteAllotment(id)
+        .then((res) => {
+          toast(
+             res.data
+          );
+        })
+        .catch((error) => {
+          toast("Error in adding user to the selected room");
+        })
+        .finally(() => {
+          setStatus(true)
+          props.refreshAllotment();
+        });
+  }
+
   return (
+
     <div>
+      {status && (
+          <div>
+            <ToastContainer />{" "}
+          </div>
+      )}
       <h3> View Allotment </h3>
       <div>
         <TableContainer component={Paper}>
@@ -40,6 +67,7 @@ export default function ViewAllotment(props) {
                 <StyledTableCell>From Date</StyledTableCell>
                 <StyledTableCell>To Date</StyledTableCell>
                 <StyledTableCell>User Role</StyledTableCell>
+                <StyledTableCell>Action</StyledTableCell>
               </TableRow>
             </TableHead>
             <TableBody>
@@ -61,6 +89,15 @@ export default function ViewAllotment(props) {
                     {row.user.roles.map((role) =>
                       role.name === "ROLE_USER" ? "USER" : "ADMIN"
                     )}
+                  </StyledTableCell>
+                  <StyledTableCell>
+                    <button
+                        onClick={() => {
+                          deleteAllotment(row.id);
+                        }}
+                    >
+                      Delete
+                    </button>
                   </StyledTableCell>
                 </StyledTableRow>
               ))}

@@ -6,6 +6,8 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import { styled } from "@mui/material/styles";
+import DatePicker from "react-datepicker";
+import React, {useState} from "react";
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
     backgroundColor: theme.palette.common.black,
@@ -27,7 +29,9 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 }));
 
 export default function AddAllotmentTable(props) {
-  const userOptions = props.users.map((user) => (
+console.log(props)
+
+    const userOptions = props.users.map((user) => (
     <option key={user.id} value={user.id}>
       {user.email}
     </option>
@@ -94,8 +98,16 @@ export default function AddAllotmentTable(props) {
                   </select>
                 </StyledTableCell>
               )}
-              <StyledTableCell>From Date</StyledTableCell>
-              <StyledTableCell>To Date</StyledTableCell>
+              <StyledTableCell > <DatePicker
+                  onChange={(date) => props.handleSelectedFromDateChange(date)}
+                  selected = {props.selectedFromDateChange}
+                  dateFormat="MMMM d, yyyy"
+              /></StyledTableCell>
+              <StyledTableCell> <DatePicker
+                  onChange={(date) => props.handleSelectedToDateChange(date)}
+                  selected = {props.selectedToDateChange}
+                  dateFormat="MMMM d, yyyy"
+              /></StyledTableCell>
               <StyledTableCell>
                 {props.selectedUserId && props.selectedBuildingId && (
                   <div>
