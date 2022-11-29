@@ -1,5 +1,5 @@
 window.env = {
-  "abc": "http://137.184.225.194:8080/api/",
+  "abc": "https://seashell-app-gm3fi.ondigitalocean.app/api/",
   "ALLUSERSPROFILE": "C:\\ProgramData",
   "APPDATA": "C:\\Users\\yudee\\AppData\\Roaming",
   "BAZEL_SH": "C:\\msys64\\msys2.exe",
@@ -71,7 +71,7 @@ window.env = {
   "SystemRoot": "C:\\WINDOWS",
   "TEMP": "C:\\Users\\yudee\\AppData\\Local\\Temp",
   "TERMINAL_EMULATOR": "JetBrains-JediTerm",
-  "TERM_SESSION_ID": "5d506afd-7b44-4b3c-89be-2dacddcb8aac",
+  "TERM_SESSION_ID": "0fbf0026-3353-4e8f-9893-1dd83f313e19",
   "TMP": "C:\\Users\\yudee\\AppData\\Local\\Temp",
   "USERDOMAIN": "LAPTOP-FG1LNMFE",
   "USERDOMAIN_ROAMINGPROFILE": "LAPTOP-FG1LNMFE",
@@ -80,5 +80,5 @@ window.env = {
   "VBOX_MSI_INSTALL_PATH": "C:\\Program Files\\Oracle\\VirtualBox\\",
   "VS140COMNTOOLS": "C:\\Program Files (x86)\\Microsoft Visual Studio 14.0\\Common7\\Tools\\",
   "windir": "C:\\WINDOWS",
-  "__INTELLIJ_COMMAND_HISTFILE__": "C:\\Users\\yudee\\AppData\\Local\\JetBrains\\WebStorm2022.2\\terminal\\history\\se_client-history"
+  "__INTELLIJ_COMMAND_HISTFILE__": "C:\\Users\\yudee\\AppData\\Local\\JetBrains\\WebStorm2022.2\\terminal\\history\\se_client-history1"
 };
