@@ -28,7 +28,7 @@ export default function Summary(props) {
                   <Button
                     onClick={(event) => (window.location.href = "/listRoom")}
                   >
-                    {props.roomCount}
+                    {props.rooms.length}
                   </Button>
                 </Tooltip>
               </TableCell>

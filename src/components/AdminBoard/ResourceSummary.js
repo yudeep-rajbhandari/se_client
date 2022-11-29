@@ -7,6 +7,7 @@ import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import Zoom from "@mui/material/Zoom";
 export default function Summary(props) {
+  console.log(props.resources)
   return (
     <div>
       <TableContainer>
@@ -30,7 +31,7 @@ export default function Summary(props) {
                       (window.location.href = "/listResource")
                     }
                   >
-                    {props.resourceCount}
+                    {props.resources.length}
                   </Button>
                 </Tooltip>
               </TableCell>

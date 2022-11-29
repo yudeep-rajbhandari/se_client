@@ -32,7 +32,7 @@ export default function Summary(props) {
                       (window.location.href = "/listBuilding")
                     }
                   >
-                    {props.buildingCount}
+                    {props.buildings.length}
                   </Button>
                 </Tooltip>
               </TableCell>
@@ -46,7 +46,7 @@ export default function Summary(props) {
                   <Button
                     onClick={(event) => (window.location.href = "/listRoom")}
                   >
-                    {props.roomCount}
+                    {props.rooms.length}
                   </Button>
                 </Tooltip>
               </TableCell>
@@ -63,7 +63,7 @@ export default function Summary(props) {
                       (window.location.href = "/listResource")
                     }
                   >
-                    {props.resourceCount}
+                    {props.resources.length}
                   </Button>
                 </Tooltip>
               </TableCell>
