@@ -26,22 +26,42 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
         border: 0,
     },
 }));
-export default function BookableTable(props) {
-    const bookable = ["TRUE", "FALSE"]
-    function getTrueCount() {
+export default function RoomtypeTable(props) {
+    const roomType = ["CLASSROOM", "LAB", "STAFFROOM", "WASHROOM"]
+
+
+    function getClassroomCount() {
         var count = 0;
         props.rooms.map((room) => {
-            if (String(room.bookable) === "true") {
+            if (String(room.roomType) === "classroom") {
+                count += 1
+            }
+        })
+        return count;
+    }
+    function getLabCount() {
+        var count = 0;
+        props.rooms.map((room) => {
+            if (String(room.roomType) === "lab") {
                 count += 1
             }
         })
         return count;
     }
 
-    function getFalseCount() {
+    function getStaffroomCount() {
         var count = 0;
         props.rooms.map((room) => {
-            if (String(room.bookable) === "false") {
+            if (String(room.roomType) === "staffroom") {
+                count += 1
+            }
+        })
+        return count;
+    }
+    function getWashroomCount() {
+        var count = 0;
+        props.rooms.map((room) => {
+            if (String(room.roomType) === "washroom") {
                 count += 1
             }
         })
@@ -58,19 +78,27 @@ export default function BookableTable(props) {
                 <TableHead>
                     <TableRow>
 
-                        <StyledTableCell>Bookable</StyledTableCell>
+                        <StyledTableCell>Room Type</StyledTableCell>
                         <StyledTableCell># Room</StyledTableCell>
 
                     </TableRow>
                 </TableHead>
                 <TableBody>
                     <TableRow>
-                        <StyledTableCell>{bookable[0]}</StyledTableCell>
-                        <StyledTableCell>{getTrueCount()}</StyledTableCell>
+                        <StyledTableCell>{roomType[0]}</StyledTableCell>
+                        <StyledTableCell>{getClassroomCount()}</StyledTableCell>
                     </TableRow>
                     <TableRow>
-                        <StyledTableCell>{bookable[1]}</StyledTableCell>
-                        <StyledTableCell>{getFalseCount()}</StyledTableCell>
+                        <StyledTableCell>{roomType[1]}</StyledTableCell>
+                        <StyledTableCell>{getLabCount()}</StyledTableCell>
+                    </TableRow>
+                    <TableRow>
+                        <StyledTableCell>{roomType[2]}</StyledTableCell>
+                        <StyledTableCell>{getStaffroomCount()}</StyledTableCell>
+                    </TableRow>
+                    <TableRow>
+                        <StyledTableCell>{roomType[3]}</StyledTableCell>
+                        <StyledTableCell>{getWashroomCount()}</StyledTableCell>
                     </TableRow>
 
                 </TableBody>
