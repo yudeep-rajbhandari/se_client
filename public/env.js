@@ -3,7 +3,7 @@ window.env = {
   "TERM_PROGRAM": "vscode",
   "NODE": "/opt/homebrew/Cellar/node/18.11.0/bin/node",
   "INIT_CWD": "/Users/maheetayba/CSI 5324 Software Engineering/Project/goBears/se_client",
-  "_P9K_TTY": "/dev/ttys005",
+  "_P9K_TTY": "/dev/ttys006",
   "TERM": "xterm-256color",
   "SHELL": "/bin/zsh",
   "npm_config_metrics_registry": "https://registry.npmjs.org/",
