@@ -121,45 +121,45 @@ export default function AdminBoard() {
         <ButtonGroup variant="text" aria-label="text button group">
           {summary && (
             <Button color="error" type="submit" onClick={() => hideSummary()}>
-              Hide Overall Summary
+              Hide Summary
             </Button>
           )}
           {!summary && (
             <Button type="submit" onClick={() => showSummary()}>
-              Overall Summary
+              Summary
             </Button>
           )}
           {!buildingSummary && (
             <Button onClick={() => showBuildingSummary()}>
               {" "}
-              Building Summary
+              Building Dashboard
             </Button>
           )}
           {buildingSummary && (
             <Button color="error" onClick={() => hideBuildingSummary()}>
               {" "}
-              Hide Building Summary
+              Hide Building Dashboard
             </Button>
           )}
           {!roomSummary && (
-            <Button onClick={() => showRoomSummary()}> Room Summary</Button>
+            <Button onClick={() => showRoomSummary()}> Room Dashboard</Button>
           )}
           {roomSummary && (
             <Button color="error" onClick={() => hideRoomSummary()}>
               {" "}
-              Hide Room Summary
+              Hide Room Dashboard
             </Button>
           )}
           {!resourceSummary && (
             <Button onClick={() => showResourceSummary()}>
               {" "}
-              Resource Summary
+              Resource Dashboard
             </Button>
           )}
           {resourceSummary && (
             <Button color="error" onClick={() => hideResourceSummary()}>
               {" "}
-              Hide Resource Summary
+              Hide Resource Dashboard
             </Button>
           )}
         </ButtonGroup>
