@@ -224,23 +224,25 @@ export default function AdminBoard() {
             Allotment
           </Button>
         </ButtonGroup>
+        <div>
+          <ButtonGroup>
+            {clickRoomReservation && (
+              <Button
+                color="error"
+                type="submit"
+                onClick={() => hideRoomReservationTable()}
+              >
+                Hide Room Reservations
+              </Button>
+            )}
+            {!clickRoomReservation && (
+              <Button type="submit" onClick={() => showReservations()}>
+                List Room Reservations
+              </Button>
+            )}
+          </ButtonGroup>
+        </div>
 
-        <ButtonGroup>
-          {clickRoomReservation && (
-            <Button
-              color="error"
-              type="submit"
-              onClick={() => hideRoomReservationTable()}
-            >
-              Hide Room Reservations
-            </Button>
-          )}
-          {!clickRoomReservation && (
-            <Button type="submit" onClick={() => showReservations()}>
-              List Room Reservations
-            </Button>
-          )}
-        </ButtonGroup>
 
         {clickRoomReservation && (
           <ListRoomReservation
