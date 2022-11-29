@@ -25,14 +25,14 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
     border: 0,
   },
 }));
-export default function RoomDashboardTable(props) {
+export default function BuildingDashboardTable(props) {
   return (
     <div>
       <TableContainer>
         <Table>
           <TableHead>
             <TableRow>
-              <StyledTableCell># Room</StyledTableCell>
+              <StyledTableCell># Building</StyledTableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -41,12 +41,14 @@ export default function RoomDashboardTable(props) {
                 <Tooltip
                   disableFocusListener
                   disableTouchListener
-                  title="click to view list of rooms"
+                  title="click to view list of buildings"
                 >
                   <Button
-                    onClick={(event) => (window.location.href = "/listRoom")}
+                    onClick={(event) =>
+                      (window.location.href = "/listBuilding")
+                    }
                   >
-                    {props.rooms.length}
+                    {props.buildings.length}
                   </Button>
                 </Tooltip>
               </StyledTableCell>

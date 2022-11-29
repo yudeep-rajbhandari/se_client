@@ -4,7 +4,7 @@ import RoomReservationsService from "../../services/RoomReservationsService";
 import ListRoomReservation from "./ListRoomReservation/ListRoomReservation";
 import Button from "@mui/material/Button";
 import ButtonGroup from "@mui/material/ButtonGroup";
-import Summary from "./Summary";
+import Summary from "./Summary/Summary";
 import BuildingService from "../../services/BuildingService";
 import RoomService from "../../services/RoomService";
 import ResourceService from "../../services/ResourceService";
@@ -17,8 +17,6 @@ export default function AdminBoard() {
   const [buildingDashboard, setBuildingDashboard] = useState(false);
   const [roomDashboard, setRoomDashboard] = useState(false);
   const [resourceDashboard, setResourceDashboard] = useState(false);
-
-
 
   const [resources, setResources] = useState([]);
   const [rooms, setRooms] = useState([]);
@@ -43,7 +41,7 @@ export default function AdminBoard() {
     getAllBuilding();
     getAllRoom();
     getAllResource();
-  }, [])
+  }, []);
 
   const [clickRoomReservation, setClickRoomReservation] = useState(false);
   const [roomReservationList, setRoomReservationList] = useState([]);
@@ -64,7 +62,7 @@ export default function AdminBoard() {
   }
 
   useEffect(() => {
-    getAllRoomReservation()
+    getAllRoomReservation();
   }, []);
 
   useEffect(() => {
@@ -173,7 +171,9 @@ export default function AdminBoard() {
         {summary && (
           <div>
             <Summary
-              buildings={buildings} rooms={rooms} resources={resources}
+              buildings={buildings}
+              rooms={rooms}
+              resources={resources}
             />
           </div>
         )}
@@ -248,7 +248,6 @@ export default function AdminBoard() {
             )}
           </ButtonGroup>
         </div>
-
 
         {clickRoomReservation && (
           <ListRoomReservation
