@@ -3,7 +3,7 @@ import axios from "axios";
 import authHeader from "./auth-header";
 import env from "react-dotenv";
 
-const ROOM_URL = env.abc+"room";
+const ROOM_URL = env.abc + "room";
 
 class RoomService {
   addRoom(room) {
@@ -12,7 +12,7 @@ class RoomService {
     });
   }
 
-  findAll() {
+  getAllRoom() {
     return axios.get(ROOM_URL + "/findAllRoom", { headers: authHeader() });
   }
 
@@ -43,6 +43,12 @@ class RoomService {
 
   getBookableRoomByBuilding(buildingId) {
     return axios.get(ROOM_URL + "/getBookableRoomByBuilding/" + buildingId, {
+      headers: authHeader(),
+    });
+  }
+
+  getRoomById(roomId) {
+    return axios.get(ROOM_URL + "/getRoomById/" + roomId, {
       headers: authHeader(),
     });
   }

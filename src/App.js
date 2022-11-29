@@ -11,7 +11,7 @@ import Register from "./components/Register/register.component";
 import Home from "./components/Home/home.component";
 import AddBuilding from "./components/Building/AddBuilding/AddBuilding";
 import Profile from "./components/Profile/profile.component";
-import BoardUser from "./components/UserBoard/board-user.component";
+
 import AdminBoard from "./components/AdminBoard/AdminBoard";
 
 import EventBus from "./common/EventBus";
@@ -26,19 +26,19 @@ import ListBuilding from "./components/Building/ListBuilding/ListBuilding";
 import ListRoom from "./components/Room/ListRoom/ListRoom";
 import AddSchedule from "./components/Schedule/AddSchedule";
 import ViewSchedule from "./components/Schedule/ViewSchedule";
-import MapComponent from "./components/maps/map.component";
+
 import MapContainer from "./components/maps/newmap.component";
-import MyMap from "./components/maps/testmap.component";
+
 import LeafletComponent from "./components/maps/leaflet.component";
 import EggComponent from "./components/maps/indoor.component";
-import IndoorComponent from "./components/maps/leafindoor.component";
-import IndoorMachine from "./components/maps/leafindoor.component";
+
 import LeafletComponent1 from "./components/maps/indoornew.component";
 import ListResource from "./components/Resource/ListResource/ListResource";
 import Allotment from "./components/Allotment/Allotment";
 import FindRoomByBuilding from "./components/Building/FindRoomByBuilding/FindRoomByBuilding";
 import MapParentComponent from "./components/maps/mapParent.component";
 import AddDirection from "./components/Building/Direction/AddDirection/AddDirection";
+import UserBoard from "./components/UserBoard/UserBoard";
 
 class App extends Component {
   constructor(props) {
@@ -47,6 +47,7 @@ class App extends Component {
 
     this.state = {
       showAdminBoard: false,
+      showUserBoard: false,
       currentUser: undefined,
 
       showAddBuilding: false,
@@ -70,6 +71,7 @@ class App extends Component {
       this.setState({
         currentUser: user,
         showAdminBoard: user.roles.includes("ROLE_ADMIN"),
+        showUserBoard: user.roles.includes("ROLE_USER"),
 
         showAddBuilding: user.roles.includes("ROLE_ADMIN"),
         showListBuilding: user.roles.includes("ROLE_ADMIN"),
@@ -145,7 +147,14 @@ class App extends Component {
             {showAdminBoard && (
               <li className="nav-item">
                 <Link to={"/adminBoard"} className="nav-link">
-                  Admin Board
+                  Dashboard
+                </Link>
+              </li>
+            )}
+            {showUserBoard && (
+              <li className="nav-item">
+                <Link to={"/userBoard"} className="nav-link">
+                  Dashboard
                 </Link>
               </li>
             )}
@@ -283,8 +292,12 @@ class App extends Component {
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/profile" element={<Profile />} />
-            <Route path="/user" element={<BoardUser />} />
+
             <Route path="/adminBoard" element={<AdminBoard />} />
+            <Route
+              path="/userBoard"
+              element={<UserBoard currentUser={currentUser} />}
+            />
 
             <Route path="/addBuilding" element={<AddBuilding />} />
             <Route path="/listBuilding" element={<ListBuilding />} />

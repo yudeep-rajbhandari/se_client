@@ -19,7 +19,7 @@ export default function ListRoom() {
   const [status, setStatus] = useState(false);
 
   async function getAllRoom() {
-    const { data } = await RoomService.findAll();
+    const { data } = await RoomService.getAllRoom();
     setRooms(data);
     setLoaded(true);
   }

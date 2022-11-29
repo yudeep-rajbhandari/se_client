@@ -15,6 +15,12 @@ class AllotmentService {
       headers: authHeader(),
     });
   }
+
+  getMyAllotment(userId) {
+    return axios.get(ALLOTMENT_URL + "/getMyAllotment/" + userId, {
+      headers: authHeader(),
+    });
+  }
 }
 
 export default new AllotmentService();
