@@ -6,15 +6,14 @@ import TableCell from "@mui/material/TableCell";
 import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import Zoom from "@mui/material/Zoom";
-export default function Summary(props) {
-  console.log(props.resources)
+export default function RoomDashboard(props) {
   return (
     <div>
       <TableContainer>
         <Table>
           <TableHead>
             <TableRow>
-              <TableCell># Resource</TableCell>
+              <TableCell># Room</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -24,14 +23,12 @@ export default function Summary(props) {
                   disableFocusListener
                   disableTouchListener
                   TransitionComponent={Zoom}
-                  title="click to view list of resources"
+                  title="click to view list of rooms"
                 >
                   <Button
-                    onClick={(event) =>
-                      (window.location.href = "/listResource")
-                    }
+                    onClick={(event) => (window.location.href = "/listRoom")}
                   >
-                    {props.resources.length}
+                    {props.rooms.length}
                   </Button>
                 </Tooltip>
               </TableCell>

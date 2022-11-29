@@ -8,15 +8,15 @@ import Summary from "./Summary";
 import BuildingService from "../../services/BuildingService";
 import RoomService from "../../services/RoomService";
 import ResourceService from "../../services/ResourceService";
-import BuildingSummary from "./BuildingSummary";
-import RoomSummary from "./RoomSummary";
-import ResourceSummary from "./ResourceSummary";
+import BuildingDashboard from "./BuildingDashboard/BuildingDashboard";
+import RoomDashboard from "./RoomDashboard/RoomDashboard";
+import ResourceDashoard from "./ResourceDashboard/ResourceDashboard";
 
 export default function AdminBoard() {
   const [summary, setSummary] = useState(false);
-  const [buildingSummary, setBuildingSummary] = useState(false);
-  const [roomSummary, setRoomSummary] = useState(false);
-  const [resourceSummary, setResourceSummary] = useState(false);
+  const [buildingDashboard, setBuildingDashboard] = useState(false);
+  const [roomDashboard, setRoomDashboard] = useState(false);
+  const [resourceDashboard, setResourceDashboard] = useState(false);
 
 
 
@@ -78,9 +78,9 @@ export default function AdminBoard() {
   }
 
   function showSummary() {
-    setBuildingSummary(false);
-    setRoomSummary(false);
-    setResourceSummary(false);
+    setBuildingDashboard(false);
+    setRoomDashboard(false);
+    setResourceDashboard(false);
     setSummary(true);
   }
   function hideSummary() {
@@ -89,35 +89,35 @@ export default function AdminBoard() {
 
   function showBuildingSummary() {
     setSummary(false);
-    setRoomSummary(false);
-    setResourceSummary(false);
-    setBuildingSummary(true);
+    setRoomDashboard(false);
+    setResourceDashboard(false);
+    setBuildingDashboard(true);
   }
 
   function hideBuildingSummary() {
-    setBuildingSummary(false);
+    setBuildingDashboard(false);
   }
 
   function showRoomSummary() {
     setSummary(false);
-    setBuildingSummary(false);
-    setResourceSummary(false);
-    setRoomSummary(true);
+    setBuildingDashboard(false);
+    setResourceDashboard(false);
+    setRoomDashboard(true);
   }
 
   function hideRoomSummary() {
-    setRoomSummary(false);
+    setRoomDashboard(false);
   }
 
-  function showResourceSummary() {
+  function showResourceDashboard() {
     setSummary(false);
-    setBuildingSummary(false);
-    setRoomSummary(false);
-    setResourceSummary(true);
+    setBuildingDashboard(false);
+    setRoomDashboard(false);
+    setResourceDashboard(true);
   }
 
-  function hideResourceSummary() {
-    setResourceSummary(false);
+  function hideresourceDashboard() {
+    setResourceDashboard(false);
   }
 
   return (
@@ -135,35 +135,35 @@ export default function AdminBoard() {
               Summary
             </Button>
           )}
-          {!buildingSummary && (
+          {!buildingDashboard && (
             <Button onClick={() => showBuildingSummary()}>
               {" "}
               Building Dashboard
             </Button>
           )}
-          {buildingSummary && (
+          {buildingDashboard && (
             <Button color="error" onClick={() => hideBuildingSummary()}>
               {" "}
               Hide Building Dashboard
             </Button>
           )}
-          {!roomSummary && (
+          {!roomDashboard && (
             <Button onClick={() => showRoomSummary()}> Room Dashboard</Button>
           )}
-          {roomSummary && (
+          {roomDashboard && (
             <Button color="error" onClick={() => hideRoomSummary()}>
               {" "}
               Hide Room Dashboard
             </Button>
           )}
-          {!resourceSummary && (
-            <Button onClick={() => showResourceSummary()}>
+          {!resourceDashboard && (
+            <Button onClick={() => showResourceDashboard()}>
               {" "}
               Resource Dashboard
             </Button>
           )}
-          {resourceSummary && (
-            <Button color="error" onClick={() => hideResourceSummary()}>
+          {resourceDashboard && (
+            <Button color="error" onClick={() => hideresourceDashboard()}>
               {" "}
               Hide Resource Dashboard
             </Button>
@@ -178,20 +178,20 @@ export default function AdminBoard() {
           </div>
         )}
 
-        {buildingSummary && (
+        {buildingDashboard && (
           <div>
-            <BuildingSummary buildings={buildings} />
+            <BuildingDashboard buildings={buildings} />
           </div>
         )}
 
-        {roomSummary && (
+        {roomDashboard && (
           <div>
-            <RoomSummary rooms={rooms} />
+            <RoomDashboard rooms={rooms} />
           </div>
         )}
-        {resourceSummary && (
+        {resourceDashboard && (
           <div>
-            <ResourceSummary resources={resources} />
+            <ResourceDashoard resources={resources} />
           </div>
         )}
       </div>
