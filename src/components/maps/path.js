@@ -54,4 +54,39 @@ var path2=  [
       )
     ];
 
-export default path1;
+var path3=  [
+    new L.LatLng(
+
+        31.54587857,
+        -97.1183432,
+    ),
+    new L.LatLng(
+
+        31.54586486,
+        -97.11836337,
+    ),
+    new L.LatLng(
+
+        31.54592547,
+        -97.11842832,
+    ),
+    new L.LatLng(
+
+        31.54632006,
+        -97.11795859
+    ),
+    new L.LatLng(
+
+        31.54625284,
+        -97.1178751
+    ),
+    new L.LatLng(
+
+        31.54627198,
+        -97.11785146
+    )
+];
+
+
+
+export default path3;
