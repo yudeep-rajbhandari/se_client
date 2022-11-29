@@ -1,41 +1,40 @@
-import { TableBody, TableContainer } from "@mui/material";
-import { Table } from "@mui/material";
-import TableHead from "@mui/material/TableHead";
-import TableRow from "@mui/material/TableRow";
-import TableCell from "@mui/material/TableCell";
+
+import RoomDashboardTable from "./RoomDashboardTable";
+
+import React, { useState } from 'react';
 import Button from "@mui/material/Button";
-import Tooltip from "@mui/material/Tooltip";
-import Zoom from "@mui/material/Zoom";
+import ButtonGroup from "@mui/material/ButtonGroup";
+import BookableTable from "./BookableTable";
+
+
+
 export default function RoomDashboard(props) {
+  const [bookable, setBookable] = useState(false);
+  function showBookable() {
+    setBookable(true);
+
+
+  }
+  function hideTable() {
+    setBookable(false);
+
+  }
   return (
     <div>
-      <TableContainer>
-        <Table>
-          <TableHead>
-            <TableRow>
-              <TableCell># Room</TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            <TableRow>
-              <TableCell>
-                <Tooltip
-                  disableFocusListener
-                  disableTouchListener
-                  TransitionComponent={Zoom}
-                  title="click to view list of rooms"
-                >
-                  <Button
-                    onClick={(event) => (window.location.href = "/listRoom")}
-                  >
-                    {props.rooms.length}
-                  </Button>
-                </Tooltip>
-              </TableCell>
-            </TableRow>
-          </TableBody>
-        </Table>
-      </TableContainer>
+      <RoomDashboardTable rooms={props.rooms} />
+      <div >
+        <ButtonGroup variant="text" aria-label="text button group">
+          {!bookable && <Button variant="text" onClick={() => showBookable()}>
+            Bookable
+          </Button>}
+          {bookable && <Button color="error" variant="text" onClick={() => hideTable()}>
+            Hide Bookable
+          </Button>}
+        </ButtonGroup>
+      </div>
+      <div>
+        {bookable && <BookableTable rooms={props.rooms} />}
+      </div>
     </div>
   );
 }
