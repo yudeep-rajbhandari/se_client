@@ -1,44 +1,39 @@
-import { TableBody, TableContainer } from "@mui/material";
-import { Table } from "@mui/material";
-import TableHead from "@mui/material/TableHead";
-import TableRow from "@mui/material/TableRow";
-import TableCell from "@mui/material/TableCell";
+
+import React, { useState } from 'react';
 import Button from "@mui/material/Button";
-import Tooltip from "@mui/material/Tooltip";
-import Zoom from "@mui/material/Zoom";
+
+import ResourceDashboardTable from "./ResourceDashboardTable";
+import ResourceTypeTable from "./ResourceTypeTable";
+
+
+
 export default function ResourceDashoard(props) {
-  console.log(props.resources)
+  const [resourceType, setResourceType] = useState(false);
+
+  function showResourceType() {
+    setResourceType(true);
+    console.log("divide by working condition")
+  }
+  function hideResourceType() {
+    setResourceType(false);
+
+  }
   return (
     <div>
-      <TableContainer>
-        <Table>
-          <TableHead>
-            <TableRow>
-              <TableCell># Resource</TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            <TableRow>
-              <TableCell>
-                <Tooltip
-                  disableFocusListener
-                  disableTouchListener
-                  TransitionComponent={Zoom}
-                  title="click to view list of resources"
-                >
-                  <Button
-                    onClick={(event) =>
-                      (window.location.href = "/listResource")
-                    }
-                  >
-                    {props.resources.length}
-                  </Button>
-                </Tooltip>
-              </TableCell>
-            </TableRow>
-          </TableBody>
-        </Table>
-      </TableContainer>
-    </div>
+      <ResourceDashboardTable resources={props.resources} />
+      <div >
+        {!resourceType && <Button variant="text" onClick={() => showResourceType()}>
+          Resource Type
+        </Button>}
+
+        {resourceType && <Button color="error" variant="text" onClick={() => hideResourceType()}>
+          Hide Resource Type
+        </Button>}
+      </div>
+      <div>
+        {resourceType && <ResourceTypeTable resources={props.resources} />}
+      </div>
+
+    </div >
   );
 }

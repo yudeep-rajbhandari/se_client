@@ -38,6 +38,8 @@ export default function BuildingDashboard(props) {
           </TableBody>
         </Table>
       </TableContainer>
+
+      
     </div>
   );
 }
