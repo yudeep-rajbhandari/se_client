@@ -42,6 +42,7 @@ export default function AddDirection() {
   const gateNameRef = useRef();
   const latRef = useRef();
   const longRef = useRef();
+  const elevatorRef = useRef();
   async function getAllBuilding() {
     const { data } = await BuildingService.getAllBuilding();
     setBuildings(data);
@@ -75,6 +76,7 @@ export default function AddDirection() {
       name: gateNameRef.current.value,
       latitude: latRef.current.value,
       longitude: longRef.current.value,
+      elevator: elevatorRef.current.value,
     };
     addGateToBuilding(gate, selectedBuildingId);
   }
@@ -159,6 +161,7 @@ export default function AddDirection() {
                       <StyledTableCell>Gate Name</StyledTableCell>
                       <StyledTableCell>Latitude</StyledTableCell>
                       <StyledTableCell>Longitude</StyledTableCell>
+                      <StyledTableCell>Elevator</StyledTableCell>
                       <StyledTableCell>Action</StyledTableCell>
                     </TableRow>
                   </TableHead>
@@ -189,6 +192,14 @@ export default function AddDirection() {
                           inputRef={longRef}
                           type="longitude"
                           required
+                        ></TextField>
+                      </StyledTableCell>
+                      <StyledTableCell>
+                        <TextField
+                          id="elevator"
+                          label="Elevator Name"
+                          inputRef={elevatorRef}
+                          type="name"
                         ></TextField>
                       </StyledTableCell>
                       <StyledTableCell>
