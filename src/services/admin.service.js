@@ -1,10 +1,13 @@
 import axios from "axios";
 import authHeader from "./auth-header";
+import env from "react-dotenv";
 
-const API_URL = "http://localhost:8080/api/test/";
-const BUILDING_URL = "http://localhost:8080/api/building/";
-const ROOM_URL = "http://localhost:8080/api/room/";
-const SCHEDULE_URL = "http://localhost:8080/api/schedule/";
+const API_URL = env.abc + "test/";
+const BUILDING_URL = env.abc + "building/";
+const ROOM_URL = env.abc + "room/";
+const SCHEDULE_URL = env.abc + "schedule/";
+const USER_URL = env.abc + "user/";
+
 class AdminService {
   getPublicContent() {
     return axios.get(API_URL + "all");
@@ -28,6 +31,16 @@ class AdminService {
     return axios.post(SCHEDULE_URL + "addSchedule", formData, {
       headers: authHeader(),
     });
+  }
+
+  getAllUser() {
+    return axios.get(USER_URL + "getAllUser", {
+      headers: authHeader(),
+    });
+  }
+
+  updateRole(user) {
+    return axios.put(USER_URL + "updateRole", user, { headers: authHeader() });
   }
 }
 

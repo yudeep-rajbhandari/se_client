@@ -1,7 +1,8 @@
 import axios from "axios";
 import authHeader from "./auth-header";
+import env from "react-dotenv";
 
-const RESERVATION_URL = "http://localhost:8080/api/reservation";
+const RESERVATION_URL = env.abc+"reservation";
 
 class RoomReservationService {
   getAllRoomReservation() {

@@ -11,12 +11,12 @@ import Register from "./components/Register/register.component";
 import Home from "./components/Home/home.component";
 import AddBuilding from "./components/Building/AddBuilding/AddBuilding";
 import Profile from "./components/Profile/profile.component";
-import BoardUser from "./components/UserBoard/board-user.component";
+
 import AdminBoard from "./components/AdminBoard/AdminBoard";
 
 import EventBus from "./common/EventBus";
 import AddRoom from "./components/Room/AddRoom/AddRoom";
-import AddResource from "./components/Resource/addresource.component";
+import AddResource from "./components/Resource/AddResource/AddResource";
 import ReserveRoom from "./components/Reserve/ReserveRoom/reserveroom.component";
 import ReserveResource from "./components/Reserve/ReserveResource/reserveresource.component";
 import FindBookableRoom from "./components/Room/findBookableRoom.component";
@@ -26,7 +26,19 @@ import ListBuilding from "./components/Building/ListBuilding/ListBuilding";
 import ListRoom from "./components/Room/ListRoom/ListRoom";
 import AddSchedule from "./components/Schedule/AddSchedule";
 import ViewSchedule from "./components/Schedule/ViewSchedule";
-import MapComponent from "./components/maps/map.component";
+
+import MapContainer from "./components/maps/newmap.component";
+
+import LeafletComponent from "./components/maps/leaflet.component";
+import EggComponent from "./components/maps/indoor.component";
+
+import LeafletComponent1 from "./components/maps/indoornew.component";
+import ListResource from "./components/Resource/ListResource/ListResource";
+import Allotment from "./components/Allotment/Allotment";
+import FindRoomByBuilding from "./components/Building/FindRoomByBuilding/FindRoomByBuilding";
+import MapParentComponent from "./components/maps/mapParent.component";
+import AddDirection from "./components/Building/Direction/AddDirection/AddDirection";
+import UserBoard from "./components/UserBoard/UserBoard";
 
 class App extends Component {
   constructor(props) {
@@ -35,13 +47,17 @@ class App extends Component {
 
     this.state = {
       showAdminBoard: false,
+      showUserBoard: false,
       currentUser: undefined,
 
       showAddBuilding: false,
       showListBuilding: false,
+      showAddDirection: false,
+
       showAddRoom: false,
       showListRoom: false,
       showAddResource: false,
+      showAllotment: false,
 
       showReserveRoom: false,
       showReserveResource: false,
@@ -55,13 +71,16 @@ class App extends Component {
       this.setState({
         currentUser: user,
         showAdminBoard: user.roles.includes("ROLE_ADMIN"),
+        showUserBoard: user.roles.includes("ROLE_USER"),
 
         showAddBuilding: user.roles.includes("ROLE_ADMIN"),
         showListBuilding: user.roles.includes("ROLE_ADMIN"),
+        showAddDirection: user.roles.includes("ROLE_ADMIN"),
         showAddRoom: user.roles.includes("ROLE_ADMIN"),
         showListRoom: user.roles.includes("ROLE_ADMIN"),
         showAddResource: user.roles.includes("ROLE_ADMIN"),
 
+        showAllotment: user.roles.includes("ROLE_ADMIN"),
         showReserveRoom: user.roles.includes("ROLE_USER"),
         showReserveResource: user.roles.includes("ROLE_USER"),
       });
@@ -92,9 +111,11 @@ class App extends Component {
       showAdminBoard,
       showAddBuilding,
       showListBuilding,
+      showAddDirection,
       showAddRoom,
       showListRoom,
       showAddResource,
+      showAllotment,
       showReserveRoom,
       showReserveResource,
     } = this.state;
@@ -126,47 +147,78 @@ class App extends Component {
             {showAdminBoard && (
               <li className="nav-item">
                 <Link to={"/adminBoard"} className="nav-link">
-                  Admin Board
+                  Dashboard
+                </Link>
+              </li>
+            )}
+            {showUserBoard && (
+              <li className="nav-item">
+                <Link to={"/userBoard"} className="nav-link">
+                  Dashboard
                 </Link>
               </li>
             )}
 
-            {showAddBuilding && (
+            {/* {showAddBuilding && (
               <li className="nav-item">
                 <Link to={"/addbuilding"} className="nav-link">
                   Add Building
                 </Link>
               </li>
-            )}
+            )} */}
 
-            {showListBuilding && (
+            {/* {showListBuilding && (
               <li className="nav-item">
                 <Link to={"/listBuilding"} className="nav-link">
                   List Building
                 </Link>
               </li>
+            )} */}
+
+            {showAddDirection && (
+              <li className="nav-item">
+                <Link to={"/addDirection"} className="nav-link">
+                  Add Direction
+                </Link>
+              </li>
             )}
 
-            {showAddRoom && (
+            {/* {showAddRoom && (
               <li className="nav-item">
                 <Link to={"/addRoom"} className="nav-link">
                   Add Room
                 </Link>
               </li>
-            )}
+            )} */}
 
-            {showListRoom && (
+            {/* {showListRoom && (
               <li className="nav-item">
                 <Link to={"/listRoom"} className="nav-link">
                   List Room
                 </Link>
               </li>
-            )}
+            )} */}
 
-            {showAddResource && (
+            {/* {showAddResource && (
               <li className="nav-item">
-                <Link to={"/addresource"} className="nav-link">
+                <Link to={"/addResource"} className="nav-link">
                   Add Resource
+                </Link>
+              </li>
+            )} */}
+
+            {/* {showAddResource && (
+              <li className="nav-item">
+                <Link to={"/listResource"} className="nav-link">
+                  List Resource
+                </Link>
+              </li>
+            )} */}
+
+            {showAllotment && (
+              <li className="nav-item">
+                <Link to={"/allotment"} className="nav-link">
+                  Allotment
                 </Link>
               </li>
             )}
@@ -240,14 +292,25 @@ class App extends Component {
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/profile" element={<Profile />} />
-            <Route path="/user" element={<BoardUser />} />
+
             <Route path="/adminBoard" element={<AdminBoard />} />
+            <Route
+              path="/userBoard"
+              element={<UserBoard currentUser={currentUser} />}
+            />
 
             <Route path="/addBuilding" element={<AddBuilding />} />
             <Route path="/listBuilding" element={<ListBuilding />} />
+            <Route path="/addDirection" element={<AddDirection />} />
             <Route path="/addRoom" element={<AddRoom />} />
             <Route path="/listRoom" element={<ListRoom />} />
             <Route path="/addResource" element={<AddResource />} />
+            <Route path="/listResource" element={<ListResource />} />
+            <Route path="/allotment" element={<Allotment />} />
+            <Route
+              path="/findRoomByBuilding"
+              element={<FindRoomByBuilding />}
+            />
 
             <Route path="/reserveroom" element={<ReserveRoom />} />
             <Route path="/reserveresource" element={<ReserveResource />} />
@@ -259,7 +322,11 @@ class App extends Component {
             />
             <Route path="/addSchedule" element={<AddSchedule />} />
             <Route path="/schedule" element={<ViewSchedule />} />
-            <Route path="/map" element={<MapComponent />} />
+            <Route path="/map" element={<MapContainer />} />
+            <Route path="/leaflet" element={<LeafletComponent />} />
+            <Route path="/indoor" element={<EggComponent />} />
+            <Route path="/indoor1" element={<LeafletComponent1 />} />
+            <Route path="/route" element={<MapParentComponent />} />
           </Routes>
         </div>
 

@@ -1,7 +1,6 @@
 // import { TextField } from "@mui/material";
 import TextField from "@mui/material/TextField";
-import { Box, Stack } from "@mui/system";
-import AddBuilding from "./AddBuilding";
+import { Box } from "@mui/system";
 import Button from "@mui/material/Button";
 import SaveRoundedIcon from "@mui/icons-material/SaveRounded";
 
@@ -31,13 +30,17 @@ export default function AddBuildingForm(props) {
               label="Building Name"
               inputRef={props.nameRef}
               type="name"
+              required
             />
             <TextField
               id="floors"
               label="Number of Floors"
               type="number"
               inputRef={props.floorsRef}
+              required
             />
+          </div>
+          <div>
             <label htmlFor="address">
               {" "}
               <h3>Add address:</h3>
@@ -47,6 +50,7 @@ export default function AddBuildingForm(props) {
               inputRef={props.streetRef}
               type="street"
               id="street"
+              required
             />
             <TextField
               id="city"
@@ -54,6 +58,7 @@ export default function AddBuildingForm(props) {
               label="City"
               inputRef={props.cityRef}
               defaultValue={"Waco"}
+              required
             />
             <TextField
               label="State"
@@ -61,6 +66,7 @@ export default function AddBuildingForm(props) {
               type="state"
               id="state"
               defaultValue={"Texas"}
+              required
             />
             <TextField
               label="Zip"
@@ -68,8 +74,28 @@ export default function AddBuildingForm(props) {
               type="zip"
               id="zip"
               defaultValue={"76706"}
+              required
             />
           </div>
+          <div>
+            <label htmlFor="address">
+              {" "}
+              <h3>Fill in the latitude and longitude info</h3>
+            </label>
+            <TextField
+              label="Latitude"
+              inputRef={props.latitudeRef}
+              type="latitude"
+              id="latitude"
+            />
+            <TextField
+              label="Longitude"
+              inputRef={props.longitudeRef}
+              type="longitude"
+              id="longitude"
+            />
+          </div>
+
           <Button
             startIcon={<SaveRoundedIcon />}
             variant="contained"
