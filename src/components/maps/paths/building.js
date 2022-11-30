@@ -548,31 +548,6 @@ var building={
                 "type": "LineString",
                 "coordinates": [
                     [
-                        -97.11795859,
-                        31.54632006
-                    ],
-                    [
-                        -97.1181427,
-                        31.54647749
-                    ],
-                    [
-                        -97.11812965,
-                        31.54648698
-                    ]
-                ]
-            },
-            "id": "5c04ec7f-ac62-4c4b-b6fc-8046be0d82fb",
-            "properties": {
-                "314": "",
-                "name": "314"
-            }
-        },
-        {
-            "type": "Feature",
-            "geometry": {
-                "type": "LineString",
-                "coordinates": [
-                    [
                         -97.11852299,
                         31.54584754
                     ],
@@ -962,27 +937,6 @@ var building={
             "id": "c35f0a84-147f-428e-874e-ae44e41d6b9a",
             "properties": {
                 "name": ""
-            }
-        },
-        {
-            "type": "Feature",
-            "geometry": {
-                "type": "LineString",
-                "coordinates": [
-                    [
-                        -97.1180554,
-                        31.54626682
-                    ],
-                    [
-                        -97.1180554,
-                        31.54626682
-                    ]
-                ]
-            },
-            "id": "c42d6162-13f2-40f3-91b0-797a6d30dd3b",
-            "properties": {
-                "C305": "",
-                "name": "C305"
             }
         },
         {
@@ -1475,9 +1429,7 @@ var building={
                 "C320": "",
                 "name": "C320"
             }
-        },
-
+        }
     ]
 }
-
 export default building;
