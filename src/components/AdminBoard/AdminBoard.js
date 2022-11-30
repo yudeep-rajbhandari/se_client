@@ -11,6 +11,8 @@ import ResourceService from "../../services/ResourceService";
 import BuildingDashboard from "./BuildingDashboard/BuildingDashboard";
 import RoomDashboard from "./RoomDashboard/RoomDashboard";
 import ResourceDashoard from "./ResourceDashboard/ResourceDashboard";
+import adminService from "../../services/admin.service";
+import UserRoleManagement from "./UserRoleManagement/UserRoleManagement";
 
 export default function AdminBoard() {
   const [summary, setSummary] = useState(false);
@@ -21,6 +23,13 @@ export default function AdminBoard() {
   const [resources, setResources] = useState([]);
   const [rooms, setRooms] = useState([]);
   const [buildings, setBuildings] = useState([]);
+
+  const [users, setUsers] = useState([]);
+  const [userClick, setUserClick] = useState(false);
+  async function getAllUser() {
+    const { data } = await adminService.getAllUser();
+    setUsers(data);
+  }
 
   async function getAllBuilding() {
     const { data } = await BuildingService.getAllBuilding();
@@ -41,6 +50,7 @@ export default function AdminBoard() {
     getAllBuilding();
     getAllRoom();
     getAllResource();
+    getAllUser();
   }, []);
 
   const [clickRoomReservation, setClickRoomReservation] = useState(false);
@@ -118,6 +128,16 @@ export default function AdminBoard() {
     setResourceDashboard(false);
   }
 
+  function showUserRoleManagement() {
+    setUserClick(true);
+  }
+  function hideUserRoleManagement() {
+    setUserClick(false);
+  }
+
+  function refreshUserTable() {
+    getAllUser();
+  }
   return (
     <div>
       <h3>Dashboard</h3>
@@ -231,6 +251,24 @@ export default function AdminBoard() {
         </div>
 
         <div>
+          <ButtonGroup variant="text" aria-label="text button group">
+            {userClick && (
+              <Button
+                color="error"
+                type="submit"
+                onClick={() => hideUserRoleManagement()}
+              >
+                Hide User Role Management
+              </Button>
+            )}
+            {!userClick && (
+              <Button type="submit" onClick={() => showUserRoleManagement()}>
+                User Role Management
+              </Button>
+            )}
+          </ButtonGroup>
+        </div>
+        <div>
           <ButtonGroup>
             {clickRoomReservation && (
               <Button
@@ -253,6 +291,13 @@ export default function AdminBoard() {
           <ListRoomReservation
             roomReservationList={roomReservationList}
             reloadComponent={reloadComponent}
+          />
+        )}
+
+        {userClick && (
+          <UserRoleManagement
+            users={users}
+            refreshUserTable={refreshUserTable}
           />
         )}
       </div>

@@ -6,9 +6,11 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import { styled } from "@mui/material/styles";
-import React, {useState} from "react";
+import React, { useState } from "react";
 import AllotmentService from "../../../services/AllotmentService";
-import {toast, ToastContainer} from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
+import Button from "@mui/material/Button";
+import BackspaceIcon from "@mui/icons-material/Backspace";
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
     backgroundColor: theme.palette.common.black,
@@ -30,31 +32,28 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 }));
 
 export default function ViewAllotment(props) {
-  const [status,setStatus] = useState(false)
+  const [status, setStatus] = useState(false);
 
   async function deleteAllotment(id) {
     await AllotmentService.deleteAllotment(id)
-        .then((res) => {
-          toast(
-             res.data
-          );
-        })
-        .catch((error) => {
-          toast("Error in adding user to the selected room");
-        })
-        .finally(() => {
-          setStatus(true)
-          props.refreshAllotment();
-        });
+      .then((res) => {
+        toast(res.data);
+      })
+      .catch((error) => {
+        toast("Error in adding user to the selected room");
+      })
+      .finally(() => {
+        setStatus(true);
+        props.refreshAllotment();
+      });
   }
 
   return (
-
     <div>
       {status && (
-          <div>
-            <ToastContainer />{" "}
-          </div>
+        <div>
+          <ToastContainer />{" "}
+        </div>
       )}
       <h3> View Allotment </h3>
       <div>
@@ -91,13 +90,15 @@ export default function ViewAllotment(props) {
                     )}
                   </StyledTableCell>
                   <StyledTableCell>
-                    <button
-                        onClick={() => {
-                          deleteAllotment(row.id);
-                        }}
+                    <Button
+                      variant="outlined"
+                      startIcon={<BackspaceIcon />}
+                      onClick={() => {
+                        deleteAllotment(row.id);
+                      }}
                     >
                       Delete
-                    </button>
+                    </Button>
                   </StyledTableCell>
                 </StyledTableRow>
               ))}
