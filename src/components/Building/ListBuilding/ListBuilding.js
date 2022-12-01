@@ -3,10 +3,10 @@ import BuildingService from "../../../services/BuildingService";
 import RoomService from "../../../services/RoomService";
 import EditBuildingForm from "../EditBuilding/EditBuildingForm";
 import BuildingTable from "./BuildingTable";
-import { Rings } from "react-loader-spinner";
+import { Comment } from "react-loader-spinner";
 import FindRoomByBuilding from "../FindRoomByBuilding/FindRoomByBuilding";
 
-export default function ListBuilding() {
+export default function ListBuilding(props) {
   const [buildings, setBuildings] = useState([]);
   const [rooms, setRooms] = useState([]);
 
@@ -68,8 +68,7 @@ export default function ListBuilding() {
     setDisplayRooms(false);
   }
 
-  console.log(rooms);
-  if (loaded) {
+  if (loaded && props.currentUser.roles[0] === "ROLE_ADMIN") {
     return (
       <div>
         <BuildingTable
@@ -99,16 +98,15 @@ export default function ListBuilding() {
   } else {
     return (
       <div>
-        <Rings
-          align="center"
+        <Comment
+          visible={true}
           height="80"
           width="80"
-          color="#4fa94d"
-          radius="6"
+          ariaLabel="comment-loading"
           wrapperStyle={{}}
-          wrapperClass=""
-          visible={true}
-          ariaLabel="rings-loading"
+          wrapperClass="comment-wrapper"
+          color="#FFB81C"
+          backgroundColor="#154734"
         />
       </div>
     );

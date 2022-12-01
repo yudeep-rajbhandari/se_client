@@ -1,6 +1,6 @@
 import { useEffect, useState, useRef } from "react";
 import BuildingService from "../../../../services/BuildingService";
-import { Rings } from "react-loader-spinner";
+import { Comment } from "react-loader-spinner";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell, { tableCellClasses } from "@mui/material/TableCell";
@@ -32,7 +32,7 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
     border: 0,
   },
 }));
-export default function AddDirection() {
+export default function AddDirection(props) {
   const [buildings, setBuildings] = useState([]);
   const [loaded, setLoaded] = useState(false);
   const [selectedBuildingId, setSelectedBuildingId] = useState();
@@ -43,6 +43,7 @@ export default function AddDirection() {
   const latRef = useRef();
   const longRef = useRef();
   const elevatorRef = useRef();
+
   async function getAllBuilding() {
     const { data } = await BuildingService.getAllBuilding();
     setBuildings(data);
@@ -65,13 +66,10 @@ export default function AddDirection() {
   }
 
   function addGatesClick() {
-    console.log("make gates form appear");
     setAddgates(true);
   }
 
   function addGate() {
-    console.log("add gate to backend");
-
     const gate = {
       name: gateNameRef.current.value,
       latitude: latRef.current.value,
@@ -84,7 +82,6 @@ export default function AddDirection() {
   async function addGateToBuilding(gate, buildingId) {
     await BuildingService.addGate(gate, buildingId)
       .then((res) => {
-        console.log(res.data);
         toast(
           gateNameRef.current.value + " added in building " + res.data.name
         );
@@ -94,18 +91,15 @@ export default function AddDirection() {
       })
       .finally(setStatus(true));
   }
-  if (loaded) {
+
+  if (loaded && props.currentUser.roles[0] === "ROLE_ADMIN") {
     return (
       <div>
-        <div>
-          {" "}
-          {status && (
-            <div>
-              <ToastContainer />{" "}
-            </div>
-          )}
-        </div>
-
+        {status && (
+          <div>
+            <ToastContainer />
+          </div>
+        )}
         <h3>Add Direction </h3>
         <div>
           <TableContainer component={Paper}>
@@ -166,7 +160,7 @@ export default function AddDirection() {
                     </TableRow>
                   </TableHead>
                   <TableBody>
-                    <TableRow>
+                    <StyledTableRow>
                       <StyledTableCell>
                         <TextField
                           id="name"
@@ -208,7 +202,7 @@ export default function AddDirection() {
                           Add
                         </Button>
                       </StyledTableCell>
-                    </TableRow>
+                    </StyledTableRow>
                   </TableBody>
                 </Table>
               </TableContainer>
@@ -219,16 +213,15 @@ export default function AddDirection() {
     );
   } else {
     return (
-      <Rings
-        align="center"
+      <Comment
+        visible={true}
         height="80"
         width="80"
-        color="#4fa94d"
-        radius="6"
+        ariaLabel="comment-loading"
         wrapperStyle={{}}
-        wrapperClass=""
-        visible={true}
-        ariaLabel="rings-loading"
+        wrapperClass="comment-wrapper"
+        color="#FFB81C"
+        backgroundColor="#154734"
       />
     );
   }

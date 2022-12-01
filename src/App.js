@@ -302,14 +302,38 @@ class App extends Component {
               element={<UserBoard currentUser={currentUser} />}
             />
 
-            <Route path="/addBuilding" element={<AddBuilding />} />
-            <Route path="/listBuilding" element={<ListBuilding />} />
-            <Route path="/addDirection" element={<AddDirection />} />
-            <Route path="/addRoom" element={<AddRoom />} />
-            <Route path="/listRoom" element={<ListRoom />} />
-            <Route path="/addResource" element={<AddResource />} />
-            <Route path="/listResource" element={<ListResource />} />
-            <Route path="/allotment" element={<Allotment />} />
+            <Route
+              path="/addBuilding"
+              element={<AddBuilding currentUser={currentUser} />}
+            />
+            <Route
+              path="/listBuilding"
+              element={<ListBuilding currentUser={currentUser} />}
+            />
+            <Route
+              path="/addDirection"
+              element={<AddDirection currentUser={currentUser} />}
+            />
+            <Route
+              path="/addRoom"
+              element={<AddRoom currentUser={currentUser} />}
+            />
+            <Route
+              path="/listRoom"
+              element={<ListRoom currentUser={currentUser} />}
+            />
+            <Route
+              path="/addResource"
+              element={<AddResource currentUser={currentUser} />}
+            />
+            <Route
+              path="/listResource"
+              element={<ListResource currentUser={currentUser} />}
+            />
+            <Route
+              path="/allotment"
+              element={<Allotment currentUser={currentUser} />}
+            />
             <Route
               path="/findRoomByBuilding"
               element={<FindRoomByBuilding />}

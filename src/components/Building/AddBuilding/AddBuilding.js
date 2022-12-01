@@ -1,9 +1,10 @@
 import React, { useRef, useState } from "react";
 
-import AdminService from "../../../services/admin.service";
 import AddBuildingForm from "./AddBuildingForm";
+import { Comment } from "react-loader-spinner";
+import BuildingService from "../../../services/BuildingService";
 
-export default function AddBuilding() {
+export default function AddBuilding(props) {
   const nameRef = useRef();
   const floorsRef = useRef();
   const streetRef = useRef();
@@ -15,7 +16,7 @@ export default function AddBuilding() {
 
   const [message, setMessage] = useState();
   const [status, setStatus] = useState(false);
-  const [loaded, setloaded] = useState(true);
+  const [loaded, setloaded] = useState(false);
 
   function onSubmit(event) {
     event.preventDefault();
@@ -38,7 +39,7 @@ export default function AddBuilding() {
   }
 
   async function addBuidling(building) {
-    await AdminService.addBuidling(building)
+    await BuildingService.addBuidling(building)
       .then((res) => {
         setMessage("Building " + res.data.name + " successfully added");
       })
@@ -48,7 +49,7 @@ export default function AddBuilding() {
       .finally(setStatus(true));
   }
 
-  if (loaded) {
+  if (!loaded) {
     return (
       <div>
         <AddBuildingForm
@@ -68,5 +69,18 @@ export default function AddBuilding() {
         <br />
       </div>
     );
+  } else {
+    <div>
+      <Comment
+        visible={true}
+        height="80"
+        width="80"
+        ariaLabel="comment-loading"
+        wrapperStyle={{}}
+        wrapperClass="comment-wrapper"
+        color="#FFB81C"
+        backgroundColor="#154734"
+      />
+    </div>;
   }
 }

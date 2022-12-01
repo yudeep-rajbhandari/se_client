@@ -1,14 +1,14 @@
 import { useEffect, useState } from "react";
 import ResourceService from "../../../services/ResourceService";
-import { Rings } from "react-loader-spinner";
+import { Comment } from "react-loader-spinner";
 import React from "react";
 import ResourceTable from "./ResourceTable";
 import CsvDownloadButton from "react-json-to-csv";
-export default function ListResource() {
+export default function ListResource(props) {
   const [resources, setResources] = useState([]);
   const [loaded, setLoaded] = useState(false);
 
-  async function getAllResource() {
+  async function getAllResource(props) {
     const { data } = await ResourceService.getAllResource();
     setResources(data);
     setLoaded(true);
@@ -55,7 +55,7 @@ export default function ListResource() {
     return rows;
   }
 
-  if (loaded) {
+  if (loaded && props.currentUser.roles[0] === "ROLE_ADMIN") {
     return (
       <div>
         <h3> List Resource </h3>
@@ -69,20 +69,18 @@ export default function ListResource() {
         </div>
       </div>
     );
-  }
-  if (!loaded) {
+  } else {
     return (
       <div>
-        <Rings
-          align="center"
+        <Comment
+          visible={true}
           height="80"
           width="80"
-          color="#4fa94d"
-          radius="6"
+          ariaLabel="comment-loading"
           wrapperStyle={{}}
-          wrapperClass=""
-          visible={true}
-          ariaLabel="rings-loading"
+          wrapperClass="comment-wrapper"
+          color="#FFB81C"
+          backgroundColor="#154734"
         />
       </div>
     );

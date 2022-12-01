@@ -13,7 +13,7 @@ import RoomDashboard from "./RoomDashboard/RoomDashboard";
 import ResourceDashoard from "./ResourceDashboard/ResourceDashboard";
 import adminService from "../../services/admin.service";
 import UserRoleManagement from "./UserRoleManagement/UserRoleManagement";
-
+import { Comment } from "react-loader-spinner";
 export default function AdminBoard(props) {
   const [currentUser, setCurrentUser] = useState(props.currentUser);
   const [summary, setSummary] = useState(false);
@@ -27,6 +27,9 @@ export default function AdminBoard(props) {
 
   const [users, setUsers] = useState([]);
   const [userClick, setUserClick] = useState(false);
+
+  const [loaded, setLoaded] = useState(false);
+
   async function getAllUser() {
     const { data } = await adminService.getAllUser();
     setUsers(data);
@@ -49,9 +52,10 @@ export default function AdminBoard(props) {
 
   useEffect(() => {
     getAllBuilding();
+    getAllUser();
     getAllRoom();
     getAllResource();
-    getAllUser();
+    setLoaded(true);
   }, []);
 
   const [clickRoomReservation, setClickRoomReservation] = useState(false);
@@ -139,170 +143,197 @@ export default function AdminBoard(props) {
   function refreshUserTable() {
     getAllUser();
   }
-  return (
-    <div>
-      <h3>Dashboard</h3>
+  if (loaded && currentUser.roles[0] === "ROLE_ADMIN") {
+    return (
       <div>
-        <ButtonGroup variant="text" aria-label="text button group">
+        <h3>Dashboard</h3>
+        <div>
+          <ButtonGroup variant="text" aria-label="text button group">
+            {summary && (
+              <Button color="error" type="submit" onClick={() => hideSummary()}>
+                Hide Summary
+              </Button>
+            )}
+            {!summary && (
+              <Button type="submit" onClick={() => showSummary()}>
+                Summary
+              </Button>
+            )}
+            {!buildingDashboard && (
+              <Button onClick={() => showBuildingSummary()}>
+                {" "}
+                Building Dashboard
+              </Button>
+            )}
+            {buildingDashboard && (
+              <Button color="error" onClick={() => hideBuildingSummary()}>
+                {" "}
+                Hide Building Dashboard
+              </Button>
+            )}
+            {!roomDashboard && (
+              <Button onClick={() => showRoomSummary()}> Room Dashboard</Button>
+            )}
+            {roomDashboard && (
+              <Button color="error" onClick={() => hideRoomSummary()}>
+                {" "}
+                Hide Room Dashboard
+              </Button>
+            )}
+            {!resourceDashboard && (
+              <Button onClick={() => showResourceDashboard()}>
+                {" "}
+                Resource Dashboard
+              </Button>
+            )}
+            {resourceDashboard && (
+              <Button color="error" onClick={() => hideresourceDashboard()}>
+                {" "}
+                Hide Resource Dashboard
+              </Button>
+            )}
+          </ButtonGroup>
+
           {summary && (
-            <Button color="error" type="submit" onClick={() => hideSummary()}>
-              Hide Summary
-            </Button>
+            <div>
+              <Summary
+                buildings={buildings}
+                rooms={rooms}
+                resources={resources}
+              />
+            </div>
           )}
-          {!summary && (
-            <Button type="submit" onClick={() => showSummary()}>
-              Summary
-            </Button>
-          )}
-          {!buildingDashboard && (
-            <Button onClick={() => showBuildingSummary()}>
-              {" "}
-              Building Dashboard
-            </Button>
-          )}
+
           {buildingDashboard && (
-            <Button color="error" onClick={() => hideBuildingSummary()}>
-              {" "}
-              Hide Building Dashboard
-            </Button>
+            <div>
+              <BuildingDashboard buildings={buildings} />
+            </div>
           )}
-          {!roomDashboard && (
-            <Button onClick={() => showRoomSummary()}> Room Dashboard</Button>
-          )}
+
           {roomDashboard && (
-            <Button color="error" onClick={() => hideRoomSummary()}>
-              {" "}
-              Hide Room Dashboard
-            </Button>
-          )}
-          {!resourceDashboard && (
-            <Button onClick={() => showResourceDashboard()}>
-              {" "}
-              Resource Dashboard
-            </Button>
+            <div>
+              <RoomDashboard rooms={rooms} />
+            </div>
           )}
           {resourceDashboard && (
-            <Button color="error" onClick={() => hideresourceDashboard()}>
-              {" "}
-              Hide Resource Dashboard
-            </Button>
+            <div>
+              <ResourceDashoard resources={resources} />
+            </div>
           )}
-        </ButtonGroup>
+        </div>
 
-        {summary && (
-          <div>
-            <Summary
-              buildings={buildings}
-              rooms={rooms}
-              resources={resources}
-            />
-          </div>
-        )}
-
-        {buildingDashboard && (
-          <div>
-            <BuildingDashboard buildings={buildings} />
-          </div>
-        )}
-
-        {roomDashboard && (
-          <div>
-            <RoomDashboard rooms={rooms} />
-          </div>
-        )}
-        {resourceDashboard && (
-          <div>
-            <ResourceDashoard resources={resources} />
-          </div>
-        )}
-      </div>
-
-      <div>
-        <ButtonGroup variant="text" aria-label="text button group">
-          <Button onClick={(event) => (window.location.href = "/addBuilding")}>
-            Add Building
-          </Button>
-          <Button onClick={(event) => (window.location.href = "/listBuilding")}>
-            List Building
-          </Button>
-        </ButtonGroup>
-
-        <ButtonGroup variant="text" aria-label="text button group">
-          <Button onClick={(event) => (window.location.href = "/addRoom")}>
-            Add Room
-          </Button>
-          <Button onClick={(event) => (window.location.href = "/listRoom")}>
-            List Room
-          </Button>
-        </ButtonGroup>
-        <ButtonGroup variant="text" aria-label="text button group">
-          <Button onClick={(event) => (window.location.href = "/addResource")}>
-            Add Resource
-          </Button>
-          <Button onClick={(event) => (window.location.href = "/listResource")}>
-            List Resource
-          </Button>
-        </ButtonGroup>
         <div>
           <ButtonGroup variant="text" aria-label="text button group">
-            <Button onClick={(event) => (window.location.href = "/allotment")}>
-              Allotment
+            <Button
+              onClick={(event) => (window.location.href = "/addBuilding")}
+            >
+              Add Building
+            </Button>
+            <Button
+              onClick={(event) => (window.location.href = "/listBuilding")}
+            >
+              List Building
             </Button>
           </ButtonGroup>
-        </div>
 
-        <div>
           <ButtonGroup variant="text" aria-label="text button group">
-            {userClick && (
-              <Button
-                color="error"
-                type="submit"
-                onClick={() => hideUserRoleManagement()}
-              >
-                Hide User Role Management
-              </Button>
-            )}
-            {!userClick && (
-              <Button type="submit" onClick={() => showUserRoleManagement()}>
-                User Role Management
-              </Button>
-            )}
+            <Button onClick={(event) => (window.location.href = "/addRoom")}>
+              Add Room
+            </Button>
+            <Button onClick={(event) => (window.location.href = "/listRoom")}>
+              List Room
+            </Button>
           </ButtonGroup>
-        </div>
-        <div>
-          <ButtonGroup>
-            {clickRoomReservation && (
-              <Button
-                color="error"
-                type="submit"
-                onClick={() => hideRoomReservationTable()}
-              >
-                Hide Room Reservations
-              </Button>
-            )}
-            {!clickRoomReservation && (
-              <Button type="submit" onClick={() => showReservations()}>
-                List Room Reservations
-              </Button>
-            )}
+          <ButtonGroup variant="text" aria-label="text button group">
+            <Button
+              onClick={(event) => (window.location.href = "/addResource")}
+            >
+              Add Resource
+            </Button>
+            <Button
+              onClick={(event) => (window.location.href = "/listResource")}
+            >
+              List Resource
+            </Button>
           </ButtonGroup>
+          <div>
+            <ButtonGroup variant="text" aria-label="text button group">
+              <Button
+                onClick={(event) => (window.location.href = "/allotment")}
+              >
+                Allotment
+              </Button>
+            </ButtonGroup>
+          </div>
+
+          <div>
+            <ButtonGroup variant="text" aria-label="text button group">
+              {userClick && (
+                <Button
+                  color="error"
+                  type="submit"
+                  onClick={() => hideUserRoleManagement()}
+                >
+                  Hide User Role Management
+                </Button>
+              )}
+              {!userClick && (
+                <Button type="submit" onClick={() => showUserRoleManagement()}>
+                  User Role Management
+                </Button>
+              )}
+            </ButtonGroup>
+          </div>
+          <div>
+            <ButtonGroup>
+              {clickRoomReservation && (
+                <Button
+                  color="error"
+                  type="submit"
+                  onClick={() => hideRoomReservationTable()}
+                >
+                  Hide Room Reservations
+                </Button>
+              )}
+              {!clickRoomReservation && (
+                <Button type="submit" onClick={() => showReservations()}>
+                  List Room Reservations
+                </Button>
+              )}
+            </ButtonGroup>
+          </div>
+
+          {clickRoomReservation && (
+            <ListRoomReservation
+              roomReservationList={roomReservationList}
+              reloadComponent={reloadComponent}
+            />
+          )}
+
+          {userClick && (
+            <UserRoleManagement
+              users={users}
+              refreshUserTable={refreshUserTable}
+              currentUser={currentUser}
+            />
+          )}
         </div>
-
-        {clickRoomReservation && (
-          <ListRoomReservation
-            roomReservationList={roomReservationList}
-            reloadComponent={reloadComponent}
-          />
-        )}
-
-        {userClick && (
-          <UserRoleManagement
-            users={users}
-            refreshUserTable={refreshUserTable}
-            currentUser={currentUser}
-          />
-        )}
       </div>
-    </div>
-  );
+    );
+  } else {
+    return (
+      <div>
+        <Comment
+          visible={true}
+          height="80"
+          width="80"
+          ariaLabel="comment-loading"
+          wrapperStyle={{}}
+          wrapperClass="comment-wrapper"
+          color="#FFB81C"
+          backgroundColor="#154734"
+        />
+      </div>
+    );
+  }
 }

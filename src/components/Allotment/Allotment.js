@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
 import AdminService from "../../services/admin.service";
 import React from "react";
-import { Rings } from "react-loader-spinner";
+import { Comment } from "react-loader-spinner";
 import AllotmentService from "../../services/AllotmentService";
 import AddAllotment from "./AddAllotment/AddAllotment";
 import ViewAllotment from "./ViewAllotment/ViewAllotment";
 import BuildingService from "../../services/BuildingService";
 
-export default function Allotment() {
+export default function Allotment(props) {
   const [users, setUsers] = useState([]);
   const [buildings, setBuildings] = useState([]);
   const [allotments, setAllotments] = useState([]);
@@ -40,7 +40,7 @@ export default function Allotment() {
     getAllAllotment();
   }
 
-  if (loaded) {
+  if (loaded && props.currentUser.roles[0] === "ROLE_ADMIN") {
     return (
       <div>
         <AddAllotment
@@ -48,21 +48,23 @@ export default function Allotment() {
           buildings={buildings}
           refreshAllotment={refreshAllotment}
         />
-        <ViewAllotment allotments={allotments}  refreshAllotment={refreshAllotment}/>
+        <ViewAllotment
+          allotments={allotments}
+          refreshAllotment={refreshAllotment}
+        />
       </div>
     );
   } else {
     <div>
-      <Rings
-        align="center"
+      <Comment
+        visible={true}
         height="80"
         width="80"
-        color="#4fa94d"
-        radius="6"
+        ariaLabel="comment-loading"
         wrapperStyle={{}}
-        wrapperClass=""
-        visible={true}
-        ariaLabel="rings-loading"
+        wrapperClass="comment-wrapper"
+        color="#FFB81C"
+        backgroundColor="#154734"
       />
     </div>;
   }
