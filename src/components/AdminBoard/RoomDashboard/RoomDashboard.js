@@ -1,13 +1,11 @@
-
 import RoomDashboardTable from "./RoomDashboardTable";
 
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import Button from "@mui/material/Button";
 import ButtonGroup from "@mui/material/ButtonGroup";
 import BookableTable from "./BookableTable";
 import RoomtypeTable from "./RoomtypeTable";
-
-
+import HideSourceIcon from "@mui/icons-material/HideSource";
 
 export default function RoomDashboard(props) {
   const [bookable, setBookable] = useState(false);
@@ -23,26 +21,44 @@ export default function RoomDashboard(props) {
   }
   function hideTable() {
     setBookable(false);
-    setRoomType(false)
+    setRoomType(false);
   }
   return (
     <div>
       <RoomDashboardTable rooms={props.rooms} />
-      <div >
+      <div>
         <ButtonGroup variant="text" aria-label="text button group">
-          {!bookable && <Button variant="text" onClick={() => showBookable()}>
-            Bookable
-          </Button>}
-          {bookable && <Button color="error" variant="text" onClick={() => hideTable()}>
-            Hide Bookable
-          </Button>}
+          {!bookable && (
+            <Button variant="text" onClick={() => showBookable()}>
+              Bookable
+            </Button>
+          )}
+          {bookable && (
+            <Button
+              startIcon={<HideSourceIcon />}
+              color="error"
+              variant="text"
+              onClick={() => hideTable()}
+            >
+              Hide Bookable
+            </Button>
+          )}
 
-          {!roomType && <Button variant="text" onClick={() => showRoomType()}>
-            RoomType
-          </Button>}
-          {roomType && <Button color="error" variant="text" onClick={() => hideTable()}>
-            Hide RoomType
-          </Button>}
+          {!roomType && (
+            <Button variant="text" onClick={() => showRoomType()}>
+              RoomType
+            </Button>
+          )}
+          {roomType && (
+            <Button
+              startIcon={<HideSourceIcon />}
+              color="error"
+              variant="text"
+              onClick={() => hideTable()}
+            >
+              Hide RoomType
+            </Button>
+          )}
         </ButtonGroup>
       </div>
       <div>

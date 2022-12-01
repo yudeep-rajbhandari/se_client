@@ -3,7 +3,7 @@ import { Routes, Route, Link } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 import goBears from "./images/baylorBears2.png";
-
+import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import AuthService from "./services/auth.service";
 
 import Login from "./components/Login/login.component";
@@ -61,6 +61,8 @@ class App extends Component {
 
       showReserveRoom: false,
       showReserveResource: false,
+
+      showAddSchedule: false,
     };
   }
 
@@ -83,6 +85,7 @@ class App extends Component {
         showAllotment: user.roles.includes("ROLE_ADMIN"),
         showReserveRoom: user.roles.includes("ROLE_USER"),
         showReserveResource: user.roles.includes("ROLE_USER"),
+        showAddSchedule: user.roles.includes("ROLE_ADMIN"),
       });
     }
 
@@ -118,6 +121,7 @@ class App extends Component {
       showAllotment,
       showReserveRoom,
       showReserveResource,
+      showAddSchedule,
     } = this.state;
 
     return (
@@ -152,7 +156,7 @@ class App extends Component {
                 Schedule
               </Link>
             </li>
-            {showUserBoard && (
+            {/* {showUserBoard && (
               <li className="nav-item">
                 <Link
                   to={"/user"}
@@ -162,7 +166,7 @@ class App extends Component {
                   User
                 </Link>
               </li>
-            )}
+            )} */}
             {showAdminBoard && (
               <li className="nav-item">
                 <Link
@@ -277,7 +281,7 @@ class App extends Component {
                 </Link>
               </li>
             )}
-            {showReserveResource && (
+            {/* {showReserveResource && (
               <li className="nav-item">
                 <Link
                   to={"/getMyReservation"}
@@ -287,9 +291,9 @@ class App extends Component {
                   My Reservations
                 </Link>
               </li>
-            )}
+            )} */}
 
-            {showReserveResource && (
+            {showAddSchedule && (
               <li className="nav-item">
                 <Link
                   to={"/addSchedule"}

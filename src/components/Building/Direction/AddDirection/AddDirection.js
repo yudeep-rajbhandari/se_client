@@ -12,7 +12,8 @@ import { styled } from "@mui/material/styles";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import { toast, ToastContainer } from "react-toastify";
-
+import DoorBackIcon from "@mui/icons-material/DoorBack";
+import AddIcon from "@mui/icons-material/Add";
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
     backgroundColor: "#154734",
@@ -131,6 +132,7 @@ export default function AddDirection(props) {
                     <StyledTableCell>
                       {" "}
                       <Button
+                        startIcon={<DoorBackIcon />}
                         style={{ backgroundColor: "#154734", color: "#FFB81C" }}
                         variant="outlined"
                         onClick={() => addGatesClick()}
@@ -199,6 +201,7 @@ export default function AddDirection(props) {
                       </StyledTableCell>
                       <StyledTableCell>
                         <Button
+                          startIcon={<AddIcon />}
                           style={{
                             backgroundColor: "#154734",
                             color: "#FFB81C",
