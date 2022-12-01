@@ -68,6 +68,7 @@ export default function RoomTable(props) {
                   <StyledTableCell>
                     {" "}
                     <Button
+                      style={{ backgroundColor: "#154734", color: "#FFB81C" }}
                       startIcon={<ModeEditIcon />}
                       variant="outlined"
                       aria-label="text button group"
@@ -77,6 +78,7 @@ export default function RoomTable(props) {
                       Edit
                     </Button>{" "}
                     <Button
+                      style={{ backgroundColor: "#154734", color: "#FFB81C" }}
                       startIcon={<BikeScooterIcon />}
                       variant="outlined"
                       aria-label="text button group"
@@ -89,6 +91,7 @@ export default function RoomTable(props) {
 
                   <StyledTableCell>
                     <Button
+                      style={{ backgroundColor: "#154734", color: "#FFB81C" }}
                       variant="outlined"
                       aria-label="text button group"
                       onClick={() => props.viewResources(row)}
