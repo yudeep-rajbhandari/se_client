@@ -106,6 +106,10 @@ export default function UserRoleManagement(props) {
                     getRole(row.roles.map((role) => role.name)) === "USER" && (
                       <div>
                         <Button
+                          style={{
+                            backgroundColor: "#154734",
+                            color: "#FFB81C",
+                          }}
                           variant="outlined"
                           onClick={() => {
                             updateRoleToAdmin(row);
@@ -119,6 +123,10 @@ export default function UserRoleManagement(props) {
                     getRole(row.roles.map((role) => role.name)) === "ADMIN" && (
                       <div>
                         <Button
+                          style={{
+                            backgroundColor: "#154734",
+                            color: "#FFB81C",
+                          }}
                           variant="outlined"
                           onClick={() => {
                             updateRoleToUser(row);

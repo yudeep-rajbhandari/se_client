@@ -146,7 +146,7 @@ export default function AdminBoard(props) {
   if (loaded && currentUser.roles[0] === "ROLE_ADMIN") {
     return (
       <div>
-        <h3>Dashboard</h3>
+        <h3 style={{ color: "#154734" }}>Dashboard</h3>
         <div>
           <ButtonGroup variant="text" aria-label="text button group">
             {summary && (
