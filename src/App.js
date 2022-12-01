@@ -3,7 +3,7 @@ import { Routes, Route, Link } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 import goBears from "./images/baylorBears2.png";
-import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
+
 import AuthService from "./services/auth.service";
 
 import Login from "./components/Login/login.component";
@@ -167,28 +167,32 @@ class App extends Component {
                 </Link>
               </li>
             )} */}
-            {showAdminBoard && (
-              <li className="nav-item">
-                <Link
-                  to={"/adminBoard"}
-                  className="nav-link"
-                  style={{ color: "#FFB81C" }}
-                >
-                  Dashboard
-                </Link>
-              </li>
-            )}
-            {showUserBoard && (
-              <li className="nav-item">
-                <Link
-                  to={"/userBoard"}
-                  className="nav-link"
-                  style={{ color: "#FFB81C" }}
-                >
-                  Dashboard
-                </Link>
-              </li>
-            )}
+            <li>
+              {showAdminBoard && (
+                <li className="nav-item">
+                  <Link
+                    to={"/adminBoard"}
+                    className="nav-link"
+                    style={{ color: "#FFB81C" }}
+                  >
+                    Dashboard
+                  </Link>
+                </li>
+              )}
+            </li>
+            <li>
+              {showUserBoard && (
+                <li className="nav-item">
+                  <Link
+                    to={"/userBoard"}
+                    className="nav-link"
+                    style={{ color: "#FFB81C" }}
+                  >
+                    Dashboard
+                  </Link>
+                </li>
+              )}
+            </li>
 
             {/* {showAddBuilding && (
               <li className="nav-item">
@@ -258,7 +262,7 @@ class App extends Component {
               </li>
             )} */}
 
-            {showReserveRoom && (
+            {/* {showReserveRoom && (
               <li className="nav-item">
                 <Link
                   to={"/findroom"}
@@ -268,9 +272,9 @@ class App extends Component {
                   Reserve Room
                 </Link>
               </li>
-            )}
+            )} */}
 
-            {showReserveResource && (
+            {/* {showReserveResource && (
               <li className="nav-item">
                 <Link
                   to={"/reserveresource"}
@@ -280,7 +284,7 @@ class App extends Component {
                   Reserve Resource
                 </Link>
               </li>
-            )}
+            )} */}
             {/* {showReserveResource && (
               <li className="nav-item">
                 <Link
