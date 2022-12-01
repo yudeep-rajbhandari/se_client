@@ -6,7 +6,9 @@ import { Comment } from "react-loader-spinner";
 import ButtonGroup from "@mui/material/ButtonGroup";
 import ReservationService from "../../services/ReservationService";
 import MyReservation from "./Reservation/MyReservation";
-
+import AssignmentIndIcon from "@mui/icons-material/AssignmentInd";
+import EventSeatIcon from "@mui/icons-material/EventSeat";
+import HideSourceIcon from "@mui/icons-material/HideSource";
 export default function UserBoard(props) {
   const [currentUser] = useState(props.currentUser);
 
@@ -64,12 +66,21 @@ export default function UserBoard(props) {
         <div>
           <ButtonGroup>
             {!clickAllotment && (
-              <Button variant="outlined" onClick={() => viewAllotment()}>
+              <Button
+                startIcon={<AssignmentIndIcon />}
+                variant="outlined"
+                onClick={() => viewAllotment()}
+              >
                 My Allotment
               </Button>
             )}
             {clickAllotment && (
-              <Button color="error" variant="outlined" onClick={() => hide()}>
+              <Button
+                startIcon={<HideSourceIcon />}
+                color="error"
+                variant="outlined"
+                onClick={() => hide()}
+              >
                 Hide Allotment
               </Button>
             )}
@@ -78,12 +89,21 @@ export default function UserBoard(props) {
         <div>
           <ButtonGroup>
             {!clickReservation && (
-              <Button variant="outlined" onClick={() => viewReservation()}>
+              <Button
+                startIcon={<EventSeatIcon />}
+                variant="outlined"
+                onClick={() => viewReservation()}
+              >
                 My Reservation
               </Button>
             )}
             {clickReservation && (
-              <Button color="error" variant="outlined" onClick={() => hide()}>
+              <Button
+                startIcon={<HideSourceIcon />}
+                color="error"
+                variant="outlined"
+                onClick={() => hide()}
+              >
                 Hide Reservation
               </Button>
             )}
