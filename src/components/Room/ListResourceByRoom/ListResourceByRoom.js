@@ -36,7 +36,11 @@ export default function ListResourceByRoom(props) {
       <h3> Resources in Room: {props.selectedRoom.name}</h3>{" "}
       {props.displayResources && (
         <div>
-          <Button variant="outlined" onClick={() => props.hideResources()}>
+          <Button
+            style={{ backgroundColor: "#154734", color: "#FFB81C" }}
+            variant="outlined"
+            onClick={() => props.hideResources()}
+          >
             {" "}
             Hide Resources
           </Button>
