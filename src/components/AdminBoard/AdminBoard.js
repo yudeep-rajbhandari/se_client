@@ -14,7 +14,8 @@ import ResourceDashoard from "./ResourceDashboard/ResourceDashboard";
 import adminService from "../../services/admin.service";
 import UserRoleManagement from "./UserRoleManagement/UserRoleManagement";
 
-export default function AdminBoard() {
+export default function AdminBoard(props) {
+  const [currentUser, setCurrentUser] = useState(props.currentUser);
   const [summary, setSummary] = useState(false);
   const [buildingDashboard, setBuildingDashboard] = useState(false);
   const [roomDashboard, setRoomDashboard] = useState(false);
@@ -298,6 +299,7 @@ export default function AdminBoard() {
           <UserRoleManagement
             users={users}
             refreshUserTable={refreshUserTable}
+            currentUser={currentUser}
           />
         )}
       </div>

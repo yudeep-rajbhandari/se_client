@@ -293,7 +293,10 @@ class App extends Component {
             <Route path="/register" element={<Register />} />
             <Route path="/profile" element={<Profile />} />
 
-            <Route path="/adminBoard" element={<AdminBoard />} />
+            <Route
+              path="/adminBoard"
+              element={<AdminBoard currentUser={currentUser} />}
+            />
             <Route
               path="/userBoard"
               element={<UserBoard currentUser={currentUser} />}

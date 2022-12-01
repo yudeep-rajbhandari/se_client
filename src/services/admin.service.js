@@ -39,8 +39,16 @@ class AdminService {
     });
   }
 
-  updateRole(user) {
-    return axios.put(USER_URL + "updateRole", user, { headers: authHeader() });
+  updateRoleToAdmin(user) {
+    return axios.put(USER_URL + "updateRoleToAdmin", user, {
+      headers: authHeader(),
+    });
+  }
+
+  updateRoleToUser(user) {
+    return axios.put(USER_URL + "updateRoleToUser", user, {
+      headers: authHeader(),
+    });
   }
 }
 
