@@ -60,6 +60,7 @@ export default function ListResource(props) {
       <div>
         <h3> List Resource </h3>
         <CsvDownloadButton
+          style={{ backgroundColor: "#154734", color: "#FFB81C" }}
           data={resources}
           filename={"resources.csv"}
           delimiter={","}
