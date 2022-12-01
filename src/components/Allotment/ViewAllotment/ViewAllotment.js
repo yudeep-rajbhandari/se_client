@@ -13,7 +13,7 @@ import Button from "@mui/material/Button";
 import BackspaceIcon from "@mui/icons-material/Backspace";
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
-    backgroundColor: theme.palette.common.black,
+    backgroundColor: "#154734",
     color: theme.palette.common.white,
   },
   [`&.${tableCellClasses.body}`]: {

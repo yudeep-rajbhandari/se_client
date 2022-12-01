@@ -122,38 +122,65 @@ class App extends Component {
 
     return (
       <div>
-        <nav className="navbar navbar-expand navbar-dark bg-dark">
+        <nav
+          class="navbar navbar-expand navbar-dark"
+          display="flex"
+          positio="sticky"
+          padding="0.5rem 0rem"
+          box-shadow="0 2px 2px 2px rgba(9, 9, 9, 0.23)"
+          style={{ backgroundColor: "#154734" }}
+        >
           <Link to={"/"} className="navbar-brand">
             <img src={goBears} alt="logo" width="30px" height="30px" />
           </Link>
           <div className="navbar-nav mr-auto">
             <li className="nav-item">
-              <Link to={"/home"} className="nav-link">
+              <Link
+                to={"/home"}
+                className="nav-link"
+                style={{ color: "#FFB81C" }}
+              >
                 Home
               </Link>
             </li>
             <li className="nav-item">
-              <Link to={"/schedule"} className="nav-link">
+              <Link
+                to={"/schedule"}
+                className="nav-link"
+                style={{ color: "#FFB81C" }}
+              >
                 Schedule
               </Link>
             </li>
             {showUserBoard && (
               <li className="nav-item">
-                <Link to={"/user"} className="nav-link">
+                <Link
+                  to={"/user"}
+                  className="nav-link"
+                  style={{ color: "#FFB81C" }}
+                >
                   User
                 </Link>
               </li>
             )}
             {showAdminBoard && (
               <li className="nav-item">
-                <Link to={"/adminBoard"} className="nav-link">
+                <Link
+                  to={"/adminBoard"}
+                  className="nav-link"
+                  style={{ color: "#FFB81C" }}
+                >
                   Dashboard
                 </Link>
               </li>
             )}
             {showUserBoard && (
               <li className="nav-item">
-                <Link to={"/userBoard"} className="nav-link">
+                <Link
+                  to={"/userBoard"}
+                  className="nav-link"
+                  style={{ color: "#FFB81C" }}
+                >
                   Dashboard
                 </Link>
               </li>
@@ -177,7 +204,11 @@ class App extends Component {
 
             {showAddDirection && (
               <li className="nav-item">
-                <Link to={"/addDirection"} className="nav-link">
+                <Link
+                  to={"/addDirection"}
+                  className="nav-link"
+                  style={{ color: "#FFB81C" }}
+                >
                   Add Direction
                 </Link>
               </li>
@@ -225,7 +256,11 @@ class App extends Component {
 
             {showReserveRoom && (
               <li className="nav-item">
-                <Link to={"/findroom"} className="nav-link">
+                <Link
+                  to={"/findroom"}
+                  className="nav-link"
+                  style={{ color: "#FFB81C" }}
+                >
                   Reserve Room
                 </Link>
               </li>
@@ -233,14 +268,22 @@ class App extends Component {
 
             {showReserveResource && (
               <li className="nav-item">
-                <Link to={"/reserveresource"} className="nav-link">
+                <Link
+                  to={"/reserveresource"}
+                  className="nav-link"
+                  style={{ color: "#FFB81C" }}
+                >
                   Reserve Resource
                 </Link>
               </li>
             )}
             {showReserveResource && (
               <li className="nav-item">
-                <Link to={"/getMyReservation"} className="nav-link">
+                <Link
+                  to={"/getMyReservation"}
+                  className="nav-link"
+                  style={{ color: "#FFB81C" }}
+                >
                   My Reservations
                 </Link>
               </li>
@@ -248,7 +291,11 @@ class App extends Component {
 
             {showReserveResource && (
               <li className="nav-item">
-                <Link to={"/addSchedule"} className="nav-link">
+                <Link
+                  to={"/addSchedule"}
+                  className="nav-link"
+                  style={{ color: "#FFB81C" }}
+                >
                   Add Schedule
                 </Link>
               </li>
@@ -258,12 +305,21 @@ class App extends Component {
           {currentUser ? (
             <div className="navbar-nav ml-auto">
               <li className="nav-item">
-                <Link to={"/profile"} className="nav-link">
+                <Link
+                  to={"/profile"}
+                  className="nav-link"
+                  style={{ color: "#FFB81C" }}
+                >
                   {currentUser.username}
                 </Link>
               </li>
               <li className="nav-item">
-                <a href="/login" className="nav-link" onClick={this.logOut}>
+                <a
+                  href="/login"
+                  className="nav-link"
+                  onClick={this.logOut}
+                  style={{ color: "#FFB81C" }}
+                >
                   LogOut
                 </a>
               </li>
@@ -271,13 +327,21 @@ class App extends Component {
           ) : (
             <div className="navbar-nav ml-auto">
               <li className="nav-item">
-                <Link to={"/login"} className="nav-link">
+                <Link
+                  to={"/login"}
+                  className="nav-link"
+                  style={{ color: "#FFB81C" }}
+                >
                   Login
                 </Link>
               </li>
 
               <li className="nav-item">
-                <Link to={"/register"} className="nav-link">
+                <Link
+                  to={"/register"}
+                  className="nav-link"
+                  style={{ color: "#FFB81C" }}
+                >
                   Sign Up
                 </Link>
               </li>

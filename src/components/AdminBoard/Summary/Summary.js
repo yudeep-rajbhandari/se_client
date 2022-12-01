@@ -9,7 +9,7 @@ import Zoom from "@mui/material/Zoom";
 import { styled } from "@mui/material/styles";
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
-    backgroundColor: theme.palette.common.black,
+    backgroundColor: "#154734",
     color: theme.palette.common.white,
   },
   [`&.${tableCellClasses.body}`]: {

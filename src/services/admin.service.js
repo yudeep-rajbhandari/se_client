@@ -12,11 +12,6 @@ class AdminService {
   getPublicContent() {
     return axios.get(API_URL + "all");
   }
-  addBuidling(building) {
-    return axios.post(BUILDING_URL + "addBuilding", building, {
-      headers: authHeader(),
-    });
-  }
 
   addRoom(room) {
     return axios.post(ROOM_URL + "addRoom", room, {

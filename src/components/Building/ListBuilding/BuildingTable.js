@@ -12,7 +12,7 @@ import { styled } from "@mui/material/styles";
 import CsvDownloadButton from "react-json-to-csv";
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
-    backgroundColor: theme.palette.common.black,
+    backgroundColor: "#154734",
     color: theme.palette.common.white,
   },
   [`&.${tableCellClasses.body}`]: {
