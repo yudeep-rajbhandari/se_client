@@ -1,6 +1,6 @@
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
-
+import { toast, ToastContainer } from "react-toastify";
 import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
@@ -57,38 +57,44 @@ export default function RoomReservationTable(props) {
               <StyledTableCell>{row.status}</StyledTableCell>
               <StyledTableCell>
                 <ButtonGroup variant="text" aria-label="text button group">
-                  <Button
-                    startIcon={<ThumbUpIcon />}
-                    style={{
-                      backgroundColor: "#154734",
-                      color: "#FFB81C",
-                    }}
-                    onClick={() => props.acceptRoomReservation(row.id)}
-                  >
-                    APPROVE
-                  </Button>
-                  <Button
-                    startIcon={<ThumbDownAltIcon />}
-                    style={{
-                      backgroundColor: "#154734",
-                      color: "#FFB81C",
-                    }}
-                    onClick={() => props.declineRoomReservation(row.id)}
-                  >
-                    {" "}
-                    DECLINE
-                  </Button>
-                  <Button
-                    startIcon={<ArchiveIcon />}
-                    style={{
-                      backgroundColor: "#154734",
-                      color: "#FFB81C",
-                    }}
-                    onClick={() => props.archiveRoomReservation(row.id)}
-                  >
-                    {" "}
-                    ARCHIVE
-                  </Button>
+                  {row.status !== "APPROVED" && (
+                    <Button
+                      startIcon={<ThumbUpIcon />}
+                      style={{
+                        backgroundColor: "#154734",
+                        color: "#FFB81C",
+                      }}
+                      onClick={() => props.acceptRoomReservation(row.id)}
+                    >
+                      APPROVE
+                    </Button>
+                  )}
+                  {row.status !== "DECLINED" && (
+                    <Button
+                      startIcon={<ThumbDownAltIcon />}
+                      style={{
+                        backgroundColor: "#154734",
+                        color: "#FFB81C",
+                      }}
+                      onClick={() => props.declineRoomReservation(row.id)}
+                    >
+                      {" "}
+                      DECLINE
+                    </Button>
+                  )}
+                  {row.status !== "ARCHIVED" && (
+                    <Button
+                      startIcon={<ArchiveIcon />}
+                      style={{
+                        backgroundColor: "#154734",
+                        color: "#FFB81C",
+                      }}
+                      onClick={() => props.archiveRoomReservation(row.id)}
+                    >
+                      {" "}
+                      ARCHIVE
+                    </Button>
+                  )}
                 </ButtonGroup>
               </StyledTableCell>
             </StyledTableRow>
