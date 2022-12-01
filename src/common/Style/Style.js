@@ -1,6 +1,10 @@
 import TableCell, { tableCellClasses } from "@mui/material/TableCell";
 import { styled } from "@mui/material/styles";
 import TableRow from "@mui/material/TableRow";
+
+export const primaryColor = {
+  color: "#154734",
+};
 export const primaryButton = {
   backgroundColor: "#154734",
   color: "#FFB81C",

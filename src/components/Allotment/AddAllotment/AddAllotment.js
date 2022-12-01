@@ -6,6 +6,7 @@ import AllotmentService from "../../../services/AllotmentService";
 import { toast, ToastContainer } from "react-toastify";
 import AddAllotmentTable from "./AddAllotmentTable";
 import RoomService from "../../../services/RoomService";
+import PrimaryHeader from "../../../common/Header/PrimaryHeader";
 
 export default function AddAllotment(props) {
   const [userSelected, setUserSelected] = useState(false);
@@ -28,7 +29,7 @@ export default function AddAllotment(props) {
     };
     await AllotmentService.addAllotment(allotment)
       .then((res) => {
-        toast(
+        toast.success(
           res.data.user.email +
             " is alloted to " +
             res.data.room.name +
@@ -39,7 +40,7 @@ export default function AddAllotment(props) {
         );
       })
       .catch((error) => {
-        toast("Error in adding user to the selected room");
+        toast.error("Error in adding user to the selected room");
       })
       .finally(() => {
         setStatus(true);
@@ -90,13 +91,7 @@ export default function AddAllotment(props) {
         </div>
       )}
 
-      <h3
-        style={{
-          color: "#154734",
-        }}
-      >
-        Add Allotment
-      </h3>
+      <PrimaryHeader header="Add Allotment" />
       <div>
         <AddAllotmentTable
           handleSelectedBuildingIdChange={handleSelectedBuildingIdChange}

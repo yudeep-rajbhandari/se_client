@@ -4,10 +4,9 @@ import Input from "react-validation/build/input";
 import CheckButton from "react-validation/build/button";
 
 import AuthService from "../../services/auth.service";
-import { primaryButton, secondaryButton } from "../../common/Style/BaylorColor";
-import { withRouter } from "../../common/with-router";
-import { Button } from "@mui/material";
 
+import { withRouter } from "../../common/with-router";
+import { primaryButton, primaryColor } from "../../common/Style/Style";
 const required = (value) => {
   if (!value) {
     return (
@@ -99,7 +98,9 @@ class Login extends Component {
             }}
           >
             <div className="form-group">
-              <label htmlFor="username">Username</label>
+              <label htmlFor="username" style={primaryColor}>
+                Username
+              </label>
               <Input
                 type="text"
                 className="form-control"
@@ -111,7 +112,9 @@ class Login extends Component {
             </div>
 
             <div className="form-group">
-              <label htmlFor="password">Password</label>
+              <label htmlFor="password" style={primaryColor}>
+                Password
+              </label>
               <Input
                 type="password"
                 className="form-control"

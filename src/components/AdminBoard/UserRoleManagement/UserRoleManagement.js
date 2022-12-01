@@ -1,37 +1,20 @@
 import React, { useState } from "react";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
-import TableCell, { tableCellClasses } from "@mui/material/TableCell";
+
 import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
-import Button from "@mui/material/Button";
-import { styled } from "@mui/material/styles";
+
 import AdminPanelSettingsIcon from "@mui/icons-material/AdminPanelSettings";
 import adminService from "../../../services/admin.service";
 import { toast, ToastContainer } from "react-toastify";
 
 import Person2Icon from "@mui/icons-material/Person2";
-const StyledTableCell = styled(TableCell)(({ theme }) => ({
-  [`&.${tableCellClasses.head}`]: {
-    backgroundColor: "#154734",
-    color: theme.palette.common.white,
-  },
-  [`&.${tableCellClasses.body}`]: {
-    fontSize: 14,
-  },
-}));
+import PrimaryButton from "../../../common/Button/PrimaryButton";
+import { StyledTableCell, StyledTableRow } from "../../../common/Style/Style";
 
-const StyledTableRow = styled(TableRow)(({ theme }) => ({
-  "&:nth-of-type(odd)": {
-    backgroundColor: theme.palette.action.hover,
-  },
-  // hide last border
-  "&:last-child td, &:last-child th": {
-    border: 0,
-  },
-}));
 export default function UserRoleManagement(props) {
   console.log(props.currentUser.username);
 
@@ -107,37 +90,25 @@ export default function UserRoleManagement(props) {
                   {!(row.username === props.currentUser.username) &&
                     getRole(row.roles.map((role) => role.name)) === "USER" && (
                       <div>
-                        <Button
-                          startIcon={<AdminPanelSettingsIcon />}
-                          style={{
-                            backgroundColor: "#154734",
-                            color: "#FFB81C",
-                          }}
-                          variant="outlined"
+                        <PrimaryButton
+                          icon={<AdminPanelSettingsIcon />}
+                          title=" Make Admin"
                           onClick={() => {
                             updateRoleToAdmin(row);
                           }}
-                        >
-                          Make Admin
-                        </Button>
+                        />
                       </div>
                     )}
                   {!(row.username === props.currentUser.username) &&
                     getRole(row.roles.map((role) => role.name)) === "ADMIN" && (
                       <div>
-                        <Button
-                          startIcon={<Person2Icon />}
-                          style={{
-                            backgroundColor: "#154734",
-                            color: "#FFB81C",
-                          }}
-                          variant="outlined"
+                        <PrimaryButton
+                          icon={<Person2Icon />}
+                          title="      Make User"
                           onClick={() => {
                             updateRoleToUser(row);
                           }}
-                        >
-                          Make User
-                        </Button>
+                        />
                       </div>
                     )}
                 </StyledTableCell>

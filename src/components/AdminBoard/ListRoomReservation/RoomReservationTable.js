@@ -13,6 +13,7 @@ import ThumbUpIcon from "@mui/icons-material/ThumbUp";
 import Tooltip from "@mui/material/Tooltip";
 import ThumbDownAltIcon from "@mui/icons-material/ThumbDownAlt";
 import ArchiveIcon from "@mui/icons-material/Archive";
+import PrimaryButton from "../../../common/Button/PrimaryButton";
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
     backgroundColor: "#154734",
@@ -58,42 +59,25 @@ export default function RoomReservationTable(props) {
               <StyledTableCell>
                 <ButtonGroup variant="text" aria-label="text button group">
                   {row.status !== "APPROVED" && (
-                    <Button
-                      startIcon={<ThumbUpIcon />}
-                      style={{
-                        backgroundColor: "#154734",
-                        color: "#FFB81C",
-                      }}
+                    <PrimaryButton
+                      title="Approve"
+                      icon={<ThumbUpIcon />}
                       onClick={() => props.acceptRoomReservation(row.id)}
-                    >
-                      APPROVE
-                    </Button>
+                    />
                   )}
                   {row.status !== "DECLINED" && (
-                    <Button
-                      startIcon={<ThumbDownAltIcon />}
-                      style={{
-                        backgroundColor: "#154734",
-                        color: "#FFB81C",
-                      }}
+                    <PrimaryButton
+                      title="Decline"
+                      icon={<ThumbDownAltIcon />}
                       onClick={() => props.declineRoomReservation(row.id)}
-                    >
-                      {" "}
-                      DECLINE
-                    </Button>
+                    />
                   )}
                   {row.status !== "ARCHIVED" && (
-                    <Button
-                      startIcon={<ArchiveIcon />}
-                      style={{
-                        backgroundColor: "#154734",
-                        color: "#FFB81C",
-                      }}
+                    <PrimaryButton
+                      title="Archive"
+                      icon={<ArchiveIcon />}
                       onClick={() => props.archiveRoomReservation(row.id)}
-                    >
-                      {" "}
-                      ARCHIVE
-                    </Button>
+                    />
                   )}
                 </ButtonGroup>
               </StyledTableCell>

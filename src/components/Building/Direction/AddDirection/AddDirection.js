@@ -22,6 +22,7 @@ import {
   StyledTableCell,
   StyledTableRow,
 } from "../../../../common/Style/Style";
+import PrimaryHeader from "../../../../common/Header/PrimaryHeader";
 
 export default function AddDirection(props) {
   const [buildings, setBuildings] = useState([]);
@@ -91,7 +92,7 @@ export default function AddDirection(props) {
             <ToastContainer />
           </div>
         )}
-        <h1 style={primaryHeader}>Direction</h1>
+        <PrimaryHeader header="DIRECTION" />
         <div>
           <TableContainer component={Paper}>
             <Table

@@ -17,6 +17,7 @@ import BikeScooterIcon from "@mui/icons-material/BikeScooter";
 import roomService from "../../services/RoomService";
 import MapParentComponent from "../maps/mapParent.component";
 import { primaryHeader } from "../../common/Style/Style";
+import PrimaryHeader from "../../common/Header/PrimaryHeader";
 export default function ViewSchedule(props) {
   const [myLoader, setMyLoader] = useState(true);
 
@@ -84,7 +85,7 @@ export default function ViewSchedule(props) {
       {isSelectedRoom && <MapParentComponent room={selectedRoom} />}
       {showParent && (
         <div>
-          <h1 style={primaryHeader}>Schedule</h1>
+          <PrimaryHeader header="SCHEDULE" />
           <DatePicker
             onChange={(date) => refreshIt1(date)}
             selected={selectDate}

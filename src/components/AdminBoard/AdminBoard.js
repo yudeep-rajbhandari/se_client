@@ -24,7 +24,8 @@ import MeetingRoomIcon from "@mui/icons-material/MeetingRoom";
 import { Comment } from "react-loader-spinner";
 import { Print } from "@mui/icons-material";
 import AddIcon from "@mui/icons-material/Add";
-
+import DoorBackIcon from "@mui/icons-material/DoorBack";
+import ScheduleIcon from "@mui/icons-material/Schedule";
 import {
   primaryButton,
   secondaryButton,
@@ -35,6 +36,9 @@ import * as React from "react";
 import CssBaseline from "@mui/material/CssBaseline";
 import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
+import PrimaryHeader from "../../common/Header/PrimaryHeader";
+import PrimaryButton from "../../common/Button/PrimaryButton";
+import ErrorButton from "../../common/Button/ErrorButton";
 export default function AdminBoard(props) {
   const [currentUser, setCurrentUser] = useState(props.currentUser);
   const [summary, setSummary] = useState(false);
@@ -149,90 +153,67 @@ export default function AdminBoard(props) {
   if (loaded && currentUser.roles[0] === "ROLE_ADMIN") {
     return (
       <div>
-        <h1 style={primaryHeader}>Dashboard</h1>
+        <PrimaryHeader header="DASHBOARD" />
         <React.Fragment>
           <CssBaseline />
           <Container>
             <Box sx={{ bgcolor: "#154734", height: "10vh", width: "150vh" }}>
               <ButtonGroup variant="text" aria-label="text button group">
                 {summary && (
-                  <Button
-                    startIcon={<HideSourceIcon />}
-                    color="error"
-                    type="submit"
+                  <ErrorButton
+                    title="Hide Summary"
+                    icon={<HideSourceIcon />}
                     onClick={() => hideTable()}
-                  >
-                    Hide Summary
-                  </Button>
+                  />
                 )}
                 {!summary && (
-                  <Button
-                    style={primaryButton}
-                    startIcon={<SummarizeIcon />}
-                    type="submit"
+                  <PrimaryButton
+                    title="Summary"
+                    icon={<SummarizeIcon />}
                     onClick={() => showSummary()}
-                  >
-                    Summary
-                  </Button>
+                  />
                 )}
                 {!buildingDashboard && (
-                  <Button
-                    style={primaryButton}
-                    startIcon={<DashboardIcon />}
+                  <PrimaryButton
+                    title="Building Dashboard"
+                    icon={<DashboardIcon />}
                     onClick={() => showBuildingSummary()}
-                  >
-                    {" "}
-                    Building Dashboard
-                  </Button>
+                  />
                 )}
                 {buildingDashboard && (
-                  <Button
-                    startIcon={<HideSourceIcon />}
-                    color="error"
+                  <ErrorButton
+                    title="Hide Building Dashboard"
+                    icon={<HideSourceIcon />}
                     onClick={() => hideTable()}
-                  >
-                    {" "}
-                    Hide Building Dashboard
-                  </Button>
+                  />
                 )}
                 {!roomDashboard && (
-                  <Button
-                    style={primaryButton}
-                    startIcon={<DashboardIcon />}
+                  <PrimaryButton
+                    title="Room Dashboard"
+                    icon={<DashboardIcon />}
                     onClick={() => showRoomSummary()}
-                  >
-                    {" "}
-                    Room Dashboard
-                  </Button>
+                  />
                 )}
                 {roomDashboard && (
-                  <Button
-                    startIcon={<HideSourceIcon />}
-                    color="error"
+                  <ErrorButton
+                    title="Hide Room Dashboard"
+                    icon={<HideSourceIcon />}
                     onClick={() => hideTable()}
-                  >
-                    {" "}
-                    Hide Room Dashboard
-                  </Button>
+                  />
                 )}
                 {!resourceDashboard && (
-                  <Button
-                    style={primaryButton}
-                    startIcon={<DashboardIcon />}
+                  <PrimaryButton
+                    title="Resource Dashboard"
+                    icon={<DashboardIcon />}
                     onClick={() => showResourceDashboard()}
-                  >
-                    Resource Dashboard
-                  </Button>
+                  />
                 )}
                 {resourceDashboard && (
-                  <Button
-                    startIcon={<HideSourceIcon />}
-                    color="error"
+                  <ErrorButton
+                    title="Hide Resource Dashboard"
+                    icon={<HideSourceIcon />}
                     onClick={() => hideTable()}
-                  >
-                    {" "}
-                    Hide Resource Dashboard
-                  </Button>
+                  />
                 )}
               </ButtonGroup>
             </Box>
@@ -303,47 +284,50 @@ export default function AdminBoard(props) {
               </ButtonGroup>
               <ButtonGroup variant="text" aria-label="text button group">
                 {userClick && (
-                  <Button
-                    startIcon={<HideSourceIcon />}
-                    color="error"
-                    type="submit"
+                  <ErrorButton
+                    title="Hide User Role Management"
+                    icon={<HideSourceIcon />}
                     onClick={() => hideTable()}
-                  >
-                    Hide User Role Management
-                  </Button>
+                  />
                 )}
                 {!userClick && (
-                  <Button
-                    style={primaryButton}
-                    startIcon={<PersonIcon />}
-                    type="submit"
+                  <PrimaryButton
+                    title=" User Role Management"
+                    icon={<PersonIcon />}
                     onClick={() => showUserRoleManagement()}
-                  >
-                    User Role Management
-                  </Button>
+                  />
                 )}
               </ButtonGroup>
               <ButtonGroup variant="text" aria-label="text button group">
                 {clickRoomReservation && (
-                  <Button
-                    startIcon={<HideSourceIcon />}
-                    color="error"
-                    type="submit"
+                  <ErrorButton
+                    icon={<HideSourceIcon />}
+                    title="Hide Room Reservations"
                     onClick={() => hideTable()}
-                  >
-                    Hide Room Reservations
-                  </Button>
+                  />
                 )}
                 {!clickRoomReservation && (
-                  <Button
-                    style={primaryButton}
-                    startIcon={<EventSeatIcon />}
-                    type="submit"
+                  <PrimaryButton
+                    title=" List Room Reservations"
+                    icon={<EventSeatIcon />}
                     onClick={() => showReservations()}
-                  >
-                    List Room Reservations
-                  </Button>
+                  />
                 )}
+              </ButtonGroup>
+              <ButtonGroup variant="text" aria-label="text button group">
+                <PrimaryButton
+                  title="Add Gates"
+                  icon={<DoorBackIcon />}
+                  onClick={(event) => (window.location.href = "/addDirection")}
+                />
+              </ButtonGroup>
+
+              <ButtonGroup variant="text" aria-label="text button group">
+                <PrimaryButton
+                  title="Add Schedule"
+                  icon={<ScheduleIcon />}
+                  onClick={(event) => (window.location.href = "/addSchedule")}
+                />
               </ButtonGroup>
             </Box>
           </Container>

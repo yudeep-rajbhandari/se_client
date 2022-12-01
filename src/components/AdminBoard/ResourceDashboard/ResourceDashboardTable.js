@@ -1,30 +1,10 @@
-import { TableBody, TableContainer } from "@mui/material";
-import { Table } from "@mui/material";
+import { Table, TableBody, TableContainer } from "@mui/material";
+import Button from "@mui/material/Button";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
-import TableCell, { tableCellClasses } from "@mui/material/TableCell";
-import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
-import { styled } from "@mui/material/styles";
-const StyledTableCell = styled(TableCell)(({ theme }) => ({
-  [`&.${tableCellClasses.head}`]: {
-    backgroundColor: "#154734",
-    color: theme.palette.common.white,
-  },
-  [`&.${tableCellClasses.body}`]: {
-    fontSize: 14,
-  },
-}));
+import { StyledTableCell, StyledTableRow } from "../../../common/Style/Style";
 
-const StyledTableRow = styled(TableRow)(({ theme }) => ({
-  "&:nth-of-type(odd)": {
-    backgroundColor: theme.palette.action.hover,
-  },
-  // hide last border
-  "&:last-child td, &:last-child th": {
-    border: 0,
-  },
-}));
 export default function ResourceDashboardTable(props) {
   return (
     <div>

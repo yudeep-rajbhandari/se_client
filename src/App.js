@@ -206,7 +206,7 @@ class App extends Component {
               </li>
             )} */}
 
-            {showAddDirection && (
+            {/* {showAddDirection && (
               <li className="nav-item">
                 <Link
                   to={"/addDirection"}
@@ -216,7 +216,7 @@ class App extends Component {
                   Add Direction
                 </Link>
               </li>
-            )}
+            )} */}
 
             {/* {showAddRoom && (
               <li className="nav-item">
@@ -293,7 +293,7 @@ class App extends Component {
               </li>
             )} */}
 
-            {showAddSchedule && (
+            {/* {showAddSchedule && (
               <li className="nav-item">
                 <Link
                   to={"/addSchedule"}
@@ -303,7 +303,7 @@ class App extends Component {
                   Add Schedule
                 </Link>
               </li>
-            )}
+            )} */}
           </div>
 
           {currentUser ? (
