@@ -2,7 +2,7 @@ import axios from "axios";
 import authHeader from "./auth-header";
 import env from "react-dotenv";
 
-const BUILDING_URL = env.abc+"building";
+const BUILDING_URL = env.abc + "building";
 
 class BuildingService {
   findBuildingById(buildingId) {
@@ -25,6 +25,12 @@ class BuildingService {
 
   getBuildingCount() {
     return axios.get(BUILDING_URL + "/getBuildingCount", {
+      headers: authHeader(),
+    });
+  }
+
+  addGate(gate, buildingId) {
+    return axios.put(BUILDING_URL + "/addGate/" + buildingId, gate, {
       headers: authHeader(),
     });
   }

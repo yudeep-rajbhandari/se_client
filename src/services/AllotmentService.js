@@ -15,6 +15,18 @@ class AllotmentService {
       headers: authHeader(),
     });
   }
+
+  deleteAllotment(allotmentId) {
+    return axios.delete(ALLOTMENT_URL + "/deleteAllotment/"+allotmentId, {
+      headers: authHeader(),
+    });
+  }
+
+  getMyAllotment(userId) {
+    return axios.get(ALLOTMENT_URL + "/getMyAllotment/" + userId, {
+      headers: authHeader(),
+    });
+  }
 }
 
 export default new AllotmentService();

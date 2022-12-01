@@ -1,12 +1,37 @@
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
-import TableCell from "@mui/material/TableCell";
+import TableCell, { tableCellClasses } from "@mui/material/TableCell";
 import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
+import { styled } from "@mui/material/styles";
+import DatePicker from "react-datepicker";
+import React, {useState} from "react";
+const StyledTableCell = styled(TableCell)(({ theme }) => ({
+  [`&.${tableCellClasses.head}`]: {
+    backgroundColor: theme.palette.common.black,
+    color: theme.palette.common.white,
+  },
+  [`&.${tableCellClasses.body}`]: {
+    fontSize: 14,
+  },
+}));
+
+const StyledTableRow = styled(TableRow)(({ theme }) => ({
+  "&:nth-of-type(odd)": {
+    backgroundColor: theme.palette.action.hover,
+  },
+  // hide last border
+  "&:last-child td, &:last-child th": {
+    border: 0,
+  },
+}));
+
 export default function AddAllotmentTable(props) {
-  const userOptions = props.users.map((user) => (
+console.log(props)
+
+    const userOptions = props.users.map((user) => (
     <option key={user.id} value={user.id}>
       {user.email}
     </option>
@@ -29,60 +54,74 @@ export default function AddAllotmentTable(props) {
         <Table stickyHeader sx={{ minWidth: 650 }} aria-label="simple table">
           <TableHead>
             <TableRow>
-              <TableCell>Select User</TableCell>
-              {props.userSelected && <TableCell>Select Building</TableCell>}
-              {props.buildingSelected && <TableCell>Select Room</TableCell>}
-              <TableCell>From Date</TableCell>
-              <TableCell>To Date</TableCell>
-              <TableCell>Action</TableCell>
+              <StyledTableCell>Select User</StyledTableCell>
+              {props.userSelected && (
+                <StyledTableCell>Select Building</StyledTableCell>
+              )}
+              {props.buildingSelected && (
+                <StyledTableCell>Select Room</StyledTableCell>
+              )}
+              <StyledTableCell>From Date</StyledTableCell>
+              <StyledTableCell>To Date</StyledTableCell>
+              <StyledTableCell>Action</StyledTableCell>
               {/* <TableCell>Role</TableCell> */}
             </TableRow>
           </TableHead>
           <TableBody>
-            <TableCell>
-              <select onChange={props.handleSelectedUserIdChange}>
-                <option key="0" value="0">
-                  ---Select User---
-                </option>
-                {userOptions}
-              </select>
-            </TableCell>
+            <TableRow>
+              <StyledTableCell>
+                <select onChange={props.handleSelectedUserIdChange}>
+                  <option key="0" value="0">
+                    ---Select User---
+                  </option>
+                  {userOptions}
+                </select>
+              </StyledTableCell>
 
-            {props.userSelected === true && (
-              <TableCell>
-                <select onChange={props.handleSelectedBuildingIdChange}>
-                  <option key="0" value="0">
-                    ---Select Building---
-                  </option>
-                  {buildingOptions}
-                </select>
-              </TableCell>
-            )}
-            {props.buildingSelected && (
-              <TableCell>
-                <select onChange={props.handleSelectedRoomIdChange}>
-                  <option key="0" value="0">
-                    ---Select Room---
-                  </option>
-                  {roomOptions}
-                </select>
-              </TableCell>
-            )}
-            <TableCell>From Date</TableCell>
-            <TableCell>To Date</TableCell>
-            <TableCell>
-              {props.selectedUserId && props.selectedBuildingId && (
-                <div>
-                  <button
-                    onClick={() => {
-                      props.addAllotment();
-                    }}
-                  >
-                    Allot
-                  </button>
-                </div>
+              {props.userSelected && (
+                <StyledTableCell>
+                  <select onChange={props.handleSelectedBuildingIdChange}>
+                    <option key={0} value={0}>
+                      ---Select Building---
+                    </option>
+                    {buildingOptions}
+                  </select>
+                </StyledTableCell>
               )}
-            </TableCell>
+              {props.buildingSelected && (
+                <StyledTableCell>
+                  <select onChange={props.handleSelectedRoomIdChange}>
+                    <option key={0} value={0}>
+                      ---Select Room---
+                    </option>
+                    {roomOptions}
+                  </select>
+                </StyledTableCell>
+              )}
+              <StyledTableCell > <DatePicker
+                  onChange={(date) => props.handleSelectedFromDateChange(date)}
+                  selected = {props.selectedFromDateChange}
+                  dateFormat="MMMM d, yyyy"
+              /></StyledTableCell>
+              <StyledTableCell> <DatePicker
+                  onChange={(date) => props.handleSelectedToDateChange(date)}
+                  selected = {props.selectedToDateChange}
+                  dateFormat="MMMM d, yyyy"
+              /></StyledTableCell>
+              <StyledTableCell>
+                {props.selectedUserId && props.selectedBuildingId && (
+                  <div>
+                    <button
+                      onClick={() => {
+                        props.addAllotment();
+                      }}
+                    >
+                      Allot
+                    </button>
+                  </div>
+                )}
+              </StyledTableCell>
+            </TableRow>
           </TableBody>
         </Table>
       </TableContainer>

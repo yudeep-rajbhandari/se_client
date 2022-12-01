@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 import React from "react";
 
@@ -14,6 +14,8 @@ export default function AddAllotment(props) {
   const [selectedRoomId, setSelectedRoomId] = useState();
   const [selectedUserId, setSelectedUserId] = useState();
 
+  const[selectedFromTime,setSelectedFromTime] = useState(new Date())
+  const[selectedToTime,setSelectedToTime] = useState(new Date())
   const [status, setStatus] = useState(false);
   const [rooms, setRooms] = useState([]);
 
@@ -21,8 +23,8 @@ export default function AddAllotment(props) {
     const allotment = {
       room: { id: selectedRoomId },
       user: { id: selectedUserId },
-      fromDate: new Date("01-01-2022"), // take this from Calendar
-      toDate: new Date("12-12-2022"), // take this from Calendar
+      fromDate: selectedFromTime, // take this from Calendar
+      toDate: selectedToTime, // take this from Calendar
     };
     await AllotmentService.addAllotment(allotment)
       .then((res) => {
@@ -46,10 +48,13 @@ export default function AddAllotment(props) {
   }
 
   function handleSelectedUserIdChange(event) {
-    setSelectedUserId((currentValue) => {
-      return event.target.value;
-    });
-    setUserSelected(true);
+    setSelectedUserId(event.target.value);
+
+    if (event.target.value !== 0) {
+      setUserSelected(true);
+    } else if (event.target.value === 0) {
+      setUserSelected(false);
+    }
   }
 
   function handleSelectedBuildingIdChange(event) {
@@ -60,6 +65,14 @@ export default function AddAllotment(props) {
 
   function handleSelectedRoomIdChange(event) {
     setSelectedRoomId(event.target.value);
+  }
+
+  function handleSelectedFromDateChange(date) {
+    setSelectedFromTime(date);
+  }
+
+  function handleSelectedToDateChange(date) {
+    setSelectedToTime(date);
   }
 
   async function getBookableRoomByBuilding(buildingId) {
@@ -83,6 +96,9 @@ export default function AddAllotment(props) {
           handleSelectedBuildingIdChange={handleSelectedBuildingIdChange}
           handleSelectedUserIdChange={handleSelectedUserIdChange}
           handleSelectedRoomIdChange={handleSelectedRoomIdChange}
+          handleSelectedFromDateChange={handleSelectedFromDateChange}
+          handleSelectedToDateChange={handleSelectedToDateChange}
+
           users={props.users}
           buildings={props.buildings}
           rooms={rooms}
@@ -92,6 +108,9 @@ export default function AddAllotment(props) {
           selectedBuildingId={selectedBuildingId}
           userSelected={userSelected}
           buildingSelected={buildingSelected}
+          selectedFromDateChange={selectedFromTime}
+          selectedToDateChange={selectedToTime}
+
         />
       </div>
     </div>

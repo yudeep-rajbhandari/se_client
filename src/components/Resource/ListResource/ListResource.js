@@ -3,7 +3,7 @@ import ResourceService from "../../../services/ResourceService";
 import { Rings } from "react-loader-spinner";
 import React from "react";
 import ResourceTable from "./ResourceTable";
-
+import CsvDownloadButton from "react-json-to-csv";
 export default function ListResource() {
   const [resources, setResources] = useState([]);
   const [loaded, setLoaded] = useState(false);
@@ -59,6 +59,11 @@ export default function ListResource() {
     return (
       <div>
         <h3> List Resource </h3>
+        <CsvDownloadButton
+          data={resources}
+          filename={"resources.csv"}
+          delimiter={","}
+        />
         <div>
           <ResourceTable columns={getColumns()} rows={getRows(resources)} />
         </div>
