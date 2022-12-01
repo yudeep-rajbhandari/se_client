@@ -8,7 +8,7 @@ export default function AddRoomForm(props) {
   ));
   return (
     <div>
-      <h3> Add Room</h3>
+      <h3 style={{ color: "#154734" }}> Add Room</h3>
 
       <form onSubmit={props.onSubmit}>
         <label htmlFor="name"> Name</label>
@@ -40,8 +40,8 @@ export default function AddRoomForm(props) {
           </select>
         </label>
 
-        <br />
         <Button
+          style={{ backgroundColor: "#154734", color: "#FFB81C" }}
           startIcon={<SaveRoundedIcon />}
           variant="contained"
           type="submit"
