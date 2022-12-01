@@ -35,6 +35,7 @@ export default function RoomTable(props) {
     <div>
       <h3>List of Rooms</h3>
       <CsvDownloadButton
+        style={{ backgroundColor: "#154734", color: "#FFB81C" }}
         data={props.rooms}
         filename={"rooms.csv"}
         delimiter={","}

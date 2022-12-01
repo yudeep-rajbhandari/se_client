@@ -1,8 +1,15 @@
 import { useEffect, useState } from "react";
-
+import DomainIcon from "@mui/icons-material/Domain";
 import RoomReservationsService from "../../services/RoomReservationsService";
 import ListRoomReservation from "./ListRoomReservation/ListRoomReservation";
+import PersonIcon from "@mui/icons-material/Person";
+import EventSeatIcon from "@mui/icons-material/EventSeat";
+import DashboardIcon from "@mui/icons-material/Dashboard";
+import SummarizeIcon from "@mui/icons-material/Summarize";
 import Button from "@mui/material/Button";
+import AssignmentIndIcon from "@mui/icons-material/AssignmentInd";
+import PrintIcon from "@mui/icons-material/Print";
+import HideSourceIcon from "@mui/icons-material/HideSource";
 import ButtonGroup from "@mui/material/ButtonGroup";
 import Summary from "./Summary/Summary";
 import BuildingService from "../../services/BuildingService";
@@ -13,7 +20,10 @@ import RoomDashboard from "./RoomDashboard/RoomDashboard";
 import ResourceDashoard from "./ResourceDashboard/ResourceDashboard";
 import adminService from "../../services/admin.service";
 import UserRoleManagement from "./UserRoleManagement/UserRoleManagement";
+import MeetingRoomIcon from "@mui/icons-material/MeetingRoom";
 import { Comment } from "react-loader-spinner";
+import { Print } from "@mui/icons-material";
+import AddIcon from "@mui/icons-material/Add";
 export default function AdminBoard(props) {
   const [currentUser, setCurrentUser] = useState(props.currentUser);
   const [summary, setSummary] = useState(false);
@@ -49,12 +59,14 @@ export default function AdminBoard(props) {
     const { data } = await ResourceService.getAllResource();
     setResources(data);
   }
-
-  useEffect(() => {
+  async function getAll() {
     getAllBuilding();
     getAllUser();
     getAllRoom();
     getAllResource();
+  }
+  useEffect(() => {
+    getAll();
     setLoaded(true);
   }, []);
 
@@ -150,44 +162,77 @@ export default function AdminBoard(props) {
         <div>
           <ButtonGroup variant="text" aria-label="text button group">
             {summary && (
-              <Button color="error" type="submit" onClick={() => hideSummary()}>
+              <Button
+                startIcon={<HideSourceIcon />}
+                color="error"
+                type="submit"
+                onClick={() => hideSummary()}
+              >
                 Hide Summary
               </Button>
             )}
             {!summary && (
-              <Button type="submit" onClick={() => showSummary()}>
+              <Button
+                startIcon={<SummarizeIcon />}
+                type="submit"
+                onClick={() => showSummary()}
+              >
                 Summary
               </Button>
             )}
             {!buildingDashboard && (
-              <Button onClick={() => showBuildingSummary()}>
+              <Button
+                startIcon={<DashboardIcon />}
+                onClick={() => showBuildingSummary()}
+              >
                 {" "}
                 Building Dashboard
               </Button>
             )}
             {buildingDashboard && (
-              <Button color="error" onClick={() => hideBuildingSummary()}>
+              <Button
+                startIcon={<HideSourceIcon />}
+                color="error"
+                onClick={() => hideBuildingSummary()}
+              >
                 {" "}
                 Hide Building Dashboard
               </Button>
             )}
             {!roomDashboard && (
-              <Button onClick={() => showRoomSummary()}> Room Dashboard</Button>
+              <Button
+                startIcon={<DashboardIcon />}
+                onClick={() => showRoomSummary()}
+              >
+                {" "}
+                Room Dashboard
+              </Button>
             )}
             {roomDashboard && (
-              <Button color="error" onClick={() => hideRoomSummary()}>
+              <Button
+                startIcon={<HideSourceIcon />}
+                color="error"
+                onClick={() => hideRoomSummary()}
+              >
                 {" "}
                 Hide Room Dashboard
               </Button>
             )}
             {!resourceDashboard && (
-              <Button onClick={() => showResourceDashboard()}>
+              <Button
+                startIcon={<DashboardIcon />}
+                onClick={() => showResourceDashboard()}
+              >
                 {" "}
                 Resource Dashboard
               </Button>
             )}
             {resourceDashboard && (
-              <Button color="error" onClick={() => hideresourceDashboard()}>
+              <Button
+                startIcon={<HideSourceIcon />}
+                color="error"
+                onClick={() => hideresourceDashboard()}
+              >
                 {" "}
                 Hide Resource Dashboard
               </Button>
@@ -225,11 +270,13 @@ export default function AdminBoard(props) {
         <div>
           <ButtonGroup variant="text" aria-label="text button group">
             <Button
+              endIcon={<AddIcon />}
               onClick={(event) => (window.location.href = "/addBuilding")}
             >
               Add Building
             </Button>
             <Button
+              startIcon={<DomainIcon />}
               onClick={(event) => (window.location.href = "/listBuilding")}
             >
               List Building
@@ -237,20 +284,28 @@ export default function AdminBoard(props) {
           </ButtonGroup>
 
           <ButtonGroup variant="text" aria-label="text button group">
-            <Button onClick={(event) => (window.location.href = "/addRoom")}>
+            <Button
+              endIcon={<AddIcon />}
+              onClick={(event) => (window.location.href = "/addRoom")}
+            >
               Add Room
             </Button>
-            <Button onClick={(event) => (window.location.href = "/listRoom")}>
+            <Button
+              startIcon={<MeetingRoomIcon />}
+              onClick={(event) => (window.location.href = "/listRoom")}
+            >
               List Room
             </Button>
           </ButtonGroup>
           <ButtonGroup variant="text" aria-label="text button group">
             <Button
+              endIcon={<AddIcon />}
               onClick={(event) => (window.location.href = "/addResource")}
             >
               Add Resource
             </Button>
             <Button
+              startIcon={<Print />}
               onClick={(event) => (window.location.href = "/listResource")}
             >
               List Resource
@@ -259,6 +314,7 @@ export default function AdminBoard(props) {
           <div>
             <ButtonGroup variant="text" aria-label="text button group">
               <Button
+                startIcon={<AssignmentIndIcon />}
                 onClick={(event) => (window.location.href = "/allotment")}
               >
                 Allotment
@@ -270,6 +326,7 @@ export default function AdminBoard(props) {
             <ButtonGroup variant="text" aria-label="text button group">
               {userClick && (
                 <Button
+                  startIcon={<HideSourceIcon />}
                   color="error"
                   type="submit"
                   onClick={() => hideUserRoleManagement()}
@@ -278,7 +335,11 @@ export default function AdminBoard(props) {
                 </Button>
               )}
               {!userClick && (
-                <Button type="submit" onClick={() => showUserRoleManagement()}>
+                <Button
+                  startIcon={<PersonIcon />}
+                  type="submit"
+                  onClick={() => showUserRoleManagement()}
+                >
                   User Role Management
                 </Button>
               )}
@@ -288,6 +349,7 @@ export default function AdminBoard(props) {
             <ButtonGroup>
               {clickRoomReservation && (
                 <Button
+                  startIcon={<HideSourceIcon />}
                   color="error"
                   type="submit"
                   onClick={() => hideRoomReservationTable()}
@@ -296,7 +358,11 @@ export default function AdminBoard(props) {
                 </Button>
               )}
               {!clickRoomReservation && (
-                <Button type="submit" onClick={() => showReservations()}>
+                <Button
+                  startIcon={<EventSeatIcon />}
+                  type="submit"
+                  onClick={() => showReservations()}
+                >
                   List Room Reservations
                 </Button>
               )}

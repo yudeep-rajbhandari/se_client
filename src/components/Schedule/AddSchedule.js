@@ -6,7 +6,7 @@ import adminService from "../../services/admin.service";
 import DatePicker from "react-datepicker";
 import moment from "moment/moment";
 import BuildingService from "../../services/BuildingService";
-import { Rings } from "react-loader-spinner";
+import { Comment } from "react-loader-spinner";
 import { toast, ToastContainer } from "react-toastify";
 
 export default function AddSchedule(props) {
@@ -181,15 +181,15 @@ export default function AddSchedule(props) {
         </label>
 
         {!myLoader ? (
-          <Rings
+          <Comment
+            visible={true}
             height="80"
             width="80"
-            color="#4fa94d"
-            radius="6"
+            ariaLabel="comment-loading"
             wrapperStyle={{}}
-            wrapperClass=""
-            visible={true}
-            ariaLabel="rings-loading"
+            wrapperClass="comment-wrapper"
+            color="#FFB81C"
+            backgroundColor="#154734"
           />
         ) : null}
 

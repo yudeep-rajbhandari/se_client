@@ -11,7 +11,7 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import TableCell from "@mui/material/TableCell";
 import TableBody from "@mui/material/TableBody";
-import { Rings } from "react-loader-spinner";
+import { Comment } from "react-loader-spinner";
 import Button from "@mui/material/Button";
 import BikeScooterIcon from "@mui/icons-material/BikeScooter";
 import roomService from "../../services/RoomService";
@@ -98,15 +98,15 @@ export default function ViewSchedule(props) {
             dateFormat="MMMM d, yyyy"
           />
           {!myLoader ? (
-            <Rings
+            <Comment
+              visible={true}
               height="80"
               width="80"
-              color="#4fa94d"
-              radius="6"
+              ariaLabel="comment-loading"
               wrapperStyle={{}}
-              wrapperClass=""
-              visible={true}
-              ariaLabel="rings-loading"
+              wrapperClass="comment-wrapper"
+              color="#FFB81C"
+              backgroundColor="#154734"
             />
           ) : (
             <div>

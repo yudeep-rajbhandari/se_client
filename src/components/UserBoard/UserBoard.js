@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import AllotmentService from "../../services/AllotmentService";
 import Button from "@mui/material/Button";
 import MyAllotment from "./Allotment/MyAllotment";
-import { Rings } from "react-loader-spinner";
+import { Comment } from "react-loader-spinner";
 import ButtonGroup from "@mui/material/ButtonGroup";
 import ReservationService from "../../services/ReservationService";
 import MyReservation from "./Reservation/MyReservation";
@@ -104,16 +104,15 @@ export default function UserBoard(props) {
   } else {
     return (
       <div>
-        <Rings
-          align="center"
+        <Comment
+          visible={true}
           height="80"
           width="80"
-          color="#4fa94d"
-          radius="6"
+          ariaLabel="comment-loading"
           wrapperStyle={{}}
-          wrapperClass=""
-          visible={true}
-          ariaLabel="rings-loading"
+          wrapperClass="comment-wrapper"
+          color="#FFB81C"
+          backgroundColor="#154734"
         />
       </div>
     );

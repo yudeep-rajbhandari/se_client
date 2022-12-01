@@ -9,9 +9,10 @@ import Button from "@mui/material/Button";
 import ButtonGroup from "@mui/material/ButtonGroup";
 import { styled } from "@mui/material/styles";
 import TableCell, { tableCellClasses } from "@mui/material/TableCell";
-
+import ThumbUpIcon from "@mui/icons-material/ThumbUp";
 import Tooltip from "@mui/material/Tooltip";
-
+import ThumbDownAltIcon from "@mui/icons-material/ThumbDownAlt";
+import ArchiveIcon from "@mui/icons-material/Archive";
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
     backgroundColor: "#154734",
@@ -57,6 +58,7 @@ export default function RoomReservationTable(props) {
               <StyledTableCell>
                 <ButtonGroup variant="text" aria-label="text button group">
                   <Button
+                    startIcon={<ThumbUpIcon />}
                     style={{
                       backgroundColor: "#154734",
                       color: "#FFB81C",
@@ -67,6 +69,7 @@ export default function RoomReservationTable(props) {
                     APPROVE
                   </Button>
                   <Button
+                    startIcon={<ThumbDownAltIcon />}
                     style={{
                       backgroundColor: "#154734",
                       color: "#FFB81C",
@@ -77,6 +80,7 @@ export default function RoomReservationTable(props) {
                     DECLINE
                   </Button>
                   <Button
+                    startIcon={<ArchiveIcon />}
                     style={{
                       backgroundColor: "#154734",
                       color: "#FFB81C",
