@@ -3,7 +3,7 @@ import Form from "react-validation/build/form";
 import Input from "react-validation/build/input";
 import CheckButton from "react-validation/build/button";
 import { isEmail } from "validator";
-
+import { primaryButton, secondaryButton } from "../../common/Style/BaylorColor";
 import AuthService from "../../services/auth.service";
 import { Button } from "@mui/material";
 
@@ -177,10 +177,7 @@ export default class Register extends Component {
 
                 <div className="form-group">
                   <Button
-                    style={{
-                      backgroundColor: "#154734",
-                      color: "#FFB81C",
-                    }}
+                    style={primaryButton}
                     className="btn btn-primary btn-block"
                   >
                     Sign Up
@@ -205,8 +202,7 @@ export default class Register extends Component {
             )}
             <CheckButton
               style={{
-                backgroundColor: "#154734",
-                color: "#FFB81C",
+                display: "none",
               }}
               ref={(c) => {
                 this.checkBtn = c;

@@ -9,6 +9,13 @@ import BuildingService from "../../services/BuildingService";
 import { Comment } from "react-loader-spinner";
 import { toast, ToastContainer } from "react-toastify";
 
+import {
+  primaryButton,
+  secondaryButton,
+  primaryHeader,
+  StyledTableCell,
+  StyledTableRow,
+} from "../../common/Style/Style";
 export default function AddSchedule(props) {
   const [selectedFromTime, setSelectedFromTime] = useState(new Date());
   const [selectedFromDate, setSelectedFromDate] = useState(new Date());
@@ -167,6 +174,7 @@ export default function AddSchedule(props) {
     return (
       <div>
         <ToastContainer />
+        <h1 style={primaryHeader}>Add Schedule</h1>
         <label htmlFor="buildings">
           Associated Building
           <select

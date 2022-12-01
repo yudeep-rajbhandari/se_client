@@ -3,36 +3,26 @@ import BuildingService from "../../../../services/BuildingService";
 import { Comment } from "react-loader-spinner";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
-import TableCell, { tableCellClasses } from "@mui/material/TableCell";
+
 import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
-import TableRow from "@mui/material/TableRow";
+
 import Paper from "@mui/material/Paper";
-import { styled } from "@mui/material/styles";
+
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import { toast, ToastContainer } from "react-toastify";
 import DoorBackIcon from "@mui/icons-material/DoorBack";
 import AddIcon from "@mui/icons-material/Add";
-const StyledTableCell = styled(TableCell)(({ theme }) => ({
-  [`&.${tableCellClasses.head}`]: {
-    backgroundColor: "#154734",
-    color: theme.palette.common.white,
-  },
-  [`&.${tableCellClasses.body}`]: {
-    fontSize: 14,
-  },
-}));
 
-const StyledTableRow = styled(TableRow)(({ theme }) => ({
-  "&:nth-of-type(odd)": {
-    backgroundColor: theme.palette.action.hover,
-  },
-  // hide last border
-  "&:last-child td, &:last-child th": {
-    border: 0,
-  },
-}));
+import {
+  primaryButton,
+  secondaryButton,
+  primaryHeader,
+  StyledTableCell,
+  StyledTableRow,
+} from "../../../../common/Style/Style";
+
 export default function AddDirection(props) {
   const [buildings, setBuildings] = useState([]);
   const [loaded, setLoaded] = useState(false);
@@ -101,7 +91,7 @@ export default function AddDirection(props) {
             <ToastContainer />
           </div>
         )}
-        <h3>Add Direction </h3>
+        <h1 style={primaryHeader}>Direction</h1>
         <div>
           <TableContainer component={Paper}>
             <Table
@@ -110,15 +100,15 @@ export default function AddDirection(props) {
               aria-label="simple table"
             >
               <TableHead>
-                <TableRow>
+                <StyledTableRow>
                   <StyledTableCell>Select Building</StyledTableCell>
                   {buildingSelected && (
                     <StyledTableCell> Action</StyledTableCell>
                   )}
-                </TableRow>
+                </StyledTableRow>
               </TableHead>
               <TableBody>
-                <TableRow>
+                <StyledTableRow>
                   <StyledTableCell>
                     <select onChange={handleSelectedBuildingIdChange}>
                       <option key={0} value={0}>
@@ -141,7 +131,7 @@ export default function AddDirection(props) {
                       </Button>
                     </StyledTableCell>
                   )}
-                </TableRow>
+                </StyledTableRow>
               </TableBody>
             </Table>
           </TableContainer>
@@ -154,13 +144,13 @@ export default function AddDirection(props) {
                   aria-label="simple table"
                 >
                   <TableHead>
-                    <TableRow>
+                    <StyledTableRow>
                       <StyledTableCell>Gate Name</StyledTableCell>
                       <StyledTableCell>Latitude</StyledTableCell>
                       <StyledTableCell>Longitude</StyledTableCell>
                       <StyledTableCell>Elevator</StyledTableCell>
                       <StyledTableCell>Action</StyledTableCell>
-                    </TableRow>
+                    </StyledTableRow>
                   </TableHead>
                   <TableBody>
                     <StyledTableRow>

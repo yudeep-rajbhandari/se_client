@@ -4,8 +4,9 @@ import Input from "react-validation/build/input";
 import CheckButton from "react-validation/build/button";
 
 import AuthService from "../../services/auth.service";
-
+import { primaryButton, secondaryButton } from "../../common/Style/BaylorColor";
 import { withRouter } from "../../common/with-router";
+import { Button } from "@mui/material";
 
 const required = (value) => {
   if (!value) {
@@ -123,13 +124,14 @@ class Login extends Component {
 
             <div className="form-group">
               <button
+                style={primaryButton}
                 className="btn btn-primary btn-block"
                 disabled={this.state.loading}
               >
                 {this.state.loading && (
                   <span className="spinner-border spinner-border-sm"></span>
                 )}
-                <span>Login</span>
+                <span>LOGIN</span>
               </button>
             </div>
 
@@ -143,8 +145,6 @@ class Login extends Component {
             <CheckButton
               style={{
                 display: "none",
-                backgroundColor: "#154734",
-                color: "#FFB81C",
               }}
               ref={(c) => {
                 this.checkBtn = c;

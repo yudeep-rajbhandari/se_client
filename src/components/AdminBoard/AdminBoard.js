@@ -25,6 +25,12 @@ import { Comment } from "react-loader-spinner";
 import { Print } from "@mui/icons-material";
 import AddIcon from "@mui/icons-material/Add";
 
+import {
+  primaryButton,
+  secondaryButton,
+  primaryHeader,
+} from "../../common/Style/Style";
+
 import * as React from "react";
 import CssBaseline from "@mui/material/CssBaseline";
 import Box from "@mui/material/Box";
@@ -143,7 +149,7 @@ export default function AdminBoard(props) {
   if (loaded && currentUser.roles[0] === "ROLE_ADMIN") {
     return (
       <div>
-        <h3 style={{ color: "#154734" }}>Dashboard</h3>
+        <h1 style={primaryHeader}>Dashboard</h1>
         <React.Fragment>
           <CssBaseline />
           <Container>
@@ -161,10 +167,7 @@ export default function AdminBoard(props) {
                 )}
                 {!summary && (
                   <Button
-                    style={{
-                      backgroundColor: "#154734",
-                      color: "#FFB81C",
-                    }}
+                    style={primaryButton}
                     startIcon={<SummarizeIcon />}
                     type="submit"
                     onClick={() => showSummary()}
@@ -174,10 +177,7 @@ export default function AdminBoard(props) {
                 )}
                 {!buildingDashboard && (
                   <Button
-                    style={{
-                      backgroundColor: "#154734",
-                      color: "#FFB81C",
-                    }}
+                    style={primaryButton}
                     startIcon={<DashboardIcon />}
                     onClick={() => showBuildingSummary()}
                   >
@@ -197,10 +197,7 @@ export default function AdminBoard(props) {
                 )}
                 {!roomDashboard && (
                   <Button
-                    style={{
-                      backgroundColor: "#154734",
-                      color: "#FFB81C",
-                    }}
+                    style={primaryButton}
                     startIcon={<DashboardIcon />}
                     onClick={() => showRoomSummary()}
                   >
@@ -220,10 +217,7 @@ export default function AdminBoard(props) {
                 )}
                 {!resourceDashboard && (
                   <Button
-                    style={{
-                      backgroundColor: "#154734",
-                      color: "#FFB81C",
-                    }}
+                    style={primaryButton}
                     startIcon={<DashboardIcon />}
                     onClick={() => showResourceDashboard()}
                   >
@@ -246,20 +240,14 @@ export default function AdminBoard(props) {
             <Box sx={{ bgcolor: "#FFB81C", height: "10vh", width: "150vh" }}>
               <ButtonGroup variant="text" aria-label="text button group">
                 <Button
-                  style={{
-                    backgroundColor: "#FFB81C",
-                    color: "#154734",
-                  }}
+                  style={secondaryButton}
                   endIcon={<AddIcon />}
                   onClick={(event) => (window.location.href = "/addBuilding")}
                 >
                   Add Building
                 </Button>
                 <Button
-                  style={{
-                    backgroundColor: "#FFB81C",
-                    color: "#154734",
-                  }}
+                  style={secondaryButton}
                   startIcon={<DomainIcon />}
                   onClick={(event) => (window.location.href = "/listBuilding")}
                 >
@@ -269,20 +257,14 @@ export default function AdminBoard(props) {
 
               <ButtonGroup variant="text" aria-label="text button group">
                 <Button
-                  style={{
-                    backgroundColor: "#FFB81C",
-                    color: "#154734",
-                  }}
+                  style={secondaryButton}
                   endIcon={<AddIcon />}
                   onClick={(event) => (window.location.href = "/addRoom")}
                 >
                   Add Room
                 </Button>
                 <Button
-                  style={{
-                    backgroundColor: "#FFB81C",
-                    color: "#154734",
-                  }}
+                  style={secondaryButton}
                   startIcon={<MeetingRoomIcon />}
                   onClick={(event) => (window.location.href = "/listRoom")}
                 >
@@ -291,20 +273,14 @@ export default function AdminBoard(props) {
               </ButtonGroup>
               <ButtonGroup variant="text" aria-label="text button group">
                 <Button
-                  style={{
-                    backgroundColor: "#FFB81C",
-                    color: "#154734",
-                  }}
+                  style={secondaryButton}
                   endIcon={<AddIcon />}
                   onClick={(event) => (window.location.href = "/addResource")}
                 >
                   Add Resource
                 </Button>
                 <Button
-                  style={{
-                    backgroundColor: "#FFB81C",
-                    color: "#154734",
-                  }}
+                  style={secondaryButton}
                   startIcon={<Print />}
                   onClick={(event) => (window.location.href = "/listResource")}
                 >
@@ -318,10 +294,7 @@ export default function AdminBoard(props) {
             >
               <ButtonGroup variant="text" aria-label="text button group">
                 <Button
-                  style={{
-                    backgroundColor: "#154734",
-                    color: "#FFB81C",
-                  }}
+                  style={primaryButton}
                   startIcon={<AssignmentIndIcon />}
                   onClick={(event) => (window.location.href = "/allotment")}
                 >
@@ -341,10 +314,7 @@ export default function AdminBoard(props) {
                 )}
                 {!userClick && (
                   <Button
-                    style={{
-                      backgroundColor: "#154734",
-                      color: "#FFB81C",
-                    }}
+                    style={primaryButton}
                     startIcon={<PersonIcon />}
                     type="submit"
                     onClick={() => showUserRoleManagement()}
@@ -366,10 +336,7 @@ export default function AdminBoard(props) {
                 )}
                 {!clickRoomReservation && (
                   <Button
-                    style={{
-                      backgroundColor: "#154734",
-                      color: "#FFB81C",
-                    }}
+                    style={primaryButton}
                     startIcon={<EventSeatIcon />}
                     type="submit"
                     onClick={() => showReservations()}
