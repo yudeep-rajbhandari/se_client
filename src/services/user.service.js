@@ -55,7 +55,9 @@ class UserService {
       headers: authHeader(),
     });
   }
-
+  getRoomBySchedule(fromDate,toDate) {
+    return axios.get(ROOM_URL + "getRoomBySchedule?fromDate="+fromDate+"&toDate="+toDate, { headers: authHeader() });
+  }
   getMyAllotment() {
     return null;
   }
