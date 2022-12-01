@@ -215,13 +215,13 @@ class App extends Component {
               </li>
             )} */}
 
-            {showAllotment && (
+            {/* {showAllotment && (
               <li className="nav-item">
                 <Link to={"/allotment"} className="nav-link">
                   Allotment
                 </Link>
               </li>
-            )}
+            )} */}
 
             {showReserveRoom && (
               <li className="nav-item">

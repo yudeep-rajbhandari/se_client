@@ -32,7 +32,7 @@ export default function RoomtypeTable(props) {
   function getClassroomCount() {
     var count = 0;
     props.rooms.map((room) => {
-      if (String(room.roomType) === "classroom") {
+      if (String(room.roomType) === "CLASSROOM") {
         count += 1;
       }
     });
@@ -41,7 +41,7 @@ export default function RoomtypeTable(props) {
   function getLabCount() {
     var count = 0;
     props.rooms.map((room) => {
-      if (String(room.roomType) === "lab") {
+      if (String(room.roomType) === "LAB") {
         count += 1;
       }
     });
@@ -51,7 +51,7 @@ export default function RoomtypeTable(props) {
   function getStaffroomCount() {
     var count = 0;
     props.rooms.map((room) => {
-      if (String(room.roomType) === "staffroom") {
+      if (String(room.roomType) === "STAFFROOM") {
         count += 1;
       }
     });
@@ -60,7 +60,7 @@ export default function RoomtypeTable(props) {
   function getWashroomCount() {
     var count = 0;
     props.rooms.map((room) => {
-      if (String(room.roomType) === "washroom") {
+      if (String(room.roomType) === "WASHROOM") {
         count += 1;
       }
     });
