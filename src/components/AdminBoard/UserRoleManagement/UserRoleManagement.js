@@ -8,9 +8,11 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import Button from "@mui/material/Button";
 import { styled } from "@mui/material/styles";
-
+import AdminPanelSettingsIcon from "@mui/icons-material/AdminPanelSettings";
 import adminService from "../../../services/admin.service";
 import { toast, ToastContainer } from "react-toastify";
+
+import Person2Icon from "@mui/icons-material/Person2";
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
     backgroundColor: "#154734",
@@ -106,6 +108,7 @@ export default function UserRoleManagement(props) {
                     getRole(row.roles.map((role) => role.name)) === "USER" && (
                       <div>
                         <Button
+                          startIcon={<AdminPanelSettingsIcon />}
                           style={{
                             backgroundColor: "#154734",
                             color: "#FFB81C",
@@ -123,6 +126,7 @@ export default function UserRoleManagement(props) {
                     getRole(row.roles.map((role) => role.name)) === "ADMIN" && (
                       <div>
                         <Button
+                          startIcon={<Person2Icon />}
                           style={{
                             backgroundColor: "#154734",
                             color: "#FFB81C",

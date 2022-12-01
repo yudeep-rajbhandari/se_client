@@ -64,11 +64,17 @@ export default function AdminBoard(props) {
     const { data } = await ResourceService.getAllResource();
     setResources(data);
   }
+
+  async function getAllRoomReservation() {
+    const { data } = await RoomReservationsService.getAllRoomReservation();
+    setRoomReservationList(data);
+  }
   async function getAll() {
     getAllBuilding();
     getAllUser();
     getAllRoom();
     getAllResource();
+    getAllRoomReservation();
   }
   useEffect(() => {
     getAll();
@@ -79,13 +85,7 @@ export default function AdminBoard(props) {
   const [roomReservationList, setRoomReservationList] = useState([]);
   const [count, setCount] = useState(0);
 
-  async function getAllRoomReservation() {
-    const { data } = await RoomReservationsService.getAllRoomReservation();
-    setRoomReservationList(data);
-  }
-
   async function showReservations() {
-    getAllRoomReservation();
     hideTable();
     setClickRoomReservation(true);
   }
