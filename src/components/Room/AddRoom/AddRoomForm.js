@@ -8,7 +8,7 @@ export default function AddRoomForm(props) {
   ));
   return (
     <div>
-      <h3> Add Room</h3>
+      <h3 style={{ color: "#154734" }}> Add Room</h3>
 
       <form onSubmit={props.onSubmit}>
         <label htmlFor="name"> Name</label>
@@ -19,10 +19,10 @@ export default function AddRoomForm(props) {
           Room Type
           <select onChange={props.handleRoomTypeChange}>
             <option value="0"> Select Room Type</option>
-            <option value="classroom">Class Room</option>
-            <option value="washroom">Wash Room</option>
-            <option value="lab">Lab</option>
-            <option value="staffroom">Staff Room</option>
+            <option value="CLASSROOM">Class Room</option>
+            <option value="WASHROOM">Wash Room</option>
+            <option value="LAB">Lab</option>
+            <option value="STAFFROOM">Staff Room</option>
           </select>
         </label>
 
@@ -40,8 +40,8 @@ export default function AddRoomForm(props) {
           </select>
         </label>
 
-        <br />
         <Button
+          style={{ backgroundColor: "#154734", color: "#FFB81C" }}
           startIcon={<SaveRoundedIcon />}
           variant="contained"
           type="submit"

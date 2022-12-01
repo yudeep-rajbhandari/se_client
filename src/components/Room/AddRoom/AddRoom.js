@@ -3,11 +3,11 @@ import { useRef, useState, useEffect } from "react";
 import AddRoomForm from "./AddRoomForm";
 import RoomService from "../../../services/RoomService";
 import BuildingService from "../../../services/BuildingService";
-import { Rings } from "react-loader-spinner";
-export default function AddRoom() {
+import { Comment } from "react-loader-spinner";
+export default function AddRoom(props) {
   const nameRef = useRef();
 
-  const roomTypeList = ["classroom", "staffroom", "lab", "washroom"];
+  const roomTypeList = ["CLASSROOM", "STAFFROOM", "LAB", "WASHROOM"];
 
   const [roomType, setRoomType] = useState(roomTypeList[0]);
   const [isBookable, setIsBookable] = useState(true);
@@ -32,14 +32,12 @@ export default function AddRoom() {
 
   function onSubmit(event) {
     event.preventDefault();
-
     const room = {
       name: nameRef.current.value,
       roomType: roomType,
       isBookable: isBookable,
       building: selectedBuilding,
     };
-
     addRoom(room);
   }
 
@@ -74,7 +72,7 @@ export default function AddRoom() {
     setSelectedBuilding(data);
   }
 
-  if (loaded) {
+  if (loaded && props.currentUser.roles[0] === "ROLE_ADMIN") {
     return (
       <div>
         <AddRoomForm
@@ -93,16 +91,15 @@ export default function AddRoom() {
   } else {
     return (
       <div>
-        <Rings
-          align="center"
+        <Comment
+          visible={true}
           height="80"
           width="80"
-          color="#4fa94d"
-          radius="6"
+          ariaLabel="comment-loading"
           wrapperStyle={{}}
-          wrapperClass=""
-          visible={true}
-          ariaLabel="rings-loading"
+          wrapperClass="comment-wrapper"
+          color="#FFB81C"
+          backgroundColor="#154734"
         />
       </div>
     );

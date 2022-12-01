@@ -13,7 +13,7 @@ import adminService from "../../../services/admin.service";
 import { toast, ToastContainer } from "react-toastify";
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
-    backgroundColor: theme.palette.common.black,
+    backgroundColor: "#154734",
     color: theme.palette.common.white,
   },
   [`&.${tableCellClasses.body}`]: {
@@ -31,11 +31,26 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
   },
 }));
 export default function UserRoleManagement(props) {
-  async function updateRole(user) {
+  console.log(props.currentUser.username);
+
+  async function updateRoleToAdmin(user) {
     await adminService
-      .updateRole(user)
+      .updateRoleToAdmin(user)
       .then((res) => {
-        toast("User " + res.data.username + " is set as    ADMIN");
+        toast("User " + res.data.username + " is set as ADMIN");
+        props.refreshUserTable();
+      })
+      .catch((error) => {
+        toast(error);
+      })
+      .finally(setStatus(true));
+  }
+
+  async function updateRoleToUser(user) {
+    await adminService
+      .updateRoleToUser(user)
+      .then((res) => {
+        toast("User " + res.data.username + " is set as USER");
         props.refreshUserTable();
       })
       .catch((error) => {
@@ -46,6 +61,13 @@ export default function UserRoleManagement(props) {
 
   const [status, setStatus] = useState(false);
 
+  function getRole(name) {
+    if (name[0] === "ROLE_ADMIN") {
+      return "ADMIN";
+    } else {
+      return "USER";
+    }
+  }
   return (
     <div>
       <div>
@@ -76,17 +98,44 @@ export default function UserRoleManagement(props) {
                 <StyledTableCell>{row.username}</StyledTableCell>
                 <StyledTableCell>{row.email}</StyledTableCell>
                 <StyledTableCell>
-                  {row.roles.map((role) => role.name)}
+                  {/* {row.roles.map((role) => role.name)} */}
+                  {getRole(row.roles.map((role) => role.name))}
                 </StyledTableCell>
                 <StyledTableCell>
-                  <Button
-                    variant="outlined"
-                    onClick={() => {
-                      updateRole(row);
-                    }}
-                  >
-                    Update Role
-                  </Button>
+                  {!(row.username === props.currentUser.username) &&
+                    getRole(row.roles.map((role) => role.name)) === "USER" && (
+                      <div>
+                        <Button
+                          style={{
+                            backgroundColor: "#154734",
+                            color: "#FFB81C",
+                          }}
+                          variant="outlined"
+                          onClick={() => {
+                            updateRoleToAdmin(row);
+                          }}
+                        >
+                          Make Admin
+                        </Button>
+                      </div>
+                    )}
+                  {!(row.username === props.currentUser.username) &&
+                    getRole(row.roles.map((role) => role.name)) === "ADMIN" && (
+                      <div>
+                        <Button
+                          style={{
+                            backgroundColor: "#154734",
+                            color: "#FFB81C",
+                          }}
+                          variant="outlined"
+                          onClick={() => {
+                            updateRoleToUser(row);
+                          }}
+                        >
+                          Make User
+                        </Button>
+                      </div>
+                    )}
                 </StyledTableCell>
               </StyledTableRow>
             ))}

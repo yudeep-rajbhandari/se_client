@@ -3,13 +3,15 @@ import {useEffect, useState} from "react";
 import LeafletComponent from "./leaflet.component";
 import LeafletComponent1 from "./indoornew.component";
 import L from "leaflet";
-import {Button, Modal, Typography} from "@mui/material";
-import {ModalContent} from "@chakra-ui/react";
+import {Button, Modal} from "@mui/material";
 import {Box} from "@mui/system";
+import outline from "./paths/buildingOutline"
+import allPaths from "./paths/paths"
+
 let json = require('./sample.json');
 
-
 export default function MapParentComponent(props){
+
     const [building,setBuilding] = useState(false)
     const [elevator,setElevator] = useState(false)
     const [room,setRoom] = useState(false)
@@ -24,8 +26,10 @@ export default function MapParentComponent(props){
     const [open2, setOpen2] = useState(false);
     const handleOpen2 = () => setOpen2(true);
     const handleClose2 = () => setOpen2(false);
+    const [inside,setInside] = useState(false)
+    const[path,setPath] = useState("")
+    const roomName = '308'
     function success(pos) {
-        console.log("<<<<<<<<<<<",pos)
         const latitude  = pos.coords.latitude;
         const longitude = pos.coords.longitude;
 
@@ -37,21 +41,37 @@ export default function MapParentComponent(props){
 
     }
     function getDistance(){
+        // console.log("direction",props.room.building.gate)
         var fromLatLng = L.latLng([currentPosition.lat,currentPosition.lng]);
         var dis = 111111111111111111111
-        var j = json.building.gates;
+        var j = props.room.building.gate;
         var gate = {}
         j.forEach(p=>{
 
-            var newDist = fromLatLng.distanceTo([p.lat, p.lng]);
+            var newDist = fromLatLng.distanceTo([p.latitude, p.longitude]);
             console.log("<<<<<<<<<",newDist)
             if(newDist < dis){
                 dis = newDist
                 setGate(p)
-                console.log(dis)
+                console.log(p)
             }
         })
 
+    }
+
+    function getRoomPath(){
+        var fromLatLng = L.latLng([currentPosition.lat,currentPosition.lng]);
+        var dis = 111111111111111111111
+        const filteredAllPath = allPaths.filter(j=> j.properties.name.split("_")[1] === roomName)
+        filteredAllPath.forEach(p=>{
+
+            var newDist = fromLatLng.distanceTo([p.geometry.coordinates[0][1], p.geometry.coordinates[0][1]]);
+            if(newDist < dis){
+                dis = newDist
+                setPath(p.properties.name)
+                console.log(p)
+            }
+        })
 
     }
 
@@ -59,7 +79,32 @@ export default function MapParentComponent(props){
 
         navigator.geolocation.getCurrentPosition(success);
     }
+    function isMarkerInsidePolygon(marker, poly) {
+        var polyPoints = poly.getLatLngs();
+        var x = marker.lat, y = marker.lng;
 
+        var inside = false;
+        for (var i = 0, j = polyPoints.length - 1; i < polyPoints.length; j = i++) {
+            var xi = polyPoints[i].lat, yi = polyPoints[i].lng;
+            var xj = polyPoints[j].lat, yj = polyPoints[j].lng;
+
+            var intersect = ((yi > y) != (yj > y))
+                && (x < (xj - xi) * (y - yi) / (yj - yi) + xi);
+            if (intersect) inside = !inside;
+        }
+
+        return inside;
+    };
+
+    function getBuildingPolygon() {
+        const aa = [];
+        outline.geometry.coordinates.forEach(j=>{
+            aa.push(new L.LatLng(j[1],j[0]))
+        })
+
+        var firstpolyline = new L.Polyline(aa)
+        return isMarkerInsidePolygon(currentPosition,firstpolyline)
+    }
     useEffect(()=>{
         getCurrentLocation();
     },[])
@@ -67,12 +112,37 @@ export default function MapParentComponent(props){
     useEffect(()=>{
         if(Object.keys(currentPosition).length !== 0){
            getDistance()
-
         }
 
+        if(getBuildingPolygon()){
 
+            let confirmAction = window.confirm("Are you inside the building?");
+            if (confirmAction) {
+
+                setInside(true)
+            } else {
+                setInside(false)
+            }
+
+        }
+        else {
+            console.log("<<<< I am outside")
+        }
 
     },[currentPosition.lng])
+
+    // function getElevatorPath(gate) {
+    //     const filteredAllPath = allPaths.filter(j=> j.properties.name === gate.elevatorName+'_'+roomName)
+    // }
+
+    useEffect(()=>{
+        if(inside===true){
+            getRoomPath()
+        }
+        else {
+            setPath(gate.elevator+'_'+props.room.name)
+        }
+    },[inside,gate])
     function clicker(aa){
         console.log(aa)
         if (aa === 'building') {
@@ -109,7 +179,7 @@ export default function MapParentComponent(props){
                 <div className="card-body">
                     <div
                         className="steps d-flex flex-wrap flex-sm-nowrap justify-content-between padding-top-2x padding-bottom-1x">
-                        <div className="step completed">
+                        { !inside && <div className="step completed">
                             <div className="step-icon-wrap">
                                 <div className="step-icon"><img src="https://img.icons8.com/ios-filled/50/null/city.png" /></div>
                             </div>
@@ -120,15 +190,15 @@ export default function MapParentComponent(props){
                                 onClose={handleClose}
                             >
                                 <Box sx={style}>
-                                    <img src={gate.pic}  width="500" height="600"/>
+                                    <img src={"images/"+gate.name+".jpg"}  width="600" height="800"/>
                                 </Box>
                             </Modal>
-                        </div>
-                        <div className="step completed">
+                        </div> }
+                        { !inside && <div className="step completed">
                             <div className="step-icon-wrap">
                                 <div className="step-icon"><img src="https://img.icons8.com/ios-filled/50/null/elevator-doors.png" /></div>
                             </div>
-                            <a className="step-title" onClick={ () => clicker("elevator")}>Take the  {gate.elevatorName}</a>
+                            <a className="step-title" onClick={ () => clicker("elevator")}>Take the  {gate.elevator} and go to Floor {props.room.floor}</a>
                             <br/> Look for<Button onClick={handleOpen1}>this sign</Button>
 
                             <Modal
@@ -137,10 +207,10 @@ export default function MapParentComponent(props){
 
                             >
                                 <Box sx={style}>
-                                    <img src={gate.elevatorpic}  width="500" height="600"/>
+                                    <img src={"images/"+gate.elevator+".jpg"}  width="500" height="600"/>
                                 </Box>
                             </Modal>
-                        </div>
+                        </div>}
                         <div className="step completed">
                             <div className="step-icon-wrap">
                                 <div className="step-icon"><img src="https://img.icons8.com/glyph-neue/64/null/room.png" /></div>
@@ -153,7 +223,7 @@ export default function MapParentComponent(props){
                                 onClose={handleClose2}
                             >
                                 <Box sx={style}>
-                                    <img src={gate.pic}  width="500" height="600"/>
+                                    <img src={gate.pic}  width="500" height="600" alt ="not available currently"/>
                                 </Box>
                             </Modal>
                         </div>
@@ -164,7 +234,7 @@ export default function MapParentComponent(props){
         </div>
 
             {building ? <div><LeafletComponent gate={gate}/> </div>:null}
-            {room ? <div><LeafletComponent1/> </div>:null}
+            {room ? <div><LeafletComponent1 path = {path}/> </div>:null}
 
         </div>
     )

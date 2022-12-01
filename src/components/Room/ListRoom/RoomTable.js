@@ -9,10 +9,11 @@ import Paper from "@mui/material/Paper";
 import Button from "@mui/material/Button";
 import ModeEditIcon from "@mui/icons-material/ModeEdit";
 import { styled } from "@mui/material/styles";
+import BikeScooterIcon from "@mui/icons-material/BikeScooter";
 import CsvDownloadButton from "react-json-to-csv";
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
-    backgroundColor: theme.palette.common.black,
+    backgroundColor: "#154734",
     color: theme.palette.common.white,
   },
   [`&.${tableCellClasses.body}`]: {
@@ -67,6 +68,7 @@ export default function RoomTable(props) {
                   <StyledTableCell>
                     {" "}
                     <Button
+                      style={{ backgroundColor: "#154734", color: "#FFB81C" }}
                       startIcon={<ModeEditIcon />}
                       variant="outlined"
                       aria-label="text button group"
@@ -74,11 +76,22 @@ export default function RoomTable(props) {
                     >
                       {" "}
                       Edit
+                    </Button>{" "}
+                    <Button
+                      style={{ backgroundColor: "#154734", color: "#FFB81C" }}
+                      startIcon={<BikeScooterIcon />}
+                      variant="outlined"
+                      aria-label="text button group"
+                      onClick={() => props.showDirection(row)}
+                    >
+                      {" "}
+                      DIRECTION
                     </Button>
                   </StyledTableCell>
 
                   <StyledTableCell>
                     <Button
+                      style={{ backgroundColor: "#154734", color: "#FFB81C" }}
                       variant="outlined"
                       aria-label="text button group"
                       onClick={() => props.viewResources(row)}

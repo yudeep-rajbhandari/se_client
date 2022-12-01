@@ -7,10 +7,10 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import { styled } from "@mui/material/styles";
 import DatePicker from "react-datepicker";
-import React, {useState} from "react";
+import React, { useState } from "react";
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
-    backgroundColor: theme.palette.common.black,
+    backgroundColor: "#154734",
     color: theme.palette.common.white,
   },
   [`&.${tableCellClasses.body}`]: {
@@ -29,9 +29,9 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 }));
 
 export default function AddAllotmentTable(props) {
-console.log(props)
+  console.log(props);
 
-    const userOptions = props.users.map((user) => (
+  const userOptions = props.users.map((user) => (
     <option key={user.id} value={user.id}>
       {user.email}
     </option>
@@ -98,16 +98,22 @@ console.log(props)
                   </select>
                 </StyledTableCell>
               )}
-              <StyledTableCell > <DatePicker
+              <StyledTableCell>
+                {" "}
+                <DatePicker
                   onChange={(date) => props.handleSelectedFromDateChange(date)}
-                  selected = {props.selectedFromDateChange}
+                  selected={props.selectedFromDateChange}
                   dateFormat="MMMM d, yyyy"
-              /></StyledTableCell>
-              <StyledTableCell> <DatePicker
+                />
+              </StyledTableCell>
+              <StyledTableCell>
+                {" "}
+                <DatePicker
                   onChange={(date) => props.handleSelectedToDateChange(date)}
-                  selected = {props.selectedToDateChange}
+                  selected={props.selectedToDateChange}
                   dateFormat="MMMM d, yyyy"
-              /></StyledTableCell>
+                />
+              </StyledTableCell>
               <StyledTableCell>
                 {props.selectedUserId && props.selectedBuildingId && (
                   <div>

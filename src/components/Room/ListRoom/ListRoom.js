@@ -2,18 +2,22 @@ import React, { useState, useEffect } from "react";
 import RoomService from "../../../services/RoomService";
 import EditRoomForm from "../EditRoom/EditRoomForm";
 import RoomTable from "./RoomTable";
-import { Rings } from "react-loader-spinner";
+import { Comment } from "react-loader-spinner";
 import ResourceService from "../../../services/ResourceService";
 import ListResourceByRoom from "../ListResourceByRoom/ListResourceByRoom";
-export default function ListRoom() {
+import MapParentComponent from "../../maps/mapParent.component";
+export default function ListRoom(props) {
   const [rooms, setRooms] = useState([]);
   const [resources, setResources] = useState([]);
   const [displayResources, setDisplyResources] = useState(false);
+  const [Direction, setDirection] = useState(false);
+  const [showTable, setShowTable] = useState(true);
 
   const [loaded, setLoaded] = useState(false);
   const [edit, setEdit] = useState(false);
   const [selectedRoom, setSelectedRoom] = useState();
   const [count, setCount] = useState(0);
+  const [selectedRoomDirection, setSelectedRoomDirection] = useState({});
 
   const [message, setMessage] = useState();
   const [status, setStatus] = useState(false);
@@ -43,7 +47,12 @@ export default function ListRoom() {
     setStatus(false);
     setSelectedRoom(room);
   }
-
+  function showDirection(room) {
+    console.log(room);
+    setSelectedRoomDirection(room);
+    setDirection(true);
+    setShowTable(false);
+  }
   function makeEditFalse() {
     setEdit(false);
     setStatus(true);
@@ -65,16 +74,22 @@ export default function ListRoom() {
     setEdit(false);
   }
 
-  if (loaded) {
+  if (loaded && props.currentUser.roles[0] === "ROLE_ADMIN") {
     return (
       <div>
-        <RoomTable
-          rooms={rooms}
-          onEditClick={(e) => {
-            onEditClick(e);
-          }}
-          viewResources={viewResources}
-        />
+        {Direction ? <MapParentComponent room={selectedRoomDirection} /> : null}
+        {showTable ? (
+          <RoomTable
+            rooms={rooms}
+            onEditClick={(e) => {
+              onEditClick(e);
+            }}
+            showDirection={(e) => {
+              showDirection(e);
+            }}
+            viewResources={viewResources}
+          />
+        ) : null}
         {edit && (
           <EditRoomForm
             selectedRoom={selectedRoom}
@@ -95,16 +110,15 @@ export default function ListRoom() {
   } else {
     return (
       <div>
-        <Rings
-          align="center"
+        <Comment
+          visible={true}
           height="80"
           width="80"
-          color="#4fa94d"
-          radius="6"
+          ariaLabel="comment-loading"
           wrapperStyle={{}}
-          wrapperClass=""
-          visible={true}
-          ariaLabel="rings-loading"
+          wrapperClass="comment-wrapper"
+          color="#FFB81C"
+          backgroundColor="#154734"
         />
       </div>
     );
