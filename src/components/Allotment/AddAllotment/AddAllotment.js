@@ -14,8 +14,8 @@ export default function AddAllotment(props) {
   const [selectedRoomId, setSelectedRoomId] = useState();
   const [selectedUserId, setSelectedUserId] = useState();
 
-  const[selectedFromTime,setSelectedFromTime] = useState(new Date())
-  const[selectedToTime,setSelectedToTime] = useState(new Date())
+  const [selectedFromTime, setSelectedFromTime] = useState(new Date());
+  const [selectedToTime, setSelectedToTime] = useState(new Date());
   const [status, setStatus] = useState(false);
   const [rooms, setRooms] = useState([]);
 
@@ -90,7 +90,13 @@ export default function AddAllotment(props) {
         </div>
       )}
 
-      <h3>Add Allotment</h3>
+      <h3
+        style={{
+          color: "#154734",
+        }}
+      >
+        Add Allotment
+      </h3>
       <div>
         <AddAllotmentTable
           handleSelectedBuildingIdChange={handleSelectedBuildingIdChange}
@@ -98,7 +104,6 @@ export default function AddAllotment(props) {
           handleSelectedRoomIdChange={handleSelectedRoomIdChange}
           handleSelectedFromDateChange={handleSelectedFromDateChange}
           handleSelectedToDateChange={handleSelectedToDateChange}
-
           users={props.users}
           buildings={props.buildings}
           rooms={rooms}
@@ -110,7 +115,6 @@ export default function AddAllotment(props) {
           buildingSelected={buildingSelected}
           selectedFromDateChange={selectedFromTime}
           selectedToDateChange={selectedToTime}
-
         />
       </div>
     </div>
