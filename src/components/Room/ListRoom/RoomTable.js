@@ -9,6 +9,7 @@ import Paper from "@mui/material/Paper";
 import Button from "@mui/material/Button";
 import ModeEditIcon from "@mui/icons-material/ModeEdit";
 import { styled } from "@mui/material/styles";
+import BikeScooterIcon from '@mui/icons-material/BikeScooter';
 import CsvDownloadButton from "react-json-to-csv";
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -75,6 +76,16 @@ export default function RoomTable(props) {
                       {" "}
                       Edit
                     </Button>
+                    {" "}
+                    <Button
+                        startIcon={<BikeScooterIcon />}
+                        variant="outlined"
+                        aria-label="text button group"
+                        onClick={() => props.showDirection(row)}
+                    >
+                      {" "}
+                      DIRECTION
+                    </Button>
                   </StyledTableCell>
 
                   <StyledTableCell>
@@ -86,6 +97,7 @@ export default function RoomTable(props) {
                       View Resource
                     </Button>
                   </StyledTableCell>
+
                 </StyledTableRow>
               ))}
             </TableBody>

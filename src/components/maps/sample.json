@@ -6,7 +6,7 @@
     "lat": "31.546290",
     "lng": "-97.117918",
     "pic": "/gate1.png",
-    "elevatorName": "Elevator A",
+    "elevatorName": "ElevatorE",
     "elevatorpic": "/elevator1.png"
   },
     {
@@ -14,7 +14,7 @@
       "lat": " 31.546013",
       "lng": "-97.117983",
       "pic": "/gate2.png",
-      "elevatorName": "Elevator A",
+      "elevatorName": "ElevatorE",
       "elevatorpic": "/elevator1.png"
     },
     {
@@ -22,7 +22,7 @@
       "lat": "31.545883",
       "lng": "-97.118375",
       "pic": "/gate2.png",
-      "elevatorName": "Elevator A",
+      "elevatorName": "ElevatorE",
       "elevatorpic": "/elevator1.png"
     }
     ]

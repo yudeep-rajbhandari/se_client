@@ -7,7 +7,7 @@ import RoutineMachine from "./routingmachine.component";
 import IndoorMachine from "./leafindoor.component";
 import { renderToStaticMarkup } from 'react-dom/server';
 
-export default function LeafletComponent1(){
+export default function LeafletComponent1(props){
     const position1 = [51.505, -0.09]
     const[marker1,setMarker1] = useState("myhouse")
     const[isPosition,setisPosition] = useState(false)
@@ -60,7 +60,7 @@ export default function LeafletComponent1(){
                 attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
 
             />
-            {isPosition && <IndoorMachine id ='1' key={currentPosition.lat} current={currentPosition}/>}
+            {isPosition && <IndoorMachine id ='1' key={currentPosition.lat} current={currentPosition} path = {props.path}/>}
         </MapContainer>
     );
 }

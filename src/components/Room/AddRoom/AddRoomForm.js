@@ -19,10 +19,10 @@ export default function AddRoomForm(props) {
           Room Type
           <select onChange={props.handleRoomTypeChange}>
             <option value="0"> Select Room Type</option>
-            <option value="classroom">Class Room</option>
-            <option value="washroom">Wash Room</option>
-            <option value="lab">Lab</option>
-            <option value="staffroom">Staff Room</option>
+            <option value="CLASSROOM">Class Room</option>
+            <option value="WASHROOM">Wash Room</option>
+            <option value="LAB">Lab</option>
+            <option value="STAFFROOM">Staff Room</option>
           </select>
         </label>
 
