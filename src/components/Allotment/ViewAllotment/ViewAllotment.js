@@ -55,7 +55,14 @@ export default function ViewAllotment(props) {
           <ToastContainer />{" "}
         </div>
       )}
-      <h3> View Allotment </h3>
+      <h3
+        style={{
+          color: "#154734",
+        }}
+      >
+        {" "}
+        View Allotment{" "}
+      </h3>
       <div>
         <TableContainer component={Paper}>
           <Table stickyHeader sx={{ minWidth: 650 }} aria-label="simple table">
@@ -91,6 +98,10 @@ export default function ViewAllotment(props) {
                   </StyledTableCell>
                   <StyledTableCell>
                     <Button
+                      style={{
+                        backgroundColor: "#154734",
+                        color: "#FFB81C",
+                      }}
                       variant="outlined"
                       startIcon={<BackspaceIcon />}
                       onClick={() => {
