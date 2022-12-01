@@ -131,6 +131,7 @@ export default function AddDirection(props) {
                     <StyledTableCell>
                       {" "}
                       <Button
+                        style={{ backgroundColor: "#154734", color: "#FFB81C" }}
                         variant="outlined"
                         onClick={() => addGatesClick()}
                       >
@@ -197,7 +198,14 @@ export default function AddDirection(props) {
                         ></TextField>
                       </StyledTableCell>
                       <StyledTableCell>
-                        <Button variant="outlined" onClick={() => addGate()}>
+                        <Button
+                          style={{
+                            backgroundColor: "#154734",
+                            color: "#FFB81C",
+                          }}
+                          variant="outlined"
+                          onClick={() => addGate()}
+                        >
                           {" "}
                           Add
                         </Button>

@@ -32,8 +32,9 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 export default function BuildingTable(props) {
   return (
     <div>
-      <h3>List of Buildings</h3>
+      <h3 style={{ color: "#154734" }}>List of Buildings</h3>
       <CsvDownloadButton
+        style={{ backgroundColor: "#154734", color: "#FFB81C" }}
         data={props.buildings}
         filename={"buildings.csv"}
         delimiter={","}
@@ -78,6 +79,7 @@ export default function BuildingTable(props) {
                     <Button
                       startIcon={<ModeEditIcon />}
                       variant="outlined"
+                      style={{ backgroundColor: "#154734", color: "#FFB81C" }}
                       onClick={() => props.onEditClick(row)}
                     >
                       Edit
@@ -89,6 +91,7 @@ export default function BuildingTable(props) {
                   <StyledTableCell>
                     <Button
                       variant="outlined"
+                      style={{ backgroundColor: "#154734", color: "#FFB81C" }}
                       onClick={() => props.viewRooms(row)}
                     >
                       View Rooms

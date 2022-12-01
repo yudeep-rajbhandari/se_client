@@ -33,7 +33,14 @@ export default function FindRoomByBuilding(props) {
       <h3> Rooms in Building: {props.selectedBuilding.name}</h3>
       {props.displayRooms && (
         <div>
-          <Button variant="outlined" onClick={() => props.hideRooms()}>
+          <Button
+            style={{
+              backgroundColor: "#154734",
+              color: "#FFB81C",
+            }}
+            variant="outlined"
+            onClick={() => props.hideRooms()}
+          >
             {" "}
             Hide Rooms
           </Button>
