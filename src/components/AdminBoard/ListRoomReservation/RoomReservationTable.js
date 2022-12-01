@@ -65,7 +65,6 @@ export default function RoomReservationTable(props) {
                     }}
                     onClick={() => props.acceptRoomReservation(row.id)}
                   >
-                    {" "}
                     APPROVE
                   </Button>
                   <Button

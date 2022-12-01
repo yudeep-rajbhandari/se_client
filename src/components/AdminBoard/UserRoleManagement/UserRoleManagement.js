@@ -37,11 +37,11 @@ export default function UserRoleManagement(props) {
     await adminService
       .updateRoleToAdmin(user)
       .then((res) => {
-        toast("User " + res.data.username + " is set as ADMIN");
+        toast.success("User " + res.data.username + " is set as ADMIN");
         props.refreshUserTable();
       })
       .catch((error) => {
-        toast(error);
+        toast.error(error);
       })
       .finally(setStatus(true));
   }
@@ -50,11 +50,11 @@ export default function UserRoleManagement(props) {
     await adminService
       .updateRoleToUser(user)
       .then((res) => {
-        toast("User " + res.data.username + " is set as USER");
+        toast.success("User " + res.data.username + " is set as USER");
         props.refreshUserTable();
       })
       .catch((error) => {
-        toast(error);
+        toast.error(error);
       })
       .finally(setStatus(true));
   }
@@ -73,7 +73,7 @@ export default function UserRoleManagement(props) {
       <div>
         {status && (
           <div>
-            <ToastContainer />{" "}
+            <ToastContainer autoClose={1000} />{" "}
           </div>
         )}
       </div>

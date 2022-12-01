@@ -24,6 +24,11 @@ import MeetingRoomIcon from "@mui/icons-material/MeetingRoom";
 import { Comment } from "react-loader-spinner";
 import { Print } from "@mui/icons-material";
 import AddIcon from "@mui/icons-material/Add";
+
+import * as React from "react";
+import CssBaseline from "@mui/material/CssBaseline";
+import Box from "@mui/material/Box";
+import Container from "@mui/material/Container";
 export default function AdminBoard(props) {
   const [currentUser, setCurrentUser] = useState(props.currentUser);
   const [summary, setSummary] = useState(false);
@@ -81,11 +86,8 @@ export default function AdminBoard(props) {
 
   async function showReservations() {
     getAllRoomReservation();
+    hideTable();
     setClickRoomReservation(true);
-  }
-
-  function hideRoomReservationTable() {
-    setClickRoomReservation(false);
   }
 
   useEffect(() => {
@@ -103,55 +105,38 @@ export default function AdminBoard(props) {
   }
 
   function showSummary() {
-    setBuildingDashboard(false);
-    setRoomDashboard(false);
-    setResourceDashboard(false);
+    hideTable();
     setSummary(true);
-  }
-  function hideSummary() {
-    setSummary(false);
   }
 
   function showBuildingSummary() {
-    setSummary(false);
-    setRoomDashboard(false);
-    setResourceDashboard(false);
+    hideTable();
     setBuildingDashboard(true);
   }
 
-  function hideBuildingSummary() {
-    setBuildingDashboard(false);
-  }
-
   function showRoomSummary() {
-    setSummary(false);
-    setBuildingDashboard(false);
-    setResourceDashboard(false);
+    hideTable();
     setRoomDashboard(true);
   }
 
-  function hideRoomSummary() {
-    setRoomDashboard(false);
-  }
-
   function showResourceDashboard() {
-    setSummary(false);
-    setBuildingDashboard(false);
-    setRoomDashboard(false);
+    hideTable();
     setResourceDashboard(true);
   }
 
-  function hideresourceDashboard() {
-    setResourceDashboard(false);
-  }
-
   function showUserRoleManagement() {
+    hideTable();
     setUserClick(true);
   }
-  function hideUserRoleManagement() {
+
+  function hideTable() {
+    setClickRoomReservation(false);
+    setSummary(false);
+    setBuildingDashboard(false);
+    setRoomDashboard(false);
+    setResourceDashboard(false);
     setUserClick(false);
   }
-
   function refreshUserTable() {
     getAllUser();
   }
@@ -159,231 +144,293 @@ export default function AdminBoard(props) {
     return (
       <div>
         <h3 style={{ color: "#154734" }}>Dashboard</h3>
-        <div>
-          <ButtonGroup variant="text" aria-label="text button group">
-            {summary && (
-              <Button
-                startIcon={<HideSourceIcon />}
-                color="error"
-                type="submit"
-                onClick={() => hideSummary()}
-              >
-                Hide Summary
-              </Button>
-            )}
-            {!summary && (
-              <Button
-                startIcon={<SummarizeIcon />}
-                type="submit"
-                onClick={() => showSummary()}
-              >
-                Summary
-              </Button>
-            )}
-            {!buildingDashboard && (
-              <Button
-                startIcon={<DashboardIcon />}
-                onClick={() => showBuildingSummary()}
-              >
-                {" "}
-                Building Dashboard
-              </Button>
-            )}
-            {buildingDashboard && (
-              <Button
-                startIcon={<HideSourceIcon />}
-                color="error"
-                onClick={() => hideBuildingSummary()}
-              >
-                {" "}
-                Hide Building Dashboard
-              </Button>
-            )}
-            {!roomDashboard && (
-              <Button
-                startIcon={<DashboardIcon />}
-                onClick={() => showRoomSummary()}
-              >
-                {" "}
-                Room Dashboard
-              </Button>
-            )}
-            {roomDashboard && (
-              <Button
-                startIcon={<HideSourceIcon />}
-                color="error"
-                onClick={() => hideRoomSummary()}
-              >
-                {" "}
-                Hide Room Dashboard
-              </Button>
-            )}
-            {!resourceDashboard && (
-              <Button
-                startIcon={<DashboardIcon />}
-                onClick={() => showResourceDashboard()}
-              >
-                {" "}
-                Resource Dashboard
-              </Button>
-            )}
-            {resourceDashboard && (
-              <Button
-                startIcon={<HideSourceIcon />}
-                color="error"
-                onClick={() => hideresourceDashboard()}
-              >
-                {" "}
-                Hide Resource Dashboard
-              </Button>
-            )}
-          </ButtonGroup>
+        <React.Fragment>
+          <CssBaseline />
+          <Container>
+            <Box sx={{ bgcolor: "#154734", height: "10vh", width: "150vh" }}>
+              <ButtonGroup variant="text" aria-label="text button group">
+                {summary && (
+                  <Button
+                    startIcon={<HideSourceIcon />}
+                    color="error"
+                    type="submit"
+                    onClick={() => hideTable()}
+                  >
+                    Hide Summary
+                  </Button>
+                )}
+                {!summary && (
+                  <Button
+                    style={{
+                      backgroundColor: "#154734",
+                      color: "#FFB81C",
+                    }}
+                    startIcon={<SummarizeIcon />}
+                    type="submit"
+                    onClick={() => showSummary()}
+                  >
+                    Summary
+                  </Button>
+                )}
+                {!buildingDashboard && (
+                  <Button
+                    style={{
+                      backgroundColor: "#154734",
+                      color: "#FFB81C",
+                    }}
+                    startIcon={<DashboardIcon />}
+                    onClick={() => showBuildingSummary()}
+                  >
+                    {" "}
+                    Building Dashboard
+                  </Button>
+                )}
+                {buildingDashboard && (
+                  <Button
+                    startIcon={<HideSourceIcon />}
+                    color="error"
+                    onClick={() => hideTable()}
+                  >
+                    {" "}
+                    Hide Building Dashboard
+                  </Button>
+                )}
+                {!roomDashboard && (
+                  <Button
+                    style={{
+                      backgroundColor: "#154734",
+                      color: "#FFB81C",
+                    }}
+                    startIcon={<DashboardIcon />}
+                    onClick={() => showRoomSummary()}
+                  >
+                    {" "}
+                    Room Dashboard
+                  </Button>
+                )}
+                {roomDashboard && (
+                  <Button
+                    startIcon={<HideSourceIcon />}
+                    color="error"
+                    onClick={() => hideTable()}
+                  >
+                    {" "}
+                    Hide Room Dashboard
+                  </Button>
+                )}
+                {!resourceDashboard && (
+                  <Button
+                    style={{
+                      backgroundColor: "#154734",
+                      color: "#FFB81C",
+                    }}
+                    startIcon={<DashboardIcon />}
+                    onClick={() => showResourceDashboard()}
+                  >
+                    Resource Dashboard
+                  </Button>
+                )}
+                {resourceDashboard && (
+                  <Button
+                    startIcon={<HideSourceIcon />}
+                    color="error"
+                    onClick={() => hideTable()}
+                  >
+                    {" "}
+                    Hide Resource Dashboard
+                  </Button>
+                )}
+              </ButtonGroup>
+            </Box>
 
-          {summary && (
-            <div>
-              <Summary
-                buildings={buildings}
-                rooms={rooms}
-                resources={resources}
-              />
-            </div>
-          )}
-
-          {buildingDashboard && (
-            <div>
-              <BuildingDashboard buildings={buildings} />
-            </div>
-          )}
-
-          {roomDashboard && (
-            <div>
-              <RoomDashboard rooms={rooms} />
-            </div>
-          )}
-          {resourceDashboard && (
-            <div>
-              <ResourceDashoard resources={resources} />
-            </div>
-          )}
-        </div>
-
-        <div>
-          <ButtonGroup variant="text" aria-label="text button group">
-            <Button
-              endIcon={<AddIcon />}
-              onClick={(event) => (window.location.href = "/addBuilding")}
-            >
-              Add Building
-            </Button>
-            <Button
-              startIcon={<DomainIcon />}
-              onClick={(event) => (window.location.href = "/listBuilding")}
-            >
-              List Building
-            </Button>
-          </ButtonGroup>
-
-          <ButtonGroup variant="text" aria-label="text button group">
-            <Button
-              endIcon={<AddIcon />}
-              onClick={(event) => (window.location.href = "/addRoom")}
-            >
-              Add Room
-            </Button>
-            <Button
-              startIcon={<MeetingRoomIcon />}
-              onClick={(event) => (window.location.href = "/listRoom")}
-            >
-              List Room
-            </Button>
-          </ButtonGroup>
-          <ButtonGroup variant="text" aria-label="text button group">
-            <Button
-              endIcon={<AddIcon />}
-              onClick={(event) => (window.location.href = "/addResource")}
-            >
-              Add Resource
-            </Button>
-            <Button
-              startIcon={<Print />}
-              onClick={(event) => (window.location.href = "/listResource")}
-            >
-              List Resource
-            </Button>
-          </ButtonGroup>
-          <div>
-            <ButtonGroup variant="text" aria-label="text button group">
-              <Button
-                startIcon={<AssignmentIndIcon />}
-                onClick={(event) => (window.location.href = "/allotment")}
-              >
-                Allotment
-              </Button>
-            </ButtonGroup>
-          </div>
-
-          <div>
-            <ButtonGroup variant="text" aria-label="text button group">
-              {userClick && (
+            <Box sx={{ bgcolor: "#FFB81C", height: "10vh", width: "150vh" }}>
+              <ButtonGroup variant="text" aria-label="text button group">
                 <Button
-                  startIcon={<HideSourceIcon />}
-                  color="error"
-                  type="submit"
-                  onClick={() => hideUserRoleManagement()}
+                  style={{
+                    backgroundColor: "#FFB81C",
+                    color: "#154734",
+                  }}
+                  endIcon={<AddIcon />}
+                  onClick={(event) => (window.location.href = "/addBuilding")}
                 >
-                  Hide User Role Management
+                  Add Building
                 </Button>
-              )}
-              {!userClick && (
                 <Button
-                  startIcon={<PersonIcon />}
-                  type="submit"
-                  onClick={() => showUserRoleManagement()}
+                  style={{
+                    backgroundColor: "#FFB81C",
+                    color: "#154734",
+                  }}
+                  startIcon={<DomainIcon />}
+                  onClick={(event) => (window.location.href = "/listBuilding")}
                 >
-                  User Role Management
+                  List Building
                 </Button>
-              )}
-            </ButtonGroup>
-          </div>
-          <div>
-            <ButtonGroup>
-              {clickRoomReservation && (
-                <Button
-                  startIcon={<HideSourceIcon />}
-                  color="error"
-                  type="submit"
-                  onClick={() => hideRoomReservationTable()}
-                >
-                  Hide Room Reservations
-                </Button>
-              )}
-              {!clickRoomReservation && (
-                <Button
-                  startIcon={<EventSeatIcon />}
-                  type="submit"
-                  onClick={() => showReservations()}
-                >
-                  List Room Reservations
-                </Button>
-              )}
-            </ButtonGroup>
-          </div>
+              </ButtonGroup>
 
-          {clickRoomReservation && (
-            <ListRoomReservation
-              roomReservationList={roomReservationList}
-              reloadComponent={reloadComponent}
-            />
-          )}
+              <ButtonGroup variant="text" aria-label="text button group">
+                <Button
+                  style={{
+                    backgroundColor: "#FFB81C",
+                    color: "#154734",
+                  }}
+                  endIcon={<AddIcon />}
+                  onClick={(event) => (window.location.href = "/addRoom")}
+                >
+                  Add Room
+                </Button>
+                <Button
+                  style={{
+                    backgroundColor: "#FFB81C",
+                    color: "#154734",
+                  }}
+                  startIcon={<MeetingRoomIcon />}
+                  onClick={(event) => (window.location.href = "/listRoom")}
+                >
+                  List Room
+                </Button>
+              </ButtonGroup>
+              <ButtonGroup variant="text" aria-label="text button group">
+                <Button
+                  style={{
+                    backgroundColor: "#FFB81C",
+                    color: "#154734",
+                  }}
+                  endIcon={<AddIcon />}
+                  onClick={(event) => (window.location.href = "/addResource")}
+                >
+                  Add Resource
+                </Button>
+                <Button
+                  style={{
+                    backgroundColor: "#FFB81C",
+                    color: "#154734",
+                  }}
+                  startIcon={<Print />}
+                  onClick={(event) => (window.location.href = "/listResource")}
+                >
+                  List Resource
+                </Button>
+              </ButtonGroup>
+            </Box>
+            <Box
+              spacing={2}
+              sx={{ bgcolor: "#154734", height: "10vh", width: "150vh" }}
+            >
+              <ButtonGroup variant="text" aria-label="text button group">
+                <Button
+                  style={{
+                    backgroundColor: "#154734",
+                    color: "#FFB81C",
+                  }}
+                  startIcon={<AssignmentIndIcon />}
+                  onClick={(event) => (window.location.href = "/allotment")}
+                >
+                  Allotment
+                </Button>
+              </ButtonGroup>
+              <ButtonGroup variant="text" aria-label="text button group">
+                {userClick && (
+                  <Button
+                    startIcon={<HideSourceIcon />}
+                    color="error"
+                    type="submit"
+                    onClick={() => hideTable()}
+                  >
+                    Hide User Role Management
+                  </Button>
+                )}
+                {!userClick && (
+                  <Button
+                    style={{
+                      backgroundColor: "#154734",
+                      color: "#FFB81C",
+                    }}
+                    startIcon={<PersonIcon />}
+                    type="submit"
+                    onClick={() => showUserRoleManagement()}
+                  >
+                    User Role Management
+                  </Button>
+                )}
+              </ButtonGroup>
+              <ButtonGroup variant="text" aria-label="text button group">
+                {clickRoomReservation && (
+                  <Button
+                    startIcon={<HideSourceIcon />}
+                    color="error"
+                    type="submit"
+                    onClick={() => hideTable()}
+                  >
+                    Hide Room Reservations
+                  </Button>
+                )}
+                {!clickRoomReservation && (
+                  <Button
+                    style={{
+                      backgroundColor: "#154734",
+                      color: "#FFB81C",
+                    }}
+                    startIcon={<EventSeatIcon />}
+                    type="submit"
+                    onClick={() => showReservations()}
+                  >
+                    List Room Reservations
+                  </Button>
+                )}
+              </ButtonGroup>
+            </Box>
+          </Container>
 
-          {userClick && (
-            <UserRoleManagement
-              users={users}
-              refreshUserTable={refreshUserTable}
-              currentUser={currentUser}
-            />
-          )}
-        </div>
+          <Container>
+            <Box
+              component="span"
+              sx={{ p: 2, border: "0px", height: "10vh", width: "150vh" }}
+            >
+              {summary && (
+                <Box sx={{ border: "0px", height: "10vh", width: "150vh" }}>
+                  <Summary
+                    buildings={buildings}
+                    rooms={rooms}
+                    resources={resources}
+                  />
+                </Box>
+              )}
+              {buildingDashboard && (
+                <Box sx={{ border: "0px", height: "10vh", width: "150vh" }}>
+                  <BuildingDashboard buildings={buildings} />
+                </Box>
+              )}
+              {roomDashboard && (
+                <Box sx={{ border: "0px", height: "10vh", width: "150vh" }}>
+                  <RoomDashboard rooms={rooms} />
+                </Box>
+              )}
+              {resourceDashboard && (
+                <Box sx={{ border: "0px", height: "10vh", width: "150vh" }}>
+                  <ResourceDashoard resources={resources} />
+                </Box>
+              )}
+            </Box>
+            {userClick && (
+              <Box sx={{ border: "0px", height: "10vh", width: "150vh" }}>
+                <UserRoleManagement
+                  users={users}
+                  refreshUserTable={refreshUserTable}
+                  currentUser={currentUser}
+                />
+              </Box>
+            )}
+
+            {clickRoomReservation && (
+              <Box sx={{ border: "0px", height: "10vh", width: "150vh" }}>
+                <ListRoomReservation
+                  roomReservationList={roomReservationList}
+                  reloadComponent={reloadComponent}
+                />
+              </Box>
+            )}
+          </Container>
+        </React.Fragment>
       </div>
     );
   } else {
