@@ -7,7 +7,7 @@ import { Rings } from "react-loader-spinner";
 export default function AddRoom() {
   const nameRef = useRef();
 
-  const roomTypeList = ["classroom", "staffroom", "lab", "washroom"];
+  const roomTypeList = ["CLASSROOM", "STAFFROOM", "LAB", "WASHROOM"];
 
   const [roomType, setRoomType] = useState(roomTypeList[0]);
   const [isBookable, setIsBookable] = useState(true);

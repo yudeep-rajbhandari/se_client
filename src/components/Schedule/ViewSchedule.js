@@ -12,6 +12,10 @@ import TableRow from "@mui/material/TableRow";
 import TableCell from "@mui/material/TableCell";
 import TableBody from "@mui/material/TableBody";
 import {Rings} from "react-loader-spinner";
+import Button from "@mui/material/Button";
+import BikeScooterIcon from "@mui/icons-material/BikeScooter";
+import roomService from "../../services/RoomService";
+import MapParentComponent from "../maps/mapParent.component";
 
 export default function ViewSchedule(props) {
   const [myLoader, setMyLoader] = useState(true);
@@ -19,7 +23,10 @@ export default function ViewSchedule(props) {
   const [selectDate,setSelectDate] = useState(new Date())
   const [schedule,setSchedule] = useState([])
   const [loading,setLoading] = useState(false)
+  const [isSelectedRoom,setIsSelectedRoom] = useState(false)
   const [scheduleLoading,setscheduleLoading] = useState(true)
+  const [showParent,setShowParent] = useState(true)
+  const [selectedRoom,setSelectedRoom] = useState()
     useEffect(()=>{
       setSelectDate(new Date())
       setMyLoader(false)
@@ -61,8 +68,21 @@ export default function ViewSchedule(props) {
 
   }
 
+  function showDirection(name) {
+    roomService.getRoomByName(name).then(res=>{
+
+      setSelectedRoom(res.data)
+      setIsSelectedRoom(true)
+      setShowParent(false)
+    })
+
+  }
+
   return(
 <div>
+
+  {isSelectedRoom && <MapParentComponent room={selectedRoom}/>}
+  {showParent && <div>
 <h1>Schedule</h1>
   <DatePicker
       onChange={(date) => refreshIt1(date)}
@@ -82,6 +102,7 @@ export default function ViewSchedule(props) {
           ariaLabel="rings-loading"
       />
       :<div>
+
       {schedule.length > 0 ? <TableContainer component={Paper}>
               <Table sx={{minWidth: 650}} aria-label="simple table">
                 <TableHead>
@@ -90,6 +111,7 @@ export default function ViewSchedule(props) {
                     <TableCell align="left">Name</TableCell>
                     <TableCell align="left">From Date</TableCell>
                     <TableCell align="left">To Date</TableCell>
+                    <TableCell align="left">Direction</TableCell>
 
                   </TableRow>
                 </TableHead>
@@ -105,6 +127,15 @@ export default function ViewSchedule(props) {
                         <TableCell align="left">{row.name}</TableCell>
                         <TableCell align="left">{moment(row.fromDate).format("hh:mm A")}</TableCell>
                         <TableCell align="left">{moment(row.toDate).format("hh:mm A")}</TableCell>
+                        <TableCell><Button
+                            startIcon={<BikeScooterIcon />}
+                            variant="outlined"
+                            aria-label="text button group"
+                            onClick={() => showDirection(row.room.name)}
+                        >
+                          {" "}
+                          DIRECTION
+                        </Button></TableCell>
                       </TableRow>
                   ))}
                 </TableBody>
@@ -114,6 +145,7 @@ export default function ViewSchedule(props) {
       }
       </div>
   }
+  </div>}
 </div>
   )
 
