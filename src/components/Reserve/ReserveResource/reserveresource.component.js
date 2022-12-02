@@ -1,48 +1,58 @@
-import React, { Component } from "react";
+import React, {Component, useEffect, useState} from "react";
+import ListResource from "../../Resource/ListResource/ListResource";
+import AuthService from "../../../services/auth.service";
+import {AppBar, Dialog, Slide, Toolbar, Typography} from "@mui/material";
+import {IconButton} from "@chakra-ui/react";
+import CloseIcon from "@mui/icons-material/Close";
+import ReserveRoom from "../ReserveRoom/reserve";
 
-import UserService from "../../../services/user.service";
-import EventBus from "../../../common/EventBus";
+const Transition = React.forwardRef(function Transition(
+    props: TransitionProps & {
+      children: React.ReactElement;
+    },
+    ref: React.Ref<unknown>,
+) {
+  return <Slide direction="up" ref={ref} {...props} />;
+});
+export default function  ReserveResource(props){
+  const [open1, setOpen1] =useState(true);
+  const user = AuthService.getCurrentUser();
+  const handleClickOpen1 = () => {
+    setOpen1(true);
+  };
 
-export default class ReserveResource extends Component {
-  constructor(props) {
-    super(props);
+  const handleClose1 = (filter) => {
+    setOpen1(false);
+  };
+  return(
+      <div>
+      <ListResource currentUser={user}/>
+  <Dialog
+      fullScreen
+      open={open1}
+      onClose={handleClose1}
+      TransitionComponent={Transition}
+  >
+    <AppBar style ={{backgroundColor: "#154734", color: "#FB81C"}} sx={{ position: 'relative' }}>
+      <Toolbar>
+        <IconButton
+            edge="start"
+            style ={{backgroundColor: "#154734", color: "#FFB81C"}}
+            onClick={handleClose1}
+            aria-label="close"
+        >
+          <CloseIcon />
+        </IconButton>
+        <Typography style ={{backgroundColor: "#154734", color: "#FFB81C"}}sx={{ ml: 2, flex: 1 }} variant="h6" component="div">
+          Select Date
+        </Typography>
+      </Toolbar>
 
-    this.state = {
-      content: ""
-    };
-  }
+    </AppBar>
+    <h1>aaaaaa</h1>
+    {/*<ReserveRoom notify1={notify1} showChild1={showChild1} room={room} />*/}
+  </Dialog>
 
-  componentDidMount() {
-    UserService.getAdminBoard().then(
-      response => {
-        this.setState({
-          content: response.data
-        });
-      },
-      error => {
-        this.setState({
-          content:
-            (error.response &&
-              error.response.data &&
-              error.response.data.message) ||
-            error.message ||
-            error.toString()
-        });
-
-        if (error.response && error.response.status === 401) {
-          EventBus.dispatch("logout");
-        }
-      }
-    );
-  }
-
-  render() {
-    return (
-      <div className="container">
-        <header className="jumbotron">
-          <h3>{this.state.content}</h3>
-        </header>
       </div>
-    );
-  }
+  )
 }
