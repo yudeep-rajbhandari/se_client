@@ -167,7 +167,7 @@ class App extends Component {
                 </Link>
               </li>
             )} */}
-            <li>
+            
               {showAdminBoard && (
                 <li className="nav-item">
                   <Link
@@ -179,8 +179,8 @@ class App extends Component {
                   </Link>
                 </li>
               )}
-            </li>
-            <li>
+            
+            
               {showUserBoard && (
                 <li className="nav-item">
                   <Link
@@ -192,7 +192,7 @@ class App extends Component {
                   </Link>
                 </li>
               )}
-            </li>
+            
 
             {/* {showAddBuilding && (
               <li className="nav-item">
