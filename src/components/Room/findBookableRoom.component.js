@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
 
 import UserService from "../../services/user.service";
-
+import EventSeatIcon from '@mui/icons-material/EventSeat';
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
-import TableCell from "@mui/material/TableCell";
+
 import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
-import TableRow from "@mui/material/TableRow";
+
 import Paper from "@mui/material/Paper";
 import ReserveRoom from "../Reserve/ReserveRoom/reserve";
 import { ToastContainer, toast } from "react-toastify";
@@ -31,6 +31,10 @@ import TextField from "@mui/material/TextField";
 import DatePicker from "react-datepicker";
 import {IconButton} from "@chakra-ui/react";
 import userService from "../../services/user.service";
+
+import { StyledTableCell, StyledTableRow } from "../../common/Style/Style";
+import PrimaryButton from "../../common/Button/PrimaryButton";
+
 const Transition = React.forwardRef(function Transition(
     props: TransitionProps & {
       children: React.ReactElement;
@@ -166,34 +170,34 @@ userService.getRoomBySchedule(selectedFromTime,selectedToTime).then(res=>{
         <TableContainer component={Paper}>
           <Table sx={{ minWidth: 650 }} aria-label="simple table">
             <TableHead>
-              <TableRow>
-                <TableCell>Name</TableCell>
-                <TableCell align="left">id</TableCell>
-                <TableCell align="left">Reserve</TableCell>
-              </TableRow>
+              <StyledTableRow>
+                <StyledTableCell>Name</StyledTableCell>
+                <StyledTableCell align="left">id</StyledTableCell>
+                <StyledTableCell align="left">Reserve</StyledTableCell>
+              </StyledTableRow>
             </TableHead>
             <TableBody>
               {rows.map((row) => (
-                <TableRow
+                <StyledTableRow
                   key={row.name}
                   sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
                 >
-                  <TableCell component="th" scope="row">
+                  <StyledTableCell component="th" scope="row">
                     {row.name}
-                  </TableCell>
-                  <TableCell align="left">{row.id}</TableCell>
-                  <TableCell align="left">
-                    <Button variant="outlined"
+                  </StyledTableCell>
+                  <StyledTableCell align="left">{row.id}</StyledTableCell>
+                  <StyledTableCell align="left">
+                    <PrimaryButton title = "Reserve"
+                    icon = {<EventSeatIcon />}
                       onClick={() => {
                         setShowChild(true);
                         setRoom(row);
                         handleClickOpen1();
                       }}
-                    >
-                      Reserve
-                    </Button>
-                  </TableCell>
-                </TableRow>
+                    />
+                   
+                  </StyledTableCell>
+                </StyledTableRow>
               ))}
             </TableBody>
           </Table>
