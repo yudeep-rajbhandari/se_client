@@ -1,53 +1,87 @@
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
-import TableCell from "@mui/material/TableCell";
+import { toast, ToastContainer } from "react-toastify";
 import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import Button from "@mui/material/Button";
 import ButtonGroup from "@mui/material/ButtonGroup";
+import { styled } from "@mui/material/styles";
+import TableCell, { tableCellClasses } from "@mui/material/TableCell";
+import ThumbUpIcon from "@mui/icons-material/ThumbUp";
+import Tooltip from "@mui/material/Tooltip";
+import ThumbDownAltIcon from "@mui/icons-material/ThumbDownAlt";
+import ArchiveIcon from "@mui/icons-material/Archive";
+import PrimaryButton from "../../../common/Button/PrimaryButton";
+const StyledTableCell = styled(TableCell)(({ theme }) => ({
+  [`&.${tableCellClasses.head}`]: {
+    backgroundColor: "#154734",
+    color: theme.palette.common.white,
+  },
+  [`&.${tableCellClasses.body}`]: {
+    fontSize: 14,
+  },
+}));
 
+const StyledTableRow = styled(TableRow)(({ theme }) => ({
+  "&:nth-of-type(odd)": {
+    backgroundColor: theme.palette.action.hover,
+  },
+  // hide last border
+  "&:last-child td, &:last-child th": {
+    border: 0,
+  },
+}));
 export default function RoomReservationTable(props) {
   return (
     <TableContainer component={Paper}>
       <Table stickyHeader sx={{ minWidth: 650 }} aria-label="simple table">
         <TableHead>
           <TableRow>
-            <TableCell>Room ID</TableCell>
-            <TableCell>From Date</TableCell>
-            <TableCell>To Date</TableCell>
-            <TableCell>Status</TableCell>
-            <TableCell>Action</TableCell>
+            <StyledTableCell>Room ID</StyledTableCell>
+            <StyledTableCell>From Date</StyledTableCell>
+            <StyledTableCell>To Date</StyledTableCell>
+            <StyledTableCell>Status</StyledTableCell>
+            <StyledTableCell>Action</StyledTableCell>
           </TableRow>
         </TableHead>
         <TableBody>
           {props.roomReservationList.map((row) => (
-            <TableRow
+            <StyledTableRow
               key={row.id}
               sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
             >
-              <TableCell>{row.roomId}</TableCell>
-              <TableCell>{row.fromDate}</TableCell>
-              <TableCell>{row.toDate}</TableCell>
-              <TableCell>{row.status}</TableCell>
-              <TableCell>
+              <StyledTableCell>{row.roomId}</StyledTableCell>
+              <StyledTableCell>{row.fromDate}</StyledTableCell>
+              <StyledTableCell>{row.toDate}</StyledTableCell>
+              <StyledTableCell>{row.status}</StyledTableCell>
+              <StyledTableCell>
                 <ButtonGroup variant="text" aria-label="text button group">
-                  <Button onClick={() => props.acceptRoomReservation(row.id)}>
-                    {" "}
-                    APPROVE
-                  </Button>
-                  <Button onClick={() => props.declineRoomReservation(row.id)}>
-                    {" "}
-                    DECLINE
-                  </Button>
-                  <Button onClick={() => props.archiveRoomReservation(row.id)}>
-                    {" "}
-                    ARCHIVE
-                  </Button>
+                  {row.status !== "APPROVED" && (
+                    <PrimaryButton
+                      title="Approve"
+                      icon={<ThumbUpIcon />}
+                      onClick={() => props.acceptRoomReservation(row.id)}
+                    />
+                  )}
+                  {row.status !== "DECLINED" && (
+                    <PrimaryButton
+                      title="Decline"
+                      icon={<ThumbDownAltIcon />}
+                      onClick={() => props.declineRoomReservation(row.id)}
+                    />
+                  )}
+                  {row.status !== "ARCHIVED" && (
+                    <PrimaryButton
+                      title="Archive"
+                      icon={<ArchiveIcon />}
+                      onClick={() => props.archiveRoomReservation(row.id)}
+                    />
+                  )}
                 </ButtonGroup>
-              </TableCell>
-            </TableRow>
+              </StyledTableCell>
+            </StyledTableRow>
           ))}
         </TableBody>
       </Table>

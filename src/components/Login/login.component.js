@@ -5,9 +5,9 @@ import CheckButton from "react-validation/build/button";
 
 import AuthService from "../../services/auth.service";
 
-import { withRouter } from '../../common/with-router';
-
-const required = value => {
+import { withRouter } from "../../common/with-router";
+import { primaryButton, primaryColor } from "../../common/Style/Style";
+const required = (value) => {
   if (!value) {
     return (
       <div className="alert alert-danger" role="alert">
@@ -28,19 +28,19 @@ class Login extends Component {
       username: "",
       password: "",
       loading: false,
-      message: ""
+      message: "",
     };
   }
 
   onChangeUsername(e) {
     this.setState({
-      username: e.target.value
+      username: e.target.value,
     });
   }
 
   onChangePassword(e) {
     this.setState({
-      password: e.target.value
+      password: e.target.value,
     });
   }
 
@@ -49,7 +49,7 @@ class Login extends Component {
 
     this.setState({
       message: "",
-      loading: true
+      loading: true,
     });
 
     this.form.validateAll();
@@ -60,7 +60,7 @@ class Login extends Component {
           this.props.router.navigate("/profile");
           window.location.reload();
         },
-        error => {
+        (error) => {
           const resMessage =
             (error.response &&
               error.response.data &&
@@ -70,13 +70,13 @@ class Login extends Component {
 
           this.setState({
             loading: false,
-            message: resMessage
+            message: resMessage,
           });
         }
       );
     } else {
       this.setState({
-        loading: false
+        loading: false,
       });
     }
   }
@@ -93,12 +93,14 @@ class Login extends Component {
 
           <Form
             onSubmit={this.handleLogin}
-            ref={c => {
+            ref={(c) => {
               this.form = c;
             }}
           >
             <div className="form-group">
-              <label htmlFor="username">Username</label>
+              <label htmlFor="username" style={primaryColor}>
+                Username
+              </label>
               <Input
                 type="text"
                 className="form-control"
@@ -110,7 +112,9 @@ class Login extends Component {
             </div>
 
             <div className="form-group">
-              <label htmlFor="password">Password</label>
+              <label htmlFor="password" style={primaryColor}>
+                Password
+              </label>
               <Input
                 type="password"
                 className="form-control"
@@ -123,13 +127,14 @@ class Login extends Component {
 
             <div className="form-group">
               <button
+                style={primaryButton}
                 className="btn btn-primary btn-block"
                 disabled={this.state.loading}
               >
                 {this.state.loading && (
                   <span className="spinner-border spinner-border-sm"></span>
                 )}
-                <span>Login</span>
+                <span>LOGIN</span>
               </button>
             </div>
 
@@ -141,8 +146,10 @@ class Login extends Component {
               </div>
             )}
             <CheckButton
-              style={{ display: "none" }}
-              ref={c => {
+              style={{
+                display: "none",
+              }}
+              ref={(c) => {
                 this.checkBtn = c;
               }}
             />

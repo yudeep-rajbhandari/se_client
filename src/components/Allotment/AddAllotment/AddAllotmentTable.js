@@ -1,32 +1,17 @@
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
-import TableCell, { tableCellClasses } from "@mui/material/TableCell";
 import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
-import TableRow from "@mui/material/TableRow";
-import Paper from "@mui/material/Paper";
-import { styled } from "@mui/material/styles";
-const StyledTableCell = styled(TableCell)(({ theme }) => ({
-  [`&.${tableCellClasses.head}`]: {
-    backgroundColor: theme.palette.common.black,
-    color: theme.palette.common.white,
-  },
-  [`&.${tableCellClasses.body}`]: {
-    fontSize: 14,
-  },
-}));
 
-const StyledTableRow = styled(TableRow)(({ theme }) => ({
-  "&:nth-of-type(odd)": {
-    backgroundColor: theme.palette.action.hover,
-  },
-  // hide last border
-  "&:last-child td, &:last-child th": {
-    border: 0,
-  },
-}));
+import Paper from "@mui/material/Paper";
+import React from "react";
+import DatePicker from "react-datepicker";
+import PrimaryButton from "../../../common/Button/PrimaryButton";
+import { StyledTableCell, StyledTableRow } from "../../../common/Style/Style";
 
 export default function AddAllotmentTable(props) {
+  console.log(props);
+
   const userOptions = props.users.map((user) => (
     <option key={user.id} value={user.id}>
       {user.email}
@@ -49,7 +34,7 @@ export default function AddAllotmentTable(props) {
       <TableContainer component={Paper}>
         <Table stickyHeader sx={{ minWidth: 650 }} aria-label="simple table">
           <TableHead>
-            <TableRow>
+            <StyledTableRow>
               <StyledTableCell>Select User</StyledTableCell>
               {props.userSelected && (
                 <StyledTableCell>Select Building</StyledTableCell>
@@ -61,10 +46,10 @@ export default function AddAllotmentTable(props) {
               <StyledTableCell>To Date</StyledTableCell>
               <StyledTableCell>Action</StyledTableCell>
               {/* <TableCell>Role</TableCell> */}
-            </TableRow>
+            </StyledTableRow>
           </TableHead>
           <TableBody>
-            <TableRow>
+            <StyledTableRow>
               <StyledTableCell>
                 <select onChange={props.handleSelectedUserIdChange}>
                   <option key="0" value="0">
@@ -94,22 +79,35 @@ export default function AddAllotmentTable(props) {
                   </select>
                 </StyledTableCell>
               )}
-              <StyledTableCell>From Date</StyledTableCell>
-              <StyledTableCell>To Date</StyledTableCell>
+              <StyledTableCell>
+                {" "}
+                <DatePicker
+                  onChange={(date) => props.handleSelectedFromDateChange(date)}
+                  selected={props.selectedFromDateChange}
+                  dateFormat="MMMM d, yyyy"
+                />
+              </StyledTableCell>
+              <StyledTableCell>
+                {" "}
+                <DatePicker
+                  onChange={(date) => props.handleSelectedToDateChange(date)}
+                  selected={props.selectedToDateChange}
+                  dateFormat="MMMM d, yyyy"
+                />
+              </StyledTableCell>
               <StyledTableCell>
                 {props.selectedUserId && props.selectedBuildingId && (
                   <div>
-                    <button
+                    <PrimaryButton
+                      title="Allot"
                       onClick={() => {
                         props.addAllotment();
                       }}
-                    >
-                      Allot
-                    </button>
+                    />
                   </div>
                 )}
               </StyledTableCell>
-            </TableRow>
+            </StyledTableRow>
           </TableBody>
         </Table>
       </TableContainer>

@@ -8,9 +8,9 @@ import RoomService from "../../../services/RoomService";
 
 import AddResourceForm from "./AddResourceForm";
 
-import { Rings } from "react-loader-spinner";
+import { Comment } from "react-loader-spinner";
 
-export default function AddResource() {
+export default function AddResource(props) {
   const [status, setStatus] = useState(false);
 
   const [message, setMessage] = useState();
@@ -115,7 +115,7 @@ export default function AddResource() {
     setSelectedRoomId(event.target.value);
   }
 
-  if (loaded) {
+  if (loaded && props.currentUser.roles[0] === "ROLE_ADMIN") {
     return (
       <div>
         <div>
@@ -140,16 +140,15 @@ export default function AddResource() {
   if (!loaded) {
     return (
       <div>
-        <Rings
-          align="center"
+        <Comment
+          visible={true}
           height="80"
           width="80"
-          color="#4fa94d"
-          radius="6"
+          ariaLabel="comment-loading"
           wrapperStyle={{}}
-          wrapperClass=""
-          visible={true}
-          ariaLabel="rings-loading"
+          wrapperClass="comment-wrapper"
+          color="#FFB81C"
+          backgroundColor="#154734"
         />
       </div>
     );

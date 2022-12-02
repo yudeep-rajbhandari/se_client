@@ -6,6 +6,7 @@ import AllotmentService from "../../../services/AllotmentService";
 import { toast, ToastContainer } from "react-toastify";
 import AddAllotmentTable from "./AddAllotmentTable";
 import RoomService from "../../../services/RoomService";
+import PrimaryHeader from "../../../common/Header/PrimaryHeader";
 
 export default function AddAllotment(props) {
   const [userSelected, setUserSelected] = useState(false);
@@ -14,6 +15,8 @@ export default function AddAllotment(props) {
   const [selectedRoomId, setSelectedRoomId] = useState();
   const [selectedUserId, setSelectedUserId] = useState();
 
+  const [selectedFromTime, setSelectedFromTime] = useState(new Date());
+  const [selectedToTime, setSelectedToTime] = useState(new Date());
   const [status, setStatus] = useState(false);
   const [rooms, setRooms] = useState([]);
 
@@ -21,12 +24,12 @@ export default function AddAllotment(props) {
     const allotment = {
       room: { id: selectedRoomId },
       user: { id: selectedUserId },
-      fromDate: new Date("01-01-2022"), // take this from Calendar
-      toDate: new Date("12-12-2022"), // take this from Calendar
+      fromDate: selectedFromTime, // take this from Calendar
+      toDate: selectedToTime, // take this from Calendar
     };
     await AllotmentService.addAllotment(allotment)
       .then((res) => {
-        toast(
+        toast.success(
           res.data.user.email +
             " is alloted to " +
             res.data.room.name +
@@ -37,7 +40,7 @@ export default function AddAllotment(props) {
         );
       })
       .catch((error) => {
-        toast("Error in adding user to the selected room");
+        toast.error("Error in adding user to the selected room");
       })
       .finally(() => {
         setStatus(true);
@@ -48,7 +51,6 @@ export default function AddAllotment(props) {
   function handleSelectedUserIdChange(event) {
     setSelectedUserId(event.target.value);
 
-    console.log(event.target.value);
     if (event.target.value !== 0) {
       setUserSelected(true);
     } else if (event.target.value === 0) {
@@ -66,6 +68,14 @@ export default function AddAllotment(props) {
     setSelectedRoomId(event.target.value);
   }
 
+  function handleSelectedFromDateChange(date) {
+    setSelectedFromTime(date);
+  }
+
+  function handleSelectedToDateChange(date) {
+    setSelectedToTime(date);
+  }
+
   async function getBookableRoomByBuilding(buildingId) {
     const { data } = await RoomService.getBookableRoomByBuilding(buildingId);
     setRooms((currentvalue) => {
@@ -81,12 +91,14 @@ export default function AddAllotment(props) {
         </div>
       )}
 
-      <h3>Add Allotment</h3>
+      <PrimaryHeader header="Add Allotment" />
       <div>
         <AddAllotmentTable
           handleSelectedBuildingIdChange={handleSelectedBuildingIdChange}
           handleSelectedUserIdChange={handleSelectedUserIdChange}
           handleSelectedRoomIdChange={handleSelectedRoomIdChange}
+          handleSelectedFromDateChange={handleSelectedFromDateChange}
+          handleSelectedToDateChange={handleSelectedToDateChange}
           users={props.users}
           buildings={props.buildings}
           rooms={rooms}
@@ -96,6 +108,8 @@ export default function AddAllotment(props) {
           selectedBuildingId={selectedBuildingId}
           userSelected={userSelected}
           buildingSelected={buildingSelected}
+          selectedFromDateChange={selectedFromTime}
+          selectedToDateChange={selectedToTime}
         />
       </div>
     </div>

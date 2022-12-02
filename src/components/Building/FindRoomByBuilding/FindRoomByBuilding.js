@@ -10,7 +10,7 @@ import { styled } from "@mui/material/styles";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
-    backgroundColor: theme.palette.common.black,
+    backgroundColor: "#154734",
     color: theme.palette.common.white,
   },
   [`&.${tableCellClasses.body}`]: {
@@ -33,7 +33,14 @@ export default function FindRoomByBuilding(props) {
       <h3> Rooms in Building: {props.selectedBuilding.name}</h3>
       {props.displayRooms && (
         <div>
-          <Button variant="outlined" onClick={() => props.hideRooms()}>
+          <Button
+            style={{
+              backgroundColor: "#154734",
+              color: "#FFB81C",
+            }}
+            variant="outlined"
+            onClick={() => props.hideRooms()}
+          >
             {" "}
             Hide Rooms
           </Button>

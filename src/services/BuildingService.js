@@ -5,6 +5,12 @@ import env from "react-dotenv";
 const BUILDING_URL = env.abc + "building";
 
 class BuildingService {
+  addBuidling(building) {
+    return axios.post(BUILDING_URL + "addBuilding", building, {
+      headers: authHeader(),
+    });
+  }
+
   findBuildingById(buildingId) {
     return axios.get(BUILDING_URL + "/findBuildingById/" + buildingId, {
       headers: authHeader(),
@@ -12,6 +18,7 @@ class BuildingService {
   }
 
   getAllBuilding() {
+    console.log(authHeader());
     return axios.get(BUILDING_URL + "/getAllBuilding", {
       headers: authHeader(),
     });

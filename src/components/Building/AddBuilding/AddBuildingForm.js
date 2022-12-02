@@ -14,7 +14,7 @@ export default function AddBuildingForm(props) {
       }}
     >
       <div className="addBuilding">
-        <h3>Add Building</h3>
+        <h3 style={{ color: "#154734" }}>Add Building</h3>
         <Box
           onSubmit={props.onSubmit}
           component="form"
@@ -43,7 +43,7 @@ export default function AddBuildingForm(props) {
           <div>
             <label htmlFor="address">
               {" "}
-              <h3>Add address:</h3>
+              <h3 style={{ color: "#154734" }}>Add address:</h3>
             </label>
             <TextField
               label="Street"
@@ -80,7 +80,9 @@ export default function AddBuildingForm(props) {
           <div>
             <label htmlFor="address">
               {" "}
-              <h3>Fill in the latitude and longitude info</h3>
+              <h3 style={{ color: "#154734" }}>
+                Fill in the latitude and longitude info
+              </h3>
             </label>
             <TextField
               label="Latitude"
@@ -100,6 +102,7 @@ export default function AddBuildingForm(props) {
             startIcon={<SaveRoundedIcon />}
             variant="contained"
             type="submit"
+            style={{ backgroundColor: "#154734", color: "#FFB81C" }}
           >
             Save Building
           </Button>

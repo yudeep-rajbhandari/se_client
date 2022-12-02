@@ -1,38 +1,30 @@
 import { useEffect, useState, useRef } from "react";
 import BuildingService from "../../../../services/BuildingService";
-import { Rings } from "react-loader-spinner";
+import { Comment } from "react-loader-spinner";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
-import TableCell, { tableCellClasses } from "@mui/material/TableCell";
+
 import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
-import TableRow from "@mui/material/TableRow";
+
 import Paper from "@mui/material/Paper";
-import { styled } from "@mui/material/styles";
+
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import { toast, ToastContainer } from "react-toastify";
+import DoorBackIcon from "@mui/icons-material/DoorBack";
+import AddIcon from "@mui/icons-material/Add";
 
-const StyledTableCell = styled(TableCell)(({ theme }) => ({
-  [`&.${tableCellClasses.head}`]: {
-    backgroundColor: theme.palette.common.black,
-    color: theme.palette.common.white,
-  },
-  [`&.${tableCellClasses.body}`]: {
-    fontSize: 14,
-  },
-}));
+import {
+  primaryButton,
+  secondaryButton,
+  primaryHeader,
+  StyledTableCell,
+  StyledTableRow,
+} from "../../../../common/Style/Style";
+import PrimaryHeader from "../../../../common/Header/PrimaryHeader";
 
-const StyledTableRow = styled(TableRow)(({ theme }) => ({
-  "&:nth-of-type(odd)": {
-    backgroundColor: theme.palette.action.hover,
-  },
-  // hide last border
-  "&:last-child td, &:last-child th": {
-    border: 0,
-  },
-}));
-export default function AddDirection() {
+export default function AddDirection(props) {
   const [buildings, setBuildings] = useState([]);
   const [loaded, setLoaded] = useState(false);
   const [selectedBuildingId, setSelectedBuildingId] = useState();
@@ -43,6 +35,7 @@ export default function AddDirection() {
   const latRef = useRef();
   const longRef = useRef();
   const elevatorRef = useRef();
+
   async function getAllBuilding() {
     const { data } = await BuildingService.getAllBuilding();
     setBuildings(data);
@@ -65,13 +58,10 @@ export default function AddDirection() {
   }
 
   function addGatesClick() {
-    console.log("make gates form appear");
     setAddgates(true);
   }
 
   function addGate() {
-    console.log("add gate to backend");
-
     const gate = {
       name: gateNameRef.current.value,
       latitude: latRef.current.value,
@@ -84,7 +74,6 @@ export default function AddDirection() {
   async function addGateToBuilding(gate, buildingId) {
     await BuildingService.addGate(gate, buildingId)
       .then((res) => {
-        console.log(res.data);
         toast(
           gateNameRef.current.value + " added in building " + res.data.name
         );
@@ -94,19 +83,16 @@ export default function AddDirection() {
       })
       .finally(setStatus(true));
   }
-  if (loaded) {
+
+  if (loaded && props.currentUser.roles[0] === "ROLE_ADMIN") {
     return (
       <div>
-        <div>
-          {" "}
-          {status && (
-            <div>
-              <ToastContainer />{" "}
-            </div>
-          )}
-        </div>
-
-        <h3>Add Direction </h3>
+        {status && (
+          <div>
+            <ToastContainer />
+          </div>
+        )}
+        <PrimaryHeader header="DIRECTION" />
         <div>
           <TableContainer component={Paper}>
             <Table
@@ -115,15 +101,15 @@ export default function AddDirection() {
               aria-label="simple table"
             >
               <TableHead>
-                <TableRow>
+                <StyledTableRow>
                   <StyledTableCell>Select Building</StyledTableCell>
                   {buildingSelected && (
                     <StyledTableCell> Action</StyledTableCell>
                   )}
-                </TableRow>
+                </StyledTableRow>
               </TableHead>
               <TableBody>
-                <TableRow>
+                <StyledTableRow>
                   <StyledTableCell>
                     <select onChange={handleSelectedBuildingIdChange}>
                       <option key={0} value={0}>
@@ -137,6 +123,8 @@ export default function AddDirection() {
                     <StyledTableCell>
                       {" "}
                       <Button
+                        startIcon={<DoorBackIcon />}
+                        style={{ backgroundColor: "#154734", color: "#FFB81C" }}
                         variant="outlined"
                         onClick={() => addGatesClick()}
                       >
@@ -144,7 +132,7 @@ export default function AddDirection() {
                       </Button>
                     </StyledTableCell>
                   )}
-                </TableRow>
+                </StyledTableRow>
               </TableBody>
             </Table>
           </TableContainer>
@@ -157,16 +145,16 @@ export default function AddDirection() {
                   aria-label="simple table"
                 >
                   <TableHead>
-                    <TableRow>
+                    <StyledTableRow>
                       <StyledTableCell>Gate Name</StyledTableCell>
                       <StyledTableCell>Latitude</StyledTableCell>
                       <StyledTableCell>Longitude</StyledTableCell>
                       <StyledTableCell>Elevator</StyledTableCell>
                       <StyledTableCell>Action</StyledTableCell>
-                    </TableRow>
+                    </StyledTableRow>
                   </TableHead>
                   <TableBody>
-                    <TableRow>
+                    <StyledTableRow>
                       <StyledTableCell>
                         <TextField
                           id="name"
@@ -203,12 +191,20 @@ export default function AddDirection() {
                         ></TextField>
                       </StyledTableCell>
                       <StyledTableCell>
-                        <Button variant="outlined" onClick={() => addGate()}>
+                        <Button
+                          startIcon={<AddIcon />}
+                          style={{
+                            backgroundColor: "#154734",
+                            color: "#FFB81C",
+                          }}
+                          variant="outlined"
+                          onClick={() => addGate()}
+                        >
                           {" "}
                           Add
                         </Button>
                       </StyledTableCell>
-                    </TableRow>
+                    </StyledTableRow>
                   </TableBody>
                 </Table>
               </TableContainer>
@@ -219,16 +215,15 @@ export default function AddDirection() {
     );
   } else {
     return (
-      <Rings
-        align="center"
+      <Comment
+        visible={true}
         height="80"
         width="80"
-        color="#4fa94d"
-        radius="6"
+        ariaLabel="comment-loading"
         wrapperStyle={{}}
-        wrapperClass=""
-        visible={true}
-        ariaLabel="rings-loading"
+        wrapperClass="comment-wrapper"
+        color="#FFB81C"
+        backgroundColor="#154734"
       />
     );
   }

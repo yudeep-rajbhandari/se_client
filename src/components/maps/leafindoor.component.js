@@ -557,41 +557,42 @@ export default function CreateIndoor(props) {
     var pointB = new L.LatLng(
         31.54505308,-97.11589327);
 
-  // var pointList=  [
-  //       new L.LatLng(
-  //
-  //           31.54640317,
-  //           -97.11818437,
-  //       ),
-  //       new L.LatLng(
-  //
-  //           31.54644864,
-  //           -97.11812558,
-  //       ),
-  //       new L.LatLng(
-  //
-  //           31.54656397,
-  //           -97.11826275,
-  //       ),
-  //       new L.LatLng(
-  //
-  //           31.54651425,
-  //           -97.11831187
-  //       )
-  //     ];
+    // var pointList=  [
+    //       new L.LatLng(
+    //
+    //           31.54640317,
+    //           -97.11818437,
+    //       ),
+    //       new L.LatLng(
+    //
+    //           31.54644864,
+    //           -97.11812558,
+    //       ),
+    //       new L.LatLng(
+    //
+    //           31.54656397,
+    //           -97.11826275,
+    //       ),
+    //       new L.LatLng(
+    //
+    //           31.54651425,
+    //           -97.11831187
+    //       )
+    //     ];
     var pointList = null;
-if(props.id =='1'){
-    pointList = path3;
-}
+    if(props.id =='1'){
+        pointList = path3;
+    }
+    console.log(props.path)
 
-const currentPath = allPaths.filter(p=>p.properties.name==='ElevatorA_354');
-console.log("hello world",currentPath)
+    const currentPath = allPaths.filter(p=>p.properties.name===props.path);
+    console.log("hello world",currentPath)
     const aa = [];
-if(currentPath.length <1){
-    return (
-        window.alert("Sorry! No path available in system right now.")
-    )
-}
+    if(currentPath.length <1){
+        return (
+            window.alert("Sorry no path available in system right now.")
+        )
+    }
     currentPath[0].geometry.coordinates.forEach(j=>{
         aa.push(new L.LatLng(j[1],j[0]))
     })
@@ -618,39 +619,42 @@ if(currentPath.length <1){
     var icon = newMarker.options.icon;
     icon.options.iconSize = [15, 25];
     newMarker.setIcon(icon);
-    var popup = newMarker.bindTooltip('<b>Hello world!</b><br />I am a popup.');
+    var mark1Name = props.path.split('_')[0]
+    var mark2Name = props.path.split('_')[1]
+    var popup = newMarker.bindTooltip(mark1Name);
     var newMarker1 = new L.marker(pointList[pointList.length-1]).addTo(map);
+    var popup1 = newMarker1.bindTooltip(mark2Name);
 
     map.fitBounds(firstpolyline.getBounds());
 
     L.geoJson(building,
-    {
+        {
 
-        onEachFeature: function (feature, layer) {
+            onEachFeature: function (feature, layer) {
 
-            // if (feature.geometry.type === "Polygon") {
+                // if (feature.geometry.type === "Polygon") {
 
-            var bounds = layer.getBounds();
-            // Get center of bounds
-            var center = bounds.getCenter();
-            var center = layer.getBounds().getCenter();
-            // if(feature.properties.name!=="")
-            // {
-            //
-            //     layer.bindTooltip(feature.properties.name, {permanent: true, direction: "center", className: "my-labels"});
-            //     layer.on("click", function (e) {
-            //         layer.bindPopup(feature.properties.name);
-            //     });
-            // }
+                var bounds = layer.getBounds();
+                // Get center of bounds
+                var center = bounds.getCenter();
+                var center = layer.getBounds().getCenter();
+                // if(feature.properties.name!=="")
+                // {
+                //
+                //     layer.bindTooltip(feature.properties.name, {permanent: true, direction: "center", className: "my-labels"});
+                //     layer.on("click", function (e) {
+                //         layer.bindPopup(feature.properties.name);
+                //     });
+                // }
 
 
-            /* var marker =L.circleMarker(center, {color: '', radius:10,Title:20}).bindTooltip(feature.properties.name, {permanent: true, direction: "center", className: "my-labels"});
-                    map.addLayer(marker);*/
-            // var polygonAndItsCenter = L.layerGroup([layer, marker]);
-            // }
-        },
-    }
+                /* var marker =L.circleMarker(center, {color: '', radius:10,Title:20}).bindTooltip(feature.properties.name, {permanent: true, direction: "center", className: "my-labels"});
+                        map.addLayer(marker);*/
+                // var polygonAndItsCenter = L.layerGroup([layer, marker]);
+                // }
+            },
+        }
     ).addTo(map);
-return null;
+    return null;
 
 };
