@@ -3,7 +3,7 @@ import { Routes, Route, Link } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 import goBears from "./images/baylorBears2.png";
-
+import AuthVerify from "./common/auth-verify";
 import AuthService from "./services/auth.service";
 
 import Login from "./components/Login/login.component";
@@ -429,7 +429,7 @@ class App extends Component {
           </Routes>
         </div>
 
-        {/* <AuthVerify logOut={this.logOut}/> */}
+        <AuthVerify logOut={this.logOut} />
       </div>
     );
   }
