@@ -62,14 +62,13 @@ export default function MapParentComponent(props){
     function getRoomPath(){
         var fromLatLng = L.latLng([currentPosition.lat,currentPosition.lng]);
         var dis = 111111111111111111111
-        const filteredAllPath = allPaths.filter(j=> j.properties.name.split("_")[1] === roomName)
+        const filteredAllPath = allPaths.filter(j=> j.properties.name.split("_")[1] === props.room.name)
         filteredAllPath.forEach(p=>{
 
             var newDist = fromLatLng.distanceTo([p.geometry.coordinates[0][1], p.geometry.coordinates[0][1]]);
             if(newDist < dis){
                 dis = newDist
                 setPath(p.properties.name)
-                console.log(p)
             }
         })
 
