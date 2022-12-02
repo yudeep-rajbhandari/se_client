@@ -1,8 +1,8 @@
 import React, {useEffect, useState} from "react";
 import DatePicker from "react-datepicker";
-
+import CloseIcon from '@mui/icons-material/Close';
 import "react-datepicker/dist/react-datepicker.css";
-
+import PublishIcon from '@mui/icons-material/Publish';
 import 'bootstrap/dist/css/bootstrap.min.css';
 // import './custom.scss';
 import moment from "moment";
@@ -15,6 +15,10 @@ import {ToastContainer, toast} from 'react-toastify';
 // Import toastify css file
 import 'react-toastify/dist/ReactToastify.css';
 import userService from "../../../services/user.service";
+import { Button } from "@mui/material";
+import { ButtonSpinner } from "@chakra-ui/react";
+import PrimaryButton from "../../../common/Button/PrimaryButton";
+import { Close } from "@mui/icons-material";
 
 // toast-configuration method,
 // it is compulsory method.
@@ -114,7 +118,7 @@ export default function ReserveRoom(props) {
         return (
             <div>
                 Room Reservation for room {props.room.name}
-                <div>   <button onClick={()=>{props.showChild1(false)}}>Close</button></div>
+                <div>   <PrimaryButton title= "Close"  icon = {<CloseIcon />} onClick={()=>{props.showChild1(false)}}/></div>
 
                 From date:
                 <DatePicker
@@ -137,7 +141,7 @@ export default function ReserveRoom(props) {
                     filterTime={filterPassedTime}
                     dateFormat="MMMM d, yyyy h:mm aa"
                 />
-                <button onClick={handleSubmit}>Submit</button>
+                <PrimaryButton title = "Submit" icon = {<PublishIcon />}onClick={handleSubmit}/>
             </div>
 
 
