@@ -28,6 +28,17 @@ class RoomService {
       headers: authHeader(),
     });
   }
+  getResourceById(resourceId) {
+    return axios.get(RESOURCE_URL + "/getResourceById/" + resourceId, {
+      headers: authHeader(),
+    });
+  }
+  reserveResource(resourceId) {
+    return axios.get(RESOURCE_URL + "/getResourceById/?roomId=" + resourceId, {
+      headers: authHeader(),
+    });
+  }
+
 }
 
 export default new RoomService();

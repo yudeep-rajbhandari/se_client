@@ -5,6 +5,8 @@ import {AppBar, Dialog, Slide, Toolbar, Typography} from "@mui/material";
 import {IconButton} from "@chakra-ui/react";
 import CloseIcon from "@mui/icons-material/Close";
 import ReserveRoom from "../ReserveRoom/reserve";
+import ReserveResourcePicker from "./reserveresourcepicker.component";
+import {toast} from "react-toastify";
 
 const Transition = React.forwardRef(function Transition(
     props: TransitionProps & {
@@ -15,12 +17,21 @@ const Transition = React.forwardRef(function Transition(
   return <Slide direction="up" ref={ref} {...props} />;
 });
 export default function  ReserveResource(props){
-  const [open1, setOpen1] =useState(true);
+  const [open1, setOpen1] =useState(props.open);
   const user = AuthService.getCurrentUser();
+  const [showChild,setShowChild] = useState(false)
   const handleClickOpen1 = () => {
     setOpen1(true);
   };
 
+  console.log("resourcemy",props)
+  const showChild1 = (childData) => {
+    console.log("childData called");
+    setShowChild(childData);
+  };
+  const notify1 = (childData) => {
+    toast(childData);
+  };
   const handleClose1 = (filter) => {
     setOpen1(false);
   };
@@ -49,8 +60,7 @@ export default function  ReserveResource(props){
       </Toolbar>
 
     </AppBar>
-    <h1>aaaaaa</h1>
-    {/*<ReserveRoom notify1={notify1} showChild1={showChild1} room={room} />*/}
+    <ReserveResourcePicker notify1={notify1} showChild1={showChild1} resource={props.resource} open={handleClose1}/>
   </Dialog>
 
       </div>

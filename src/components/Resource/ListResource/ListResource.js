@@ -73,7 +73,7 @@ export default function ListResource(props) {
       <div>
         {reservationLoaded ?
             <div>
-            <ReserveResource open={selectedResource}/>
+            <ReserveResource open={reservationLoaded} resource={selectedResource}/>
             </div>:
         <div>
 

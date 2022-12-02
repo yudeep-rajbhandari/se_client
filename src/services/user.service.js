@@ -61,6 +61,12 @@ class UserService {
   getMyAllotment() {
     return null;
   }
+
+  reserveResource(resourceId,body) {
+    return axios.post(RESERVATION_URL + "resource/" + resourceId, body,{
+      headers: authHeader(),
+    });
+  }
 }
 
 export default new UserService();
