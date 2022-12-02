@@ -39,8 +39,10 @@ import Container from "@mui/material/Container";
 import PrimaryHeader from "../../common/Header/PrimaryHeader";
 import PrimaryButton from "../../common/Button/PrimaryButton";
 import ErrorButton from "../../common/Button/ErrorButton";
+
+import AuthService from "../../services/auth.service";
 export default function AdminBoard(props) {
-  const [currentUser, setCurrentUser] = useState(props.currentUser);
+  const currentUser = AuthService.getCurrentUser();
   const [summary, setSummary] = useState(false);
   const [buildingDashboard, setBuildingDashboard] = useState(false);
   const [roomDashboard, setRoomDashboard] = useState(false);

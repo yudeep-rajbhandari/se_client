@@ -18,9 +18,7 @@ import Container from "@mui/material/Container";
 import PrimaryHeader from "../../common/Header/PrimaryHeader";
 import BookOnlineIcon from "@mui/icons-material/BookOnline";
 export default function UserBoard(props) {
-  const user = AuthService.getCurrentUser();
-  const [currentUser] = useState(props.currentUser);
-
+  const currentUser = AuthService.getCurrentUser();
   const [myAllotment, setMyAllotment] = useState([]);
   const [clickAllotment, setClickAllotment] = useState(false);
 
@@ -39,8 +37,8 @@ export default function UserBoard(props) {
     setMyReservation(data);
   }
   useEffect(() => {
-    getMyAllotment(user.id);
-    getMyReservation(user.id);
+    getMyAllotment(currentUser.id);
+    getMyReservation(currentUser.id);
     setLoaded(true);
   }, []);
 
