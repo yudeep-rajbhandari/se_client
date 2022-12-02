@@ -4,10 +4,10 @@ import UserService from "../../services/user.service";
 import EventSeatIcon from '@mui/icons-material/EventSeat';
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
-
+import FilterAltIcon from '@mui/icons-material/FilterAlt';
 import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
-
+import PublishIcon from '@mui/icons-material/Publish';
 import Paper from "@mui/material/Paper";
 import ReserveRoom from "../Reserve/ReserveRoom/reserve";
 import { ToastContainer, toast } from "react-toastify";
@@ -117,16 +117,15 @@ userService.getRoomBySchedule(selectedFromTime,selectedToTime).then(res=>{
         <ToastContainer />
 
         <div>
-          <Button variant="outlined" onClick={handleClickOpen}>
-            Filter by Time
-          </Button>
+          <PrimaryButton title = "Filter By Time" icon = {<FilterAltIcon />} onClick={handleClickOpen}/>
+        
           <Dialog
               fullScreen
               open={open}
               onClose={handleClose}
               TransitionComponent={Transition}
           >
-            <AppBar sx={{ position: 'relative' }}>
+            <AppBar style ={{backgroundColor: "#154734", color: "#FFB81C"}} sx={{ position: 'relative' }}>
               <Toolbar>
                 <IconButton
                     edge="start"
@@ -139,9 +138,8 @@ userService.getRoomBySchedule(selectedFromTime,selectedToTime).then(res=>{
                 <Typography sx={{ ml: 2, flex: 1 }} variant="h6" component="div">
                   Select Date
                 </Typography>
-                <Button autoFocus color="inherit" onClick={handleClose}>
-                  save
-                </Button>
+                <PrimaryButton title = "Submit" icon = {<PublishIcon />} onClick={handleClose}/>
+              
               </Toolbar>
             </AppBar>
             From date:
@@ -163,7 +161,10 @@ userService.getRoomBySchedule(selectedFromTime,selectedToTime).then(res=>{
                 // excludeDateIntervals={filterPassedTime()}
                 dateFormat="MMMM d, yyyy h:mm aa"
             />
-            <button onClick={()=>getRoomByDate()} >Submit</button>
+            <div>
+            <PrimaryButton title ="Submit" icon={<PublishIcon />} onClick={()=>getRoomByDate()} />
+            </div>
+            
 
           </Dialog>
         </div>
@@ -210,17 +211,17 @@ userService.getRoomBySchedule(selectedFromTime,selectedToTime).then(res=>{
                   onClose={handleClose1}
                   TransitionComponent={Transition}
               >
-                <AppBar sx={{ position: 'relative' }}>
+                <AppBar style ={{backgroundColor: "#154734", color: "#FB81C"}} sx={{ position: 'relative' }}>
                   <Toolbar>
                     <IconButton
                         edge="start"
-                        color="inherit"
+                       style ={{backgroundColor: "#154734", color: "#FFB81C"}}
                         onClick={handleClose1}
                         aria-label="close"
                     >
                       <CloseIcon />
                     </IconButton>
-                    <Typography sx={{ ml: 2, flex: 1 }} variant="h6" component="div">
+                    <Typography style ={{backgroundColor: "#154734", color: "#FFB81C"}}sx={{ ml: 2, flex: 1 }} variant="h6" component="div">
                       Select Date
                     </Typography>
                   </Toolbar>
