@@ -75,7 +75,7 @@ export default function ReserveResourcePicker(props) {
         console.log("reservationData",newbook)
 
         userService.reserveResource(props.resource, newbook).then(res=>{
-            props.notify1("Reservation applied for resource"+ res.data.id)
+            props.notify1("Reservation applied for resource "+ res.data.id)
         }).catch(err=>{
             console.log(err)
             props.notify1(err.response.data.message);

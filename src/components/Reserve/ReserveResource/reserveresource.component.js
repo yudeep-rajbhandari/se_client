@@ -6,7 +6,7 @@ import {IconButton} from "@chakra-ui/react";
 import CloseIcon from "@mui/icons-material/Close";
 import ReserveRoom from "../ReserveRoom/reserve";
 import ReserveResourcePicker from "./reserveresourcepicker.component";
-import {toast} from "react-toastify";
+import {toast, ToastContainer} from "react-toastify";
 
 const Transition = React.forwardRef(function Transition(
     props: TransitionProps & {
@@ -24,7 +24,6 @@ export default function  ReserveResource(props){
     setOpen1(true);
   };
 
-  console.log("resourcemy",props)
   const showChild1 = (childData) => {
     console.log("childData called");
     setShowChild(childData);
@@ -37,7 +36,9 @@ export default function  ReserveResource(props){
   };
   return(
       <div>
-      <ListResource currentUser={user}/>
+        <ToastContainer/>
+
+        <ListResource currentUser={user}/>
   <Dialog
       fullScreen
       open={open1}
