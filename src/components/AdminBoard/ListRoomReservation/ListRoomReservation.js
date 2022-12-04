@@ -67,6 +67,7 @@ export default function ListRoomReservation(props) {
     let messageData = JSON.parse(message.body);
     publicChats.push(messageData);
     setpublicChats([...publicChats]);
+    props.getWebsocketMessages(messageData);
   };
 
   return (

@@ -67,6 +67,7 @@ export default function AdminBoard(props) {
   const [resourceReservationList, setResourceReservationList] = useState([]);
   const [count, setCount] = useState(0);
 
+  const [webSocketMessage, setWebSocketMessage] = useState([]);
   async function getAllUser() {
     const { data } = await adminService.getAllUser();
     setUsers(data);
@@ -161,12 +162,28 @@ export default function AdminBoard(props) {
     getAllUser();
   }
 
+  function getWebsocketMessages(message) {
+    webSocketMessage.push(message);
+  }
   if (loaded && currentUser.roles[0] === "ROLE_ADMIN") {
     return (
       <div>
         <PrimaryHeader header="DASHBOARD" />
         <React.Fragment>
           <CssBaseline />
+          <Container>
+            <Box sx={{ bgcolor: "#154734", height: "10vh", width: "150vh" }}>
+              {webSocketMessage.map((message) => (
+                <li style={{ color: "#FFFFFF" }}>
+                  {message.senderName}:{message.message}
+                </li>
+              ))}
+            </Box>
+            <Box
+              component="span"
+              sx={{ p: 2, border: "0px", height: "10vh", width: "150vh" }}
+            ></Box>
+          </Container>
           <Container>
             <Box sx={{ bgcolor: "#154734", height: "10vh", width: "150vh" }}>
               <ButtonGroup variant="text" aria-label="text button group">
@@ -393,6 +410,7 @@ export default function AdminBoard(props) {
                   currentUser={currentUser}
                   roomReservationList={roomReservationList}
                   reloadComponent={reloadComponent}
+                  getWebsocketMessages={getWebsocketMessages}
                 />
               </Box>
             )}
