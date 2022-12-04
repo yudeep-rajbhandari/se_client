@@ -1,14 +1,12 @@
-
-
 import Button from "@mui/material/Button";
 import SaveRoundedIcon from "@mui/icons-material/SaveRounded";
 export default function AddResourceForm(props) {
   const buildingOptions = props.buildings.map((building) => (
     <option key={building.id} value={building.id}>
-    {building.name}
-  </option>
-));
- 
+      {building.name}
+    </option>
+  ));
+
   return (
     <div>
       <h3> Add Resource</h3>
@@ -38,20 +36,19 @@ export default function AddResourceForm(props) {
           </select>
         </label>
 
-{/* 
         <br />
         <label htmlFor="isBookable" value={props.isBookable}>
           Bookable?
         </label>
-        <input type="checkbox" onChange={props.handleIsBookableChange} /> */}
+        <input type="checkbox" onChange={props.handleIsBookableChange} />
 
-        {/* <br />
+        <br />
         <label htmlFor="buildings">
           Associated Building
           <select onChange={props.handleSelectedBuildingIdChange}>
-            {options}
+            {buildingOptions}
           </select>
-        </label> */}
+        </label>
 
         <br />
         <Button
