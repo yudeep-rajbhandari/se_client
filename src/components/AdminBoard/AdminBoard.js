@@ -39,6 +39,7 @@ import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
 import PrimaryHeader from "../../common/Header/PrimaryHeader";
 import PrimaryButton from "../../common/Button/PrimaryButton";
+import SecondaryButton from "../../common/Button/SecondaryButton";
 import ErrorButton from "../../common/Button/ErrorButton";
 
 import AuthService from "../../services/auth.service";
@@ -58,6 +59,15 @@ export default function AdminBoard(props) {
   const [userClick, setUserClick] = useState(false);
 
   const [loaded, setLoaded] = useState(false);
+
+
+  const [clickRoomReservation, setClickRoomReservation] = useState(false);
+  const [clickResourceReservation, setClickResourceReservation] = useState(false);
+  const [roomReservationList, setRoomReservationList] = useState([]);
+  const [resourceReservationList, setResourceReservationList] = useState([]);
+  const [count, setCount] = useState(0);
+
+
 
   async function getAllUser() {
     const { data } = await adminService.getAllUser();
@@ -83,6 +93,10 @@ export default function AdminBoard(props) {
     const { data } = await RoomReservationsService.getAllRoomReservation();
     setRoomReservationList(data);
   }
+
+  async function getAllResourceReservations(){
+    
+  }
   async function getAll() {
     getAllBuilding();
     getAllUser();
@@ -95,11 +109,9 @@ export default function AdminBoard(props) {
     setLoaded(true);
   }, []);
 
-  const [clickRoomReservation, setClickRoomReservation] = useState(false);
-  const [roomReservationList, setRoomReservationList] = useState([]);
-  const [count, setCount] = useState(0);
+ 
 
-  async function showReservations() {
+  async function showRoomReservations() {
     hideTable();
     setClickRoomReservation(true);
   }
@@ -303,22 +315,7 @@ export default function AdminBoard(props) {
                   />
                 )}
               </ButtonGroup>
-              <ButtonGroup variant="text" aria-label="text button group">
-                {clickRoomReservation && (
-                  <ErrorButton
-                    icon={<HideSourceIcon />}
-                    title="Hide Room Reservations"
-                    onClick={() => hideTable()}
-                  />
-                )}
-                {!clickRoomReservation && (
-                  <PrimaryButton
-                    title=" List Room Reservations"
-                    icon={<EventSeatIcon />}
-                    onClick={() => showReservations()}
-                  />
-                )}
-              </ButtonGroup>
+              
               <ButtonGroup variant="text" aria-label="text button group">
                 <PrimaryButton
                   title="Add Gates"
@@ -334,6 +331,44 @@ export default function AdminBoard(props) {
                   onClick={(event) => (window.location.href = "/addSchedule")}
                 />
               </ButtonGroup>
+            </Box>
+
+            <Box sx={{ bgcolor: "#FFB81C", height: "10vh", width: "150vh" }}>
+            <ButtonGroup variant="text" aria-label="text button group">
+                {clickRoomReservation && (
+                  <ErrorButton
+                    icon={<HideSourceIcon />}
+                    title="Hide Room Reservations"
+                    onClick={() => hideTable()}
+                  />
+                )}
+                {!clickRoomReservation && (
+                  <SecondaryButton
+                    title=" List Room Reservations"
+                    icon={<EventSeatIcon />}
+                    onClick={() => showRoomReservations()}
+                  />
+                )}
+              </ButtonGroup>
+              <ButtonGroup variant="text" aria-label="text button group">
+                {clickResourceReservation && (
+                  <ErrorButton
+                    icon={<HideSourceIcon />}
+                    title="Hide Resource Reservations"
+                    onClick={() => hideTable()}
+                  />
+                )}
+                {!clickResourceReservation && (
+                  <SecondaryButton
+                    title=" List Resource Reservations"
+                    icon={<EventSeatIcon />}
+                    onClick={() => showRoomReservations()}
+                  />
+                )}
+              </ButtonGroup>
+
+              
+              
             </Box>
           </Container>
 
