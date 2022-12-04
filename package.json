@@ -37,6 +37,8 @@
     "react-scripts": "5.0.1",
     "react-toastify": "^9.0.8",
     "react-validation": "^3.0.7",
+    "sockjs-client": "^1.6.1",
+    "stompjs": "^2.3.3",
     "styled-components": "^5.3.6",
     "validator": "^13.7.0",
     "wrld.js": "^1.1.0"

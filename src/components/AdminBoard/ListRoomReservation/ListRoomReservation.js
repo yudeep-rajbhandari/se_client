@@ -4,7 +4,7 @@ import RoomReservationTable from "./RoomReservationTable";
 import { toast, ToastContainer } from "react-toastify";
 import SockJS from "sockjs-client";
 import { over } from "stompjs";
-import authHeader from "../../../services/auth-header";
+
 var stompClient = null;
 export default function ListRoomReservation(props) {
   const BASE_URL = "http://localhost:8080/";
