@@ -49,10 +49,10 @@ export default function MyReservation(props) {
   }
 
   function checkStatus(status) {
-    if (status === "CANCELED") {
-      return true;
-    } else {
+    if (status === "PENDING") {
       return false;
+    } else {
+      return true;
     }
   }
   return (
@@ -85,7 +85,7 @@ export default function MyReservation(props) {
                 sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
               >
                 <StyledTableCell>{row.reserveType}</StyledTableCell>
-                <StyledTableCell>{row.roomId}</StyledTableCell>
+                <StyledTableCell>{row.entityName}</StyledTableCell>
                 <StyledTableCell>{row.status}</StyledTableCell>
                 <StyledTableCell>
                   {checkStatus(row.status)
