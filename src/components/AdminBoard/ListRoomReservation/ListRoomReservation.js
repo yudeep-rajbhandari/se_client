@@ -12,7 +12,7 @@ export default function ListRoomReservation(props) {
 
   const [publicChats, setpublicChats] = useState([]);
 
-  console.log(Sock);
+  
 
   const [currentUser, setCurrentUser] = useState(props.currentUser);
 
@@ -61,16 +61,23 @@ export default function ListRoomReservation(props) {
       message: "Reservation " + reservationId + " " + status,
       status: "MESSAGE",
     };
-    console.log("chatmessage", chatMessage);
+    
     stompClient.send("/app/message", {}, JSON.stringify(chatMessage));
   };
 
   const onPublicMessageReceived = (message) => {
-    console.log("Test");
+    
     let messageData = JSON.parse(message.body);
     publicChats.push(messageData);
     setpublicChats([...publicChats]);
   };
+  function getName(type, id){
+  if (type==="ROOM"){
+    return props.getRoomName(id)
+  }
+
+  }
+  
   return (
     <div>
       {publicChats.map((chat) => (
@@ -84,6 +91,7 @@ export default function ListRoomReservation(props) {
         acceptRoomReservation={acceptRoomReservation}
         declineRoomReservation={declineRoomReservation}
         archiveRoomReservation={archiveRoomReservation}
+        getName= {getName}
       />
     </div>
   );
