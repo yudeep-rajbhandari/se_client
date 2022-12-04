@@ -60,14 +60,12 @@ export default function AdminBoard(props) {
 
   const [loaded, setLoaded] = useState(false);
 
-
   const [clickRoomReservation, setClickRoomReservation] = useState(false);
-  const [clickResourceReservation, setClickResourceReservation] = useState(false);
+  const [clickResourceReservation, setClickResourceReservation] =
+    useState(false);
   const [roomReservationList, setRoomReservationList] = useState([]);
   const [resourceReservationList, setResourceReservationList] = useState([]);
   const [count, setCount] = useState(0);
-
-
 
   async function getAllUser() {
     const { data } = await adminService.getAllUser();
@@ -94,9 +92,7 @@ export default function AdminBoard(props) {
     setRoomReservationList(data);
   }
 
-  async function getAllResourceReservations(){
-    
-  }
+  async function getAllResourceReservations() {}
   async function getAll() {
     getAllBuilding();
     getAllUser();
@@ -108,8 +104,6 @@ export default function AdminBoard(props) {
     getAll();
     setLoaded(true);
   }, []);
-
- 
 
   async function showRoomReservations() {
     hideTable();
@@ -166,18 +160,6 @@ export default function AdminBoard(props) {
   function refreshUserTable() {
     getAllUser();
   }
-
-
-function getRoomName(id){
-  console.log(id)
-
-}
-
-function getResourceName(id){
-  resources.map((resource)=> { if (resource.id ===id) {
-    return resource.resourceName
-  }})
-}
 
   if (loaded && currentUser.roles[0] === "ROLE_ADMIN") {
     return (
@@ -327,7 +309,7 @@ function getResourceName(id){
                   />
                 )}
               </ButtonGroup>
-              
+
               <ButtonGroup variant="text" aria-label="text button group">
                 <PrimaryButton
                   title="Add Gates"
@@ -346,7 +328,7 @@ function getResourceName(id){
             </Box>
 
             <Box sx={{ bgcolor: "#FFB81C", height: "10vh", width: "150vh" }}>
-            <ButtonGroup variant="text" aria-label="text button group">
+              <ButtonGroup variant="text" aria-label="text button group">
                 {clickRoomReservation && (
                   <ErrorButton
                     icon={<HideSourceIcon />}
@@ -356,31 +338,12 @@ function getResourceName(id){
                 )}
                 {!clickRoomReservation && (
                   <SecondaryButton
-                    title=" Manage Room Reservations"
+                    title=" Manage Reservations"
                     icon={<EventSeatIcon />}
                     onClick={() => showRoomReservations()}
                   />
                 )}
               </ButtonGroup>
-              <ButtonGroup variant="text" aria-label="text button group">
-                {clickResourceReservation && (
-                  <ErrorButton
-                    icon={<HideSourceIcon />}
-                    title="Hide Resource Reservations"
-                    onClick={() => hideTable()}
-                  />
-                )}
-                {!clickResourceReservation && (
-                  <SecondaryButton
-                    title=" Manage Resource Reservations"
-                    icon={<EventSeatIcon />}
-                    onClick={() => showRoomReservations()}
-                  />
-                )}
-              </ButtonGroup>
-
-              
-              
             </Box>
           </Container>
 
@@ -430,8 +393,6 @@ function getResourceName(id){
                   currentUser={currentUser}
                   roomReservationList={roomReservationList}
                   reloadComponent={reloadComponent}
-                  getRoomName= {getRoomName}
-                  getResourceName = {getResourceName}
                 />
               </Box>
             )}

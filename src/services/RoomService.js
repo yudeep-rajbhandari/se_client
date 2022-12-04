@@ -58,8 +58,10 @@ class RoomService {
     });
   }
 
-  getRoomNameById(id){
-    return axios.get(ROOM_URL + "/getRoomNameById/" + id), {headers: authHeader(),}
+  getRoomNameById(id) {
+    return axios.get(ROOM_URL + "/getRoomNameById/" + id, {
+      headers: authHeader(),
+    });
   }
 }
 

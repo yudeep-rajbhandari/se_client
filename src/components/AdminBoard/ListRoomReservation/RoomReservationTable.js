@@ -37,10 +37,7 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
   },
 }));
 
-
-
 export default function RoomReservationTable(props) {
-  
   return (
     <TableContainer component={Paper}>
       <Table stickyHeader sx={{ minWidth: 650 }} aria-label="simple table">
@@ -61,9 +58,13 @@ export default function RoomReservationTable(props) {
               sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
             >
               <StyledTableCell>{row.reserveType}</StyledTableCell>
-              <StyledTableCell>{props.getName(row.reserveType, row.roomId)}</StyledTableCell>
-              <StyledTableCell>{moment(row.fromDate).format('MM/DD/YYYY h:mma')}</StyledTableCell>
-              <StyledTableCell>{moment(row.toDate).format('MM/DD/YYYY h:mma')}</StyledTableCell>
+              <StyledTableCell>{row.entityName}</StyledTableCell>
+              <StyledTableCell>
+                {moment(row.fromDate).format("MM/DD/YYYY h:mma")}
+              </StyledTableCell>
+              <StyledTableCell>
+                {moment(row.toDate).format("MM/DD/YYYY h:mma")}
+              </StyledTableCell>
               <StyledTableCell>{row.status}</StyledTableCell>
               <StyledTableCell>
                 <ButtonGroup variant="text" aria-label="text button group">
