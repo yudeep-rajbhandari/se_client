@@ -15,6 +15,8 @@ import ThumbDownAltIcon from "@mui/icons-material/ThumbDownAlt";
 import ArchiveIcon from "@mui/icons-material/Archive";
 import PrimaryButton from "../../../common/Button/PrimaryButton";
 import moment from "moment";
+import RoomService from "../../../services/RoomService";
+import ResourceService from "../../../services/ResourceService";
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
     backgroundColor: "#154734",
@@ -34,13 +36,18 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
     border: 0,
   },
 }));
+
+
+
 export default function RoomReservationTable(props) {
+  
   return (
     <TableContainer component={Paper}>
       <Table stickyHeader sx={{ minWidth: 650 }} aria-label="simple table">
         <TableHead>
           <TableRow>
-            <StyledTableCell>Room ID</StyledTableCell>
+            <StyledTableCell>Type</StyledTableCell>
+            <StyledTableCell>Name</StyledTableCell>
             <StyledTableCell>From Date</StyledTableCell>
             <StyledTableCell>To Date</StyledTableCell>
             <StyledTableCell>Status</StyledTableCell>
@@ -53,7 +60,8 @@ export default function RoomReservationTable(props) {
               key={row.id}
               sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
             >
-              <StyledTableCell>{row.roomId}</StyledTableCell>
+              <StyledTableCell>{row.reserveType}</StyledTableCell>
+              <StyledTableCell>{props.getName(row.reserveType, row.roomId)}</StyledTableCell>
               <StyledTableCell>{moment(row.fromDate).format('MM/DD/YYYY h:mma')}</StyledTableCell>
               <StyledTableCell>{moment(row.toDate).format('MM/DD/YYYY h:mma')}</StyledTableCell>
               <StyledTableCell>{row.status}</StyledTableCell>
