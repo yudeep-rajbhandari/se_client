@@ -26,6 +26,7 @@ import { Print } from "@mui/icons-material";
 import AddIcon from "@mui/icons-material/Add";
 import DoorBackIcon from "@mui/icons-material/DoorBack";
 import ScheduleIcon from "@mui/icons-material/Schedule";
+
 import {
   primaryButton,
   secondaryButton,
@@ -41,6 +42,7 @@ import PrimaryButton from "../../common/Button/PrimaryButton";
 import ErrorButton from "../../common/Button/ErrorButton";
 
 import AuthService from "../../services/auth.service";
+
 export default function AdminBoard(props) {
   const currentUser = AuthService.getCurrentUser();
   const [summary, setSummary] = useState(false);
@@ -152,6 +154,7 @@ export default function AdminBoard(props) {
   function refreshUserTable() {
     getAllUser();
   }
+
   if (loaded && currentUser.roles[0] === "ROLE_ADMIN") {
     return (
       <div>
@@ -377,6 +380,7 @@ export default function AdminBoard(props) {
             {clickRoomReservation && (
               <Box sx={{ border: "0px", height: "10vh", width: "150vh" }}>
                 <ListRoomReservation
+                  currentUser={currentUser}
                   roomReservationList={roomReservationList}
                   reloadComponent={reloadComponent}
                 />
@@ -384,6 +388,7 @@ export default function AdminBoard(props) {
             )}
           </Container>
         </React.Fragment>
+        <div></div>
       </div>
     );
   } else {
