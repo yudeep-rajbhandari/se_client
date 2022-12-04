@@ -167,6 +167,18 @@ export default function AdminBoard(props) {
     getAllUser();
   }
 
+
+function getRoomName(id){
+  console.log(id)
+
+}
+
+function getResourceName(id){
+  resources.map((resource)=> { if (resource.id ===id) {
+    return resource.resourceName
+  }})
+}
+
   if (loaded && currentUser.roles[0] === "ROLE_ADMIN") {
     return (
       <div>
@@ -418,6 +430,8 @@ export default function AdminBoard(props) {
                   currentUser={currentUser}
                   roomReservationList={roomReservationList}
                   reloadComponent={reloadComponent}
+                  getRoomName= {getRoomName}
+                  getResourceName = {getResourceName}
                 />
               </Box>
             )}
