@@ -2,7 +2,7 @@ window.env = {
   "TERM_PROGRAM": "vscode",
   "NODE": "/usr/local/bin/node",
   "INIT_CWD": "/Users/pranishbhagat/Downloads/se_client",
-  "_P9K_TTY": "/dev/ttys010",
+  "_P9K_TTY": "/dev/ttys000",
   "TERM": "xterm-256color",
   "SHELL": "/bin/zsh",
   "npm_config_metrics_registry": "https://registry.npmjs.org/",

@@ -6,7 +6,7 @@ const BUILDING_URL = env.abc + "building";
 
 class BuildingService {
   addBuidling(building) {
-    return axios.post(BUILDING_URL + "addBuilding", building, {
+    return axios.post(BUILDING_URL + "/addBuilding", building, {
       headers: authHeader(),
     });
   }
