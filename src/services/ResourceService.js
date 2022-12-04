@@ -39,6 +39,10 @@ class RoomService {
     });
   }
 
+  getResourceNameById(id){
+    return axios.get(RESOURCE_URL + "/getResourceNameById/" + id, {headers: authHeader(),})
+  }
+
 }
 
 export default new RoomService();
