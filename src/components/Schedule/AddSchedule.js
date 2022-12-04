@@ -1,14 +1,16 @@
 import React, { useEffect, useRef, useState } from "react";
 
-import userService from "../../services/user.service";
 import adminService from "../../services/admin.service";
+import userService from "../../services/user.service";
 
-import DatePicker from "react-datepicker";
 import moment from "moment/moment";
-import BuildingService from "../../services/BuildingService";
+import DatePicker from "react-datepicker";
 import { Comment } from "react-loader-spinner";
 import { toast, ToastContainer } from "react-toastify";
+import BuildingService from "../../services/BuildingService";
 
+import PrimaryButton from "../../common/Button/PrimaryButton";
+import PrimaryHeader from "../../common/Header/PrimaryHeader";
 export default function AddSchedule(props) {
   const [selectedFromTime, setSelectedFromTime] = useState(new Date());
   const [selectedFromDate, setSelectedFromDate] = useState(new Date());
@@ -167,6 +169,7 @@ export default function AddSchedule(props) {
     return (
       <div>
         <ToastContainer />
+        <PrimaryHeader header="ADD SCHEDULE" />
         <label htmlFor="buildings">
           Associated Building
           <select
@@ -282,7 +285,7 @@ export default function AddSchedule(props) {
                 </select>
               </label>
             ) : null}
-            <button onClick={handleSubmit}>Submit</button>
+            <PrimaryButton title="Add Schedule" onClick={handleSubmit} />
           </div>
         ) : (
           <p>No rooms found</p>

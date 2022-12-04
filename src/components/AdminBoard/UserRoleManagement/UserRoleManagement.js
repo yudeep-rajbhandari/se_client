@@ -1,35 +1,20 @@
 import React, { useState } from "react";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
-import TableCell, { tableCellClasses } from "@mui/material/TableCell";
+
 import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
-import Button from "@mui/material/Button";
-import { styled } from "@mui/material/styles";
 
+import AdminPanelSettingsIcon from "@mui/icons-material/AdminPanelSettings";
 import adminService from "../../../services/admin.service";
 import { toast, ToastContainer } from "react-toastify";
-const StyledTableCell = styled(TableCell)(({ theme }) => ({
-  [`&.${tableCellClasses.head}`]: {
-    backgroundColor: "#154734",
-    color: theme.palette.common.white,
-  },
-  [`&.${tableCellClasses.body}`]: {
-    fontSize: 14,
-  },
-}));
 
-const StyledTableRow = styled(TableRow)(({ theme }) => ({
-  "&:nth-of-type(odd)": {
-    backgroundColor: theme.palette.action.hover,
-  },
-  // hide last border
-  "&:last-child td, &:last-child th": {
-    border: 0,
-  },
-}));
+import Person2Icon from "@mui/icons-material/Person2";
+import PrimaryButton from "../../../common/Button/PrimaryButton";
+import { StyledTableCell, StyledTableRow } from "../../../common/Style/Style";
+
 export default function UserRoleManagement(props) {
   console.log(props.currentUser.username);
 
@@ -37,11 +22,11 @@ export default function UserRoleManagement(props) {
     await adminService
       .updateRoleToAdmin(user)
       .then((res) => {
-        toast("User " + res.data.username + " is set as ADMIN");
+        toast.success("User " + res.data.username + " is set as ADMIN");
         props.refreshUserTable();
       })
       .catch((error) => {
-        toast(error);
+        toast.error(error);
       })
       .finally(setStatus(true));
   }
@@ -50,11 +35,11 @@ export default function UserRoleManagement(props) {
     await adminService
       .updateRoleToUser(user)
       .then((res) => {
-        toast("User " + res.data.username + " is set as USER");
+        toast.success("User " + res.data.username + " is set as USER");
         props.refreshUserTable();
       })
       .catch((error) => {
-        toast(error);
+        toast.error(error);
       })
       .finally(setStatus(true));
   }
@@ -73,7 +58,7 @@ export default function UserRoleManagement(props) {
       <div>
         {status && (
           <div>
-            <ToastContainer />{" "}
+            <ToastContainer autoClose={1000} />{" "}
           </div>
         )}
       </div>
@@ -105,35 +90,25 @@ export default function UserRoleManagement(props) {
                   {!(row.username === props.currentUser.username) &&
                     getRole(row.roles.map((role) => role.name)) === "USER" && (
                       <div>
-                        <Button
-                          style={{
-                            backgroundColor: "#154734",
-                            color: "#FFB81C",
-                          }}
-                          variant="outlined"
+                        <PrimaryButton
+                          icon={<AdminPanelSettingsIcon />}
+                          title=" Make Admin"
                           onClick={() => {
                             updateRoleToAdmin(row);
                           }}
-                        >
-                          Make Admin
-                        </Button>
+                        />
                       </div>
                     )}
                   {!(row.username === props.currentUser.username) &&
                     getRole(row.roles.map((role) => role.name)) === "ADMIN" && (
                       <div>
-                        <Button
-                          style={{
-                            backgroundColor: "#154734",
-                            color: "#FFB81C",
-                          }}
-                          variant="outlined"
+                        <PrimaryButton
+                          icon={<Person2Icon />}
+                          title="      Make User"
                           onClick={() => {
                             updateRoleToUser(row);
                           }}
-                        >
-                          Make User
-                        </Button>
+                        />
                       </div>
                     )}
                 </StyledTableCell>

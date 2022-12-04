@@ -19,12 +19,13 @@ import { Button } from "@mui/material";
 import { ButtonSpinner } from "@chakra-ui/react";
 import PrimaryButton from "../../../common/Button/PrimaryButton";
 import { Close } from "@mui/icons-material";
+import resourceService from "../../../services/ResourceService";
 
 // toast-configuration method,
 // it is compulsory method.
 
 
-export default function ReserveRoom(props) {
+export default function ReserveResourcePicker(props) {
     const[loading,setLoading] = useState(false)
     const[selectedFromTime,setSelectedFromTime] = useState(new Date())
     const[selectedToTime,setSelectedToTime] = useState(new Date())
@@ -32,12 +33,14 @@ export default function ReserveRoom(props) {
 
 
     const[slots,setSlots] = useState([])
+
+
     //
     useEffect(() => {
-        console.log(props)
-        UserService.getRoom(props.room.id).then(res => {
-            console.log(res.data)
-            setSlots(res.data.roomReservation.map(i=>({
+
+        resourceService.getResourceById(props.resource).then(res => {
+            console.log("resource all",res.data)
+            setSlots(res.data.resourceReservations.map(i=>({
                 start: new Date(i.fromDate),
                 end: new Date(i.toDate)
             })))
@@ -45,16 +48,16 @@ export default function ReserveRoom(props) {
 
         })
         console.log("booking",slots)
-    },[props.room.id]);
+    },[props.resource]);
 
 
-    const refreshIt = (date)=>{
+    const refreshFromDate = (date)=>{
         setSelectedFromTime(date)
         setSelectedToTime(date)
 
     }
 
-    const refreshIt1 = (date)=>{
+    const refreshToDate = (date)=>{
         setSelectedToTime(date)
 
     }
@@ -71,14 +74,15 @@ export default function ReserveRoom(props) {
 
         console.log("reservationData",newbook)
 
-        userService.makeReservation(props.room.id, newbook).then(res=>{
-            props.notify1("Reservation applied for room"+ res.data.id)
+        userService.reserveResource(props.resource, newbook).then(res=>{
+            props.notify1("Reservation applied for resource"+ res.data.id)
         }).catch(err=>{
             console.log(err)
             props.notify1(err.response.data.message);
         })
 
         props.showChild1(false);
+        props.open();
 
     };
     const filterPassedTime = (time) =>{
@@ -117,12 +121,12 @@ export default function ReserveRoom(props) {
     if(loading) {
         return (
             <div>
-                Room Reservation for room {props.room.name}
+                Resource Reservation for resource {props.resource}
                 <div>   <PrimaryButton title= "Close"  icon = {<CloseIcon />} onClick={()=>{props.showChild1(false)}}/></div>
 
                 From date:
                 <DatePicker
-                    onChange={(date) => refreshIt(date)}
+                    onChange={(date) => refreshFromDate(date)}
                     selected = {selectedFromTime}
                     showTimeSelect
                     // excludeDateIntervals={filterPassedTime()}
@@ -131,7 +135,7 @@ export default function ReserveRoom(props) {
                 />
                 To Date:
                 <DatePicker
-                    onChange={(date) => refreshIt1(date)}
+                    onChange={(date) => refreshToDate(date)}
                     selected = {selectedToTime}
                     minDate={new Date()}
                     placeholderText="Select a day"

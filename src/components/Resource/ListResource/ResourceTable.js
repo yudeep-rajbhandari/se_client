@@ -50,6 +50,7 @@ export default function ResourceTable(props) {
                 <StyledTableCell> {row.c}</StyledTableCell>
                 <StyledTableCell> {row.d}</StyledTableCell>
                 <StyledTableCell> {row.e}</StyledTableCell>
+                <StyledTableCell> {row.f}</StyledTableCell>
               </StyledTableRow>
             ))}
           </TableBody>

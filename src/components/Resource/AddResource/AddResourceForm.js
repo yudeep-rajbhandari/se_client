@@ -1,72 +1,66 @@
-import { Button } from "@mui/material";
 
+
+import Button from "@mui/material/Button";
+import SaveRoundedIcon from "@mui/icons-material/SaveRounded";
 export default function AddResourceForm(props) {
   const buildingOptions = props.buildings.map((building) => (
     <option key={building.id} value={building.id}>
-      {building.name}
-    </option>
-  ));
-
-  const roomOptions = props.rooms.map((room) => (
-    <option key={room.id} value={room.id}>
-      {room.name}
-    </option>
-  ));
-
+    {building.name}
+  </option>
+));
+ 
   return (
     <div>
-      <h3 style={{ color: "#154734" }}>Add Resource</h3>
+      <h3> Add Resource</h3>
 
       <form onSubmit={props.onSubmit}>
-        <label htmlFor="name">Name</label>
-        <input type="text" name="name" ref={props.nameRef} />
+        <label htmlFor="name"> Resource Name</label>
+        <input ref={props.nameRef} type="name" id="name" required />
 
+        <br />
         <label htmlFor="resourceType">
           Resource Type
           <select onChange={props.handleResourceTypeChange}>
             <option value="0"> Select Resource Type</option>
-            <option value="INDOOR">INDOOR</option>
-            <option value="OUTDOOR">OUTDOOR</option>
+            <option value="indoor">INDOOR</option>
+            <option value="outdoor">OUTDOOR</option>
           </select>
         </label>
 
-        <label htmlFor="workingCondition">
-          Working Condition
-          <select onChange={props.handleWorkingConditionChange}>
+        <br />
+        <label htmlFor="resourceCondition">
+          Resource Condition
+          <select onChange={props.handleResourceWorkingCondition}>
             <option value="0"> Select Working Condition</option>
-            <option value="EXCELLENT">EXCELLENT</option>
-            <option value="GOOD">GOOD</option>
-            <option value="FAIR">FAIR</option>
+            <option value="excellent">EXCELLENT</option>
+            <option value="good">GOOD</option>
+            <option value="fair">FAIR</option>
           </select>
         </label>
 
+{/* 
+        <br />
+        <label htmlFor="isBookable" value={props.isBookable}>
+          Bookable?
+        </label>
+        <input type="checkbox" onChange={props.handleIsBookableChange} /> */}
+
+        {/* <br />
         <label htmlFor="buildings">
           Associated Building
           <select onChange={props.handleSelectedBuildingIdChange}>
-            <option value="0">Select Associated Building</option>
-            {buildingOptions}
+            {options}
           </select>
-        </label>
+        </label> */}
 
-        {props.buildingSelected && (
-          <div>
-            <label htmlFor="room">
-              Associated Room
-              <select onChange={props.handleRoomIdChange}>
-                <option value="0">Select Associated Room</option>
-                {roomOptions}
-              </select>
-            </label>
-          </div>
-        )}
-
+        <br />
         <Button
-          style={{ backgroundColor: "#154734", color: "#FFB81C" }}
+          startIcon={<SaveRoundedIcon />}
+          variant="contained"
           type="submit"
-          name="Add Resource"
-          onClick={() => props.onSubmit}
         >
-          Add Resource
+          {" "}
+          Save Resource
         </Button>
       </form>
     </div>

@@ -1,35 +1,16 @@
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
-import TableCell, { tableCellClasses } from "@mui/material/TableCell";
 import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
-import TableRow from "@mui/material/TableRow";
-import Paper from "@mui/material/Paper";
-import { styled } from "@mui/material/styles";
-import React, { useState } from "react";
-import AllotmentService from "../../../services/AllotmentService";
-import { toast, ToastContainer } from "react-toastify";
-import Button from "@mui/material/Button";
-import BackspaceIcon from "@mui/icons-material/Backspace";
-const StyledTableCell = styled(TableCell)(({ theme }) => ({
-  [`&.${tableCellClasses.head}`]: {
-    backgroundColor: "#154734",
-    color: theme.palette.common.white,
-  },
-  [`&.${tableCellClasses.body}`]: {
-    fontSize: 14,
-  },
-}));
 
-const StyledTableRow = styled(TableRow)(({ theme }) => ({
-  "&:nth-of-type(odd)": {
-    backgroundColor: theme.palette.action.hover,
-  },
-  // hide last border
-  "&:last-child td, &:last-child th": {
-    border: 0,
-  },
-}));
+import BackspaceIcon from "@mui/icons-material/Backspace";
+import Button from "@mui/material/Button";
+import Paper from "@mui/material/Paper";
+import React, { useState } from "react";
+import { toast, ToastContainer } from "react-toastify";
+import AllotmentService from "../../../services/AllotmentService";
+
+import { StyledTableCell, StyledTableRow } from "../../../common/Style/Style";
 
 export default function ViewAllotment(props) {
   const [status, setStatus] = useState(false);
@@ -37,10 +18,10 @@ export default function ViewAllotment(props) {
   async function deleteAllotment(id) {
     await AllotmentService.deleteAllotment(id)
       .then((res) => {
-        toast(res.data);
+        toast.success(res.data);
       })
       .catch((error) => {
-        toast("Error in adding user to the selected room");
+        toast.error("Error in adding user to the selected room");
       })
       .finally(() => {
         setStatus(true);
@@ -67,14 +48,14 @@ export default function ViewAllotment(props) {
         <TableContainer component={Paper}>
           <Table stickyHeader sx={{ minWidth: 650 }} aria-label="simple table">
             <TableHead>
-              <TableRow>
+              <StyledTableRow>
                 <StyledTableCell>User</StyledTableCell>
                 <StyledTableCell>Room</StyledTableCell>
                 <StyledTableCell>From Date</StyledTableCell>
                 <StyledTableCell>To Date</StyledTableCell>
                 <StyledTableCell>User Role</StyledTableCell>
                 <StyledTableCell>Action</StyledTableCell>
-              </TableRow>
+              </StyledTableRow>
             </TableHead>
             <TableBody>
               {props.allotments.map((row) => (

@@ -1,22 +1,69 @@
 import React, { useEffect, useState } from "react";
 
 import UserService from "../../services/user.service";
-
+import EventSeatIcon from '@mui/icons-material/EventSeat';
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
-import TableCell from "@mui/material/TableCell";
+import FilterAltIcon from '@mui/icons-material/FilterAlt';
 import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
-import TableRow from "@mui/material/TableRow";
+import PublishIcon from '@mui/icons-material/Publish';
 import Paper from "@mui/material/Paper";
 import ReserveRoom from "../Reserve/ReserveRoom/reserve";
 import { ToastContainer, toast } from "react-toastify";
+import CloseIcon from '@mui/icons-material/Close';
+import 'react-datepicker/dist/react-datepicker.css';
 import giphy from "../../resource/images/transparent.gif";
 // Import toastify css file
 import "react-toastify/dist/ReactToastify.css";
 import { Comment } from "react-loader-spinner";
+import {
+  AppBar,
+  Button,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+  DialogTitle, Divider, List, ListItem, ListItemText, Slide,
+  Toolbar, Typography
+} from "@mui/material";
+import TextField from "@mui/material/TextField";
+import DatePicker from "react-datepicker";
+import {IconButton} from "@chakra-ui/react";
+import userService from "../../services/user.service";
 
+import { StyledTableCell, StyledTableRow } from "../../common/Style/Style";
+import PrimaryButton from "../../common/Button/PrimaryButton";
+
+const Transition = React.forwardRef(function Transition(
+    props: TransitionProps & {
+      children: React.ReactElement;
+    },
+    ref: React.Ref<unknown>,
+) {
+  return <Slide direction="up" ref={ref} {...props} />;
+});
 export default function FindBookableRoom(props) {
+  const [open, setOpen] =useState(false);
+  const [open1, setOpen1] =useState(false);
+
+  const[selectedFromTime,setSelectedFromTime] = useState(new Date())
+  const[selectedToTime,setSelectedToTime] = useState(new Date())
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = (filter) => {
+    setOpen(false);
+  };
+
+  const handleClickOpen1 = () => {
+    setOpen1(true);
+  };
+
+  const handleClose1 = (filter) => {
+    setOpen1(false);
+  };
   const [room, setRoom] = useState([]);
   const [rows, setRows] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -26,7 +73,6 @@ export default function FindBookableRoom(props) {
     return { name, roomNumber, roomReservation };
   }
   const notify1 = (childData) => {
-    console.log("notify called");
     toast(childData);
   };
   const style = {
@@ -38,12 +84,28 @@ export default function FindBookableRoom(props) {
     console.log("childData called");
     setShowChild(childData);
   };
+  const refreshIt = (date)=>{
+    setSelectedFromTime(date)
+    setSelectedToTime(date)
+
+  }
+
+  const refreshIt1 = (date)=>{
+    setSelectedToTime(date)
+
+  }
+
+  const getRoomByDate=()=>{
+    setLoading(false)
+   setOpen(false)
+userService.getRoomBySchedule(selectedFromTime,selectedToTime).then(res=>{
+  setRows(res.data);
+  setLoading(true)
+})
+  }
   useEffect(() => {
     UserService.getAllBookableRoom().then((res) => {
       console.log("<<<<", res.data);
-      // res.data.forEach(j=>{
-      //     rows.push(createData(j.name,j.id,j.roomReservation))
-      // })
       setRows(res.data);
       setLoading(true);
     });
@@ -53,42 +115,122 @@ export default function FindBookableRoom(props) {
     return (
       <div>
         <ToastContainer />
+
+        <div>
+          <PrimaryButton title = "Filter By Time" icon = {<FilterAltIcon />} onClick={handleClickOpen}/>
+        
+          <Dialog
+              fullScreen
+              open={open}
+              onClose={handleClose}
+              TransitionComponent={Transition}
+          >
+            <AppBar style ={{backgroundColor: "#154734", color: "#FFB81C"}} sx={{ position: 'relative' }}>
+              <Toolbar>
+                <IconButton
+                    edge="start"
+                    color="inherit"
+                    onClick={handleClose}
+                    aria-label="close"
+                >
+                  <CloseIcon />
+                </IconButton>
+                <Typography sx={{ ml: 2, flex: 1 }} variant="h6" component="div">
+                  Select Date
+                </Typography>
+                <PrimaryButton title = "Submit" icon = {<PublishIcon />} onClick={handleClose}/>
+              
+              </Toolbar>
+            </AppBar>
+            From date:
+            <DatePicker
+                onChange={(date) => refreshIt(date)}
+                selected = {selectedFromTime}
+                showTimeSelect
+                // excludeDateIntervals={filterPassedTime()}
+                dateFormat="MMMM d, yyyy h:mm aa"
+            />
+            To Date:
+            <DatePicker
+                onChange={(date) => refreshIt1(date)}
+                selected = {selectedToTime}
+                minDate={new Date()}
+                placeholderText="Select a day"
+
+                showTimeSelect
+                // excludeDateIntervals={filterPassedTime()}
+                dateFormat="MMMM d, yyyy h:mm aa"
+            />
+            <div>
+            <PrimaryButton title ="Submit" icon={<PublishIcon />} onClick={()=>getRoomByDate()} />
+            </div>
+            
+
+          </Dialog>
+        </div>
         <TableContainer component={Paper}>
           <Table sx={{ minWidth: 650 }} aria-label="simple table">
             <TableHead>
-              <TableRow>
-                <TableCell>Name</TableCell>
-                <TableCell align="left">id</TableCell>
-                <TableCell align="left">Reserve</TableCell>
-              </TableRow>
+              <StyledTableRow>
+                <StyledTableCell>Name</StyledTableCell>
+                <StyledTableCell align="left">id</StyledTableCell>
+                <StyledTableCell align="left">Reserve</StyledTableCell>
+              </StyledTableRow>
             </TableHead>
             <TableBody>
               {rows.map((row) => (
-                <TableRow
+                <StyledTableRow
                   key={row.name}
                   sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
                 >
-                  <TableCell component="th" scope="row">
+                  <StyledTableCell component="th" scope="row">
                     {row.name}
-                  </TableCell>
-                  <TableCell align="left">{row.id}</TableCell>
-                  <TableCell align="left">
-                    <button
+                  </StyledTableCell>
+                  <StyledTableCell align="left">{row.id}</StyledTableCell>
+                  <StyledTableCell align="left">
+                    <PrimaryButton title = "Reserve"
+                    icon = {<EventSeatIcon />}
                       onClick={() => {
                         setShowChild(true);
                         setRoom(row);
+                        handleClickOpen1();
                       }}
-                    >
-                      Reserve
-                    </button>
-                  </TableCell>
-                </TableRow>
+                    />
+                   
+                  </StyledTableCell>
+                </StyledTableRow>
               ))}
             </TableBody>
           </Table>
         </TableContainer>
         {showChild && (
-          <ReserveRoom notify1={notify1} showChild1={showChild1} room={room} />
+            <div>
+              <Dialog
+                  fullScreen
+                  open={open1}
+                  onClose={handleClose1}
+                  TransitionComponent={Transition}
+              >
+                <AppBar style ={{backgroundColor: "#154734", color: "#FB81C"}} sx={{ position: 'relative' }}>
+                  <Toolbar>
+                    <IconButton
+                        edge="start"
+                       style ={{backgroundColor: "#154734", color: "#FFB81C"}}
+                        onClick={handleClose1}
+                        aria-label="close"
+                    >
+                      <CloseIcon />
+                    </IconButton>
+                    <Typography style ={{backgroundColor: "#154734", color: "#FFB81C"}}sx={{ ml: 2, flex: 1 }} variant="h6" component="div">
+                      Select Date
+                    </Typography>
+                  </Toolbar>
+
+                </AppBar>
+                <ReserveRoom notify1={notify1} showChild1={showChild1} room={room} />
+              </Dialog>
+            </div>
+
         )}
       </div>
     );

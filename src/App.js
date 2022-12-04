@@ -3,7 +3,7 @@ import { Routes, Route, Link } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 import goBears from "./images/baylorBears2.png";
-import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
+import AuthVerify from "./common/auth-verify";
 import AuthService from "./services/auth.service";
 
 import Login from "./components/Login/login.component";
@@ -167,28 +167,32 @@ class App extends Component {
                 </Link>
               </li>
             )} */}
-            {showAdminBoard && (
-              <li className="nav-item">
-                <Link
-                  to={"/adminBoard"}
-                  className="nav-link"
-                  style={{ color: "#FFB81C" }}
-                >
-                  Dashboard
-                </Link>
-              </li>
-            )}
-            {showUserBoard && (
-              <li className="nav-item">
-                <Link
-                  to={"/userBoard"}
-                  className="nav-link"
-                  style={{ color: "#FFB81C" }}
-                >
-                  Dashboard
-                </Link>
-              </li>
-            )}
+            
+              {showAdminBoard && (
+                <li className="nav-item">
+                  <Link
+                    to={"/adminBoard"}
+                    className="nav-link"
+                    style={{ color: "#FFB81C" }}
+                  >
+                    Dashboard
+                  </Link>
+                </li>
+              )}
+            
+            
+              {showUserBoard && (
+                <li className="nav-item">
+                  <Link
+                    to={"/userBoard"}
+                    className="nav-link"
+                    style={{ color: "#FFB81C" }}
+                  >
+                    Dashboard
+                  </Link>
+                </li>
+              )}
+            
 
             {/* {showAddBuilding && (
               <li className="nav-item">
@@ -206,7 +210,7 @@ class App extends Component {
               </li>
             )} */}
 
-            {showAddDirection && (
+            {/* {showAddDirection && (
               <li className="nav-item">
                 <Link
                   to={"/addDirection"}
@@ -216,7 +220,7 @@ class App extends Component {
                   Add Direction
                 </Link>
               </li>
-            )}
+            )} */}
 
             {/* {showAddRoom && (
               <li className="nav-item">
@@ -258,7 +262,7 @@ class App extends Component {
               </li>
             )} */}
 
-            {showReserveRoom && (
+            {/* {showReserveRoom && (
               <li className="nav-item">
                 <Link
                   to={"/findroom"}
@@ -268,9 +272,9 @@ class App extends Component {
                   Reserve Room
                 </Link>
               </li>
-            )}
+            )} */}
 
-            {showReserveResource && (
+            {/* {showReserveResource && (
               <li className="nav-item">
                 <Link
                   to={"/reserveresource"}
@@ -280,7 +284,7 @@ class App extends Component {
                   Reserve Resource
                 </Link>
               </li>
-            )}
+            )} */}
             {/* {showReserveResource && (
               <li className="nav-item">
                 <Link
@@ -293,7 +297,7 @@ class App extends Component {
               </li>
             )} */}
 
-            {showAddSchedule && (
+            {/* {showAddSchedule && (
               <li className="nav-item">
                 <Link
                   to={"/addSchedule"}
@@ -303,7 +307,7 @@ class App extends Component {
                   Add Schedule
                 </Link>
               </li>
-            )}
+            )} */}
           </div>
 
           {currentUser ? (
@@ -425,7 +429,7 @@ class App extends Component {
           </Routes>
         </div>
 
-        {/* <AuthVerify logOut={this.logOut}/> */}
+        <AuthVerify logOut={this.logOut} />
       </div>
     );
   }
