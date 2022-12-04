@@ -8,7 +8,7 @@ import React from "react";
 import DatePicker from "react-datepicker";
 import PrimaryButton from "../../../common/Button/PrimaryButton";
 import { StyledTableCell, StyledTableRow } from "../../../common/Style/Style";
-
+import "./datepicker.css"
 export default function AddAllotmentTable(props) {
   console.log(props);
 
@@ -42,7 +42,7 @@ export default function AddAllotmentTable(props) {
               {props.buildingSelected && (
                 <StyledTableCell>Select Room</StyledTableCell>
               )}
-              <StyledTableCell>From Date</StyledTableCell>
+              <StyledTableCell >From Date</StyledTableCell>
               <StyledTableCell>To Date</StyledTableCell>
               <StyledTableCell>Action</StyledTableCell>
               {/* <TableCell>Role</TableCell> */}
