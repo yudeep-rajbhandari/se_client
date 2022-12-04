@@ -1,7 +1,8 @@
 import axios from "axios";
 import authHeader from "./auth-header";
+import env from "react-dotenv";
 
-const ALLOTMENT_URL = "http://localhost:8080/api/allotment";
+const ALLOTMENT_URL = env.abc + "allotment";
 
 class AllotmentService {
   addAllotment(allotment) {
@@ -17,7 +18,7 @@ class AllotmentService {
   }
 
   deleteAllotment(allotmentId) {
-    return axios.delete(ALLOTMENT_URL + "/deleteAllotment/"+allotmentId, {
+    return axios.delete(ALLOTMENT_URL + "/deleteAllotment/" + allotmentId, {
       headers: authHeader(),
     });
   }

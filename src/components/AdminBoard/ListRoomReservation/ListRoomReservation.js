@@ -4,10 +4,10 @@ import RoomReservationTable from "./RoomReservationTable";
 import { toast, ToastContainer } from "react-toastify";
 import SockJS from "sockjs-client";
 import { over } from "stompjs";
-
+import env from "react-dotenv";
 var stompClient = null;
 export default function ListRoomReservation(props) {
-  const BASE_URL = "http://localhost:8080/";
+  const BASE_URL = env.websocket;
   let Sock = new SockJS(BASE_URL + "myws");
 
   const [publicChats, setpublicChats] = useState([]);
