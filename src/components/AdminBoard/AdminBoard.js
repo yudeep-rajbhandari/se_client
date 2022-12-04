@@ -344,7 +344,7 @@ export default function AdminBoard(props) {
                 )}
                 {!clickRoomReservation && (
                   <SecondaryButton
-                    title=" List Room Reservations"
+                    title=" Manage Room Reservations"
                     icon={<EventSeatIcon />}
                     onClick={() => showRoomReservations()}
                   />
@@ -360,7 +360,7 @@ export default function AdminBoard(props) {
                 )}
                 {!clickResourceReservation && (
                   <SecondaryButton
-                    title=" List Resource Reservations"
+                    title=" Manage Resource Reservations"
                     icon={<EventSeatIcon />}
                     onClick={() => showRoomReservations()}
                   />
