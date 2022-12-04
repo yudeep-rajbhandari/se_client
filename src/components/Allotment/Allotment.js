@@ -18,7 +18,6 @@ export default function Allotment(props) {
     setUsers(data);
     setLoaded(true);
   }
-
   async function getAllBuilding() {
     const { data } = await BuildingService.getAllBuilding();
     setBuildings(data);
@@ -33,7 +32,6 @@ export default function Allotment(props) {
     getAllUser();
     getAllBuilding();
     getAllAllotment();
-    setLoaded(true);
   }, []);
 
   function refreshAllotment() {
@@ -48,6 +46,7 @@ export default function Allotment(props) {
           buildings={buildings}
           refreshAllotment={refreshAllotment}
         />
+
         <ViewAllotment
           allotments={allotments}
           refreshAllotment={refreshAllotment}
@@ -55,17 +54,19 @@ export default function Allotment(props) {
       </div>
     );
   } else {
-    <div>
-      <Comment
-        visible={true}
-        height="80"
-        width="80"
-        ariaLabel="comment-loading"
-        wrapperStyle={{}}
-        wrapperClass="comment-wrapper"
-        color="#FFB81C"
-        backgroundColor="#154734"
-      />
-    </div>;
+    return (
+      <div>
+        <Comment
+          visible={true}
+          height="80"
+          width="80"
+          ariaLabel="comment-loading"
+          wrapperStyle={{}}
+          wrapperClass="comment-wrapper"
+          color="#FFB81C"
+          backgroundColor="#154734"
+        />
+      </div>
+    );
   }
 }

@@ -2,13 +2,13 @@ import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
-
+import EventSeatIcon from "@mui/icons-material/EventSeat";
 import Paper from "@mui/material/Paper";
 import React from "react";
 import DatePicker from "react-datepicker";
 import PrimaryButton from "../../../common/Button/PrimaryButton";
 import { StyledTableCell, StyledTableRow } from "../../../common/Style/Style";
-import "./datepicker.css"
+import "./datepicker.css";
 export default function AddAllotmentTable(props) {
   console.log(props);
 
@@ -42,7 +42,7 @@ export default function AddAllotmentTable(props) {
               {props.buildingSelected && (
                 <StyledTableCell>Select Room</StyledTableCell>
               )}
-              <StyledTableCell >From Date</StyledTableCell>
+              <StyledTableCell>From Date</StyledTableCell>
               <StyledTableCell>To Date</StyledTableCell>
               <StyledTableCell>Action</StyledTableCell>
               {/* <TableCell>Role</TableCell> */}
@@ -96,16 +96,19 @@ export default function AddAllotmentTable(props) {
                 />
               </StyledTableCell>
               <StyledTableCell>
-                {props.selectedUserId && props.selectedBuildingId && (
-                  <div>
-                    <PrimaryButton
-                      title="Allot"
-                      onClick={() => {
-                        props.addAllotment();
-                      }}
-                    />
-                  </div>
-                )}
+                {props.selectedUserId &&
+                  props.selectedBuildingId &&
+                  props.selectedRoomId && (
+                    <div>
+                      <PrimaryButton
+                        icon={<EventSeatIcon />}
+                        title="Allot"
+                        onClick={() => {
+                          props.addAllotment();
+                        }}
+                      />
+                    </div>
+                  )}
               </StyledTableCell>
             </StyledTableRow>
           </TableBody>

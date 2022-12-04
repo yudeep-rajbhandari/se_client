@@ -21,7 +21,7 @@ export default function ViewAllotment(props) {
         toast.success(res.data);
       })
       .catch((error) => {
-        toast.error("Error in adding user to the selected room");
+        toast.error("Error in deleting allotment");
       })
       .finally(() => {
         setStatus(true);

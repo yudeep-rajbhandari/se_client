@@ -11,6 +11,7 @@ import PrimaryHeader from "../../../common/Header/PrimaryHeader";
 export default function AddAllotment(props) {
   const [userSelected, setUserSelected] = useState(false);
   const [buildingSelected, setBuildingSelected] = useState(false);
+  const [roomSelected, setRoomSelected] = useState(false);
   const [selectedBuildingId, setSelectedBuildingId] = useState();
   const [selectedRoomId, setSelectedRoomId] = useState();
   const [selectedUserId, setSelectedUserId] = useState();
@@ -40,7 +41,7 @@ export default function AddAllotment(props) {
         );
       })
       .catch((error) => {
-        toast.error("Error in adding user to the selected room");
+        toast.error("Error in allotment of user to the selected room");
       })
       .finally(() => {
         setStatus(true);
@@ -66,6 +67,7 @@ export default function AddAllotment(props) {
 
   function handleSelectedRoomIdChange(event) {
     setSelectedRoomId(event.target.value);
+    setRoomSelected(true);
   }
 
   function handleSelectedFromDateChange(date) {
@@ -108,6 +110,7 @@ export default function AddAllotment(props) {
           selectedBuildingId={selectedBuildingId}
           userSelected={userSelected}
           buildingSelected={buildingSelected}
+          roomSelected={roomSelected}
           selectedFromDateChange={selectedFromTime}
           selectedToDateChange={selectedToTime}
         />

@@ -9,35 +9,25 @@ import RoomService from "../../../services/RoomService";
 import AddResourceForm from "./AddResourceForm";
 
 import { Comment } from "react-loader-spinner";
+import { toast, ToastContainer } from "react-toastify";
 
 export default function AddResource(props) {
   const [status, setStatus] = useState(false);
-
   const [message, setMessage] = useState();
-
   const [loaded, setLoaded] = useState(false);
-
   const [buildings, setBuildings] = useState([]);
-
   const [rooms, setRooms] = useState([]);
-
   const [selectecBuildingId, setSelectedBuildingId] = useState();
-
   const [selectedRoomId, setSelectedRoomId] = useState();
-
   const [buildingSelected, setBuildingSelected] = useState(false);
-
   const [resourceType, setResourceType] = useState();
-
   const [workingCondition, setWorkingCondition] = useState();
-
+  const [bookable, setBookable] = useState(true);
   const nameRef = useRef();
 
   async function getAllBuilding() {
     const { data } = await BuildingService.getAllBuilding();
-
     setBuildings(data);
-
     setLoaded(true);
   }
 
@@ -59,24 +49,20 @@ export default function AddResource(props) {
 
     const resource = {
       resourceName: nameRef.current.value,
-
       resourceType: resourceType,
-
       workingCondition: workingCondition,
-
+      isBookable: bookable,
       room: room,
     };
 
+    console.log(resource);
     addResource(resource);
   }
 
   async function addResource(resource) {
     await ResourceService.addResource2(resource)
-
       .then((res) => {
-        setStatus(true);
-
-        setMessage(
+        toast.success(
           res.data.workingCondition +
             " " +
             res.data.resourceType +
@@ -87,12 +73,10 @@ export default function AddResource(props) {
             " added successfully"
         );
       })
-
       .catch((err) => {
-        setStatus(true);
-
-        setMessage("Something went wrong. Please check console");
-      });
+        toast.error("Something went wrong. Please check console");
+      })
+      .finally(setStatus(true));
   }
 
   function handleResourceTypeChange(event) {
@@ -105,10 +89,12 @@ export default function AddResource(props) {
 
   function handleSelectedBuildingIdChange(event) {
     setSelectedBuildingId(event.target.value);
-
     setBuildingSelected(true);
-
     getAllRoom(event.target.value);
+  }
+
+  function handleBookableChange(event) {
+    setBookable(event.target.checked);
   }
 
   async function handleRoomIdChange(event) {
@@ -119,6 +105,14 @@ export default function AddResource(props) {
     return (
       <div>
         <div>
+          {" "}
+          {status && (
+            <div>
+              <ToastContainer />{" "}
+            </div>
+          )}
+        </div>
+        <div>
           <AddResourceForm
             onSubmit={onSubmit}
             nameRef={nameRef}
@@ -128,11 +122,10 @@ export default function AddResource(props) {
             buildings={buildings}
             buildingSelected={buildingSelected}
             handleRoomIdChange={handleRoomIdChange}
+            handleBookableChange={handleBookableChange}
             rooms={rooms}
           />
         </div>
-
-        <div>{status && message}</div>
       </div>
     );
   }

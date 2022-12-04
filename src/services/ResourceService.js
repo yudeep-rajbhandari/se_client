@@ -2,9 +2,9 @@ import axios from "axios";
 import authHeader from "./auth-header";
 import env from "react-dotenv";
 
-const RESOURCE_URL = env.abc+"resource";
+const RESOURCE_URL = env.abc + "resource";
 
-class RoomService {
+class ResourceService {
   addResource2(resource) {
     return axios.post(RESOURCE_URL + "/addResource2", resource, {
       headers: authHeader(),
@@ -39,10 +39,11 @@ class RoomService {
     });
   }
 
-  getResourceNameById(id){
-    return axios.get(RESOURCE_URL + "/getResourceNameById/" + id, {headers: authHeader(),})
+  getResourceNameById(id) {
+    return axios.get(RESOURCE_URL + "/getResourceNameById/" + id, {
+      headers: authHeader(),
+    });
   }
-
 }
 
-export default new RoomService();
+export default new ResourceService();
