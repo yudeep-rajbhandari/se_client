@@ -23,7 +23,7 @@ export default function RoomDashboardTable(props) {
                   disableFocusListener
                   disableTouchListener
                   title="click to view list of rooms"
-                >
+                >+
                   <Button
                     onClick={(event) => (window.location.href = "/listRoom")}
                   >

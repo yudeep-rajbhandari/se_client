@@ -14,6 +14,7 @@ import Tooltip from "@mui/material/Tooltip";
 import ThumbDownAltIcon from "@mui/icons-material/ThumbDownAlt";
 import ArchiveIcon from "@mui/icons-material/Archive";
 import PrimaryButton from "../../../common/Button/PrimaryButton";
+import moment from "moment";
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
     backgroundColor: "#154734",
@@ -53,8 +54,8 @@ export default function RoomReservationTable(props) {
               sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
             >
               <StyledTableCell>{row.roomId}</StyledTableCell>
-              <StyledTableCell>{row.fromDate}</StyledTableCell>
-              <StyledTableCell>{row.toDate}</StyledTableCell>
+              <StyledTableCell>{moment(row.fromDate).format('MM/DD/YYYY h:mma')}</StyledTableCell>
+              <StyledTableCell>{moment(row.toDate).format('MM/DD/YYYY h:mma')}</StyledTableCell>
               <StyledTableCell>{row.status}</StyledTableCell>
               <StyledTableCell>
                 <ButtonGroup variant="text" aria-label="text button group">
