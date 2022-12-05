@@ -167,32 +167,30 @@ class App extends Component {
                 </Link>
               </li>
             )} */}
-            
-              {showAdminBoard && (
-                <li className="nav-item">
-                  <Link
-                    to={"/adminBoard"}
-                    className="nav-link"
-                    style={{ color: "#FFB81C" }}
-                  >
-                    Dashboard
-                  </Link>
-                </li>
-              )}
-            
-            
-              {showUserBoard && (
-                <li className="nav-item">
-                  <Link
-                    to={"/userBoard"}
-                    className="nav-link"
-                    style={{ color: "#FFB81C" }}
-                  >
-                    Dashboard
-                  </Link>
-                </li>
-              )}
-            
+
+            {showAdminBoard && (
+              <li className="nav-item">
+                <Link
+                  to={"/adminBoard"}
+                  className="nav-link"
+                  style={{ color: "#FFB81C" }}
+                >
+                  Dashboard
+                </Link>
+              </li>
+            )}
+
+            {showUserBoard && (
+              <li className="nav-item">
+                <Link
+                  to={"/userBoard"}
+                  className="nav-link"
+                  style={{ color: "#FFB81C" }}
+                >
+                  Dashboard
+                </Link>
+              </li>
+            )}
 
             {/* {showAddBuilding && (
               <li className="nav-item">
@@ -359,7 +357,7 @@ class App extends Component {
 
         <div className="container mt-3">
           <Routes>
-            <Route path="/" element={<Home />} />
+            <Route path="/" element={<ViewSchedule />} />
             <Route path="/home" element={<Home />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
