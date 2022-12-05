@@ -18,6 +18,8 @@ import roomService from "../../services/RoomService";
 import MapParentComponent from "../maps/mapParent.component";
 import { primaryHeader } from "../../common/Style/Style";
 import PrimaryHeader from "../../common/Header/PrimaryHeader";
+
+import { StyledTableCell, StyledTableRow } from "../../common/Style/Style";
 export default function ViewSchedule(props) {
   const [myLoader, setMyLoader] = useState(true);
 
@@ -28,6 +30,7 @@ export default function ViewSchedule(props) {
   const [scheduleLoading, setscheduleLoading] = useState(true);
   const [showParent, setShowParent] = useState(true);
   const [selectedRoom, setSelectedRoom] = useState();
+
   useEffect(() => {
     setSelectDate(new Date());
     setMyLoader(false);
@@ -108,35 +111,50 @@ export default function ViewSchedule(props) {
               {schedule.length > 0 ? (
                 <TableContainer component={Paper}>
                   <Table sx={{ minWidth: 650 }} aria-label="simple table">
-                    <TableHead>
-                      <TableRow>
-                        <TableCell>Room Id</TableCell>
-                        <TableCell align="left">Name</TableCell>
-                        <TableCell align="left">From Date</TableCell>
-                        <TableCell align="left">To Date</TableCell>
-                        <TableCell align="left">Direction</TableCell>
-                      </TableRow>
+                    <TableHead
+                      style={{
+                        backgroundColor: "#154734",
+                        color: "#FFB81C",
+                      }}
+                    >
+                      <StyledTableRow>
+                        <StyledTableCell>Room Id</StyledTableCell>
+                        <StyledTableCell align="left">Name</StyledTableCell>
+                        <StyledTableCell align="left">
+                          From Date
+                        </StyledTableCell>
+                        <StyledTableCell align="left">To Date</StyledTableCell>
+                        <StyledTableCell align="left">
+                          Direction
+                        </StyledTableCell>
+                      </StyledTableRow>
                     </TableHead>
                     <TableBody>
                       {schedule.map((row) => (
-                        <TableRow
+                        <StyledTableRow
                           key={row.id}
                           sx={{
                             "&:last-child td, &:last-child th": { border: 0 },
                           }}
                         >
-                          <TableCell component="th" scope="row">
+                          <StyledTableCell component="th" scope="row">
                             {row.room.name}
-                          </TableCell>
-                          <TableCell align="left">{row.name}</TableCell>
-                          <TableCell align="left">
+                          </StyledTableCell>
+                          <StyledTableCell align="left">
+                            {row.name}
+                          </StyledTableCell>
+                          <StyledTableCell align="left">
                             {moment(row.fromDate).format("hh:mm A")}
-                          </TableCell>
-                          <TableCell align="left">
+                          </StyledTableCell>
+                          <StyledTableCell align="left">
                             {moment(row.toDate).format("hh:mm A")}
-                          </TableCell>
-                          <TableCell>
+                          </StyledTableCell>
+                          <StyledTableCell>
                             <Button
+                              style={{
+                                backgroundColor: "#154734",
+                                color: "#FFB81C",
+                              }}
                               startIcon={<BikeScooterIcon />}
                               variant="outlined"
                               aria-label="text button group"
@@ -145,8 +163,8 @@ export default function ViewSchedule(props) {
                               {" "}
                               DIRECTION
                             </Button>
-                          </TableCell>
-                        </TableRow>
+                          </StyledTableCell>
+                        </StyledTableRow>
                       ))}
                     </TableBody>
                   </Table>
