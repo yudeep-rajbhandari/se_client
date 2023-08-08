@@ -584,8 +584,10 @@ export default function CreateIndoor(props) {
         pointList = path3;
     }
     console.log(props.path)
+    const myconstantPath = 'ElevatorE_308' //only for demonstration
+    // const currentPath = allPaths.filter(p=>p.properties.name===props.path);
+    const currentPath = allPaths.filter(p=>p.properties.name===myconstantPath);
 
-    const currentPath = allPaths.filter(p=>p.properties.name===props.path);
     console.log("hello world",currentPath)
     const aa = [];
     if(currentPath.length <1){
@@ -619,8 +621,8 @@ export default function CreateIndoor(props) {
     var icon = newMarker.options.icon;
     icon.options.iconSize = [15, 25];
     newMarker.setIcon(icon);
-    var mark1Name = props.path.split('_')[0]
-    var mark2Name = props.path.split('_')[1]
+    var mark1Name = myconstantPath.split('_')[0]
+    var mark2Name = myconstantPath.split('_')[1]
     var popup = newMarker.bindTooltip(mark1Name);
     var newMarker1 = new L.marker(pointList[pointList.length-1]).addTo(map);
     var popup1 = newMarker1.bindTooltip(mark2Name);

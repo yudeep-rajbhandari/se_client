@@ -37,6 +37,7 @@ export default function MapParentComponent(props){
             lat:  latitude,
             lng: longitude
         }
+
         setCurrentPosition(currentPosition);
 
     }
@@ -44,11 +45,13 @@ export default function MapParentComponent(props){
         // console.log("direction",props.room.building.gate)
         var fromLatLng = L.latLng([currentPosition.lat,currentPosition.lng]);
         var dis = 111111111111111111111
-        var j = props.room.building.gate;
+        var j = json.building.gates;
         var gate = {}
         j.forEach(p=>{
-
-            var newDist = fromLatLng.distanceTo([p.latitude, p.longitude]);
+            console.log("<><><><>")
+            console.log(fromLatLng)
+            console.log(p)
+            var newDist = fromLatLng.distanceTo([p.lat, p.lng]);
             console.log("<<<<<<<<<",newDist)
             if(newDist < dis){
                 dis = newDist
@@ -118,7 +121,7 @@ export default function MapParentComponent(props){
             let confirmAction = window.confirm("Are you inside the building?");
             if (confirmAction) {
 
-                setInside(true)
+                setInside(false)
             } else {
                 setInside(false)
             }
@@ -139,7 +142,7 @@ export default function MapParentComponent(props){
             getRoomPath()
         }
         else {
-            setPath(gate.elevator+'_'+props.room.name)
+            setPath(gate.elevator+'_'+roomName)
         }
     },[inside,gate])
     function clicker(aa){
@@ -197,7 +200,7 @@ export default function MapParentComponent(props){
                             <div className="step-icon-wrap">
                                 <div className="step-icon"><img src="https://img.icons8.com/ios-filled/50/null/elevator-doors.png" /></div>
                             </div>
-                            <a className="step-title" onClick={ () => clicker("elevator")}>Take the  {gate.elevator} and go to Floor {props.room.floor}</a>
+                            <a className="step-title" onClick={ () => clicker("elevator")}>Take the  {gate.elevatorName} and go to Floor 3</a>
                             <br/> Look for<Button onClick={handleOpen1}>this sign</Button>
 
                             <Modal
@@ -206,7 +209,7 @@ export default function MapParentComponent(props){
 
                             >
                                 <Box sx={style}>
-                                    <img src={"images/"+gate.elevator+".jpg"}  width="500" height="600"/>
+                                    <img src={"images/"+gate.elevatorName+".jpg"}  width="500" height="600"/>
                                 </Box>
                             </Modal>
                         </div>}

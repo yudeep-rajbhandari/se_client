@@ -23,7 +23,6 @@ export default function LeafletComponent1(props){
     const [ currentPosition, setCurrentPosition ] = useState({});
 
     function success(pos) {
-        console.log("<<<<<<<<<<<",mypos)
         const latitude  = pos.coords.latitude;
         const longitude = pos.coords.longitude;
 

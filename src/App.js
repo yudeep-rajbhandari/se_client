@@ -140,11 +140,11 @@ class App extends Component {
           <div className="navbar-nav mr-auto">
             <li className="nav-item">
               <Link
-                to={"/home"}
+                to={"/route"}
                 className="nav-link"
                 style={{ color: "#FFB81C" }}
               >
-                Home
+                Sample Routes
               </Link>
             </li>
             <li className="nav-item">

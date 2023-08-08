@@ -4,10 +4,9 @@ import AddRoomForm from "./AddRoomForm";
 import RoomService from "../../../services/RoomService";
 import BuildingService from "../../../services/BuildingService";
 import { Comment } from "react-loader-spinner";
-import { toast, ToastContainer } from "react-toastify";
 export default function AddRoom(props) {
   const nameRef = useRef();
-  const floorRef = useRef();
+
   const roomTypeList = ["CLASSROOM", "STAFFROOM", "LAB", "WASHROOM"];
 
   const [roomType, setRoomType] = useState(roomTypeList[0]);
@@ -35,7 +34,6 @@ export default function AddRoom(props) {
     event.preventDefault();
     const room = {
       name: nameRef.current.value,
-      floor: floorRef.current.value,
       roomType: roomType,
       isBookable: isBookable,
       building: selectedBuilding,
@@ -44,21 +42,17 @@ export default function AddRoom(props) {
   }
 
   async function addRoom(room) {
-    await RoomService.addRoom(room)
-      .then((res) => {
-        toast.success(
-          res.data.roomType +
-            " " +
-            res.data.name +
-            " in Building " +
-            res.data.building.name +
-            " has been added successfully"
-        );
-      })
-      .catch((error) => {
-        toast.error("Error in adding room: " + error.message);
-      })
-      .finally(setStatus(true));
+    await RoomService.addRoom(room).then((res) => {
+      setStatus(true);
+      setMessage(
+        res.data.roomType +
+          " " +
+          res.data.name +
+          " in Building " +
+          res.data.building.name +
+          " has been added successfully"
+      );
+    });
   }
   function handleRoomTypeChange(event) {
     setRoomType(event.target.value);
@@ -81,14 +75,8 @@ export default function AddRoom(props) {
   if (loaded && props.currentUser.roles[0] === "ROLE_ADMIN") {
     return (
       <div>
-        {status && (
-          <div>
-            <ToastContainer />{" "}
-          </div>
-        )}
         <AddRoomForm
           nameRef={nameRef}
-          floorRef={floorRef}
           roomType={roomType}
           handleRoomTypeChange={handleRoomTypeChange}
           isBookable={isBookable}

@@ -9,7 +9,7 @@ console.log("abcd",props)
     const instance = L.Routing.control({
         waypoints: [
             L.latLng(props.current.lat,props.current.lng),
-            L.latLng(props.dest.gate.latitude,props.dest.gate.longitude),
+            L.latLng(props.dest.gate.lat,props.dest.gate.lng),
 
         ],
         lineOptions: {
