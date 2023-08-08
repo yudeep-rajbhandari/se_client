@@ -46,8 +46,8 @@
     "wrld.js": "^1.1.0"
   },
   "scripts": {
-    "start": "react-dotenv && node server.js",
-    "build": "react-dotenv && react-scripts build",
+    "start": "react-scripts start",
+    "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
